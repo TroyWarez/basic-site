@@ -1,3 +1,20 @@
-h1 {
-    color: aqua;
+a {
+    text-decoration: none;
+}
+#MainSiteTitle
+{
+    color: #058b00; /* Random user hex color*/
+    background-color: rgb(5, 123, 226); /* rgb/rgba function*/
+}
+#MainSiteSlogan
+{
+    color: rgb(112, 38, 38); /* rgb/rgba function*/
+}
+#MainSiteAbout
+{
+    color: aquamarine; /* literal color */
+}
+#MainSiteContact
+{
+    color: rgb(112, 38, 38); /* rgb/rgba function*/
 }
