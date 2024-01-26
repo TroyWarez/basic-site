@@ -1,20 +1,23 @@
+:root
+{
+    line-height: normal;
+}
 a {
     text-decoration: none;
 }
-#MainSiteTitle
-{
-    color: #058b00; /* Random user hex color*/
-    background-color: rgb(5, 123, 226); /* rgb/rgba function*/
+#MainSiteTitle {
+    color: rgb(41, 51, 47); /* Random literal color */
+    font-family: Sixtyfour;
+    text-align: center;
 }
-#MainSiteSlogan
-{
-    color: rgb(112, 38, 38); /* rgb/rgba function*/
+#MainSiteSlogan {
+    color: rgb(41, 51, 47); /* Random literal color */
+    font-family: Sixtyfour;
+    font-size: initial;
+    text-align: center;
 }
-#MainSiteAbout
+footer
 {
-    color: aquamarine; /* literal color */
-}
-#MainSiteContact
-{
-    color: rgb(112, 38, 38); /* rgb/rgba function*/
+    color: rgb(73, 209, 164); /* Random literal color */
+    font-family: IBM Plex Mono;
 }
