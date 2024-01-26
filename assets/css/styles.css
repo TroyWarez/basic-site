@@ -1,6 +1,7 @@
 :root
 {
     line-height: normal;
+    text-align: center;
 }
 a {
     text-decoration: none;
@@ -20,4 +21,11 @@ footer
 {
     color: rgb(73, 209, 164); /* Random literal color */
     font-family: IBM Plex Mono;
+}
+img {
+    border-radius: 4px;
+}
+ul {
+    list-style-position: inside;
+    padding-left: 1.5em;
 }
