@@ -20,14 +20,10 @@
         </nav>
     </header>
     <h2>Contact Us:</h2>
-    <img alt="ContactImage" src="assets/images/ContactUsAi.jpg" width="512" height="512"></img>
+    <articleImage><p><img alt="ContactImage" src="assets/images/ContactUsAi.jpg" width="512" height="512"></img></p></articleImage>
+    <article>
     <p>
         We're here to help and eager to hear from you! Whether you have questions, feedback, or just want to say hello, our team is ready to assist you. Feel free to reach out through the channels below:
-    
-        📧 Email: [YourEmail@example.com]
-    
-        We value your input and look forward to connecting with you soon!
-    
     </p>
     <form>
     <label>Email:
@@ -35,18 +31,20 @@
     </label>
 
     <label>First Name:
-        <input type="text" maxlength="32"></input>
+        <input type="text" maxlength="64"></input>
     </label>
     <label>Message Subject:
-        <input type="text" maxlength="512"></input>
+        <input type="text" maxlength="128"></input>
     </label>
 
-    <label>Detailed Message: <b>(Max length is 512 characters)</b>
-        <input type="text" maxlength="512"></input>
+    <label>Detailed Message: <b> (Max length is 512 characters)</b>
+        <input type="text" maxlength="512" id="MainSiteContactMessage"></input>
     </label>
 
     <button>Submit</button>
     </form>
+    <b>We value your input and look forward to connecting with you soon!</b>
+</article>
     <footer>Copyright © 2024</footer><!-- If everything was under copyright I'd never be able to do the things I do. :(-->
 </body>
 </html>
