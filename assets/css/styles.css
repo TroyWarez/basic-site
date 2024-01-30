@@ -4,6 +4,7 @@
 }
 a {
     text-decoration: none;
+    color:black;
 }
 #MainSiteTitle {
     color: rgb(41, 51, 47); /* Random literal color */
@@ -18,9 +19,14 @@ a {
 }
 footer
 {
-    color: rgb(243, 46, 46); /* Random literal color */
+    color: rgb(29, 1, 133); /* Random literal color */
     font-family: IBM Plex Mono;
+    font-size: x-large;
     text-align: center;
+    font-weight: 900;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    border-radius: 6px;
 }
 #MainSiteNavList {
     list-style-position: inside;
@@ -37,6 +43,7 @@ ul {
 ol {
     list-style-position: inside;
     font-size: x-large;
+    line-height: 150%;
 }
 p {
     font-size: x-large;
@@ -44,13 +51,24 @@ p {
 article {
     text-align: left;
     font-family: Open Sans;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 img {
     border-radius: 4px;
 }
 h2 {
     text-align: center;
+    text-transform: capitalize;
     font-family: Open Sans;
+    background-color: rgb(65, 65, 65);
+    line-height: 150%;
+    font-weight: bolder;
+    border-radius: 4px;
+    color:skyblue;
+}
+b {
+    font-size: larger;
 }
 articleImage > *{
     text-align: center;
