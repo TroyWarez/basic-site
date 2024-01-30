@@ -1,31 +1,58 @@
 :root
 {
     line-height: normal;
-    text-align: center;
 }
 a {
     text-decoration: none;
 }
 #MainSiteTitle {
     color: rgb(41, 51, 47); /* Random literal color */
-    font-family: Sixtyfour;
+    font-family: Roboto Mono;
     text-align: center;
 }
 #MainSiteSlogan {
     color: rgb(41, 51, 47); /* Random literal color */
-    font-family: Sixtyfour;
+    font-family: Roboto Mono;
     font-size: initial;
     text-align: center;
 }
 footer
 {
-    color: rgb(73, 209, 164); /* Random literal color */
+    color: rgb(243, 46, 46); /* Random literal color */
     font-family: IBM Plex Mono;
+    text-align: center;
+}
+#MainSiteNavList {
+    list-style-position: inside;
+    text-align: center;
+    padding-left: 1.5em;
+    font-size: x-large;
+}
+ul {
+    list-style-position: inside;
+    text-align: left;
+    padding-left: 1.5em;
+    font-size: x-large;
+}
+ol {
+    list-style-position: inside;
+    font-size: x-large;
+}
+p {
+    font-size: x-large;
+}
+article {
+    text-align: left;
+    font-family: Open Sans;
 }
 img {
     border-radius: 4px;
 }
-ul {
-    list-style-position: inside;
-    padding-left: 1.5em;
+h2 {
+    text-align: center;
+    font-family: Open Sans;
+}
+articleImage > *{
+    text-align: center;
+    font-family: Open Sans;
 }
