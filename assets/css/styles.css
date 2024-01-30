@@ -66,10 +66,17 @@ h2 {
     font-weight: bolder;
     border-radius: 4px;
     color:skyblue;
+    padding: 12px;
 }
 b {
     font-size: larger;
 }
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
 articleImage > *{
     text-align: center;
     font-family: Open Sans;
