@@ -6,23 +6,26 @@ a {
     text-decoration: none;
     color:black;
 }
+body {
+    display: grid;
+}
 #MainSiteTitle {
     color: rgb(41, 51, 47); /* Random literal color */
     font-family: Roboto Mono;
-    text-align: center;
+
 }
 #MainSiteSlogan {
     color: rgb(41, 51, 47); /* Random literal color */
     font-family: Roboto Mono;
     font-size: initial;
-    text-align: center;
+
 }
 footer
 {
     color: rgb(29, 1, 133); /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
-    text-align: center;
+
     font-weight: 900;
     padding-top: 3rem;
     padding-bottom: 3rem;
@@ -30,7 +33,7 @@ footer
 }
 #MainSiteNavList {
     list-style-position: inside;
-    text-align: center;
+
     padding-left: 1.5em;
     font-size: x-large;
 }
@@ -58,7 +61,7 @@ img {
     border-radius: 4px;
 }
 h2 {
-    text-align: center;
+
     text-transform: capitalize;
     font-family: Open Sans;
     background-color: rgb(65, 65, 65);
@@ -79,10 +82,10 @@ input[type=text], input[type=email] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    text-align: center;
+
   }
 articleImage > *{
-    text-align: center;
+
     font-family: Open Sans;
 }
 #MainSiteContactMessage {
@@ -94,7 +97,7 @@ button {
     border: none;
     color: white;
     padding: 15px 32px;
-    text-align: center;
+
     text-decoration: none;
     display: inline-block;
     border-radius: 4px;
