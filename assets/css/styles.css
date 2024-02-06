@@ -1,61 +1,73 @@
 :root
 {
     line-height: normal;
+    list-style-position: inside;
+    justify-items: center;
+    align-items: center;
+}
+.MainSiteGrid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(100px, auto);
+    grid-template-areas:
+     "header"
+     "main"
+     "footer"
 }
 a {
     text-decoration: none;
     color:black;
 }
-body {
-    display: grid;
-}
-#MainSiteTitle {
+.MainSiteHeader {
     color: rgb(41, 51, 47); /* Random literal color */
     font-family: Roboto Mono;
-
+    grid-template-areas: 'header';
+    display: grid;
+    text-align: center;
 }
-#MainSiteSlogan {
+.MainSiteSlogan {
     color: rgb(41, 51, 47); /* Random literal color */
     font-family: Roboto Mono;
     font-size: initial;
-
+    text-align: center;
 }
-footer
+.MainSiteGrid footer
 {
     color: rgb(29, 1, 133); /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
-
     font-weight: 900;
     padding-top: 3rem;
     padding-bottom: 3rem;
     border-radius: 6px;
+    grid-template-areas: 'footer';
+    display: grid;
+    text-align: center;
 }
-#MainSiteNavList {
-    list-style-position: inside;
-
+.MainSiteNavList {
     padding-left: 1.5em;
-    font-size: x-large;
+    font-size: large;
 }
 ul {
-    list-style-position: inside;
-    text-align: left;
     padding-left: 1.5em;
-    font-size: x-large;
+    font-size: large;
 }
 ol {
-    list-style-position: inside;
-    font-size: x-large;
+    font-size: large;
     line-height: 150%;
 }
-p {
+.MainSiteGrid p {
     font-size: x-large;
+    text-align: center;
 }
-article {
-    text-align: left;
+.MainSiteGrid article {
     font-family: Open Sans;
-    margin-left: 10%;
-    margin-right: 10%;
+    grid-template-areas: 'main';
+    display: grid;
+}
+articleContent {
+    text-align: center;
+    list-style-position: inside;
 }
 img {
     border-radius: 4px;
@@ -70,6 +82,7 @@ h2 {
     border-radius: 4px;
     color:skyblue;
     padding: 12px;
+    text-align: center;
 }
 b {
     font-size: larger;
@@ -84,20 +97,19 @@ input[type=text], input[type=email] {
     box-sizing: border-box;
 
   }
-articleImage > *{
-
+.MainSiteGrid articleImage > *{
     font-family: Open Sans;
+    grid-template-areas: 'main';
 }
-#MainSiteContactMessage {
+.MainSiteContactMessage {
     padding: 128px 20px;
     text-indent: -512px;
 }
 button {
-    background-color: skyblue; /* Green */
+    background-color: skyblue;
     border: none;
     color: white;
     padding: 15px 32px;
-
     text-decoration: none;
     display: inline-block;
     border-radius: 4px;
