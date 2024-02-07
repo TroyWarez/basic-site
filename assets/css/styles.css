@@ -9,30 +9,6 @@ flex-direction: column;
 align-items: center;
 justify-content: space-around;
 }
-@media (width <= 400px) {
-    .MainSiteHeader img {
-        width: 128px;
-    }
-    img {
-        width: 256px;
-    }
-}
-@media (width <= 400px) and (width <= 800px) {
-    .MainSiteHeader img {
-        width: 256px;
-    }
-    img {
-        width: 256px;
-    }
-}
-@media (width >= 800px) {
-    .MainSiteHeader img {
-        width: 128px;
-    }
-    img {
-        width: 512px;
-    }
-}
 .MainSiteGrid {
     display: grid;
     width: 100%;
@@ -165,4 +141,28 @@ button {
     text-decoration: none;
     display: inline-block;
     border-radius: 4px;
+}
+@media (width <= 400px) {
+    .MainSiteHeader img {
+        width: 128px;
+    }
+    img {
+        width: 256px;
+    }
+}
+@media (width <= 400px) and (width <= 800px) {
+    .MainSiteHeader img {
+        width: 256px;
+    }
+    img {
+        width: 256px;
+    }
+}
+@media (width >= 800px) {
+    .MainSiteHeader img {
+        width: 128px;
+    }
+    img {
+        width: 512px;
+    }
 }
