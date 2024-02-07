@@ -9,8 +9,23 @@ flex-direction: column;
 align-items: center;
 justify-content: space-around;
 }
-
-
+@media (width <= 400px) {
+    img {
+        width: 128px;
+        height: 128px;
+    }
+}
+@media (width <= 400px) and (width <= 800px) {
+    img {
+        width: 128px;
+        height: 128px;
+    }
+}
+@media (width >= 800px) {
+    img {
+        width: 256px;
+    }
+}
 .MainSiteGrid {
     display: grid;
     width: 100%;
