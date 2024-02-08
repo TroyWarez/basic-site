@@ -2,6 +2,8 @@
 {
     line-height: normal;
     list-style-position: inside;
+    --main-site-color: rgb(41, 51, 47); /* Random literal color */
+    --main-site-footer-color: rgb(29, 1, 133); /* Random literal color */
 }
 .MainSiteFlex {
 display: flex;
@@ -25,21 +27,21 @@ a {
     color:black;
 }
 .MainSiteHeader {
-    color: rgb(41, 51, 47); /* Random literal color */
+    color: --main-color;
     font-family: Roboto Mono;
     grid-area: header;
     display: grid;
     text-align: center;
 }
 .MainSiteSlogan {
-    color: rgb(41, 51, 47); /* Random literal color */
+    color: --main-color; /* Random literal color */
     font-family: Roboto Mono;
     font-size: initial;
     text-align: center;
 }
 .MainSiteGrid footer
 {
-    color: rgb(29, 1, 133); /* Random literal color */
+    color: --main-site-footer-color; /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
     font-weight: 900;
@@ -52,7 +54,7 @@ a {
 }
 footer
 {
-    color: rgb(29, 1, 133); /* Random literal color */
+    color: --main-site-footer-color; /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
     font-weight: 900;
