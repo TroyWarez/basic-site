@@ -27,21 +27,21 @@ a {
     color:black;
 }
 .MainSiteHeader {
-    color: --main-color;
+    color: var(--main-site-color);
     font-family: Roboto Mono;
     grid-area: header;
     display: grid;
     text-align: center;
 }
 .MainSiteSlogan {
-    color: --main-color; /* Random literal color */
+    color: var(--main-site-color);
     font-family: Roboto Mono;
     font-size: initial;
     text-align: center;
 }
 .MainSiteGrid footer
 {
-    color: --main-site-footer-color; /* Random literal color */
+    color: var(---main-site-footer-color); /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
     font-weight: 900;
@@ -54,7 +54,7 @@ a {
 }
 footer
 {
-    color: --main-site-footer-color; /* Random literal color */
+    color: var(---main-site-footer-color); /* Random literal color */
     font-family: IBM Plex Mono;
     font-size: x-large;
     font-weight: 900;
