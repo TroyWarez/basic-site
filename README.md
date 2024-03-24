@@ -1,1 +1,1 @@
-Basic website hosted on GitHub Pages here: https://troywarez.github.io/basic-site
+Generic store website in TypeScript + React
