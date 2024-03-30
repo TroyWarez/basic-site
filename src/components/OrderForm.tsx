@@ -4,17 +4,15 @@ const OrderForm = () => {
     return (
         <>
             <form action="" method="get" className="form-example">
-            <div className="form-example">
-                <label htmlFor="name">Enter your name: </label>
-                <input type="text" name="name" id="name" required />
-            </div>
-            <div className="form-example">
-                <label htmlFor="email">Enter your email: </label>
-                <input type="email" name="email" id="email" required />
-            </div>
-            <div className="form-example">
-                <input type="submit" value="Subscribe!" />
-            </div>
+                <input type="text" name="name" id="firstname" placeholder="First Name" required />
+                <input type="text" name="name" id="lastname" placeholder="Last Name" required />
+                <input type="email" name="email" id="email" required placeholder="Email"/>
+                <input type="text" name="name" id="address" required placeholder="Address"/>
+                <input type="text" name="name" id="country" required placeholder="Country"/>
+                <input type="text" name="name" id="ZIP Code" required placeholder="ZIP Code"/>
+                <input type="text" name="name" id="City" required placeholder="City"/>
+                <input type="text" name="name" id="State" required placeholder="State"/>
+                <input type="submit" id="submit" value="Submit Order" />
             </form>
         </>
     );
