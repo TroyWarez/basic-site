@@ -7,10 +7,10 @@ export type RegionalProps = {
 export default function RegionalInput({ list, name, placeholder }: RegionalProps) {
   
 const OrderDataListCountries = <datalist id="country">
-    <option value="Canada" />
-    <option value="United Kingdom" />
     <option value="United States" />
+    <option value="United Kingdom" />
     <option value="United Arab Emirates" />
+    <option value="Canada" />
     <option value="Mexico" />
     <option value="Australia" />
     <option value="Japan" />
@@ -318,9 +318,9 @@ const OrderDataListStates = <datalist id="statelist">
     <input list={list} name={name} placeholder={placeholder} required/>
     <input list="country" name="country" placeholder="Country" required />
 
-    <input type="text" name="ZIP/Postal Code" id="ZIP/Postal Code" placeholder="ZIP/Postal Code" maxLength={10} required/>
+    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP Code" maxLength={10} required/>
 
-    <input list="" name="state" placeholder="State/Province/Territory" required/>
+    <input list="" name="state" placeholder="State" required/>
     </>
   )
 }

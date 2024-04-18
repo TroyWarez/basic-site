@@ -18,9 +18,9 @@ const OrderForm = () => {
 
                 <input list="country" name="country" placeholder="Country" required />
 
-                <input type="text" name="ZIP/Postal Code" id="ZIP/Postal Code" required placeholder="ZIP/Postal Code" maxLength={10}/>
+                <input type="text" name="ZIP Code" id="ZIP Code" required placeholder="ZIP Code" maxLength={10}/>
 
-                <input list="" name="state" placeholder="State/Province/Territory" required/>
+                <input list="" name="state" placeholder="State" required/>
 
                 <input type="submit" id="submit" value="Submit Order" />
             </form>
