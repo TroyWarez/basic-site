@@ -16,7 +16,7 @@ const OrderForm = () => {
 
                 <input type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <RegionalInput ></RegionalInput>
+                <RegionalInput></RegionalInput>
 
                 <input list="" name="state" placeholder="State" required />
 
