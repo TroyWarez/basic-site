@@ -1,12 +1,83 @@
 import React from 'react'
 
-export type RegionalProps = {
-  RegionType : string;
-}
+export default function RegionalInput() {
 
-export default function RegionalInput({ list, name, placeholder }: RegionalProps) {
-  
-const OrderDataListCountries = <datalist id="country">
+  const OrderDataListUnitedSovereignStates = <datalist id="statelist">
+    <option value="California"></option>
+    <option value="Texas"></option>
+    <option value="Florida"></option>
+    <option value="New York"></option>
+    <option value="Pennsylvania"></option>
+    <option value="Illinois"></option>
+    <option value="Ohio"></option>
+    <option value="Georgia"></option>
+    <option value="North Carolina"></option>
+    <option value="Michigan"></option>
+    <option value="New Jersey"></option>
+    <option value="Virginia"></option>
+    <option value="Washington"></option>
+    <option value="Tennessee"></option>
+    <option value="Massachusetts"></option>
+    <option value="Indiana"></option>
+    <option value="Missouri"></option>
+    <option value="Maryland"></option>
+    <option value="Wisconsin"></option>
+    <option value="Colorado"></option>
+    <option value="Minnesota"></option>
+    <option value="South Carolina"></option>
+    <option value="Alabama"></option>
+    <option value="Louisiana"></option>
+    <option value="Kentucky"></option>
+    <option value="Oregon"></option>
+    <option value="Oklahoma"></option>
+    <option value="Connecticut"></option>
+    <option value="Utah"></option>
+    <option value="Iowa"></option>
+    <option value="Puerto Rico"></option>
+    <option value="Nevada"></option>
+    <option value="Arkansas"></option>
+    <option value="Kansas"></option>
+    <option value="Mississippi"></option>
+    <option value="New Mexico"></option>
+    <option value="Nebraska"></option>
+    <option value="Idaho"></option>
+    <option value="West Virginia"></option>
+    <option value="Hawaii"></option>
+    <option value="New Hampshire"></option>
+    <option value="Maine"></option>
+    <option value="Montana"></option>
+    <option value="Rhode Island"></option>
+    <option value="Delaware"></option>
+    <option value="South Dakota"></option>
+    <option value="North Dakota"></option>
+    <option value="Washington"></option>
+    <option value="Alaska"></option>
+    <option value="District of Columbia"></option>
+    <option value="Wyoming"></option>
+    <option value="Guam"></option>
+    <option value=" U.S. Virgin Islands"></option>
+    <option value="American Samoa"></option>
+    <option value="Northern Mariana Islands"></option></datalist>;
+
+  const OrderDataListCanadianSovereignStates = <datalist id="provinceslist">
+  <option value="Ontario"></option>
+  <option value="Quebec"></option>
+  <option value="Nova Scotia"></option>
+  <option value="New Brunswick"></option>
+  <option value="Manitoba"></option>
+  <option value="British Columbia"></option>
+  <option value="Prince Edward Island"></option>
+  <option value="Alberta"></option>
+  <option value="Newfoundland and Labrador"></option>
+  <option value="Yukon"></option>
+  <option value="Northwest Territories"></option>
+  <option value="Nunavut"></option></datalist>;
+
+  return (
+    <>
+    <input list="country" name="country" placeholder="Country" required />
+    <datalist id="country">
+      
     <option value="United States" />
     <option value="United Kingdom" />
     <option value="United Arab Emirates" />
@@ -14,7 +85,8 @@ const OrderDataListCountries = <datalist id="country">
     <option value="Mexico" />
     <option value="Australia" />
     <option value="Japan" />
-    <option value="Austria" />
+
+    <option value="Austria" /> 
     <option value="Belgium" />
     <option value="France" />
     <option value="Bulgaria" />
@@ -45,7 +117,6 @@ const OrderDataListCountries = <datalist id="country">
     <option value="Liechtenstein" />
     <option value="Norway" />
     <option value="Switzerland" />
-    <option value="-Less Common Countries-" /> 
     <option value="Albania" />
     <option value="Algeria" />
     <option value="American Samoa" />
@@ -243,80 +314,8 @@ const OrderDataListCountries = <datalist id="country">
     <option value="Western Sahara" />
     <option value="Yemen" />
     <option value="Zambia" />
-    <option value="Zimbabwe" /></datalist>;
-
-const OrderDataListStates = <datalist id="statelist">
-    <option value="Alabama"></option>
-    <option value="Alaska"></option>
-    <option value="Arizona"></option>
-    <option value="Arkansas"></option>
-    <option value="California"></option>
-    <option value="Colorado"></option>
-    <option value="Connecticut"></option>
-    <option value="Delaware"></option>
-    <option value="District of Columbia"></option>
-    <option value="Florida"></option>
-    <option value="Georgia"></option>
-    <option value="Hawaii"></option>
-    <option value="Idaho"></option>
-    <option value="Illinois"></option>
-    <option value="Indiana"></option>
-    <option value="Iowa"></option>
-    <option value="Kansas"></option>
-    <option value="Kentucky"></option>
-    <option value="Louisiana"></option>
-    <option value="Maine"></option>
-    <option value="Maryland"></option>
-    <option value="Massachusetts"></option>
-    <option value="Michigan"></option>
-    <option value="Minnesota"></option>
-    <option value="Mississippi"></option>
-    <option value="Missouri"></option>
-    <option value="Montana"></option>
-    <option value="Nebraska"></option>
-    <option value="Nevada"></option>
-    <option value="New Hampshire"></option>
-    <option value="New Jersey"></option>
-    <option value="New Mexico"></option>
-    <option value="New York"></option>
-    <option value="North Carolina"></option>
-    <option value="North Dakota"></option>
-    <option value="Ohio"></option>
-    <option value="Oklahoma"></option>
-    <option value="Oregon"></option>
-    <option value="Pennsylvania"></option>
-    <option value="Rhode Island"></option>
-    <option value="South Carolina"></option>
-    <option value="South Dakota"></option>
-    <option value="Tennessee"></option>
-    <option value="Texas"></option>
-    <option value="Utah"></option>
-    <option value="Vermont"></option>
-    <option value="Virginia"></option>
-    <option value="Washington"></option>
-    <option value="West Virginia"></option>
-    <option value="Wisconsin"></option>
-    <option value="Wyoming"></option></datalist>;
-
-  const OrderDataListProvinces = <datalist id="provinceslist">
-  <option value="Ontario"></option>
-  <option value="Quebec"></option>
-  <option value="Nova Scotia"></option>
-  <option value="New Brunswick"></option>
-  <option value="Manitoba"></option>
-  <option value="British Columbia"></option>
-  <option value="Prince Edward Island"></option>
-  <option value="Alberta"></option>
-  <option value="Newfoundland and Labrador"></option>
-  <option value="-Territories-"></option>
-  <option value="Yukon"></option>
-  <option value="Northwest Territories"></option>
-  <option value="Nunavut"></option></datalist>;
-
-  return (
-    <>
-    <input list={list} name={name} placeholder={placeholder} required/>
-    <input list="country" name="country" placeholder="Country" required />
+    <option value="Zimbabwe" />
+    </datalist>
 
     <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP Code" maxLength={10} required/>
 

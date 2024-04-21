@@ -1,5 +1,5 @@
 import React from 'react';
-
+import RegionalInput from './RegionalInput';
 const OrderForm = () => {
     return (
         <>
@@ -16,11 +16,9 @@ const OrderForm = () => {
 
                 <input type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <input list="country" name="country" placeholder="Country" required />
+                <RegionalInput ></RegionalInput>
 
-                <input type="text" name="ZIP Code" id="ZIP Code" required placeholder="ZIP Code" maxLength={10}/>
-
-                <input list="" name="state" placeholder="State" required/>
+                <input list="" name="state" placeholder="State" required />
 
                 <input type="submit" id="submit" value="Submit Order" />
             </form>
