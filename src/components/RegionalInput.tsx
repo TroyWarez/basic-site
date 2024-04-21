@@ -317,9 +317,9 @@ export default function RegionalInput() {
     <option value="Zimbabwe" />
     </datalist>
 
-    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP Code" maxLength={10} required/>
+    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / Postal code" maxLength={12} required/>
 
-    <input list="" name="state" placeholder="State" required/>
+    <input list="" name="state" placeholder="State / Province" required/>
     </>
   )
 }

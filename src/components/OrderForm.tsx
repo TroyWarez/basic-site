@@ -18,8 +18,6 @@ const OrderForm = () => {
 
                 <RegionalInput></RegionalInput>
 
-                <input list="" name="state" placeholder="State" required />
-
                 <input type="submit" id="submit" value="Submit Order" />
             </form>
         </>
