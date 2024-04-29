@@ -3,7 +3,7 @@ import RegionalInput from './RegionalInput';
 const OrderForm = () => {
     return (
         <>
-            <h1>Shipping</h1>
+            <h1>Shipping Address</h1>
             <p>Please enter your shipping details.</p>
             <form action="" method="get" className="form-example">
                 <input type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
