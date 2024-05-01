@@ -319,7 +319,7 @@ export default function RegionalInput() {
 
     <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / Postal code" maxLength={12} required/>
 
-    <input list="" name="state" placeholder="State / Province" required/>
+    <input list="" name="state" placeholder="State / Province / Territory" required/>
     </>
   )
 }
