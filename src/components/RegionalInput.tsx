@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function RegionalInput() {
 
   const OrderDataListUnitedSovereignStates = <datalist id="statelist">
