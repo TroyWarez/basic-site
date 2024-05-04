@@ -246,7 +246,7 @@ export default function RegionalInput() {
 
     <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / Postal code" maxLength={12} required/>
 
-    <input list="state" name="state" placeholder="State / Province / Territory" required/>
+    <input list="state" name="state" placeholder="State / Province" required/>
     <datalist id="state">
     <option value="California"></option>
     <option value="Texas"></option>
