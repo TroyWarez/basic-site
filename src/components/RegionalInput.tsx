@@ -1,7 +1,6 @@
 export default function RegionalInput() {
   return (
     <>
-    <form>
     <input list="country" name="country" placeholder="Country" required />
     <datalist id="country">
       
@@ -318,7 +317,6 @@ export default function RegionalInput() {
     <option value="Northwest Territories"></option>
     <option value="Nunavut"></option>
     </datalist>
-    </form>
     </>
   )
 }
