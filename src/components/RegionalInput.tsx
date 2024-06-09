@@ -1,7 +1,8 @@
 export default function RegionalInput() {
   return (
     <>
-    <input list="country" name="country" placeholder="Country" required />
+    <label htmlFor="Country"> Country </label>
+    <input list="country" name="country" id="Country" required />
     <datalist id="country">
       
     <option value="United States" />
@@ -242,9 +243,12 @@ export default function RegionalInput() {
     <option value="Zimbabwe" />
     </datalist>
 
-    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / postal code" maxLength={12} required/>
+    <label htmlFor="ZIP Code"> ZIP / Postal Code </label>
+    <input type="text" name="ZIP Code" id="ZIP Code" maxLength={12} required/>
 
-    <input list="state" name="state" placeholder="State / province" required/>
+
+    <label htmlFor="state"> State / province </label>
+    <input list="state" name="state" id="state" required/>
     <datalist id="state">
     <option value="California"></option>
     <option value="Texas"></option>
