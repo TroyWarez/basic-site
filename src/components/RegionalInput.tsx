@@ -1,8 +1,13 @@
+import { useState } from "react"
 export default function RegionalInput() {
+  const [regions, setRegions] = useState("");
+  function ChangeHandler(){
+    
+  }
   return (
     <>
     <label htmlFor="Country"> Country </label>
-    <input list="country" name="country" id="Country" required />
+    <input list="country" name="country" id="Country" onChange={ChangeHandler} required />
     <datalist id="country">
       
     <option value="United States" />

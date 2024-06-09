@@ -27,4 +27,6 @@ input, textarea {
   border: 1px solid #c0c0c0;
   outline: 0 !important;
   box-sizing: border-box;
+  text-align: center;
+  margin: auto;
 }
