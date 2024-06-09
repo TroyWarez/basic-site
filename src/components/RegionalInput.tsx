@@ -1,6 +1,4 @@
-import { useState } from "react"
 export default function RegionalInput() {
-  const [regions, setRegions] = useState("");
   function ChangeHandler(){
     
   }
