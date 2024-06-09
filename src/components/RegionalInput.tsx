@@ -11,7 +11,6 @@ export default function RegionalInput() {
     <option value="Mexico" />
     <option value="Australia" />
     <option value="Japan" />
-
     <option value="Austria" /> 
     <option value="Belgium" />
     <option value="France" />
@@ -243,9 +242,9 @@ export default function RegionalInput() {
     <option value="Zimbabwe" />
     </datalist>
 
-    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / Postal code" maxLength={12} required/>
+    <input type="text" name="ZIP Code" id="ZIP Code" placeholder="ZIP / postal code" maxLength={12} required/>
 
-    <input list="state" name="state" placeholder="State / Province" required/>
+    <input list="state" name="state" placeholder="State / province" required/>
     <datalist id="state">
     <option value="California"></option>
     <option value="Texas"></option>
