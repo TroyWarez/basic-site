@@ -1,7 +1,7 @@
 
 
 export default function RegionalInput() {
-  function ChangeHandler(event : any) {}
+  function ChangeHandler(event : Event) {
     const stateInputElement = document.getElementById("stateInput");
     switch (event?.target?.value)
     {
