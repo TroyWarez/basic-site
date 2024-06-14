@@ -1,33 +1,36 @@
+import { ChangeEvent } from "react";
 
 
 export default function RegionalInput() {
-  function ChangeHandler(event : Event) {
+  function ChangeHandler(event : ChangeEvent) {
     const stateInputElement = document.getElementById("stateInput");
-    switch (event?.target?.value)
-    {
-      case "Canada":
-        {
-          stateInputElement?.setAttribute("list", "CanadaProvinces");
-          break;
-        }
-      case "United States":
-        {
-          stateInputElement?.setAttribute("list", "US States");
-          break;
-        }
-        default:
-        {
-          stateInputElement?.setAttribute("list", "");
-          break;
-        }
+    if (stateInputElement) {
+      switch (event?.target?.value)
+      {
+        case "Canada":
+          {
+            stateInputElement.setAttribute("list", "CanadaProvinces");
+            break;
+          }
+        case "United States":
+          {
+            stateInputElement.setAttribute("list", "US States");
+            break;
+          }
+          default:
+          {
+            stateInputElement.removeAttribute("list");
+            break;
+          }
+      }
     }
+
   }
   return (
     <>
     <label htmlFor="Country"> Country </label>
-    <input list="country" name="country" id="Country" onChange={ChangeHandler} required />
-    <datalist id="country">
-      
+    <input list="country" name="country" id="Country" onChange={ChangeHandler} autocomplete="off" required />
+    <datalist id="country"> 
     <option value="United States" />
     <option value="United Kingdom" />
     <option value="United Arab Emirates" />
@@ -271,7 +274,7 @@ export default function RegionalInput() {
 
 
     <label htmlFor="stateInput"> State / province </label>
-    <input name="state" id="stateInput" list="US States" required/>
+    <input name="state" id="stateInput" list="" required/>
 
 
     <datalist id="US States">
