@@ -26,7 +26,7 @@ export default function RegionalInput() {
   }
   return (
     <>
-    <select name="country" id="Country" onChange={ChangeHandler} required>
+    <select name="country" id="Country" onChange={ChangeHandler} aria-label="Please select your country" required>
     <option value="United States">United States</option>
     <option value="United Kingdom">United Kingdom</option>
     <option value="United Arab Emirates">United Arab Emirates</option>
