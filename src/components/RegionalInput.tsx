@@ -1,8 +1,6 @@
-import { ChangeEvent } from "react";
-
 
 export default function RegionalInput() {
-  function ChangeHandler(event : ChangeEvent) {
+  function ChangeHandler(event: React.ChangeEvent<HTMLInputElement>) {
     const stateInputElement = document.getElementById("stateInput");
     if (stateInputElement) {
       switch (event?.target?.value)
