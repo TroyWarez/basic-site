@@ -29,7 +29,7 @@ export default function RegionalInput() {
   return (
     <>
     <label htmlFor="Country"> Country </label>
-    <input list="country" name="country" id="Country" onChange={ChangeHandler} autocomplete="off" required />
+    <input list="country" name="country" id="Country" onChange={ChangeHandler} required />
     <datalist id="country"> 
     <option value="United States" />
     <option value="United Kingdom" />
@@ -274,7 +274,7 @@ export default function RegionalInput() {
 
 
     <label htmlFor="stateInput"> State / province </label>
-    <input name="state" id="stateInput" list="" required/>
+    <input name="state" id="stateInput" required/>
 
 
     <datalist id="US States">
