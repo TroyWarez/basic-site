@@ -2,9 +2,10 @@ import RegionalInput from './RegionalInput';
 const OrderForm = () => {
     return (
         <>
+        <div id="stylized-shipping-form" className="shipping-form">
+            <form action="" method="get">
             <h1>Shipping Address</h1>
             <p>Please enter your shipping details.</p>
-            <form action="" method="get" className="form-example">
                 <input type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
 
                 <input type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
@@ -19,6 +20,7 @@ const OrderForm = () => {
 
                 <input type="submit" id="submit" value="Submit Order" />
             </form>
+        </div>
         </>
     );
 };
