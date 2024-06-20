@@ -4,8 +4,8 @@ export default function RegionalInput() {
     const stateInputElement =  document.getElementById("stateInput") as HTMLInputElement;
     const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
     if (stateInputElement && ZipCodeInputElement) {
-      stateInputElement.value = "";
-      ZipCodeInputElement.nodeValue = "";
+      ZipCodeInputElement.value = '';
+      stateInputElement.value = '';
       switch (event?.target?.value)
       {
         case 'CA':
@@ -13,8 +13,6 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "CanadaProvinces");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
-            ZipCodeInputElement.value = '';
-            stateInputElement.value = '';
             break;
           }
         case 'US':
@@ -22,8 +20,6 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "US States");
             stateInputElement.setAttribute("placeholder", "State");
             ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
-            ZipCodeInputElement.value = '';
-            stateInputElement.value = '';
             break;
           }
           default:
