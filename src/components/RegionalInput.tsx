@@ -1,10 +1,10 @@
 
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-    const stateInputElement = document.getElementById("stateInput");
-    const ZipCodeInputElement = document.getElementById("zipCode");
+    const stateInputElement =  document.getElementById("stateInput") as HTMLInputElement;
+    const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
     if (stateInputElement && ZipCodeInputElement) {
-      stateInputElement.nodeValue = "";
+      stateInputElement.value = "";
       ZipCodeInputElement.nodeValue = "";
       switch (event?.target?.value)
       {
@@ -13,6 +13,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "CanadaProvinces");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+            ZipCodeInputElement.value = '';
+            stateInputElement.value = '';
             break;
           }
         case 'US':
@@ -20,6 +22,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "US States");
             stateInputElement.setAttribute("placeholder", "State");
             ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
+            ZipCodeInputElement.value = '';
+            stateInputElement.value = '';
             break;
           }
           default:
@@ -271,7 +275,7 @@ export default function RegionalInput() {
     <option value="ZW">Zimbabwe</option>
     </select>
 
-    <input type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
+    <input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
     <input name="state" id="stateInput" placeholder="State" required/>
 
