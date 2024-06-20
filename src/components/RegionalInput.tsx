@@ -1,9 +1,10 @@
 
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-    const stateInputElement =  document.getElementById("stateInput") as HTMLInputElement;
+    const stateInputElement =  document.getElementById("stateInput") as HTMLSelectElement;
+    const provinceInputElement =  document.getElementById("CanadaProvinces") as HTMLSelectElement;
     const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
-    if (stateInputElement && ZipCodeInputElement) {
+    if (stateInputElement && ZipCodeInputElement && provinceInputElement) {
       ZipCodeInputElement.value = '';
       stateInputElement.value = '';
       switch (event?.target?.value)
@@ -13,6 +14,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "CanadaProvinces");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+            stateInputElement.style.display = "none";
+            provinceInputElement.style.display = "inline";
             break;
           }
         case 'US':
@@ -20,6 +23,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "US States");
             stateInputElement.setAttribute("placeholder", "State");
             ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
+            stateInputElement.style.display = "inline";
+            provinceInputElement.style.display = "none";
             break;
           }
           default:
@@ -27,6 +32,8 @@ export default function RegionalInput() {
             stateInputElement.removeAttribute("list");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+            stateInputElement.style.display = "none";
+            provinceInputElement.style.display = "none";
             break;
           }
       }
@@ -273,7 +280,8 @@ export default function RegionalInput() {
 
     <input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
-    <select name="state" id="stateInput" aria-label="Please select your state" required/>
+    <select name="state" id="stateInput" aria-label="Please select your state" required>
+    <option value="">Select your state</option>
     <option value="CA">California</option>
     <option value="TX">Texas</option>
     <option value="FL">Florida</option>
@@ -329,21 +337,23 @@ export default function RegionalInput() {
     <option value="VI">U.S. Virgin Islands</option>
     <option value="AS">American Samoa</option>
     <option value="MP">Northern Mariana Islands</option>
+    </select>
 
-    <datalist id="CanadaProvinces">
-    <option value="Ontario"></option>
-    <option value="Quebec"></option>
-    <option value="Nova Scotia"></option>
-    <option value="New Brunswick"></option>
-    <option value="Manitoba"></option>
-    <option value="British Columbia"></option>
-    <option value="Prince Edward Island"></option>
-    <option value="Alberta"></option>
-    <option value="Newfoundland and Labrador"></option>
-    <option value="Yukon"></option>
-    <option value="Northwest Territories"></option>
-    <option value="Nunavut"></option>
-    </datalist>
+    <select id="CanadaProvinces" aria-label="Please select your province">
+    <option value="">Select your province</option>
+    <option value="ON">Ontario</option>
+    <option value="QC">Quebec</option>
+    <option value="NS">Nova Scotia</option>
+    <option value="NB">New Brunswick</option>
+    <option value="NB">Manitoba</option>
+    <option value="BC">British Columbia</option>
+    <option value="PE">Prince Edward Island</option>
+    <option value="AB">Alberta</option>
+    <option value="NL">Newfoundland and Labrador</option>
+    <option value="YT">Yukon</option>
+    <option value="NT">Northwest Territories</option>
+    <option value="NU">Nunavut</option>
+    </select>
     </>
   )
 }
