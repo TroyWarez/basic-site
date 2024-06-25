@@ -21,6 +21,10 @@ body {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-style: italic;
+  text-align: left;
+}
+#stylized-shipping-form {
+  display: table-caption;
 }
 .hide {
   visibility: hidden;
@@ -35,5 +39,5 @@ input, textarea {
   outline: 0 !important;
   box-sizing: border-box;
   text-align: left;
-  margin: auto;
+  margin: 5px;
 }
