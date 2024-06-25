@@ -4,7 +4,7 @@ const OrderForm = () => {
         <>
         <div id="stylized-shipping-form" className="shipping-form">
             <form action="" method="get">
-            <h1>Shipping Address</h1>
+            <h3 id="shipping-heading">Shipping Address</h3>
             <p>Please enter your shipping details.</p>
                 <input type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
 
