@@ -1,9 +1,10 @@
 
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-    const stateInputElement =  document.getElementById("stateInput") as HTMLInputElement;
+    const stateInputElement =  document.getElementById("stateInput") as HTMLSelectElement;
+    const provinceInputElement =  document.getElementById("CanadaProvinces") as HTMLSelectElement;
     const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
-    if (stateInputElement && ZipCodeInputElement) {
+    if (stateInputElement && ZipCodeInputElement && provinceInputElement) {
       ZipCodeInputElement.value = '';
       stateInputElement.value = '';
       switch (event?.target?.value)
@@ -13,6 +14,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "CanadaProvinces");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+            stateInputElement.style.display = "none";
+            provinceInputElement.style.display = "inline";
             break;
           }
         case 'US':
@@ -20,6 +23,8 @@ export default function RegionalInput() {
             stateInputElement.setAttribute("list", "US States");
             stateInputElement.setAttribute("placeholder", "State");
             ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
+            stateInputElement.style.display = "inline";
+            provinceInputElement.style.display = "none";
             break;
           }
           default:
@@ -27,6 +32,8 @@ export default function RegionalInput() {
             stateInputElement.removeAttribute("list");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+            stateInputElement.style.display = "none";
+            provinceInputElement.style.display = "none";
             break;
           }
       }
@@ -273,81 +280,80 @@ export default function RegionalInput() {
 
     <input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
-    <input name="state" id="stateInput" placeholder="State" required/>
+    <select name="state" id="stateInput" aria-label="Please select your state" required>
+    <option value="">Select your state</option>
+    <option value="CA">California</option>
+    <option value="TX">Texas</option>
+    <option value="FL">Florida</option>
+    <option value="NY">New York</option>
+    <option value="PA">Pennsylvania</option>
+    <option value="IL">Illinois</option>
+    <option value="OH">Ohio</option>
+    <option value="GA">Georgia</option>
+    <option value="NC">North Carolina</option>
+    <option value="MI">Michigan</option>
+    <option value="NJ">New Jersey</option>
+    <option value="VA">Virginia</option>
+    <option value="WA">Washington</option>
+    <option value="TN">Tennessee</option>
+    <option value="MA">Massachusetts</option>
+    <option value="IN">Indiana</option>
+    <option value="MO">Missouri</option>
+    <option value="MD">Maryland</option>
+    <option value="WI">Wisconsin</option>
+    <option value="CO">Colorado</option>
+    <option value="MN">Minnesota</option>
+    <option value="SC">South Carolina</option>
+    <option value="AL">Alabama</option>
+    <option value="LA">Louisiana</option>
+    <option value="KY">Kentucky</option>
+    <option value="OR">Oregon</option>
+    <option value="OK">Oklahoma</option>
+    <option value="CT">Connecticut</option>
+    <option value="UT">Utah</option>
+    <option value="IA">Iowa</option>
+    <option value="PR">Puerto Rico</option>
+    <option value="NV">Nevada</option>
+    <option value="AR">Arkansas</option>
+    <option value="KS">Kansas</option>
+    <option value="MS">Mississippi</option>
+    <option value="NM">New Mexico</option>
+    <option value="NE">Nebraska</option>
+    <option value="ID">Idaho</option>
+    <option value="WV">West Virginia</option>
+    <option value="HI">Hawaii</option>
+    <option value="NH">New Hampshire</option>
+    <option value="ME">Maine</option>
+    <option value="MT">Montana</option>
+    <option value="RI">Rhode Island</option>
+    <option value="DE">Delaware</option>
+    <option value="SD">South Dakota</option>
+    <option value="ND	">North Dakota</option>
+    <option value="WA">Washington</option>
+    <option value="AK">Alaska</option>
+    <option value="DC">District of Columbia</option>
+    <option value="WY">Wyoming</option>
+    <option value="GU">Guam</option>
+    <option value="VI">U.S. Virgin Islands</option>
+    <option value="AS">American Samoa</option>
+    <option value="MP">Northern Mariana Islands</option>
+    </select>
 
-
-    <datalist id="US States">
-    <option value="California"></option>
-    <option value="Texas"></option>
-    <option value="Florida"></option>
-    <option value="New York"></option>
-    <option value="Pennsylvania"></option>
-    <option value="Illinois"></option>
-    <option value="Ohio"></option>
-    <option value="Georgia"></option>
-    <option value="North Carolina"></option>
-    <option value="Michigan"></option>
-    <option value="New Jersey"></option>
-    <option value="Virginia"></option>
-    <option value="Washington"></option>
-    <option value="Tennessee"></option>
-    <option value="Massachusetts"></option>
-    <option value="Indiana"></option>
-    <option value="Missouri"></option>
-    <option value="Maryland"></option>
-    <option value="Wisconsin"></option>
-    <option value="Colorado"></option>
-    <option value="Minnesota"></option>
-    <option value="South Carolina"></option>
-    <option value="Alabama"></option>
-    <option value="Louisiana"></option>
-    <option value="Kentucky"></option>
-    <option value="Oregon"></option>
-    <option value="Oklahoma"></option>
-    <option value="Connecticut"></option>
-    <option value="Utah"></option>
-    <option value="Iowa"></option>
-    <option value="Puerto Rico"></option>
-    <option value="Nevada"></option>
-    <option value="Arkansas"></option>
-    <option value="Kansas"></option>
-    <option value="Mississippi"></option>
-    <option value="New Mexico"></option>
-    <option value="Nebraska"></option>
-    <option value="Idaho"></option>
-    <option value="West Virginia"></option>
-    <option value="Hawaii"></option>
-    <option value="New Hampshire"></option>
-    <option value="Maine"></option>
-    <option value="Montana"></option>
-    <option value="Rhode Island"></option>
-    <option value="Delaware"></option>
-    <option value="South Dakota"></option>
-    <option value="North Dakota"></option>
-    <option value="Washington"></option>
-    <option value="Alaska"></option>
-    <option value="District of Columbia"></option>
-    <option value="Wyoming"></option>
-    <option value="Guam"></option>
-    <option value=" U.S. Virgin Islands"></option>
-    <option value="American Samoa"></option>
-    <option value="Northern Mariana Islands"></option>
-    </datalist>
-
-    <datalist id="CanadaProvinces">
-    <option value="Ontario"></option>
-    <option value="Quebec"></option>
-    <option value="Nova Scotia"></option>
-    <option value="New Brunswick"></option>
-    <option value="Manitoba"></option>
-    <option value="British Columbia"></option>
-    <option value="Prince Edward Island"></option>
-    <option value="Alberta"></option>
-    <option value="Newfoundland and Labrador"></option>
-    <option value="Yukon"></option>
-    <option value="Northwest Territories"></option>
-    <option value="Nunavut"></option>
-    </datalist>
+    <select id="CanadaProvinces" aria-label="Please select your province">
+    <option value="">Select your province</option>
+    <option value="ON">Ontario</option>
+    <option value="QC">Quebec</option>
+    <option value="NS">Nova Scotia</option>
+    <option value="NB">New Brunswick</option>
+    <option value="NB">Manitoba</option>
+    <option value="BC">British Columbia</option>
+    <option value="PE">Prince Edward Island</option>
+    <option value="AB">Alberta</option>
+    <option value="NL">Newfoundland and Labrador</option>
+    <option value="YT">Yukon</option>
+    <option value="NT">Northwest Territories</option>
+    <option value="NU">Nunavut</option>
+    </select>
     </>
   )
 }
