@@ -3,7 +3,7 @@ import classes from "./RegionalInput.module.css"
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     const stateInputElement =  document.getElementById("stateInput") as HTMLSelectElement;
-    const provinceInputElement =  document.getElementById("CanadaProvinces") as HTMLSelectElement;
+    const provinceInputElement =  document.getElementById("CanadianProvinces") as HTMLSelectElement;
     const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
     if (stateInputElement && ZipCodeInputElement && provinceInputElement) {
       ZipCodeInputElement.value = '';
@@ -12,7 +12,7 @@ export default function RegionalInput() {
       {
         case 'CA':
           {
-            stateInputElement.setAttribute("list", "CanadaProvinces");
+            stateInputElement.setAttribute("list", "CanadianProvinces");
             stateInputElement.setAttribute("placeholder", "Province");
             ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
             stateInputElement.style.display = "none";
@@ -340,7 +340,7 @@ export default function RegionalInput() {
     <option value="MP">Northern Mariana Islands</option>
     </select>
 
-    <select className={classes.CanadianProvinces} aria-label="Please select your province">
+    <select id="CanadianProvinces" className={classes.CanadianProvinces} aria-label="Please select your province">
     <option value="">Select your province</option>
     <option value="ON">Ontario</option>
     <option value="QC">Quebec</option>
