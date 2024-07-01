@@ -1,4 +1,5 @@
 
+import classes from "./RegionalInput.module.css"
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
     const stateInputElement =  document.getElementById("stateInput") as HTMLSelectElement;
@@ -339,7 +340,7 @@ export default function RegionalInput() {
     <option value="MP">Northern Mariana Islands</option>
     </select>
 
-    <select id="CanadaProvinces" aria-label="Please select your province">
+    <select className={classes.CanadianProvinces} aria-label="Please select your province">
     <option value="">Select your province</option>
     <option value="ON">Ontario</option>
     <option value="QC">Quebec</option>

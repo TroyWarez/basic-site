@@ -1,10 +1,11 @@
-import RegionalInput from './RegionalInput';
+import RegionalInput from '../RegionalInput/RegionalInput'
+import classes from "./OrderForm.module.css"
 const OrderForm = () => {
     return (
         <>
-        <div id="stylized-shipping-form" className="shipping-form">
+        <div className={classes.shippingform}>
             <form action="" method="get">
-            <h3 id="shipping-heading">Shipping Address</h3>
+            <h3 className={classes.shippingheading}>Shipping Address</h3>
             <p>Please enter your shipping details.</p>
                 <input type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
 
