@@ -15,3 +15,12 @@
 .shippinginput {
   margin: 1%;
 }
+.CanadianProvinces {
+  display: none;
+  margin: 1%;
+  max-width: 15em;
+}
+.shippingselect {
+  margin: 1%;
+  max-width: 15em;
+}
