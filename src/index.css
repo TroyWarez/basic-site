@@ -10,14 +10,11 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  min-width: 100vw;
-  min-height: 100vh;
-}
-
-#root {
-  width: 100%;
 }
 .hide {
   visibility: hidden;
   display: block;
+}
+form {
+  text-align: center;
 }

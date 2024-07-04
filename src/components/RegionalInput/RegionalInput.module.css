@@ -1,3 +1,12 @@
 .CanadianProvinces {
     display: none;
+    margin: 1%;
+    max-width: 15em;
+  }
+  .shippinginput {
+    margin: 1%;
+  }
+  .shippingselect {
+    margin: 1%;
+    max-width: 15em;
   }

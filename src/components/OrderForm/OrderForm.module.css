@@ -1,15 +1,17 @@
 .shippingheading {
   font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-  text-align: left;
+  font-weight: 400;
+  font-style: normal;
+  margin: 3%;
 }
 .shippingform {
-  display: table-caption;
+  display: bable-row;
   border-radius: 20px;
   border: 1px solid #c0c0c0;
   outline: 0 !important;
   box-sizing: border-box;
-  text-align: left;
-  margin: 5px;
+  width: 100%;
+}
+.shippinginput {
+  margin: 1%;
 }

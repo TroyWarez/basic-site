@@ -2,7 +2,7 @@
 import classes from "./RegionalInput.module.css"
 export default function RegionalInput() {
   function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
-    const stateInputElement =  document.getElementById("stateInput") as HTMLSelectElement;
+    const stateInputElement =  document.getElementById("stateSelect") as HTMLSelectElement;
     const provinceInputElement =  document.getElementById("CanadianProvinces") as HTMLSelectElement;
     const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
     if (stateInputElement && ZipCodeInputElement && provinceInputElement) {
@@ -43,7 +43,7 @@ export default function RegionalInput() {
   }
   return (
     <>
-    <select name="country" id="Country" onChange={ChangeHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
+    <select className={classes.shippingselect} name="country" id="Country" onChange={ChangeHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
     <option value="US">United States</option>
     <option value="GB">United Kingdom</option>
     <option value="AE">United Arab Emirates</option>
@@ -279,9 +279,9 @@ export default function RegionalInput() {
     <option value="ZW">Zimbabwe</option>
     </select>
 
-    <input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
+    <input className={classes.shippinginput}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
-    <select name="state" id="stateInput" aria-label="Please select your state" required>
+    <select className={classes.shippingselect} name="state" id="stateSelect" aria-label="Please select your state" required>
     <option value="">Select your state</option>
     <option value="CA">California</option>
     <option value="TX">Texas</option>
