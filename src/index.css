@@ -17,3 +17,11 @@ body {
 form {
   text-align: center;
 }
+footer {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  margin: 1%;
+  font-size: large;
+  text-align: center;
+}
