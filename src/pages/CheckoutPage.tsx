@@ -1,8 +1,8 @@
 import OrderForm from "../components/OrderForm/OrderForm";
-const NotFoundPage = () => {
+const CheckoutPage = () => {
   return (
     <OrderForm/>
   );
 };
 
-export default NotFoundPage;
+export default CheckoutPage;
