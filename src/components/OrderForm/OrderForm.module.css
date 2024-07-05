@@ -1,8 +1,9 @@
 .shippingheading {
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   font-style: normal;
-  margin: 3%;
+  margin: 1%;
+  font-size: xx-large;
 }
 .shippingform {
   display: bable-row;
