@@ -1,9 +1,9 @@
 import OrderForm from "../components/OrderForm/OrderForm";
-import { Link } from "react-router-dom";
+import Homebutton from "../components/Homebutton/Homebutton";
 const CheckoutPage = () => {
   return (
     <div>
-    <Link to="/"><img src={"storefrontIcon.png"} alt="Home" width="64"/></Link>
+    <Homebutton/>
     <OrderForm/>
     <footer>© Copyright {new Date().getFullYear()} all rights reserved</footer>
     </div>
