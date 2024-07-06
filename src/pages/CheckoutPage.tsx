@@ -3,7 +3,7 @@ const CheckoutPage = () => {
   return (
     <div>
     <OrderForm/>
-    <footer>Copyright {new Date().getFullYear()}</footer>
+    <footer>© Copyright {new Date().getFullYear()}</footer>
     </div>
   );
 };
