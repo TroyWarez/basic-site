@@ -369,7 +369,7 @@ const OrderForm = () => {
                 <option value="NU">Nunavut</option>
                 </select>
 
-                <input type="submit" id="submit" value="Submit Order" />
+                <input className={classes.shippinginput} type="submit" id="submit" value="Submit Order" />
             </form>
         </div>
         </>
