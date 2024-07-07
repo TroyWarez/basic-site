@@ -1,6 +1,6 @@
 import classes from "./OrderForm.module.css"
 const OrderForm = () => {
-    function ChangeHandler(event: React.ChangeEvent<HTMLSelectElement>) {
+    function onChangeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         const stateInputElement =  document.getElementById("stateSelect") as HTMLSelectElement;
         const provinceInputElement =  document.getElementById("CanadianProvinces") as HTMLSelectElement;
         const ZipCodeInputElement = document.getElementById("zipCode") as HTMLInputElement;
@@ -56,7 +56,7 @@ const OrderForm = () => {
 
                 <input className={classes.shippinginput} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <select className={classes.shippingselect} name="country" id="Country" onChange={ChangeHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
+                <select className={classes.shippingselect} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="AE">United Arab Emirates</option>
