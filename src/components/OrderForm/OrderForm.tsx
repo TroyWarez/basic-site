@@ -14,6 +14,7 @@ const OrderForm = () => {
                 stateInputElement.setAttribute("list", "CanadianProvinces");
                 stateInputElement.setAttribute("placeholder", "Province");
                 ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+                ZipCodeInputElement.setAttribute("maxLength", "32");
                 stateInputElement.style.display = "none";
                 provinceInputElement.style.display = "inline";
                 break;
@@ -23,6 +24,7 @@ const OrderForm = () => {
                 stateInputElement.setAttribute("list", "US States");
                 stateInputElement.setAttribute("placeholder", "State");
                 ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
+                ZipCodeInputElement.setAttribute("maxLength", "12");
                 stateInputElement.style.display = "inline";
                 provinceInputElement.style.display = "none";
                 break;
@@ -32,6 +34,7 @@ const OrderForm = () => {
                 stateInputElement.removeAttribute("list");
                 stateInputElement.setAttribute("placeholder", "Province");
                 ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+                ZipCodeInputElement.setAttribute("maxLength", "12");
                 stateInputElement.style.display = "none";
                 provinceInputElement.style.display = "none";
                 break;
@@ -40,6 +43,33 @@ const OrderForm = () => {
         }
     
       }
+    function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
+      if (event.target.value !== "")
+        {
+          switch(event.target.placeholder) {
+            case "ZIP Code": 
+            {
+              if(isNaN(Number(event.target.value)))
+                {
+                  event.target.value = event.target.value.replace(/\D/g, "");
+                }
+              break;
+            }
+            case "Postal Code": 
+            {
+              if(event.target.value !== '')
+                {
+                  event.target.value = event.target.value.toUpperCase();
+                  if(event.target.value.length === 3)
+                    {
+                      event.target.value += ' ';
+                    }  
+                }
+              break;
+            }
+          }
+        }
+    }
     return (
         <>
         <div className={classes.shippingform}>
@@ -292,7 +322,7 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </select>
 
-                <input className={classes.shippinginput}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
+                <input onInput={onInputHandler} className={classes.shippinginput}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
                 <select className={classes.shippingselect} name="state" id="stateSelect" aria-label="Please select your state" required>
                 <option value="">Select your state</option>

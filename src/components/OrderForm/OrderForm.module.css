@@ -20,7 +20,8 @@
   background-color: #181a1b;
   color: #e8e6e3;
   border-radius: 20px;
-  border: 1px solid #e8e6e3;;
+  border: 1px solid #e8e6e3;
+  size: 20px;
 }
 .shippingselect {
   margin: 1%;
@@ -28,10 +29,15 @@
   background-color: #181a1b;
   color: #e8e6e3;
   border-radius: 20px;
-  border: 1px solid #e8e6e3;;
+  border: 1px solid #e8e6e3;
 }
 .CanadianProvinces {
-  display: none;
   margin: 1%;
   max-width: 15em;
+  background-color: #181a1b;
+  color: #e8e6e3;
+  border-radius: 20px;
+  border: 1px solid #e8e6e3;
+
+  display: none;
 }
