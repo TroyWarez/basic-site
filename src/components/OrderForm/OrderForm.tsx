@@ -59,11 +59,11 @@ const OrderForm = () => {
             {
               if(event.target.value !== '')
                 {
-                  event.target.value = event.target.value.toUpperCase();
-                  if(event.target.value.length === 3)
-                    {
-                      event.target.value += ' ';
-                    }  
+                  event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+                  if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 32)
+                  {
+                    event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length);
+                  }
                 }
               break;
             }
