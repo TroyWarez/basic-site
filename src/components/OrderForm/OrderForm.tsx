@@ -69,7 +69,7 @@ const OrderForm = () => {
             }
           }
         }
-    }
+      }
     return (
         <>
         <div className={classes.form}>
@@ -383,7 +383,7 @@ const OrderForm = () => {
                 <option value="MP">Northern Mariana Islands</option>
                 </select>
 
-                <select id="CanadianProvinces" className={classes.select} hidden aria-label="Please select your province">
+                <select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province">
                 <option value="">Select your province</option>
                 <option value="ON">Ontario</option>
                 <option value="QC">Quebec</option>

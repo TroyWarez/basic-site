@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 const Homebutton = () => {
     return (
         <>
-        <Link className={classes.Homebutton}to="/"><img src={"storefrontIcon.png"} alt="Home" width="64"/> Store</Link>
+        <div>
+        <Link className={classes.button} to="/">
+        <img src={"storefrontIcon.png"} alt="Home" width="64"/>
+        <p>Store</p>
+        </Link>
+        </div>
         </>
     );
 };
