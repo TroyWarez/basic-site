@@ -72,21 +72,21 @@ const OrderForm = () => {
     }
     return (
         <>
-        <div className={classes.shippingform}>
+        <div className={classes.form}>
             <form action="" method="get">
-            <h3 className={classes.shippingheading}>Shipping Address</h3>
+            <h3 className={classes.heading}>Shipping Address</h3>
             <p>Please enter your shipping details.</p>
-                <input className={classes.shippinginput} type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
+                <input className={classes.input} type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
 
-                <input className={classes.shippinginput} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
+                <input className={classes.input} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
 
-                <input className={classes.shippinginput} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
+                <input className={classes.input} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
-                <input className={classes.shippinginput} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
+                <input className={classes.input} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
 
-                <input className={classes.shippinginput} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
+                <input className={classes.input} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <select className={classes.shippingselect} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
+                <select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="AE">United Arab Emirates</option>
@@ -322,9 +322,9 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </select>
 
-                <input onInput={onInputHandler} className={classes.shippinginput}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
+                <input onInput={onInputHandler} className={classes.input}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
-                <select className={classes.shippingselect} name="state" id="stateSelect" aria-label="Please select your state" required>
+                <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required>
                 <option value="">Select your state</option>
                 <option value="CA">California</option>
                 <option value="TX">Texas</option>
@@ -383,7 +383,7 @@ const OrderForm = () => {
                 <option value="MP">Northern Mariana Islands</option>
                 </select>
 
-                <select id="CanadianProvinces" className={classes.CanadianProvinces} aria-label="Please select your province">
+                <select id="CanadianProvinces" className={classes.select} hidden aria-label="Please select your province">
                 <option value="">Select your province</option>
                 <option value="ON">Ontario</option>
                 <option value="QC">Quebec</option>
@@ -399,7 +399,7 @@ const OrderForm = () => {
                 <option value="NU">Nunavut</option>
                 </select>
 
-                <input className={classes.shippinginput} type="submit" id="submit" value="Submit Order" />
+                <input className={classes.input} type="submit" id="submit" value="Submit Order" />
             </form>
         </div>
         </>

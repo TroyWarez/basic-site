@@ -1,4 +1,4 @@
-.shippingheading {
+.heading {
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-style: normal;
@@ -6,7 +6,7 @@
   font-size: xx-large;
   color: #e8e6e3;
 }
-.shippingform {
+.form {
   display: bable-row;
   border-radius: 20px;
   border: 1px solid #e8e6e3;;
@@ -15,7 +15,7 @@
   width: 100%;
   color: #e8e6e3;
 }
-.shippinginput {
+.input {
   margin: 1%;
   background-color: #181a1b;
   color: #e8e6e3;
@@ -25,7 +25,7 @@
   height: 2em;
   padding: 0 10px;
 }
-.shippingselect {
+.select {
   margin: 1%;
   max-width: 15em;
   background-color: #181a1b;
@@ -35,17 +35,4 @@
   width: 15em;
   height: 2em;
   padding: 0 10px;
-}
-.CanadianProvinces {
-  margin: 1%;
-  max-width: 15em;
-  background-color: #181a1b;
-  color: #e8e6e3;
-  border-radius: 20px;
-  border: 1px solid #e8e6e3;
-  width: 15em;
-  height: 2em;
-  padding: 0 10px;
-
-  display: none;
 }
