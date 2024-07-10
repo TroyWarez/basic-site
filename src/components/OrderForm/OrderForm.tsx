@@ -76,10 +76,11 @@ const OrderForm = () => {
             <form action="" method="get">
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
-                <input className={classes.input} type="text" name="name" id="firstname" placeholder="First Name" maxLength={50} autoFocus={true} required />
+            <div className={classes.inputfirstlast}>
+                <input  type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required />
 
-                <input className={classes.input} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
-
+                <input type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
+            </div>
                 <input className={classes.input} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
                 <input className={classes.input} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>

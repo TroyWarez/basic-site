@@ -12,8 +12,6 @@
   outline: 0 !important;
   box-sizing: border-box;
   color: #e8e6e3;
-  display: flex;
-  justify-self: flex-start;
   margin-left: 125px;
   margin-top: 25px;
 }
@@ -29,13 +27,24 @@
   color: #e8e6e3;
   border-radius: 20px;
   border: 1px solid #dedede;
-  width: 15em;
+  width: 14em;
   height: 2em;
   display: flex;
   outline: none;
   margin-left: 125px;
   margin-top: 25px;
-  padding-left: 3%;
+  padding-left: 2%;
+}
+.inputfirstlast input {
+  background-color: #181a1b;
+  color: #e8e6e3;
+  border-radius: 20px;
+  border: 1px solid #dedede;
+  width: 14em;
+  height: 2em;
+  margin: 1%;
+  padding-left: 2%;
+  flex-wrap: nowrap;
 }
 .input:focus {
   border: 2px solid #1673b0;
