@@ -2,32 +2,33 @@
   font-family: "Roboto", sans-serif;
   font-weight: bold;
   font-style: normal;
-  margin: 1%;
   font-size: xx-large;
   color: #e8e6e3;
 }
 .form {
-  display: table-row;
   border-radius: 20px;
   border: 1px solid #e8e6e3;;
   outline: 0 !important;
   box-sizing: border-box;
   width: 100%;
-  height: 5%;
   color: #e8e6e3;
+  display: flex;
+  justify-self: flex-start;
 }
 .input {
-  margin: 1%;
   background-color: #181a1b;
   color: #e8e6e3;
   border-radius: 20px;
-  border: 1px solid #e8e6e3;
+  border: 2px solid #dedede;
   width: 15em;
   height: 2em;
-  padding: 0 10px;
+  display: flex;
+  outline: none;
+}
+.input:focus {
+  border: 4px solid #1673b0;
 }
 .select {
-  margin: 1%;
   max-width: 15em;
   background-color: #181a1b;
   color: #e8e6e3;
@@ -35,5 +36,4 @@
   border: 1px solid #e8e6e3;
   width: 15em;
   height: 2em;
-  padding: 0 10px;
 }

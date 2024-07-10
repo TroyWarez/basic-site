@@ -2,7 +2,7 @@
     color: #e8e6e3;
     font-size: x-large;
     font-family: "Roboto", sans-serif;
-    display: flex;
+    display: fminmax(0, 1fr) minmax(auto, max-content);
 }
 .button a {
     text-decoration: none;
