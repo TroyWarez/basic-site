@@ -51,6 +51,7 @@
   margin-left: 125px;
   margin-top: 25px;
   outline: none;
+  padding-left: 3%;
 }
 .select:focus {
   border: 4px solid #1673b0;
