@@ -62,7 +62,7 @@ const OrderForm = () => {
                   event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
                   if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 32)
                   {
-                    event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length);
+                    event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length - 1);
                   }
                 }
               break;
@@ -71,13 +71,18 @@ const OrderForm = () => {
               {
                 if(isNaN(Number(event.target.value)))
                   {
-                    event.target.value = event.target.value.replace(/s()/g, "");
+                    event.target.value = event.target.value.replace(/[A-Za-z:.]/g, "");
                   }
 
-                if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 40)
+                if (event.target.value.length === 4 && event.target.value.charCodeAt(0) !== 40)
                     {
-                      event.target.value = '(' + event.target.value.slice(0, 3) + ') ' + event.target.value.slice(3, event.target.value.length);
+                      event.target.value = '(' + event.target.value.slice(0, 3) + ') ' + event.target.value.slice(3, event.target.value.length - 1);
                     }
+
+                  if (event.target.value.length === 10 && event.target.value.charCodeAt(event.target.value.length - 1) !== 45)
+                      {
+                        event.target.value = event.target.value.slice(0, 9) + '-' + event.target.value.slice(9, event.target.value.length);
+                      }
                 break;
               }
           }
