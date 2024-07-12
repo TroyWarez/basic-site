@@ -83,6 +83,8 @@ const OrderForm = () => {
             </div>
                 <input className={classes.input} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
+                <input className={classes.input} type="text" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={10}/>
+
                 <input className={classes.input} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
 
                 <input className={classes.input} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
@@ -400,7 +402,7 @@ const OrderForm = () => {
                 <option value="NU">Nunavut</option>
                 </select>
 
-                <input className={classes.input} type="submit" id="submit" value="Submit Order" />
+                <input type="submit" id={classes.submit} value="Submit Order" />
             </form>
         </div>
         </>
