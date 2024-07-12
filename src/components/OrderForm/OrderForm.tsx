@@ -67,6 +67,19 @@ const OrderForm = () => {
                 }
               break;
             }
+            case "Phone Number":
+              {
+                if(isNaN(Number(event.target.value)))
+                  {
+                    event.target.value = event.target.value.replace(/s()/g, "");
+                  }
+
+                if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 40)
+                    {
+                      event.target.value = '(' + event.target.value.slice(0, 3) + ') ' + event.target.value.slice(3, event.target.value.length);
+                    }
+                break;
+              }
           }
         }
       }
@@ -83,7 +96,7 @@ const OrderForm = () => {
             </div>
                 <input className={classes.input} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
-                <input className={classes.input} type="text" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={10}/>
+                <input onInput={onInputHandler} className={classes.input} type="text" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={14}/>
 
                 <input className={classes.input} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
 
