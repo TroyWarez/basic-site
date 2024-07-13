@@ -1,0 +1,10 @@
+.form {
+    border-radius: 20px;
+    border: 1px solid #dedede;
+    outline: 0 !important;
+    box-sizing: border-box;
+    color: #e8e6e3;
+    margin-left: 125px;
+    margin-top: 25px;
+    width: 28em;
+  }
