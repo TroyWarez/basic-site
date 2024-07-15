@@ -56,7 +56,7 @@ function Input(props : InputProps) : JSX.Element {
           }
         }
   return (
-    <input onChange={onInputHandler} className={classes.input} type={props.type} name={props.name} id={props.id} required={props.required} placeholder={props.placeholder} maxLength={props.maxLength} />
+    <input onInput={onInputHandler} className={classes.input} type={props.type} name={props.name} id={props.id} required={props.required} placeholder={props.placeholder} maxLength={props.maxLength} />
   )
 }
 
