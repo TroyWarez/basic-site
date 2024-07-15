@@ -1,4 +1,5 @@
 import classes from "./OrderForm.module.css"
+import Input from "../Input/Input"
 const OrderForm = () => {
     function onChangeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         const stateInputElement =  document.getElementById("stateSelect") as HTMLSelectElement;
@@ -99,7 +100,7 @@ const OrderForm = () => {
 
                 <input type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
             </div>
-                <input className={classes.input} type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
+                <Input type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
 
                 <input onInput={onInputHandler} className={classes.input} type="text" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={14}/>
 
