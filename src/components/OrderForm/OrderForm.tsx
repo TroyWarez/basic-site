@@ -44,71 +44,26 @@ const OrderForm = () => {
         }
     
       }
-    function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
-      if (event.target.value !== "")
-        {
-          switch(event.target.placeholder) {
-            case "ZIP Code": 
-            {
-              if(isNaN(Number(event.target.value)))
-                {
-                  event.target.value = event.target.value.replace(/\D/g, "");
-                }
-              break;
-            }
-            case "Postal Code": 
-            {
-              if(event.target.value !== '')
-                {
-                  event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
-                  if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 32)
-                  {
-                    event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length - 1);
-                  }
-                }
-              break;
-            }
-            case "Phone Number":
-              {
-                if(isNaN(Number(event.target.value)))
-                  {
-                    event.target.value = event.target.value.replace(/[A-Za-z:.]/g, "");
-                  }
-
-                if (event.target.value.length === 4 && event.target.value.charCodeAt(0) !== 40)
-                    {
-                      event.target.value = '(' + event.target.value.slice(0, 3) + ') ' + event.target.value.slice(3, event.target.value.length - 1);
-                    }
-
-                  if (event.target.value.length === 10 && event.target.value.charCodeAt(event.target.value.length - 1) !== 45)
-                      {
-                        event.target.value = event.target.value.slice(0, 9) + '-' + event.target.value.slice(9, event.target.value.length);
-                      }
-                break;
-              }
-          }
-        }
-      }
     return (
         <>
         <div className={classes.form}>
             <form action="" method="get">
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
-            <div className={classes.inputfirstlast}>
-                <input  type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required />
+            <div>
+                <Input className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required={true} />
 
-                <input type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required />
+                <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required={true} />
             </div>
                 <Input type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
 
-                <input onInput={onInputHandler} className={classes.input} type="text" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={14}/>
+                <Input type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={14}/>
 
-                <input className={classes.input} type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
+                <Input type="text" name="address" id="address" required={true} placeholder="Address" maxLength={95}/>
 
-                <input className={classes.input} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
+                <Input type="text" name="City" id="City" required={true} placeholder="City" maxLength={35}/>
 
-                <select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
+                <select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required={true}>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="AE">United Arab Emirates</option>
@@ -344,9 +299,9 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </select>
 
-                <input onInput={onInputHandler} className={classes.input}  type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
+                <Input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
 
-                <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required>
+                <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
                 <option value="">Select your state</option>
                 <option value="CA">California</option>
                 <option value="TX">Texas</option>
@@ -405,7 +360,7 @@ const OrderForm = () => {
                 <option value="MP">Northern Mariana Islands</option>
                 </select>
 
-                <select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province">
+                <select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province" required={false}>
                 <option value="">Select your province</option>
                 <option value="ON">Ontario</option>
                 <option value="QC">Quebec</option>
@@ -420,8 +375,6 @@ const OrderForm = () => {
                 <option value="NT">Northwest Territories</option>
                 <option value="NU">Nunavut</option>
                 </select>
-
-                <input type="submit" id={classes.submit} value="Submit Order" />
             </form>
         </div>
         </>

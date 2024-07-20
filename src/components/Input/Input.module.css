@@ -2,7 +2,7 @@
     background-color: #181a1b;
     color: #e8e6e3;
     border-radius: 20px;
-    border: 1px solid #dedede;
+    border: 2px solid #dedede;
     width: 14em;
     height: 2em;
     display: flex;
@@ -10,4 +10,10 @@
     margin-left: 125px;
     margin-top: 25px;
     padding-left: 2%;
+    flex-wrap: nowrap;
+    display: flex;
 }
+.input:focus {
+    border: 2px solid #1673b0;
+    outline-offset: 0;
+  }
