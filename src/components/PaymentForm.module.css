@@ -1,6 +1,6 @@
 .form {
     border-radius: 20px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--main-bg-accentColor);
     outline: 0 !important;
     box-sizing: border-box;
     color: #e8e6e3;

@@ -12,6 +12,8 @@ body {
   width: 100%;
   background-color: #181a1b;
   color: #e8e6e3;
+  --main-bg-accentColor: #dedede;
+  --main-bg-textColor: #e8e6e3;
 }
 .hide {
   visibility: hidden;
