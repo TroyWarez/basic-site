@@ -11,6 +11,7 @@ const PaymentForm = () => {
         <Input type="text" name="Card number" id="cardnumber" required={true} placeholder="Card Number" maxLength={16}/>
 
         <Input type="text" name="Expiration date (MM / YY)" id="expirationdate" required placeholder="Expiration date (MM / YY)" maxLength={5}/>
+        <Input type="text" name="Security Code" id="securitycode" required={true} placeholder="Security Code" maxLength={4}/>
         </form>
     </div>
     </>

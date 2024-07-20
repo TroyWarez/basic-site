@@ -56,6 +56,7 @@ function Input(props : InputProps) : JSX.Element {
               }
               default: {
                 switch (event.target.id) {
+                  case "securitycode":
                   case "cardnumber":
                     {
                       event.preventDefault();
