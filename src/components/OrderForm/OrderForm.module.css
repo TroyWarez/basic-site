@@ -3,15 +3,13 @@
   font-weight: bold;
   font-style: normal;
   font-size: xx-large;
-  color: #e8e6e3;
   text-align: center;
 }
 .form {
   border-radius: 20px;
-  border: 1px solid #dedede;
+  border: 1px solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
-  color: #e8e6e3;
   margin-left: 125px;
   margin-top: 25px;
   width: 28em;
@@ -26,9 +24,8 @@
 }
 .inputfirstlast {
   background-color: #181a1b;
-  color: #e8e6e3;
   border-radius: 20px;
-  border: 2px solid #dedede;
+  border: 2px solid var(--main-bg-accentColor);
   width: 14em;
   height: 2em;
   margin-left: 4%;
@@ -41,9 +38,8 @@
 }
 .inputsubmit input {
   background-color: #181a1b;
-  color: #e8e6e3;
   border-radius: 20px;
-  border: 2px solid #dedede;
+  border: 2px solid var(--main-bg-accentColor);
   width: 14em;
   height: 2em;
   margin: 1%;
@@ -59,7 +55,7 @@
 }
 .select {
   background-color: #181a1b;
-  color: #e8e6e3;
+  color: var(--main-bg-textColor);
   border-radius: 20px;
   border: 2px solid #e8e6e3;
   width: 15em;
@@ -76,7 +72,7 @@
   background-color: #181a1b;
   color: #e8e6e3;
   border-radius: 20px;
-  border: 1px solid #dedede;
+  border: 1px solid var(--main-bg-accentColor);
   width: 15em;
   height: 2em;
   margin-left: 28%;
