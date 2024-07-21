@@ -24,3 +24,21 @@
     color: #e8e6e3;
     text-align: center;
   }
+  #securitycode {
+    width: 7em;
+    display: block;
+    margin-left: 15px;
+  }
+  #expireDate {
+    width: 12em;
+    margin-left: 25px;
+  }
+  #securitycodeBlock {
+    display: flex;
+  }
+
+  #cardnumber {
+    width: 16em;
+    margin-left: 25px;
+    display: flex;
+  }

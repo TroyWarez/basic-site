@@ -11,7 +11,6 @@
     margin-top: 25px;
     padding-left: 2%;
     flex-wrap: nowrap;
-    display: flex;
 }
 .input:focus {
     border: 2px solid #1673b0;
