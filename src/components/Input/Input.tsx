@@ -57,19 +57,12 @@ function Input(props : InputProps) : JSX.Element {
               default: {
                 switch (event.target?.name) {
                   case "Card number":
-                    {
-                      if(isNaN(Number(event.target.value)))
-                        {
-                          event.target.value = event.target.value.replace(/[A-Za-z:.]/, "");
-                        }
-                      break;
-                    }
                   case "Expiration date (MM / YY)":
                   case "Security Code":
                     {
                       if(isNaN(Number(event.target.value)))
                         {
-                          event.target.value = event.target.value.replace(/[A-Za-z:.]/, "");
+                          event.target.value = event.target.value.replace(/[\D]/g, "");
                         }
                       break;
                     }
