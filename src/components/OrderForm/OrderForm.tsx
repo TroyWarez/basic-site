@@ -299,7 +299,7 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </select>
 
-                <Input type="text" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
+                <Input type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
 
                 <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
                 <option value="">Select your state</option>

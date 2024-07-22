@@ -15,15 +15,7 @@ function Input(props : InputProps) : JSX.Element {
     function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
         if (event.target.value !== "")
           {
-            switch(event.target.placeholder) {
-              case "ZIP Code": 
-              {
-                if(isNaN(Number(event.target.value)))
-                  {
-                    event.target.value = event.target.value.replace(/\D/g, "");
-                  }
-                break;
-              }
+            switch(event.target.name) {
               case "Postal Code": 
               {
                 if(event.target.value !== '')
@@ -40,7 +32,7 @@ function Input(props : InputProps) : JSX.Element {
                 {
                   if(isNaN(Number(event.target.value)))
                     {
-                      event.target.value = event.target.value.replace(/[A-Za-z:.]/g, "");
+                      event.target.value = event.target.value.replace(/\D/g, "");
                     }
   
                   if (event.target.value.length === 4 && event.target.value.charCodeAt(0) !== 40)
@@ -54,22 +46,17 @@ function Input(props : InputProps) : JSX.Element {
                         }
                   break;
               }
-              default: {
-                switch (event.target?.name) {
-                  case "Card number":
-                  case "Expiration date (MM / YY)":
-                  case "Security Code":
-                    {
-                      if(isNaN(Number(event.target.value)))
-                        {
-                          event.target.value = event.target.value.replace(/[\D]/g, "");
-                        }
-                      break;
-                    }
-
-                }
-                break;
-              }
+              case "ZIP Code": 
+              case "Card number":
+              case "Expiration date (MM / YY)":
+              case "Security Code":
+                  {
+                    if(isNaN(Number(event.target.value)))
+                      {
+                        event.target.value = event.target.value.replace(/\D/g, "");
+                      }
+                    break;
+                  }
             }
           }
         }
