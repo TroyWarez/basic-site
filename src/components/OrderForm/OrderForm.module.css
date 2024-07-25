@@ -5,6 +5,16 @@
   font-size: xx-large;
   text-align: center;
 }
+#paymentheading {
+  font-size: x-large;
+  text-align: left;
+  margin-left: 125px;
+}
+#paymentSubtext {
+  font-size: large;
+  text-align: left;
+  margin-left: 25px;
+}
 .form {
   border-radius: 20px;
   border: 1px solid var(--main-bg-accentColor);
@@ -68,6 +78,28 @@
 }
 .select:focus {
   border: 2px solid #1673b0;
+}
+#securitycode {
+  width: 7em;
+  display: block;
+  margin-left: 15px;
+}
+#expireDate {
+  width: 12em;
+  margin-left: 25px;
+}
+#securitycodeBlock {
+  display: flex;
+}
+#cardnumber {
+  width: 16em;
+  margin-left: 25px;
+  display: flex;
+}
+#paymentBlock {
+
+  border-top: 1px solid var(--main-bg-accentColor);
+  margin-top: 2%;
 }
 #submit {
   background-color: #181a1b;
