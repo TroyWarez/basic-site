@@ -3,7 +3,7 @@
     color: #e8e6e3;
     border-radius: 20px;
     border: 2px solid var(--main-bg-accentColor);
-    width: 14em;
+    width: auto;
     height: 2em;
     display: flex;
     outline: none;
