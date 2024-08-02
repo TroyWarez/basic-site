@@ -7,13 +7,11 @@
 }
 #paymentheading {
   font-size: x-large;
-  text-align: left;
-  margin-left: 125px;
+  text-align: center;
 }
 #paymentSubtext {
   font-size: large;
-  text-align: left;
-  margin-left: 25px;
+  text-align: center;
 }
 .form {
   border-radius: 20px;
