@@ -14,12 +14,9 @@
   text-align: center;
 }
 .form {
-  border-radius: 20px;
-  border: 1px solid var(--main-bg-accentColor);
+  border-right: 100% solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
-  margin-left: 125px;
-  margin-top: 25px;
   width: 28em;
   padding-bottom: 3%;
 }

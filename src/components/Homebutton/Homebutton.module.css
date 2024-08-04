@@ -11,6 +11,5 @@
 }
 .button {
     color: #e8e6e3;
-    border-radius: 10px;
-    border: 1px solid var(--main-bg-accentColor);
+    border-bottom: 1px solid var(--main-bg-accentColor);
 }
