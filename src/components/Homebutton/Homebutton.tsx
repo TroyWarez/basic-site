@@ -4,7 +4,7 @@ const Homebutton = () => {
     return (
         <div className={classes.button}>
         <Link to="/">
-        <img className={classes.img} src={"storefrontIcon.png"} alt="Home" width="64"/>
+        <img className={classes.img} src={"storefrontIcon.png"} alt="Home"/>
         <p>Store</p>
         </Link>
         </div>

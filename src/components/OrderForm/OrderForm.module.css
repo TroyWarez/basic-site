@@ -3,29 +3,34 @@
   font-weight: bold;
   font-style: normal;
   font-size: xx-large;
-  text-align: center;
+  text-align: left;
+  margin: 0px;
+  padding: 3%;
 }
 #paymentheading {
   font-size: x-large;
-  text-align: center;
+  text-align: left;
+  padding-left: 3%;
 }
 #paymentSubtext {
   font-size: large;
-  text-align: center;
+  text-align: left;
+  padding-left: 3%;
 }
 .form {
-  border-right: 100% solid var(--main-bg-accentColor);
+  border-right: 1px solid var(--main-bg-accentColor);
+  border-bottom: 1px solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
   width: 28em;
-  padding-bottom: 3%;
+  padding-bottom: 30px;
 }
 .p {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-size: large;
-  text-align: center;
-  margin-bottom: 5%;
+  text-align: left;
+  padding-left: 3%;
 }
 .inputfirstlast {
   background-color: #181a1b;
@@ -34,24 +39,13 @@
   border: 2px solid var(--main-bg-accentColor);
   width: 14em;
   height: 2em;
-  margin-left: 4%;
+  margin-left: 3%;
   padding-left: 2%;
   flex-wrap: nowrap;
   outline: none;
 }
 .inputfirstlast:focus {
   border: 2px solid #1673b0;
-}
-.inputsubmit input {
-  background-color: #181a1b;
-  border-radius: 20px;
-  border: 2px solid var(--main-bg-accentColor);
-  width: 14em;
-  height: 2em;
-  margin: 1%;
-  padding-left: 2%;
-  flex-wrap: nowrap;
-  outline: none;
 }
 .inputfirstlast input:focus {
   border: 2px solid #1673b0;
@@ -64,9 +58,9 @@
   color: var(--main-bg-textColor);
   border-radius: 20px;
   border: 2px solid #e8e6e3;
-  width: 15em;
+  width: 93%;
   height: 2em;
-  margin-left: 125px;
+  margin-left: 3%;
   margin-top: 25px;
   outline: none;
   padding-left: 3%;
@@ -81,19 +75,17 @@
 }
 #expireDate {
   width: 12em;
-  margin-left: 25px;
+  margin-left: 3%;
 }
 #securitycodeBlock {
   display: flex;
 }
 #cardnumber {
-  width: 16em;
-  margin-left: 25px;
+  width: 90%;
+  margin-left: 3%;
   display: flex;
 }
 #paymentBlock {
-
-  border-top: 1px solid var(--main-bg-accentColor);
   margin-top: 2%;
 }
 #submit {
@@ -102,15 +94,19 @@
   border-radius: 20px;
   border: 1px solid var(--main-bg-accentColor);
   background-color: #686f74;
-  width: 15em;
-  height: 4em;
+  width: 90%;
+  height: 3em;
   flex-wrap: nowrap;
   outline: none;
   display: flex;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  font-size: large;
 }
 #submit:focus {
-  border: 2px solid #1673b0;
+  background-color: #7e8a90;
 }
 #submit:hover {
-  border: 2px solid #1673b0;
+  background-color: #7e8a90;
 }
