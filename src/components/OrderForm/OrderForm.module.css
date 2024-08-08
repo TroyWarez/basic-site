@@ -19,10 +19,9 @@
 }
 .form {
   border-right: 1px solid var(--main-bg-accentColor);
-  border-bottom: 1px solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
-  width: 28em;
+  width: 52em;
   padding-bottom: 30px;
 }
 .p {
@@ -94,7 +93,7 @@
   border-radius: 20px;
   border: 1px solid var(--main-bg-accentColor);
   background-color: #686f74;
-  width: 90%;
+  width: 93%;
   height: 3em;
   flex-wrap: nowrap;
   outline: none;
