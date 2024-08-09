@@ -62,7 +62,7 @@
   margin-left: 3%;
   margin-top: 25px;
   outline: none;
-  padding-left: 3%;
+  padding-left: 1%;
 }
 .select:focus {
   border: 2px solid #1673b0;
@@ -108,4 +108,9 @@
 }
 #submit:hover {
   background-color: #7e8a90;
+}
+#submit:active {
+  box-shadow:
+    inset -2px -2px 3px #7e8a90,
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
 }

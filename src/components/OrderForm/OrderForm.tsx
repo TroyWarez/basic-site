@@ -385,7 +385,7 @@ const OrderForm = () => {
                     <Input type="text" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={4}/>
                   </div>
 
-                  <Input type="submit" name="submit" id={classes.submit} required={true} placeholder="Submit Order" maxLength={95}/>
+                  <Input type="submit" name="submit" id={classes.submit} required={true}></Input>
                 </div>
             </form>
         </div>
