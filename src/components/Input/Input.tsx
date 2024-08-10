@@ -9,7 +9,7 @@ interface InputProps {
     placeholder?: string
     maxLength?: number
     autoFocus?: boolean
-
+    value?: string
 }
 function Input(props : InputProps) : JSX.Element {
     function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
@@ -61,7 +61,7 @@ function Input(props : InputProps) : JSX.Element {
           }
         }
   return (
-    <input onInput={onInputHandler} className={(!props.className) ? classes.input : props.className} type={props.type} name={props.name} id={props.id} required={props.required} placeholder={props.placeholder} maxLength={props.maxLength} autoFocus={props.autoFocus} />
+    <input onInput={onInputHandler} className={(!props.className) ? classes.input : props.className} type={props.type} name={props.name} id={props.id} required={props.required} placeholder={props.placeholder} maxLength={props.maxLength} autoFocus={props.autoFocus} value={(!props.value) ? "" : props.value} />
   )
 }
 
