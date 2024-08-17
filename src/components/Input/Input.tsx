@@ -1,17 +1,6 @@
 import React from 'react'
 import classes from '../Input/Input.module.css'
-interface InputProps {
-    className?: string
-    type?: string
-    name?: string
-    id?: string
-    required?: boolean
-    placeholder?: string
-    maxLength?: number
-    autoFocus?: boolean
-    value?: string
-}
-function Input(props : InputProps) : JSX.Element {
+function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element {
     function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
         if (event.target.value !== "")
           {
@@ -61,7 +50,10 @@ function Input(props : InputProps) : JSX.Element {
           }
         }
   return (
-    <input onInput={onInputHandler} className={(!props.className) ? classes.input : props.className} type={props.type} name={props.name} id={props.id} required={props.required} placeholder={props.placeholder} maxLength={props.maxLength} autoFocus={props.autoFocus} value={(!props.value) ? "" : props.value} />
+    <input  {...props}
+    onInput={onInputHandler}
+     className={(!props.className) ? classes.input : props.className}>
+    </input>
   )
 }
 
