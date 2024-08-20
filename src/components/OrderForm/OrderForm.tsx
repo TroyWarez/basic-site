@@ -15,7 +15,9 @@ const OrderForm = () => {
                 stateInputElement.setAttribute("list", "CanadianProvinces");
                 stateInputElement.setAttribute("placeholder", "Province");
                 ZipCodeInputElement.setAttribute("placeholder", "Postal Code");
+                ZipCodeInputElement.setAttribute("name", "Postal Code");
                 ZipCodeInputElement.setAttribute("maxLength", "32");
+                ZipCodeInputElement.setAttribute("inputMode", "text");
                 stateInputElement.style.display = "none";
                 provinceInputElement.style.display = "inline";
                 break;
@@ -25,7 +27,9 @@ const OrderForm = () => {
                 stateInputElement.setAttribute("list", "US States");
                 stateInputElement.setAttribute("placeholder", "State");
                 ZipCodeInputElement.setAttribute("placeholder", "ZIP Code");
+                ZipCodeInputElement.setAttribute("name", "Postal Code");
                 ZipCodeInputElement.setAttribute("maxLength", "12");
+                ZipCodeInputElement.setAttribute("inputMode", "numeric");
                 stateInputElement.style.display = "inline";
                 provinceInputElement.style.display = "none";
                 break;
@@ -55,9 +59,9 @@ const OrderForm = () => {
 
                 <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required={true} />
             </div>
-                <Input type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
+                <Input inputMode="email" type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
 
-                <Input type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={14}/>
+                <Input inputMode="tel" type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={14}/>
 
                 <Input type="text" name="address" id="address" required={true} placeholder="Address" maxLength={95}/>
 
@@ -299,7 +303,7 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </select>
 
-                <Input type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
+                <Input inputMode="numeric" type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
 
                 <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
                 <option value="">Select your state</option>
@@ -379,10 +383,10 @@ const OrderForm = () => {
                   <div id={classes.paymentBlock}>
                   <h3 id={classes.paymentheading}>Payment</h3>
                   <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <Input id={classes.cardnumber} type="text" name="Card number" required={true} placeholder="Card Number" maxLength={16}/>
+                  <Input id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={16} />
                   <div id={classes.securitycodeBlock}>
                     <Input type="text" inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <Input type="text" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={4}/>
+                    <Input type="text" inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={4}/>
                   </div>
 
                   <Input type="submit" name="submit" id={classes.submit} required={true} value="Pay now"/>
