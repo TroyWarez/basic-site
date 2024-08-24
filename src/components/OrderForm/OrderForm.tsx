@@ -61,7 +61,7 @@ const OrderForm = () => {
             </div>
                 <Input inputMode="email" type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
 
-                <Input inputMode="tel" type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={14}/>
+                <Input inputMode="tel" type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={28}/>
 
                 <Input type="text" name="address" id="address" required={true} placeholder="Address" maxLength={95}/>
 

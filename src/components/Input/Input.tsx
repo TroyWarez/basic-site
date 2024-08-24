@@ -15,8 +15,10 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                   }
                 case "tel":
                     {
-                      event.target.value = event.target.value.replace(/[^\d+\-().\s]/g, "");
-                      
+                      event.target.value = event.target.value.replace(/[^\d+\-().\s#*]/g, "");
+                      if(event.target.value !== '') {
+
+                      }
                       break;
                   }
             }
