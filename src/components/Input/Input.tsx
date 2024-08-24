@@ -15,20 +15,8 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                   }
                 case "tel":
                     {
-                      if(isNaN(Number(event.target.value)))
-                        {
-                          event.target.value = event.target.value.replace(/\D/g, "");
-                        }
-      
-                      if (event.target.value.length === 4 && event.target.value.charCodeAt(0) !== 40)
-                          {
-                            event.target.value = '(' + event.target.value.slice(0, 3) + ') ' + event.target.value.slice(3, event.target.value.length - 1);
-                          }
-      
-                        if (event.target.value.length === 10 && event.target.value.charCodeAt(event.target.value.length - 1) !== 45)
-                            {
-                              event.target.value = event.target.value.slice(0, 9) + '-' + event.target.value.slice(9, event.target.value.length);
-                            }
+                      event.target.value = event.target.value.replace(/[^\d+\-().\s]/g, "");
+                      
                       break;
                   }
             }
