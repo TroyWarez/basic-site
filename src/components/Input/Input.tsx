@@ -36,7 +36,7 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                         }
 
                       }
-                      else if (event.target.value.length > 11)
+                      else if (event.target.value.length > 14)
                       {
                         if(isNaN(Number(event.target.value)))
                           {
