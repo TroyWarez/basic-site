@@ -1,6 +1,24 @@
 import React from 'react'
 import classes from '../Input/Input.module.css'
 function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element {
+      function luhnCheck(input : string) { // Wikipedia code
+        const number = input;
+        const digits = number.replace(/\D/g, "").split("").map(Number);
+        let sum = 0;
+        let isSecond = false;
+        for (let i = digits.length - 1; i >= 0; i--) {
+          let digit = digits[i];
+          if (isSecond) {
+            digit *= 2;
+            if (digit > 9) {
+              digit -= 9;
+            }
+          }
+          sum += digit;
+          isSecond = !isSecond;
+        }
+        return sum % 10 === 0;
+      }
     function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
         if (event.target.value !== "")
           {
@@ -53,13 +71,25 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                 if(event.target.value !== '')
                   {
                     event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
-                    if (event.target.value.length === 4 && event.target.value.charCodeAt(event.target.value.length - 1) !== 32)
+                    if (event.target.value.length === 4 && event.target.value[event.target.value.length - 1] !== ' ')
                     {
                       event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length - 1);
                     }
                   }
                 break;
               }
+            case "Card number":
+                {
+                  if(!luhnCheck(event.target.value) && event.target.value.length === 16)
+                  {
+                    event.target.style.borderColor = "#f11d1d";
+                  }
+                  else if(event.target.style.borderColor !== "#1673b0")  
+                  {
+                    event.target.style.borderColor = "#1673b0";
+                  }
+                  break;
+                }
           }
         }
         }
