@@ -19,7 +19,7 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
         }
         return sum % 10 === 0;
       }
-    function onInputHandler (event: React.ChangeEvent<HTMLInputElement>) {
+    function onInputHandler (event : React.ChangeEvent<HTMLInputElement>) {
         if (event.target.value !== "")
           {
             switch(event.target.inputMode) {
@@ -71,9 +71,9 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                 if(event.target.value !== '')
                   {
                     event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
-                    if (event.target.value.length === 4 && event.target.value[event.target.value.length - 1] !== ' ')
+                    if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                     {
-                      event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length - 1);
+                      event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length);
                     }
                   }
                 break;
@@ -82,21 +82,62 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                 {
                   if(!luhnCheck(event.target.value) && event.target.value.length === 16)
                   {
-                    event.target.style.borderColor = "#f11d1d";
+                    event.target.classList.add(classes["input-error"]);
                   }
-                  else if(event.target.style.borderColor !== "#1673b0")  
+                  else if (event.target.classList.length > 0)
                   {
-                    event.target.style.borderColor = "#1673b0";
+                    event.target.classList.remove(classes["input-error"]);
                   }
+                  
+                  if( event.target.value.length > 4 && event.target.value[4] !== ' ') 
+                  {
+                    event.target.value = event.target.value.slice(0, 4) + ' ' + event.target.value.slice(4, event.target.value.length);
+                  }
+                  if( event.target.value.length > 9 && event.target.value[9] !== ' ') 
+                    {
+                      event.target.value = event.target.value.slice(0, 9) + ' ' + event.target.value.slice(9, event.target.value.length);
+                    }
+                  if( event.target.value.length > 14 && event.target.value[14] !== ' ') 
+                  {
+                    event.target.value = event.target.value.slice(0, 14) + ' ' + event.target.value.slice(14, event.target.value.length);
+                  }
+                  break;
+                }
+              case "Expiration date (MM / YY)": 
+                {
+                  event.target.value.toUpperCase();
+                  if(event.target.value !== '')
+                    {
+                      event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+                      if (event.target.value.length > 3 && event.target.value[3] !== ' ')
+                      {
+                        event.target.value = event.target.value.slice(0, 2) + '/' + event.target.value.slice(2, event.target.value.length);
+                      }
+                    }
                   break;
                 }
           }
         }
         }
+    function onBlur(event : React.FocusEvent<HTMLInputElement>)
+    {
+      switch(event.currentTarget.name)
+      {
+        case "Card number":
+          {
+            if (event.target.classList.length > 1 && event.currentTarget.classList[1] === classes["input-error"])
+              {
+                event.currentTarget.classList.remove(classes["input-error"]);
+              } 
+            break;
+          }
+      }
+    }
   return (
     <input  {...props}
     onInput={onInputHandler}
-     className={(!props.className) ? classes.input : props.className}>
+    onBlur={onBlur}
+    className={(!props.className) ? classes.input : props.className}>
     </input>
   )
 }

@@ -383,10 +383,10 @@ const OrderForm = () => {
                   <div id={classes.paymentBlock}>
                   <h3 id={classes.paymentheading}>Payment</h3>
                   <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <Input id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={16} />
+                  <Input id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <Input type="text" inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <Input type="text" inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={4}/>
+                    <Input type="text" inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
                   </div>
 
                   <Input type="submit" name="submit" id={classes.submit} required={true} value="Pay now"/>

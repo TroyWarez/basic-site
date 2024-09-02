@@ -16,3 +16,10 @@
     border: 2px solid #1673b0;
     outline-offset: 0;
   }
+.input-error {
+    border: 2px solid #eb1919;
+  }
+.input-error:focus {
+    border: 2px solid #eb1919;
+    outline-offset: 0;
+  }
