@@ -55,9 +55,9 @@ const OrderForm = () => {
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
             <div>
-                <Input className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required={true} />
+                <Input className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required={true} autoComplete="given-name" />
 
-                <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required={true} />
+                <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required={true} autoComplete="family-name"/>
             </div>
                 <Input inputMode="email" type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
 
@@ -390,6 +390,7 @@ const OrderForm = () => {
                   </div>
 
                   <Input type="submit" name="submit" id={classes.submit} required={true} value="Pay now"/>
+                  
                 </div>
             </form>
         </div>
