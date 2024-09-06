@@ -1,6 +1,6 @@
-import OrderForm from "../components/OrderForm/OrderForm";
-import Homebutton from "../components/Homebutton/Homebutton";
-import Footer from "../components/Footer/Footer";
+import OrderForm from "../../components/OrderForm/OrderForm";
+import Homebutton from "../../components/Homebutton/Homebutton";
+import Footer from "../../components/Footer/Footer";
 const CheckoutPage = () => {
   return (
     <div>

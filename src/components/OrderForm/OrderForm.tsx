@@ -51,7 +51,7 @@ const OrderForm = () => {
     return (
         <>
         <div className={classes.form}>
-            <form action="" method="get">
+            <form action="" method="get" autoComplete="on">
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
             <div>

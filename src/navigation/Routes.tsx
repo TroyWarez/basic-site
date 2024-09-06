@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
-import CheckoutPage from "../pages/CheckoutPage"
-import NotFoundPage from "../pages/NotFoundPage"
+import CheckoutPage from "../pages/CheckoutPage/CheckoutPage"
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage"
 
 const AppRoutes = () => (
   <Routes>
