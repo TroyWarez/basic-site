@@ -1,5 +1,6 @@
 import classes from "./OrderForm.module.css"
 import Input from "../Input/Input"
+import Select from "../Select/Select";
 const OrderForm = () => {
     function onChangeSelectHandler(event: React.ChangeEvent<HTMLSelectElement>) {
         const stateInputElement =  document.getElementById("stateSelect") as HTMLSelectElement;
@@ -67,7 +68,7 @@ const OrderForm = () => {
 
                 <Input type="text" name="City" id="City" required={true} placeholder="City" maxLength={35}/>
 
-                <select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required={true}>
+                <Select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required={true}>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="AE">United Arab Emirates</option>
@@ -301,11 +302,11 @@ const OrderForm = () => {
                 <option value="YE">Yemen</option>
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
-                </select>
+                </Select>
 
                 <Input inputMode="numeric" type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
 
-                <select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
+                <Select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
                 <option value="">Select your state</option>
                 <option value="CA">California</option>
                 <option value="TX">Texas</option>
@@ -362,9 +363,9 @@ const OrderForm = () => {
                 <option value="VI">U.S. Virgin Islands</option>
                 <option value="AS">American Samoa</option>
                 <option value="MP">Northern Mariana Islands</option>
-                </select>
+                </Select>
 
-                <select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province" required={false}>
+                <Select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province" required={false}>
                 <option value="">Select your province</option>
                 <option value="ON">Ontario</option>
                 <option value="QC">Quebec</option>
@@ -378,7 +379,7 @@ const OrderForm = () => {
                 <option value="YT">Yukon</option>
                 <option value="NT">Northwest Territories</option>
                 <option value="NU">Nunavut</option>
-                </select>
+                </Select>
 
                   <div id={classes.paymentBlock}>
                   <h3 id={classes.paymentheading}>Payment</h3>

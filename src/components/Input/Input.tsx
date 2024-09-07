@@ -137,7 +137,7 @@ function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
     <input  {...props}
     onInput={onInputHandler}
     onBlur={onBlur}
-    className={(!props.className) ? classes.input : props.className}>
+    className={(!props.className) ? classes.input : props.className + ' ' + classes.input}>
     </input>
   )
 }

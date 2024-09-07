@@ -37,11 +37,11 @@
   color: var(--main-bg-textColor);
   border-radius: 20px;
   border: 2px solid var(--main-bg-accentColor);
-  width: 42.25%;
-  height: 2em;
-  margin-left: 3%;
-  padding-left: 2%;
-  flex-wrap: nowrap;
+  width: 42.25%!important;
+  height: 2em!important;
+  margin-left: 3%!important;
+  padding-left: 2%!important;
+  display: inline-flex!important;
   outline: none;
 }
 .inputfirstlast:focus {
@@ -53,21 +53,7 @@
 .input:focus {
   border: 2px solid #1673b0;
 }
-.select {
-  background-color: #181a1b;
-  color: var(--main-bg-textColor);
-  border-radius: 20px;
-  border: 2px solid var(--main-bg-accentColor);
-  width: 93%;
-  height: 2rem;
-  margin-left: 3%;
-  margin-top: 25px;
-  outline: none;
-  padding-left: 1%;
-}
-.select:focus {
-  border: 2px solid #1673b0;
-}
+
 #securitycode {
   width: 7em;
   display: block;
