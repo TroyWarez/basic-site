@@ -56,19 +56,19 @@ const OrderForm = () => {
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
             <div>
-                <Input className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required={true} autoComplete="given-name" />
+                <Input className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required autoComplete="given-name" />
 
-                <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required={true} autoComplete="family-name"/>
+                <Input className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required autoComplete="family-name"/>
             </div>
-                <Input inputMode="email" type="email" name="email" id="email" required={true} placeholder="Email" maxLength={62}/>
+                <Input inputMode="email" type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
-                <Input inputMode="tel" type="tel" name="Phone" id="Phone" required={true} placeholder="Phone Number" maxLength={28}/>
+                <Input inputMode="tel" type="tel" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={28}/>
 
-                <Input type="text" name="address" id="address" required={true} placeholder="Address" maxLength={95}/>
+                <Input type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
 
-                <Input type="text" name="City" id="City" required={true} placeholder="City" maxLength={35}/>
+                <Input type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <Select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required={true}>
+                <Select className={classes.select} name="country" id="Country" onChange={onChangeSelectHandler} aria-label="Please select your country" defaultValue="Please select your country" required>
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="AE">United Arab Emirates</option>
@@ -304,9 +304,9 @@ const OrderForm = () => {
                 <option value="ZW">Zimbabwe</option>
                 </Select>
 
-                <Input inputMode="numeric" type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required={true}/>
+                <Input inputMode="numeric" type="text" name="ZIP Code" id="zipCode" placeholder="ZIP Code" maxLength={12} required/>
 
-                <Select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required={true}>
+                <Select className={classes.select} name="state" id="stateSelect" aria-label="Please select your state" required>
                 <option value="">Select your state</option>
                 <option value="CA">California</option>
                 <option value="TX">Texas</option>
@@ -365,7 +365,7 @@ const OrderForm = () => {
                 <option value="MP">Northern Mariana Islands</option>
                 </Select>
 
-                <Select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province" required={false}>
+                <Select className={classes.select} id="CanadianProvinces" hidden aria-label="Please select your province">
                 <option value="">Select your province</option>
                 <option value="ON">Ontario</option>
                 <option value="QC">Quebec</option>
@@ -384,13 +384,13 @@ const OrderForm = () => {
                   <div id={classes.paymentBlock}>
                   <h3 id={classes.paymentheading}>Payment</h3>
                   <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <Input id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
+                  <Input id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <Input type="text" inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <Input type="text" inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
+                    <Input type="text" inputMode="numeric" name="Security Code" id={classes.securitycode} required placeholder="Security Code" maxLength={5}/>
                   </div>
 
-                  <Input type="submit" name="submit" id={classes.submit} required={true} value="Pay now"/>
+                  <Input type="submit" name="submit" id={classes.submit} required value="Pay now" disabled/>
                   
                 </div>
             </form>

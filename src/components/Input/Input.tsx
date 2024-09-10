@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from '../Input/Input.module.css'
-function Input(props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element {
+const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element => {
       function luhnCheck(input : string) { // Wikipedia code
         const number = input;
         const digits = number.replace(/\D/g, "").split("").map(Number);

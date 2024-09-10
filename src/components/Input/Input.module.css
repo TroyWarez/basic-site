@@ -16,6 +16,21 @@
     border: 2px solid #1673b0;
     outline-offset: 0;
   }
+.input:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.input:disabled {
+  background-color: grey;
+  color: #ff0000;
+  box-shadow: none;
+}
+.input:active {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+.input:disabled {
+  border: 2px solid #ff0000;
+  outline-offset: 0;
+}
 .input-error {
     border: 2px solid #eb1919;
   }
