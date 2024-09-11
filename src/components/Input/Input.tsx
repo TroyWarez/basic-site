@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from '../Input/Input.module.css'
 const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element => {
-      function luhnCheck(input : string) { // Wikipedia code
+  const luhnCheck = (input : string) => { // Wikipedia code
         const number = input;
         const digits = number.replace(/\D/g, "").split("").map(Number);
         let sum = 0;
@@ -19,7 +19,7 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
         }
         return sum % 10 === 0;
       }
-    function onInputHandler (event : React.ChangeEvent<HTMLInputElement>) {
+    const onInputHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value !== "")
           {
             switch(event.target.inputMode) {
@@ -119,8 +119,7 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
           }
         }
         }
-    function onBlur(event : React.FocusEvent<HTMLInputElement>)
-    {
+    const onBlur = (event : React.FocusEvent<HTMLInputElement>) => {
       switch(event.currentTarget.name)
       {
         case "Card number":

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Button() {
+const Button = () => {
   return (
     <Button></Button>
   )
