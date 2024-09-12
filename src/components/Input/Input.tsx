@@ -41,15 +41,15 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                           if( event.target.value.length > 2 && event.target.value[0] !== '(' && event.target.value[3] !== ')' ||
                             event.target.value[0] !== '(' && event.target.value[4] !== ')' ) 
                           {
-                            event.target.value = '(' + event.target.value.slice(0, 3) + ')' + event.target.value.slice(3, event.target.value.length);
+                            event.target.value = `(${event.target.value.slice(0, 3)}) ${event.target.value.slice(3, event.target.value.length)}`;
                           }
                           if ( event.target.value.length > 5 && event.target.value[0] === '(' && event.target.value[4] === ')' && event.target.value[5] !== ' ')
                           {
-                            event.target.value = event.target.value.slice(0, 5) + ' ' + event.target.value.slice(5, event.target.value.length);
+                            event.target.value = `${event.target.value.slice(0, 5)} ${event.target.value.slice(5, event.target.value.length)}`;
                           }
                           if( event.target.value.length > 9 && event.target.value[0] === '(' && event.target.value[4] === ')' && event.target.value[5] === ' ' && event.target.value[9] !== '-')
                           {
-                            event.target.value = event.target.value.slice(0, 9) + '-' + event.target.value.slice(9, event.target.value.length);
+                            event.target.value = `${event.target.value.slice(0, 9)}-${event.target.value.slice(9, event.target.value.length)}`;
                           }
                         }
 
@@ -73,7 +73,7 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                     event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
                     if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                     {
-                      event.target.value = event.target.value.slice(0, 3) + ' ' + event.target.value.slice(3, event.target.value.length);
+                      event.target.value = `${event.target.value.slice(0, 3)} ${event.target.value.slice(3, event.target.value.length)}`;
                     }
                   }
                 break;
@@ -91,15 +91,15 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                   
                   if( event.target.value.length > 4 && event.target.value[4] !== ' ') 
                   {
-                    event.target.value = event.target.value.slice(0, 4) + ' ' + event.target.value.slice(4, event.target.value.length);
+                    event.target.value = `${event.target.value.slice(0, 4)} ${event.target.value.slice(4, event.target.value.length)}`;
                   }
                   if( event.target.value.length > 9 && event.target.value[9] !== ' ') 
                     {
-                      event.target.value = event.target.value.slice(0, 9) + ' ' + event.target.value.slice(9, event.target.value.length);
+                      event.target.value = `${event.target.value.slice(0, 9)} ${event.target.value.slice(9, event.target.value.length)}`;
                     }
                   if( event.target.value.length > 14 && event.target.value[14] !== ' ') 
                   {
-                    event.target.value = event.target.value.slice(0, 14) + ' ' + event.target.value.slice(14, event.target.value.length);
+                    event.target.value = `${event.target.value.slice(0, 14)} ${event.target.value.slice(14, event.target.value.length)}`;
                   }
                   break;
                 }
@@ -111,7 +111,7 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
                       event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
                       if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                       {
-                        event.target.value = event.target.value.slice(0, 2) + '/' + event.target.value.slice(2, event.target.value.length);
+                        event.target.value = `${event.target.value.slice(0, 2)}/${event.target.value.slice(2, event.target.value.length)}`;
                       }
                     }
                   break;
@@ -136,7 +136,7 @@ const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Elemen
     <input  {...props}
     onInput={onInputHandler}
     onBlur={onBlur}
-    className={(!props.className) ? classes.input : props.className + ' ' + classes.input}>
+    className={(!props.className) ? classes.input : `${props.className} ${classes.input}`}>
     </input>
   )
 }

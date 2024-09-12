@@ -4,7 +4,7 @@ import selectClasses from '../Select/Select.module.css'
 
 const Select = (props : React.InputHTMLAttributes<HTMLSelectElement>) : JSX.Element => {
   return (
-    <select {...props} className={Inputclasses.input + ' ' + selectClasses.select }></select>
+    <select {...props} className={`${Inputclasses.input} ${selectClasses.select}`}></select>
   )
 }
 
