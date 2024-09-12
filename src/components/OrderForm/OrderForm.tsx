@@ -1,7 +1,7 @@
 import classes from "./OrderForm.module.css"
 import Input from "../Input/Input"
 import Select from "../Select/Select";
-const OrderForm = () => {
+const OrderForm = ()  : JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementById("stateSelect") as HTMLSelectElement;
         const provinceInputElement =  document.getElementById("CanadianProvinces") as HTMLSelectElement;

@@ -1,6 +1,6 @@
 import classes from "./Homebutton.module.css"
 import { Link } from "react-router-dom";
-const Homebutton = () => {
+const Homebutton = ()  : JSX.Element => {
     return (
         <div className={classes.button}>
         <Link to="/">
