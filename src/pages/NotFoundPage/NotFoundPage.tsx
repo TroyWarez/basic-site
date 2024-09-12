@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NotFoundPage = () : JSX.Element => {
+const NotFoundPage = () => {
   return (
     <div>
       <title>404 Not found - Store</title>
