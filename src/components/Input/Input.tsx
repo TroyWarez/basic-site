@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from '../Input/Input.module.css'
 const Input = (props : React.InputHTMLAttributes<HTMLInputElement>) : JSX.Element => {
-  const luhnCheck = (input : string) => { // Wikipedia code
+    const luhnCheck = (input : string) => { // Wikipedia code
         const number = input;
         const digits = number.replace(/\D/g, "").split("").map(Number);
         let sum = 0;
