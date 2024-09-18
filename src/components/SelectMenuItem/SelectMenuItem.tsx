@@ -6,7 +6,7 @@ interface SelectMenuItemProps {
     children,
     value,
   }: SelectMenuItemProps): JSX.Element => {
-    return <option value={value}>{children}</option>;
+    return <option title={children?.toString()} value={value}>{children}</option>;
   };
   
   export default SelectMenuItem;
