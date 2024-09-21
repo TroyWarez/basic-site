@@ -516,7 +516,7 @@ const OrderForm = ()  : JSX.Element => {
                   displayValue: province.displayValue,
                   }))} name="canadianProvincesSelect" aria-label="Please select your province" required hidden placeholder="Please select your province" title="Province menu, please select your province"/>
 
-                  <div id={classes.paymentBlock}>
+                  <div id={classes.paymentContainer}>
                   <h3 id={classes.paymentheading}>Payment</h3>
                   <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
                   <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required placeholder="Card Number" maxLength={19} />

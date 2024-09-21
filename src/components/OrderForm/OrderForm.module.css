@@ -71,7 +71,7 @@
   margin-left: 3%;
   display: flex;
 }
-#paymentBlock {
+#paymentContainer  {
   margin-top: 2%;
 }
 #submit {
