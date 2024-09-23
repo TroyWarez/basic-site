@@ -1,7 +1,7 @@
 import classes from "./CheckoutFooter.module.css"
 import { Link } from "react-router-dom";
 
-const Footer = ()  : JSX.Element => {
+const CheckoutFooter = ()  : JSX.Element => {
   return (
     <>
     <Link to="/refundpolicy" className={classes.CheckoutFooter}>Refund policy</Link>
@@ -11,4 +11,4 @@ const Footer = ()  : JSX.Element => {
   )
 }
 
-export default Footer
+export default CheckoutFooter

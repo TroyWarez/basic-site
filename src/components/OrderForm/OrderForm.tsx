@@ -483,7 +483,7 @@ const OrderForm = ()  : JSX.Element => {
       {value: "NU", displayValue: 'Nunavut'},
       ];
     return (
-        <form action="" method="get" autoComplete="on" className={classes.form}>
+        <form className={classes.form} autoComplete="off">
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}>Please enter your shipping details.</p>
             <div>
@@ -525,7 +525,7 @@ const OrderForm = ()  : JSX.Element => {
                     <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required placeholder="Security Code" maxLength={5}/>
                   </div>
 
-                  <FormInput type="submit" name="submit" id={classes.submit} required value="Pay now" disabled/>
+                  <FormInput type="button" name="submit" id={classes.submit} required value="Pay now" disabled/>
                   
                 </div>
           </form>
