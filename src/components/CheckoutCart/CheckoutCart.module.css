@@ -9,3 +9,10 @@
        padding-right: 2%;
        font-size: x-small;
 }
+.quantityNumber {
+       background-color: rgb(255, 0, 0);
+       color: white;
+       width: 1em;
+       font-size: small;
+       float: left;
+}
