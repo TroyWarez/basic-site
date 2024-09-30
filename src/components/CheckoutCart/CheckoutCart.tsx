@@ -10,11 +10,12 @@ const CheckoutCart = ({ cartItems, className}: CartProps) => {
     <>
     <div>
     {cartItems.map((cartItem) => (
+      //if(cartItem.sku ==)
           <div className={`${classes.CheckoutCart} ${className}`}>
+              <p className={classes.quantityNumber}>{cartItem.quantityNumber}</p>
               <img src={cartItem.productImagePath} alt='ProductImage'/>
-              <p className={classes.quantityNumber}>{cartItems.length}</p>
               <p className={classes.p}>{cartItem.displayItemName}</p>
-              <p className={classes.p}>{`Subtotal             ${cartItem.displayCurrencyValue}`}</p>
+              <p className={classes.p}>{`Subtotal ${cartItem.displayCurrencyValue}`}</p>
           </div>
     ))}
     </div>
