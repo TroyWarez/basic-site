@@ -10,12 +10,11 @@ const CheckoutCart = ({ cartItems, className}: CartProps) => {
     <>
     <div>
     {cartItems.map((cartItem) => (
-      //if(cartItem.sku ==)
           <div className={`${classes.CheckoutCart} ${className}`}>
               <p className={classes.quantityNumber}>{cartItem.quantityNumber}</p>
               <img src={cartItem.productImagePath} alt='ProductImage'/>
               <p className={classes.p}>{cartItem.displayItemName}</p>
-              <p className={classes.p}>{`Subtotal ${cartItem.displayCurrencyValue}`}</p>
+              <p className={classes.p}>{`Subtotal * ${cartItems.length} Items ${cartItem.displayCurrencyValue}`}</p>
           </div>
     ))}
     </div>
