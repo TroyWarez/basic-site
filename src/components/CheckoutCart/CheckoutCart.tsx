@@ -1,4 +1,3 @@
-import React from 'react'
 import classes from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
 interface CartProps {
@@ -6,6 +5,7 @@ interface CartProps {
   className?: string;
 }
 const CheckoutCart = ({ cartItems, className}: CartProps) => {
+  let subtotal = 0.00;
   return (
     <>
     <div>
@@ -14,7 +14,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) => {
               <p className={classes.quantityNumber}>{cartItem.quantityNumber}</p>
               <img src={cartItem.productImagePath} alt='ProductImage'/>
               <p className={classes.p}>{cartItem.displayItemName}</p>
-              <p className={classes.p}>{`Subtotal * ${cartItems.length} Items ${cartItem.displayCurrencyValue}`}</p>
+              <p className={classes.p}>{`Subtotal * ${cartItems.length} Items $ ${subtotal = subtotal + cartItem.displayCurrencyValue} ${cartItem.displayCurrencyValueType}`}</p>
           </div>
     ))}
     </div>
