@@ -15,7 +15,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) => {
               <img src={cartItem.productImagePath} alt='ProductImage'/>
               <p className={classes.p}>{cartItem.displayItemName}</p>
               <p className={classes.p}>{`Price $ ${cartItem.displayCurrencyValue} ${cartItem.displayCurrencyValueType}` }</p>
-              <div hidden={true}>{subTotal.displayCurrencyValue =+ cartItem.displayCurrencyValue}
+              <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + cartItem.displayCurrencyValue}
                                   {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
               </div>
           </div>
