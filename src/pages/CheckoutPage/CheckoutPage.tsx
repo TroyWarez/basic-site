@@ -5,9 +5,8 @@ const CheckoutPage = () => {
   return (
     <div>
     <title>Store Checkout</title>
-    <Imgbutton imgPath={"storefrontIcon.png"} name={"Store"}/>
+    <Imgbutton imgPath={"storefrontIcon.png"} name={"Store"} altText={"Home"} linkPath="/"/>
     <CheckoutContainer/>
-    <Footer/>
     </div>
   );
 };
