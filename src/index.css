@@ -5,25 +5,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html{
+  height: 100%;
+}
 body {
   background-color: #181a1b;
   color: #e8e6e3;
   --main-bg-accentColor: #393e40;
   --main-bg-textColor: #e8e6e3;
+  height: max-content;
 }
 .hide {
   visibility: hidden;
   display: block;
-}
-footer {
-  font-family: "Roboto", sans-serif;
-  font-weight: bold;
-  font-style: normal;
-  margin-top: 1%;
-  padding-bottom: 4%;
-  font-size: large;
-  text-align: center;
-  color: #e8e6e3;
 }
 a {
   text-decoration: none;
