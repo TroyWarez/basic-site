@@ -2,12 +2,17 @@
        text-align: left;
        position: relative;
        padding: 5%;
+       align-items:center;
 }
 .p {
        font-size: small;
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
        margin: 0;
+       display:flexbox;
+}
+.pItemPrice {
+       text-align: end;
 }
 .pSubtotal {
        font-size: x-small;
@@ -19,10 +24,10 @@
        border-radius: 50%;
        width: min-content;
        height: min-content;
-       padding-bottom: 0.25%;
-       padding-top: 0.25%;
-       padding-left: 1.5%;
-       padding-right: 1.5%;
+       padding-bottom: 0.5%;
+       padding-top: 0.5%;
+       padding-left: 0.5%;
+       padding-right: 0.5%;
        color: white;
        position: absolute;
        z-index: 50;
@@ -37,6 +42,6 @@
        border-radius: 8px;
 }
 .CheckoutCartContainer {
-       width: 400px;
+       width: 30%;
 
 }

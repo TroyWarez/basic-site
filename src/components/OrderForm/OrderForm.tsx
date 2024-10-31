@@ -504,7 +504,7 @@ const OrderForm = ()  : JSX.Element => {
                   displayValue: country.displayValue,
                   }))} name="country" aria-label="Please select your country" required placeholder="Please select your country" title="Country menu, please select your country"/>
 
-                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required/>
+                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required/>
 
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,

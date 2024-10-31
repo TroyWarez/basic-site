@@ -22,9 +22,9 @@
   border-right: 1px solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
-  width: 35%;
-  padding-bottom: 30px;
+  width: 45rem;
   height: 100%;
+  padding-bottom: 30px;
 }
 .p {
   font-family: "Roboto", sans-serif;

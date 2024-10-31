@@ -2,4 +2,5 @@
     display: flex;
     justify-content: center;
     border-right: 1px solid var(--main-bg-accentColor);
+    width: 100%;
 }
