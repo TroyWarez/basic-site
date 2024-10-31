@@ -1,47 +1,56 @@
-.CheckoutCart {
+.CheckoutCartContainer {
+       width: 30%;
+}
+.CheckoutCartItem {
        text-align: left;
        position: relative;
-       padding: 5%;
-       align-items:center;
+       align-items: center;
+       display: flex;
+       justify-content: space-between;
+       padding-top: 6%;
+}
+.CheckoutCartSubtotal {
+       text-align: left;
+       position: relative;
+       align-items: center;
+       display: flex;
+       justify-content: space-between;
+       padding-top: 6%;
+       padding-left: 5%;
 }
 .p {
-       font-size: small;
+       font-size: medium;
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-       margin: 0;
-       display:flexbox;
+       position: relative;
+       flex-grow: 1;
+       padding-left: 3%;
 }
 .pItemPrice {
-       text-align: end;
+       font-size: medium;
 }
 .pSubtotal {
-       font-size: x-small;
+       font-size: medium;
        font-weight: lighter;
-       font-size: small;
+       flex-grow: 1;
 }
 .quantityNumber {
        background-color: rgb(139, 139, 139);
        border-radius: 50%;
        width: min-content;
-       height: min-content;
-       padding-bottom: 0.5%;
-       padding-top: 0.5%;
-       padding-left: 0.5%;
-       padding-right: 0.5%;
+       padding-top: 0.25rem;
+       padding-bottom: 0.25rem;
+       padding-left: 0.5rem;
+       padding-right: 0.5rem;
        color: white;
-       position: absolute;
+       position: relative;
        z-index: 50;
-       top: 1em;
-       right: 0;
-       left: 6em;
+       top: -2rem;
+       right: 4rem;
+       left: 4.5rem;
        font-size: small;
        font-weight: bolder;
-       display: inline;
 }
 .img {
-       border-radius: 8px;
-}
-.CheckoutCartContainer {
-       width: 30%;
-
+       border-radius: 6px;
 }

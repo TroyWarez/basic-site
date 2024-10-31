@@ -10,18 +10,21 @@ const CheckoutCart = ({ cartItems, className}: CartProps) => {
     <>
     <div className={classes.CheckoutCartContainer}>
     {cartItems.map((cartItem) => (
-          <div className={`${classes.CheckoutCart} ${className ? className : ''}`} key={cartItem.sku}>
+          <div className={`${classes.CheckoutCartItem} ${className ? className : ''}`} key={cartItem.sku}>
               <div className={classes.quantityNumber}>{cartItem.quantityNumber}</div>
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
-              <p className={classes.p}>{cartItem.displayItemName}</p>
-              <p className={classes.pItemPrice}>{`Price $ ${cartItem.displayCurrencyValue}` }</p>
+              <p className={classes.p}><span>{cartItem.displayItemName}</span></p>
+              <p className={classes.pItemPrice}>{`$ ${cartItem.displayCurrencyValue}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + cartItem.displayCurrencyValue}
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
               </div>
           </div>
     ))
     }
-              <p className={classes.pSubtotal}>{`Subtotal * ${cartItems.length} Items $ ${subTotal.displayCurrencyValue} ${subTotal.displayCurrencyValueType}`}</p>
+        <div className={classes.CheckoutCartSubtotal}>
+              <p className={classes.pSubtotal}><span>{`Subtotal • ${cartItems.length} Items`}</span></p>
+              <p className={classes.pItemPrice}><span>{`$ ${subTotal.displayCurrencyValue} ${subTotal.displayCurrencyValueType}`}</span></p>
+        </div>
     </div>
     </>
  
