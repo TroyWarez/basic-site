@@ -2,6 +2,7 @@ import classes from "./OrderForm.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
+import CheckoutFooter from "../../components/CheckoutFooter/CheckoutFooter";
 const OrderForm = ()  : JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
@@ -528,6 +529,7 @@ const OrderForm = ()  : JSX.Element => {
                   <FormInput type="button" name="submit" id={classes.submit} required value="Pay now" disabled/>
                   
                 </div>
+                <CheckoutFooter/>
           </form>
         );
 };

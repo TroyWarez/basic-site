@@ -2,10 +2,9 @@
     color: var(--main-bg-textColor);
     font-size: x-large;
     font-family: "Roboto", sans-serif;
-    width: min-content;
     display: flex;
-    justify-content: center;
     align-items: center;
+    width: 40.5rem;
 }
 .Img {
     height: 4rem;

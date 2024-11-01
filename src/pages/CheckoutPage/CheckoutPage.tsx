@@ -1,6 +1,5 @@
-import NavigationBar from "../../components/NavigationBar/NavigationBar";
-import CheckoutContainer from "../../components/CheckoutContainer/CheckoutContainer";
-import Footer from "../../components/CheckoutFooter/CheckoutFooter";
+import NavigationBar from "../../components/NavigationBar/NavigationBar"
+import CheckoutContainer from "../../components/CheckoutContainer/CheckoutContainer"
 const CheckoutPage = () => {
   return (
     <div>
