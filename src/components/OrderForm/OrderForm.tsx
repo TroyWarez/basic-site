@@ -527,7 +527,7 @@ const OrderForm = ()  : JSX.Element => {
                   </div>
 
                   <FormInput type="button" name="submit" id={classes.submit} required value="Pay now" disabled/>
-                  
+                  <p id={classes.paymentSubtext}><span>By continuing, you agree to Shop’s Terms of Service and acknowledge the Privacy Policy.</span></p>
                 </div>
                 <CheckoutFooter/>
           </form>
