@@ -10,9 +10,9 @@ interface ImageButtonProps {
 }
 const ImgButton = ( {className, imgPath, name, altText, linkPath} : ImageButtonProps)  : JSX.Element => {
     return (
-        <div className={classes.ImgButton}>
+        <div className={`${classes.ImgButton} ${className ? className : ''}`} >
         <Link className={classes.Link} to={linkPath}>
-        <img className={`${classes.Img} ${className ? className : ''}`} src={imgPath} alt={altText}/>
+        <img className={classes.Img} src={imgPath} alt={altText}/>
         </Link>
         <Link className={classes.Link} to={linkPath}>
         <p className={classes.p}><span>{name}</span></p>

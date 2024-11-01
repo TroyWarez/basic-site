@@ -2,9 +2,9 @@
     color: var(--main-bg-textColor);
     font-size: x-large;
     font-family: "Roboto", sans-serif;
-    width: 81rem;
+    width: min-content;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 .Img {

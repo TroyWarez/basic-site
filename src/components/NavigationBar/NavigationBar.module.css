@@ -5,3 +5,10 @@
     justify-content: center;
     align-items: center;
 }
+.cart {
+    padding-left: 70rem;
+}
+.cart img {
+    width: 2rem;
+    height: 2rem;
+}
