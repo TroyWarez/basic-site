@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const CheckoutFooter = ()  : JSX.Element => {
   return (
-    <>
-    <Link to="/refundpolicy" className={classes.CheckoutFooter}>Refund policy</Link>
-    <Link to="/privacypolicy" className={classes.CheckoutFooter}>Privacy policy</Link>
-    <Link to="/termsofservice" className={classes.CheckoutFooter}>Terms of Service</Link>
-    </>
+    <div className={classes.CheckoutFooter}>
+      <Link to="/refundpolicy">Refund policy</Link>
+      <Link to="/privacypolicy">Privacy policy</Link>
+      <Link to="/termsofservice">Terms of Service</Link>
+    </div>
   )
 }
 
