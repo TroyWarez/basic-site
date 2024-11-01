@@ -1,8 +1,6 @@
 .CheckoutContainer {
     display: flex;
     justify-content: center;
-    text-align: center;
-    border-left: 1px solid var(--main-bg-accentColor);
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
 }

@@ -1,0 +1,7 @@
+.navbar {
+    color: var(--main-bg-textColor);
+    border-bottom: 1px solid var(--main-bg-accentColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -4,7 +4,7 @@
   font-style: normal;
   font-size: xx-large;
   text-align: left;
-  margin: 0px;
+  margin: 0;
   padding-left: 3%;
   padding-top: 3%;
 }
@@ -19,12 +19,10 @@
   padding-left: 3%;
 }
 .form {
-  border-right: 1px solid var(--main-bg-accentColor);
   outline: 0 !important;
   box-sizing: border-box;
   width: 45rem;
   height: 100%;
-  padding-bottom: 30px;
   text-align: left;
 }
 .p {
@@ -78,7 +76,7 @@
 }
 #submit {
   background-color: #181a1b;
-  color: #e8e6e3;
+  color: var(--main-bg-textColor);
   border-radius: 20px;
   border: 1px solid var(--main-bg-accentColor);
   background-color: #686f74;

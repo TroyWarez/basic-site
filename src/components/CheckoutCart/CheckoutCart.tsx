@@ -4,7 +4,7 @@ interface CartProps {
   cartItems: CartItem[];
   className?: string;
 }
-const CheckoutCart = ({ cartItems, className}: CartProps) => {
+const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
   const subTotal = { displayCurrencyValue : 0.00, displayCurrencyValueType : ''};
   return (
     <>

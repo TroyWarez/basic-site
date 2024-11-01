@@ -1,11 +1,11 @@
-import Imgbutton from "../../components/ImgButton/ImgButton";
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import CheckoutContainer from "../../components/CheckoutContainer/CheckoutContainer";
 import Footer from "../../components/CheckoutFooter/CheckoutFooter";
 const CheckoutPage = () => {
   return (
     <div>
     <title>Store Checkout</title>
-    <Imgbutton imgPath={"storefrontIcon.png"} name={"Store"} altText={"Home"} linkPath="/"/>
+    <NavigationBar/>
     <CheckoutContainer/>
     </div>
   );

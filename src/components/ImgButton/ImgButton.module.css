@@ -1,19 +1,25 @@
-.button p, img {
-    color: #e8e6e3;
+.ImgButton {
+    color: var(--main-bg-textColor);
     font-size: x-large;
     font-family: "Roboto", sans-serif;
-    width: 64px;
-    height: 64px;
-}
-.button a {
-    text-decoration: none;
+    width: 78rem;
     display: flex;
-    width: min-content;
-    padding-left: 5%;
+    justify-content: flex-start;
+    align-items: center;
 }
-.button {
-    color: #e8e6e3;
-    border-bottom: 1px solid var(--main-bg-accentColor);
-    width: 100%;
-    height: 64px;
+.Img {
+    height: 4rem;
+}
+.Link {
+    text-decoration: none;
+    height: min-content;
+    color: var(--main-bg-textColor);
+    display: flex;
+    padding: 0;
+}
+.p {
+    margin-top: 63%;
+    margin: 0;
+    display: flex;
+    height: min-content;
 }
