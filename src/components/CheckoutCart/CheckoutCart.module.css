@@ -9,6 +9,7 @@
        display: flex;
        justify-content: space-between;
        padding-top: 6%;
+       padding-left: 1rem;
 }
 .CheckoutCartSubtotal {
        text-align: left;
@@ -25,7 +26,7 @@
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
        position: relative;
        flex-grow: 1;
-       padding-left: 3rem;
+       padding-left: 1rem;
 }
 .pItemPrice {
        font-size: medium;
@@ -44,11 +45,11 @@
        padding-left: 0.5rem;
        padding-right: 0.5rem;
        color: white;
-       position: relative;
+       position: absolute;
        z-index: 50;
-       top: -2rem;
-       right: 4rem;
-       left: 4.5rem;
+       top: 1.5rem;
+       right: 2rem;
+       left: 4rem;
        font-size: small;
        font-weight: bolder;
 }
