@@ -9,7 +9,7 @@
        display: flex;
        justify-content: space-between;
        padding-top: 6%;
-       padding-left: 1rem;
+       padding-left: 3rem;
 }
 .CheckoutCartSubtotal {
        text-align: left;
@@ -18,7 +18,7 @@
        display: flex;
        justify-content: space-between;
        padding-top: 2rem;
-       padding-left: 1.5rem;
+       padding-left: 3rem;
 }
 .p {
        font-size: medium;
@@ -30,6 +30,7 @@
 }
 .pItemPrice {
        font-size: medium;
+       padding-right: 1rem;
 }
 .pSubtotal {
        font-size: medium;
@@ -47,9 +48,9 @@
        color: white;
        position: absolute;
        z-index: 50;
-       top: 1.5rem;
+       top: 1rem;
        right: 2rem;
-       left: 4rem;
+       left: 6rem;
        font-size: small;
        font-weight: bolder;
 }

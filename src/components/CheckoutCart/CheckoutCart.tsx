@@ -25,7 +25,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
     }
         <div className={classes.CheckoutCartSubtotal}>
               <p className={classes.pSubtotal}><span>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
-              <p className={classes.pItemPrice}><span>{`${subTotal.displayCurrencyValueSymbol} ${(subTotal.displayCurrencyValue).toFixed(2)} ${subTotal.displayCurrencyValueType}`}</span></p>
+              <p className={classes.pItemPrice}><span>{`${subTotal.displayCurrencyValueSymbol} ${(subTotal.displayCurrencyValue).toFixed(2)}`}</span></p>
         </div>
     </div>
     </>
