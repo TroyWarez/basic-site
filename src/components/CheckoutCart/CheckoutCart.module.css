@@ -24,20 +24,28 @@
        font-size: medium;
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-       position: relative;
-       flex-grow: 1;
-       padding-left: 1rem;
 }
 .pItemPrice {
        font-size: medium;
        padding-right: 1rem;
 }
-.pSubtotal {
+#pSubtotal {
+       font-size: medium;
+       font-weight: bold;
+}
+#pCurrency {
+       font-size: medium!important;
+       font-weight: lighter!important;
+}
+.pTotal {
+       font-size: x-large;
+       font-weight: bold;
+}
+.pShippingTotal {
        font-size: medium;
        font-weight: lighter;
-       flex-grow: 1;
 }
-.quantityNumber {
+#quantityNumber {
        background-color: rgb(139, 139, 139);
        border-radius: 50%;
        width: min-content;
