@@ -13,7 +13,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
           <div className={`${classes.CheckoutCartItem} ${className ? className : ''}`} key={cartItem.sku}>
               <div id={classes.quantityNumber}>{cartItem.quantityNumber}</div>
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
-              <p className={classes.p}><span>{cartItem.displayItemName}</span></p>
+              <p className={classes.p} id={classes.pItemName}><span>{cartItem.displayItemName}</span></p>
               <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${cartItem.displayCurrencyValue}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + (cartItem.displayCurrencyValue * cartItem.quantityNumber)}
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
@@ -33,9 +33,9 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
         </div>
         <div className={classes.CheckoutCartSubtotal}>
           <p className={`${classes.p} ${classes.pTotal}`}><span>{`Total`}</span></p>
-          <p className={`${classes.p} ${classes.pTotal}`} id={classes.pCurrency}><span>{`${subTotal.displayCurrencyValueType}`}</span></p>
+          <p className={`${classes.p} ${classes.pTotal}`} id={classes.pCurrency}><span>{`${subTotal.displayCurrencyValueType}`}&nbsp;</span>
           <p className={`${classes.p} ${classes.pTotal}`}><span>
-            {`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
+          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p></p>
         </div>
     </div>
     </>

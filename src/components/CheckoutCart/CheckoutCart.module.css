@@ -3,16 +3,13 @@
        border-left: 1px solid var(--main-bg-accentColor);
 }
 .CheckoutCartItem {
-       text-align: left;
        position: relative;
-       align-items: center;
        display: flex;
        justify-content: space-between;
        padding-top: 6%;
        padding-left: 3rem;
 }
 .CheckoutCartSubtotal {
-       text-align: left;
        position: relative;
        align-items: center;
        display: flex;
@@ -25,9 +22,12 @@
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+#pItemName {
+       padding-right: 50%;
+}
 .pItemPrice {
        font-size: medium;
-       padding-right: 1rem;
+       height: min-content;
 }
 #pSubtotal {
        font-size: medium;
@@ -36,6 +36,9 @@
 #pCurrency {
        font-size: medium!important;
        font-weight: lighter!important;
+       display: flex!important;
+       align-items: baseline!important;
+       height: min-content!important;     
 }
 .pTotal {
        font-size: x-large;
