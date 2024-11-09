@@ -14,7 +14,6 @@
        align-items: center;
        display: flex;
        justify-content: space-between;
-       padding-top: 2rem;
        padding-left: 3rem;
 }
 .p {
@@ -28,6 +27,7 @@
 .pItemPrice {
        font-size: medium;
        height: min-content;
+       
 }
 #pSubtotal {
        font-size: medium;
@@ -37,8 +37,8 @@
        font-size: medium!important;
        font-weight: lighter!important;
        display: flex!important;
-       align-items: baseline!important;
-       height: min-content!important;     
+       align-items: center!important;
+       height: min-content!important;
 }
 .pTotal {
        font-size: x-large;
@@ -49,7 +49,7 @@
        font-weight: lighter;
 }
 #quantityNumber {
-       background-color: rgb(139, 139, 139);
+       background-color: rgb(87, 87, 87);
        border-radius: 50%;
        width: min-content;
        padding-top: 0.25rem;

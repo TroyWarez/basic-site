@@ -14,7 +14,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
               <div id={classes.quantityNumber}>{cartItem.quantityNumber}</div>
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
               <p className={classes.p} id={classes.pItemName}><span>{cartItem.displayItemName}</span></p>
-              <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${cartItem.displayCurrencyValue}` }</p>
+              <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + (cartItem.displayCurrencyValue * cartItem.quantityNumber)}
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
                                 {subTotal.displayItemAmount += cartItem.quantityNumber}
