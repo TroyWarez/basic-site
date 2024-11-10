@@ -11,9 +11,10 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
     <div className={classes.CheckoutCartContainer}>
     {cartItems.map((cartItem) => (
           <div className={`${classes.CheckoutCartItem} ${className ? className : ''}`} key={cartItem.sku}>
-              <div id={classes.quantityNumber}>{cartItem.quantityNumber}</div>
+              <div className={classes.quantityNumber}>{cartItem.quantityNumber}</div>
+              <div className={classes.CheckoutCartItem}>
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
-              <p className={classes.p} id={classes.pItemName}><span>{cartItem.displayItemName}</span></p>
+              <p className={classes.p} id={classes.pItemName}><span>{cartItem.displayItemName}</span></p></div>
               <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + (cartItem.displayCurrencyValue * cartItem.quantityNumber)}
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
@@ -34,8 +35,8 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
         <div className={classes.CheckoutCartSubtotal}>
           <p className={`${classes.p} ${classes.pTotal}`}><span>{`Total`}</span></p>
           <p className={`${classes.p} ${classes.pTotal}`} id={classes.pCurrency}><span>{`${subTotal.displayCurrencyValueType}`}&nbsp;</span>
-          <p className={`${classes.p} ${classes.pTotal}`}><span>
-          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p></p>
+          <span className={`${classes.p} ${classes.pTotal}`}><span>
+          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></span></p>
         </div>
     </div>
     </>

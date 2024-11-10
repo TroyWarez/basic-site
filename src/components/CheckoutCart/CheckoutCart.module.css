@@ -1,28 +1,28 @@
 .CheckoutCartContainer {
        width: 36rem;
        border-left: 1px solid var(--main-bg-accentColor);
+       padding-left: 1rem;
+       padding-right: 1rem;
 }
 .CheckoutCartItem {
        position: relative;
        display: flex;
        justify-content: space-between;
-       padding-top: 6%;
-       padding-left: 3rem;
+       align-items: center;
+       padding-top: 1rem;
+       padding-bottom: 1rem;
 }
 .CheckoutCartSubtotal {
        position: relative;
        align-items: center;
        display: flex;
        justify-content: space-between;
-       padding-left: 3rem;
 }
 .p {
        font-size: medium;
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-#pItemName {
-       padding-right: 50%;
+       padding-left: 1rem;
 }
 .pItemPrice {
        font-size: medium;
@@ -43,12 +43,15 @@
 .pTotal {
        font-size: x-large;
        font-weight: bold;
+       padding: 0;
+       margin: 0;
+       display: flex;
 }
 .pShippingTotal {
        font-size: medium;
        font-weight: lighter;
 }
-#quantityNumber {
+.quantityNumber {
        background-color: rgb(87, 87, 87);
        border-radius: 50%;
        width: min-content;
@@ -61,7 +64,7 @@
        z-index: 50;
        top: 1rem;
        right: 2rem;
-       left: 6rem;
+       left: 3rem;
        font-size: small;
        font-weight: bolder;
 }
