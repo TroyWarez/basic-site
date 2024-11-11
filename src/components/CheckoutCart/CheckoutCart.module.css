@@ -1,7 +1,8 @@
 .CheckoutCartContainer {
-       width: 36rem;
+       width: 30rem;
        border-left: 1px solid var(--main-bg-accentColor);
-       padding-left: 1rem;
+       padding-top: 3rem;
+       padding-left: 3rem;
        padding-right: 1rem;
 }
 .CheckoutCartItem {
@@ -9,8 +10,8 @@
        display: flex;
        justify-content: space-between;
        align-items: center;
-       padding-top: 1rem;
-       padding-bottom: 1rem;
+       padding-bottom: 0.70rem;
+
 }
 .CheckoutCartSubtotal {
        position: relative;
@@ -23,6 +24,7 @@
        font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
        padding-left: 1rem;
+       margin-bottom: 0;
 }
 .pItemPrice {
        font-size: medium;
@@ -62,7 +64,7 @@
        color: white;
        position: absolute;
        z-index: 50;
-       top: 1rem;
+       top: -1rem;
        right: 2rem;
        left: 3rem;
        font-size: small;
