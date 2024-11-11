@@ -1,4 +1,5 @@
 import classes from "../CheckoutCart/CheckoutCart.module.css"
+import ids from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
 interface CartProps {
   cartItems: CartItem[];
@@ -14,7 +15,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
               <div className={classes.quantityNumber}>{cartItem.quantityNumber}</div>
               <div className={classes.CheckoutCartItem}>
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
-              <p className={classes.p} id={classes.pItemName}><span>{cartItem.displayItemName}</span></p></div>
+              <p className={classes.p} id={ids.pItemName}><span>{cartItem.displayItemName}</span></p></div>
               <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + (cartItem.displayCurrencyValue * cartItem.quantityNumber)}
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
@@ -25,8 +26,8 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
     ))
     }
         <div className={classes.CheckoutCartSubtotal}>
-              <p><span>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
-              <p id={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
+              <p className={classes.pSubtotal} id={ids.pLight}><span>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
+              <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
               <p className={classes.pShippingTotal}><span>{`Shipping`}</span></p>

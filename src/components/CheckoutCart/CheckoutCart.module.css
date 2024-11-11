@@ -31,9 +31,14 @@
        height: min-content;
        
 }
-#pSubtotal {
+.pSubtotal {
        font-size: medium;
        font-weight: bold;
+       padding-left: 0!important;
+       margin: 0!important;
+}
+#pLight {
+       font-weight: 400;
 }
 #pCurrency {
        font-size: medium!important;
@@ -43,7 +48,7 @@
        height: min-content!important;
 }
 .pTotal {
-       font-size: x-large;
+       font-size: large;
        font-weight: bold;
        padding: 0;
        margin: 0;
