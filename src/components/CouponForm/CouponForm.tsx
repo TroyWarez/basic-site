@@ -7,7 +7,7 @@ const CouponForm = () : JSX.Element => {
     <form id={ids.CouponForm}>
     <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={95} id={ids.CouponCodeInput}/>
     </form>
-    <FormInput className={classes.CouponInput} form={ids.form} type="button" name="couponButton" value="Apply" required/>
+    <FormInput className={classes.CouponInput} form={ids.CouponForm} type="button" name="couponButton" value="Apply" required/>
     </>
   )
 }
