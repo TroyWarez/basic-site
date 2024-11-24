@@ -1,0 +1,15 @@
+.CouponInput {
+    margin-left: 0!important;
+    height: min-content;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-weight: bold;
+}
+#CouponForm {
+    justify-content: center;
+}
+#CouponCodeInput {
+    width: 20rem;
+    margin-right: 1rem;
+}

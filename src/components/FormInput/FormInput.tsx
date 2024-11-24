@@ -16,8 +16,9 @@ interface FormInputProps {
   autoComplete?: string | undefined;
   value?: string | undefined;
   disabled?: boolean | undefined;
+  form?: string;
 }
-const FormInput = ({className, onInput, onBlur, title, placeholder, inputMode, type, name, id, maxLength, autoFocus, required, autoComplete, value, disabled}: FormInputProps) : JSX.Element => {
+const FormInput = ({className, onInput, onBlur, title, placeholder, inputMode, type, name, id, maxLength, autoFocus, required, autoComplete, value, disabled, form}: FormInputProps) : JSX.Element => {
   return (
     <input
     className={(!className) ? classes.input : `${className} ${classes.input}`}
@@ -35,6 +36,7 @@ const FormInput = ({className, onInput, onBlur, title, placeholder, inputMode, t
     autoComplete={autoComplete}
     value={value}
     disabled={disabled}
+    form={form}
     >
     </input>
   )

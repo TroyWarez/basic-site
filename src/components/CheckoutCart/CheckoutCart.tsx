@@ -1,6 +1,7 @@
 import classes from "../CheckoutCart/CheckoutCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
+import CouponForm from "../CouponForm/CouponForm"
 interface CartProps {
   cartItems: CartItem[];
   className?: string;
@@ -25,6 +26,9 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
           </div>
     ))
     }
+        <div className={classes.CheckoutCartSubtotal}>
+          <CouponForm/>
+        </div>
         <div className={classes.CheckoutCartSubtotal}>
               <p className={classes.pSubtotal} id={ids.pLight}><span>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
               <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>

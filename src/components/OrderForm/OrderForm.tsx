@@ -486,7 +486,11 @@ const OrderForm = ()  : JSX.Element => {
     return (
         <form className={classes.form} autoComplete="off">
             <h3 className={classes.heading}>Shipping Address</h3>
-            <p className={classes.p}>Please enter your shipping details.</p>
+            <p className={classes.p}><span>Please enter your shipping details.</span></p>
+            <SelectMenu onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
+                  value: country.value,
+                  displayValue: country.displayValue,
+                  }))} name="country" aria-label="Please select your country" required placeholder="Please select your country" title="Country menu, please select your country"/>
             <div>
                 <FormInput className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required autoComplete="given-name" />
 
@@ -499,13 +503,9 @@ const OrderForm = ()  : JSX.Element => {
                 <FormInput type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
 
                 <FormInput type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
-
-                <SelectMenu onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
-                  value: country.value,
-                  displayValue: country.displayValue,
-                  }))} name="country" aria-label="Please select your country" required placeholder="Please select your country" title="Country menu, please select your country"/>
-
-                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required/>
+              <div hidden={true}>
+                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required={true} />
+              </div>
 
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
