@@ -16,6 +16,7 @@ const OnClickHandler = (event: React.PointerEvent<HTMLInputElement>) => {
 const OnInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
   switch (event.type) {
     case "input": {
+      event.target.value = event.target.value.toUpperCase();
       console.log(event.target.value);
     }
   }
