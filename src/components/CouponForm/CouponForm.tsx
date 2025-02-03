@@ -6,15 +6,25 @@ const OnClickHandler = (event: React.PointerEvent<HTMLInputElement>) => {
   switch (event.type) {
     case "click":
       {
-        console.log("");
+        const CouponCodeInputElement = document.getElementById(ids.CouponCodeInput) as HTMLInputElement;
+        if (CouponCodeInputElement) {
+          console.log(CouponCodeInputElement.value);
+        }
       }
+  }
+}
+const OnInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  switch (event.type) {
+    case "input": {
+      console.log(event.target.value);
+    }
   }
 }
 const CouponForm = () : JSX.Element => {
   return (
     <>
     <form id={ids.CouponForm}>
-    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={95} id={ids.CouponCodeInput}/>
+    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={95} id={ids.CouponCodeInput} onInput={OnInputHandler}/>
     </form>
     <FormInput className={classes.CouponInput} form={ids.CouponForm} type="button" name="couponButton" value="Apply" required onClick={OnClickHandler}/>
     </>
