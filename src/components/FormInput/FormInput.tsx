@@ -4,6 +4,7 @@ interface FormInputProps {
   className?: string | undefined;
   onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void | undefined;
+  onClick?: (event: React.PointerEvent<HTMLInputElement>) => void | undefined;
   title?: string | undefined;
   placeholder?: string | undefined;
   inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search" | undefined;
@@ -18,12 +19,30 @@ interface FormInputProps {
   disabled?: boolean | undefined;
   form?: string;
 }
-const FormInput = ({className, onInput, onBlur, title, placeholder, inputMode, type, name, id, maxLength, autoFocus, required, autoComplete, value, disabled, form}: FormInputProps) : JSX.Element => {
+const FormInput = (
+  {className,
+  onInput, 
+  onBlur, 
+  onClick, 
+  title, 
+  placeholder, 
+  inputMode, 
+  type, 
+  name, 
+  id, 
+  maxLength, 
+  autoFocus, 
+  required, 
+  autoComplete, 
+  value, 
+  disabled, 
+  form  }: FormInputProps) : JSX.Element => {
   return (
     <input
     className={(!className) ? classes.input : `${className} ${classes.input}`}
     onInput={onInput}
     onBlur={onBlur}
+    onClick={onClick}
     title={title}
     placeholder={placeholder}
     inputMode={inputMode}
