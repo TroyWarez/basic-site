@@ -11,7 +11,7 @@ const CouponForm = () : JSX.Element => {
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
-        event.target.value = event.target.value.toUpperCase();
+        event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
         setCouponText(event.target.value);
       }
     }
