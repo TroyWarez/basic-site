@@ -21,7 +21,7 @@ const CouponForm = () : JSX.Element => {
       switch (event.type) {
         case "click":
           {
-            if (couponText != "") {
+            if (couponText) {
               console.log(couponText);
             }
           }
