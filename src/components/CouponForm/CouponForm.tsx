@@ -6,8 +6,22 @@ const CouponForm = () : JSX.Element => {
   const [couponText, setCouponText] = useState("");
   return (
     <>
-    <form id={ids.CouponForm}>
-    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+}}>
+    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} 
+    onKeyUp={ (event: React.KeyboardEvent<HTMLInputElement>) => {
+      switch (event.key) {
+        case "Enter":
+          {
+            if (couponText)
+            {
+              console.log(couponText);
+            }
+          }
+      }
+    }
+    } onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
@@ -17,7 +31,8 @@ const CouponForm = () : JSX.Element => {
     }
   } }/>
     </form>
-    <FormInput className={classes.CouponInput} form={ids.CouponForm} type="button" name="couponButton" value="Apply" required onClick={(event: React.PointerEvent<HTMLInputElement>) => {
+    <FormInput className={classes.CouponInput} form={ids.CouponForm} type="submit" name="couponButton" value="Apply" required
+    onClick={(event: React.PointerEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "click":
           {
