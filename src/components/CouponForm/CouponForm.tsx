@@ -36,7 +36,7 @@ const CouponForm = () : JSX.Element => {
       switch (event.type) {
         case "click":
           {
-            if (couponText) {
+            if (event.clientX && event.clientY) {
               console.log(couponText);
             }
           }
