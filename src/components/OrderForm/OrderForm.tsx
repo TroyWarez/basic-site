@@ -526,7 +526,7 @@ const OrderForm = ()  : JSX.Element => {
                     <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required placeholder="Security Code" maxLength={5}/>
                   </div>
 
-                  <FormInput type="button" name="submit" id={classes.submit} required value="Pay now" disabled/>
+                  <FormInput type="submit" name="submit" id={classes.submit} required value="Pay now"/>
                   <p id={classes.paymentSubtext}><span>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</span></p>
                 </div>
                 <CheckoutFooter/>
