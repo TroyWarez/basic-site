@@ -1,13 +1,15 @@
 import FormInput from "../FormInput/FormInput"
 import classes from '../CouponForm/CouponForm.module.css'
 import ids from '../CouponForm/CouponForm.module.css'
+import storeApiService from "../../services/storeApiService";
 const CouponForm = () : JSX.Element => {
   return (
     <>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(event.currentTarget[0]) {
-    console.log((event.currentTarget[0] as HTMLFormElement).value);
+      const couponString = storeApiService.isCouponValid((event.currentTarget[0] as HTMLFormElement).value);
+      console.log(couponString);
     }
   }}>
     <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
