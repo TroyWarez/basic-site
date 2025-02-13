@@ -4,7 +4,7 @@ const httpClient = axios.create({
     baseURL: "http://localhost:3000",
   });
   const basePaths = {
-    coupons: "/coupons",
+    coupons: "/coupons/",
   };
   const storeApiService = {
     isCouponValid: async (coupon: string): Promise<CouponCode[]> => {
