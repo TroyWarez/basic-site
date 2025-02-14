@@ -1,3 +1,3 @@
 export default interface CouponCode {
-    Code: string;
+    discountPercent: string;
 }

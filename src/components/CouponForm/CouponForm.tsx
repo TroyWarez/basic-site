@@ -8,8 +8,12 @@ const CouponForm = () : JSX.Element => {
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(event.currentTarget[0]) {
-      const couponString = storeApiService.isCouponValid((event.currentTarget[0] as HTMLFormElement).value);
-      console.log(couponString);
+      const couponState = storeApiService.isCouponValid((event.currentTarget[0] as HTMLFormElement).value);
+      couponState.then((coupon) => {
+        if(coupon[0] && coupon[0]?.discountPercent) {
+          console.log(coupon[0]?.discountPercent);
+        }
+      }) 
     }
   }}>
     <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
