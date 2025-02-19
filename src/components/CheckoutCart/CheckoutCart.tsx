@@ -25,7 +25,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
       displayCurrencyValueSymbol: subTotal.displayCurrencyValueSymbol, 
       displayItemAmount : subTotal.displayItemAmount,
       IsDiscounted : true,
-      displayTotalString: 'Discounted Total'});
+      displayTotalString: ` ${DiscountPercentage}% discounted total`});
     }
   };
   return (
