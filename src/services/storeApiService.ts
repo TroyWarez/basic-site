@@ -9,17 +9,16 @@ const httpClient = axios.create({
     coupons: "coupons/",
   };
   const storeApiService = {
-    isCouponValid: async (coupon: string): Promise<CouponCode[]> => {
+    getDiscountPercentage: async (coupon: string): Promise<number> => {
     try
     {
       const response = await httpClient.get(basePaths.coupons + coupon);
-      return response.data;
+      return response.data?.discountPercentage;
     }
     catch (error)
     {
-      console.error(error);
+      return 0;
     }
-    return new Array(0);
     },
   }
 
