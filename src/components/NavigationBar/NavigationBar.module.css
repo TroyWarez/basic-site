@@ -7,6 +7,21 @@
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.cartItemAmount {
+    background-color: rgb(87, 87, 87);
+    border-radius: 50%;
+    width: min-content;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+    z-index: 50;
+    font-size: x-small;
+    font-weight: bold;
+    position: relative;
+    left: -1rem;
+    top: -0.5rem;
+}
 .cart {
     justify-content: flex-end!important;
 }

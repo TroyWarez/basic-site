@@ -50,7 +50,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
           <CouponForm applyCouponDiscount={applyDiscountPercentage}/>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
-              <p className={classes.pSubtotal} id={ids.pLight}><span>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
+              <p className={classes.pSubtotal} id={ids.pLight}><span id={ids.pSpan} title={subTotal.displayItemAmount.toString()}>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
               <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
