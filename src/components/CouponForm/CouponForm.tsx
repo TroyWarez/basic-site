@@ -24,11 +24,17 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       couponState.then((discountPercentage) => {
         if(discountPercentage > 0) {
           Props.applyCouponDiscount(discountPercentage);
+          TextInput.style.border = '2px solid rgb(11, 255, 105)';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'Applied discount.';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(11, 255, 105)';
         }
         else
         {
-          TextInput.style.border = 'solid rgb(199, 1, 1)';
+          TextInput.style.border = '2px solid rgb(199, 1, 1)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'The coupon is not valid.';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
         }
       if (submitButton?.id === ids.CouponInputButtonLoading )
         {
@@ -46,11 +52,16 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       switch (event.type) {
         case "input": {
         event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+        if((document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden === false)
+        {
+        (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = true;
+        (event.target as HTMLInputElement).style.border = '2px solid var(--main-bg-accentColor)';
+        }
       }
     }
   } }/>
       <FormInput className={classes.CouponInput} form={ids.CouponForm} type="submit" name="couponButton" value="Apply" required/>
-      <p hidden={true}  color="red" id={ids.CouponInputError}><span>The coupon is not valid.</span></p>
+      <p hidden={true} id={ids.CouponInputError}>The coupon is not valid.</p>
     </form>
     </>
   )
