@@ -19,6 +19,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }
     if(event.currentTarget[0]) {
       const couponState = storeApiService.getDiscountPercentage((event.currentTarget[0] as HTMLFormElement).value);
+      const TextInput = (event.currentTarget[0]) as HTMLInputElement;
       const submitButton = (event.currentTarget[1]) as HTMLInputElement;
       couponState.then((discountPercentage) => {
         if(discountPercentage > 0) {
@@ -26,14 +27,15 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
         }
         else
         {
-          console.log("The coupon is not valid.");
+          TextInput.style.border = 'solid rgb(199, 1, 1)';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
         }
       if (submitButton?.id === ids.CouponInputButtonLoading )
         {
         setTimeout(() => {
           submitButton.id = '';
           submitButton.disabled = false;
-        }, 1000);
+        }, 500);
         }
     }
     ) 
@@ -48,6 +50,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }
   } }/>
       <FormInput className={classes.CouponInput} form={ids.CouponForm} type="submit" name="couponButton" value="Apply" required/>
+      <p hidden={true}  color="red" id={ids.CouponInputError}><span>The coupon is not valid.</span></p>
     </form>
     </>
   )

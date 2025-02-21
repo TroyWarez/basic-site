@@ -5,7 +5,9 @@
     margin-bottom: 1rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
     font-weight: bold;
+    box-shadow: 0;
 }
 .CouponInput:disabled {
     border: 4px solid var(--main-bg-textColor);
@@ -14,10 +16,12 @@
 }
 #CouponForm {
     display: flex;
+    box-shadow: none;
 }
 #CouponCodeInput {
-    width: 12rem;
+    width: 7em;
     margin-right: 0.5rem;
+    margin-bottom: 1rem;
 }
 #CouponInputButtonLoading { 
     width: 2rem;
@@ -37,4 +41,31 @@
     100% {
         transform: rotate(360deg);
     }
+}
+@keyframes textflydown {
+    from  {
+        transform: translateY(-1rem);
+    }
+    to  {
+        transform: translateY(0.1rem);
+    }
+}
+textflyup {
+    from  {
+        transform: translateY(0.1rem);
+    }
+    to  {
+        transform: translateY(-1rem);
+    }
+}
+#CouponInputError {
+    color: rgb(199, 1, 1);
+    z-index: -1;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding-top: 1.25rem;
+    position: absolute;
+    font-size: small;
+    animation: textflydown 100ms linear;
+    animation-duration: 200ms;
 }
