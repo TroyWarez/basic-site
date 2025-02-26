@@ -1,6 +1,5 @@
 import classes from "./NavigationBar.module.css"
 import ImgButton from "../ImgButton/ImgButton"
-import { useState } from "react"
 interface NavigationBarProps {
   cartItemAmount: string;
 }
