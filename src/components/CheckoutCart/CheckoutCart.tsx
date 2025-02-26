@@ -6,8 +6,9 @@ import { useState } from "react"
 interface CartProps {
   cartItems: CartItem[];
   className?: string;
+  cartItemAmount: number;
 }
-const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
+const CheckoutCart = ({ cartItems, className, cartItemAmount}: CartProps) : JSX.Element => {
 
   const[subTotal, setSubtotal] = useState(
     { 
@@ -17,6 +18,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
     displayItemAmount : 0, 
     IsDiscounted: false,
     displayTotalString: 'Total'});
+    subTotal.displayCurrencyValue = 0.00;
   const applyDiscountPercentage = (DiscountPercentage: number) => {
     console.log(DiscountPercentage);
     if (!subTotal.IsDiscounted) {
@@ -38,9 +40,9 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
               <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
               <p className={classes.p} id={ids.pItemName}><span>{cartItem.displayItemName}</span></p></div>
               <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p>
-              <div hidden={true}>{(subTotal.IsDiscounted) ? subTotal.displayCurrencyValue : subTotal.displayCurrencyValue = subTotal.displayCurrencyValue + (cartItem.displayCurrencyValue * cartItem.quantityNumber)};
+              <div hidden={true}>{subTotal.displayCurrencyValue += (cartItem.displayCurrencyValue * cartItem.quantityNumber)};
                                 {subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
-                                {(subTotal.IsDiscounted) ? subTotal.displayItemAmount : subTotal.displayItemAmount += cartItem.quantityNumber}
+                                { subTotal.displayItemAmount = cartItemAmount}
                                 {subTotal.displayCurrencyValueSymbol = cartItem.displayCurrencyValueSymbol}
               </div>
           </div>
@@ -50,8 +52,11 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
           <CouponForm applyCouponDiscount={applyDiscountPercentage}/>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
-              <p className={classes.pSubtotal} id={ids.pLight}><span id={ids.pSpan} title={subTotal.displayItemAmount.toString()}>{`Subtotal • ${subTotal.displayItemAmount} items`}</span></p>
-              <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
+              <p className={classes.pSubtotal} id={ids.pLight}><span id={ids.pSpan}>{
+              `Subtotal • ${subTotal.displayItemAmount} items`
+              }
+              </span></p>
+              <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue}`}</span></p>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
               <p className={classes.pShippingTotal}><span>{`Shipping`}</span></p>
@@ -61,7 +66,7 @@ const CheckoutCart = ({ cartItems, className}: CartProps) : JSX.Element => {
           <p className={`${classes.p} ${classes.pTotal}`}><span>{subTotal.displayTotalString}</span></p>
           <p className={`${classes.p} ${classes.pTotal}`} id={classes.pCurrency}><span>{`${subTotal.displayCurrencyValueType}`}&nbsp;</span>
           <span className={`${classes.p} ${classes.pTotal}`}><span>
-          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></span></p>
+          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue}`}</span></span></p>
         </div>
     </div>
     </>
