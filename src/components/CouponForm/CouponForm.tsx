@@ -10,6 +10,8 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (((event.currentTarget[0] as HTMLFormElement)?.value?.length >= 6))
+    {
     if( event.currentTarget[1] && 
       (event.currentTarget[1] as HTMLFormElement).type === 'submit' &&
       (event.currentTarget[1] as HTMLFormElement).id !== ids.CouponInputButtonLoading )
@@ -46,6 +48,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }
     ) 
     }
+  }
   }}>
     <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
