@@ -51,7 +51,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
-        event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+        event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9])/g, "");
         if((document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden === false)
         {
         (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = true;
