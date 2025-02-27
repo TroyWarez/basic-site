@@ -10,7 +10,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (((event.currentTarget[0] as HTMLFormElement)?.value?.length >= 6))
+    if (((event.currentTarget[0] as HTMLFormElement)?.value?.length >= 5))
     {
     if( event.currentTarget[1] && 
       (event.currentTarget[1] as HTMLFormElement).type === 'submit' &&
@@ -35,7 +35,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
         {
           TextInput.style.border = '2px solid rgb(199, 1, 1)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
-          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'The coupon is not valid.';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'Failed to apply discount.';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
         }
       if (submitButton?.id === ids.CouponInputButtonLoading )
@@ -48,6 +48,14 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }
     ) 
     }
+  }
+  else
+  {
+    const TextInput = (event.currentTarget[0]) as HTMLInputElement;
+    TextInput.style.border = '2px solid rgb(199, 1, 1)';
+    (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
+    (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'The coupon is too short.';
+    (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
   }
   }}>
     <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
