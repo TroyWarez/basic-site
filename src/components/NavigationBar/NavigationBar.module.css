@@ -10,8 +10,8 @@
 .cartItemAmount {
     background-color: rgb(87, 87, 87);
     border-radius: 50%;
-    width: min-content;
-    padding-top: 0.15rem;
+    min-width: min-content;
+    padding-top: 0.1rem;
     padding-bottom: 0.15rem;
     padding-left: 0.25rem;
     padding-right: 0.25rem;
@@ -21,6 +21,9 @@
     position: relative;
     left: -1.3rem;
     top: -0.5rem;
+}
+.cartItemAmountHidden {
+    visibility: hidden;
 }
 .cart {
     justify-content: flex-end!important;

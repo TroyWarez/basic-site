@@ -14,7 +14,7 @@ const CheckoutContainer = () : JSX.Element => {
     }
   return (
     <>
-    <NavigationBar cartItemAmount={ItemAmount.toString()}/>
+    <NavigationBar cartItemAmount={0}/>
     <div className={classes.CheckoutContainer}>
         <OrderForm/>
         <CheckoutCart cartItems={cartItems} cartItemAmount={ItemAmount}></CheckoutCart>
