@@ -37,7 +37,7 @@ const CheckoutCart = ({ cartItems, className, cartItemAmount}: CartProps) : JSX.
           <div className={`${classes.CheckoutCartItem} ${className ? className : ''}`} key={cartItem.sku}>
               <div className={classes.quantityNumber}>{cartItem.quantityNumber}</div>
               <div className={classes.CheckoutCartItem}>
-              <img className={classes.img}src={cartItem.productImagePath} alt='ProductImage'/>
+              <img className={classes.img}src={cartItem.productImageBinData} alt='ProductImage'/>
               <p className={classes.p} id={ids.pItemName}><span>{cartItem.displayItemName}</span></p></div>
               <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueSymbol} ${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p>
               <div hidden={true}>{subTotal.displayCurrencyValue += (cartItem.displayCurrencyValue * cartItem.quantityNumber)};
