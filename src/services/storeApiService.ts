@@ -1,4 +1,5 @@
 import axios from "axios";
+import CartItem from "../models/CartItem"
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
@@ -21,7 +22,7 @@ const httpClient = axios.create({
     }
     },
 
-    getCartData: async (cartOwner: string) => {
+    getCartData: async (cartOwner: string): Promise<CartItem[]> => {
       try
       {
         const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
@@ -29,7 +30,7 @@ const httpClient = axios.create({
       }
       catch (error)
       {
-        return 0;
+        return [];
       }
       },
   }

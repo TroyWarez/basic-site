@@ -1,6 +1,5 @@
 import classes from './CheckoutContainer.module.css'
 import CheckoutCart from '../CheckoutCart/CheckoutCart'
-import CartItem from "../../models/CartItem.tsx";
 import OrderForm from '../OrderForm/OrderForm';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 const CheckoutContainer = () : JSX.Element => {

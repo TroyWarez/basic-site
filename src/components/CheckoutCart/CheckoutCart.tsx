@@ -3,7 +3,7 @@ import ids from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
 import CouponForm from "../CouponForm/CouponForm"
 import storeApiService from "../../services/storeApiService";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 interface CartProps {
   className?: string;
   cartItemAmount: number;
@@ -30,13 +30,21 @@ const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
       displayTotalString: ` ${DiscountPercentage}% discounted total`});
     }
   };
+
   const[cartItems, setCartitems] = useState<CartItem[]>([]);
-  if(cartItems.length === 0){
-  const cartItemsdb = storeApiService.getCartData('Debug');
-  cartItemsdb.then((cartItemsFound) => {
-      setCartitems(cartItemsFound as CartItem[]);
-  })
-}
+  const[loadingFlag, setloadingFlag] = useState(false);
+  useEffect(() => { 
+    if(loadingFlag == false) {
+    const cartItemsdb = storeApiService.getCartData('Debug');
+    cartItemsdb.then((cartItemsFound) => {
+      if(cartItems.length === 0){
+        setCartitems(cartItemsFound as CartItem[]);
+      }
+    })
+    }
+    setloadingFlag(true);
+  });
+
   return (
     <>
     <div className={classes.CheckoutCartContainer}>
