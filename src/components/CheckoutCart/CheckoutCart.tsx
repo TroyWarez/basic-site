@@ -38,6 +38,19 @@ const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
     const cartItemsdb = storeApiService.getCartData('Debug');
     cartItemsdb.then((cartItemsFound) => {
       if(cartItems.length === 0){
+        cartItemsFound.forEach((cartItem) => {
+          const JpgBinCharData = atob(cartItem.productImageBinData);
+          const JpgByteNumbers = new Array(JpgBinCharData.length);
+          for (let i = 0; i < JpgByteNumbers.length; i++) {
+            JpgByteNumbers[i] = JpgBinCharData.charCodeAt(i);
+          }
+          const JpgByteArray = new Uint8Array(JpgByteNumbers);
+
+          const JpgBlob = new Blob([JpgByteArray], {type: 'contentType'});
+          const JpgUrl = URL.createObjectURL(JpgBlob);
+          cartItem.productImageBinData = JpgUrl;
+          console.log(cartItem.productImageBinData);
+        })
         setCartitems(cartItemsFound);
       }
     })
