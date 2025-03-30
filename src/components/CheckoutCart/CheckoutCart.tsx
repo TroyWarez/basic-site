@@ -43,7 +43,7 @@ const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
     })
     }
     setloadingFlag(true);
-  });
+  }, [cartItems.length, loadingFlag]);
 
   return (
     <>
