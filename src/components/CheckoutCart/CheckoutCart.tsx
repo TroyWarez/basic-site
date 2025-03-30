@@ -2,13 +2,13 @@ import classes from "../CheckoutCart/CheckoutCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
 import CouponForm from "../CouponForm/CouponForm"
+import storeApiService from "../../services/storeApiService";
 import { useState } from "react"
 interface CartProps {
-  cartItems: CartItem[];
   className?: string;
   cartItemAmount: number;
 }
-const CheckoutCart = ({ cartItems, className, cartItemAmount}: CartProps) : JSX.Element => {
+const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
 
   const[subTotal, setSubtotal] = useState(
     { 
@@ -30,6 +30,13 @@ const CheckoutCart = ({ cartItems, className, cartItemAmount}: CartProps) : JSX.
       displayTotalString: ` ${DiscountPercentage}% discounted total`});
     }
   };
+  const[cartItems, setCartitems] = useState<CartItem[]>([]);
+  if(cartItems.length === 0){
+  const cartItemsdb = storeApiService.getCartData('Debug');
+  cartItemsdb.then((cartItemsFound) => {
+      setCartitems(cartItemsFound as CartItem[]);
+  })
+}
   return (
     <>
     <div className={classes.CheckoutCartContainer}>

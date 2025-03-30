@@ -21,11 +21,11 @@ const httpClient = axios.create({
     }
     },
 
-    getCartData: async (): Promise<number> => {
+    getCartData: async (cartOwner: string) => {
       try
       {
-        const response = await httpClient.get(basePaths.cart);
-        return response.data;
+        const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
+        return response.data?.cartData;
       }
       catch (error)
       {
