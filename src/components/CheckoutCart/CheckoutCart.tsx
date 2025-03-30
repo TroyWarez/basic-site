@@ -38,7 +38,7 @@ const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
     const cartItemsdb = storeApiService.getCartData('Debug');
     cartItemsdb.then((cartItemsFound) => {
       if(cartItems.length === 0){
-        setCartitems(cartItemsFound as CartItem[]);
+        setCartitems(cartItemsFound);
       }
     })
     }
