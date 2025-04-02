@@ -2,13 +2,13 @@ import classes from "../CheckoutCart/CheckoutCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
 import CartItem from "../../models/CartItem"
 import CouponForm from "../CouponForm/CouponForm"
-import storeApiService from "../../services/storeApiService";
-import { useState, useEffect } from "react"
+import { useState } from "react"
 interface CartProps {
+  cartItems: CartItem[];
   className?: string;
   cartItemAmount: number;
 }
-const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
+const CheckoutCart = ({ cartItems, className, cartItemAmount}: CartProps) : JSX.Element => {
 
   const[subTotal, setSubtotal] = useState(
     { 
@@ -30,34 +30,6 @@ const CheckoutCart = ({className, cartItemAmount}: CartProps) : JSX.Element => {
       displayTotalString: ` ${DiscountPercentage}% discounted total`});
     }
   };
-
-  const[cartItems, setCartitems] = useState<CartItem[]>([]);
-  const[loadingFlag, setloadingFlag] = useState(false);
-  useEffect(() => { 
-    if(loadingFlag == false) {
-    const cartItemsdb = storeApiService.getCartData('Debug');
-    cartItemsdb.then((cartItemsFound) => {
-      if(cartItems.length === 0){
-        cartItemsFound.forEach((cartItem) => {
-          const JpgBinCharData = atob(cartItem.productImageBinData);
-          const JpgByteNumbers = new Array(JpgBinCharData.length);
-          for (let i = 0; i < JpgByteNumbers.length; i++) {
-            JpgByteNumbers[i] = JpgBinCharData.charCodeAt(i);
-          }
-          const JpgByteArray = new Uint8Array(JpgByteNumbers);
-
-          const JpgBlob = new Blob([JpgByteArray], {type: 'contentType'});
-          const JpgUrl = URL.createObjectURL(JpgBlob);
-          cartItem.productImageBinData = JpgUrl;
-          console.log(cartItem.productImageBinData);
-        })
-        setCartitems(cartItemsFound);
-      }
-    })
-    }
-    setloadingFlag(true);
-  }, [cartItems.length, loadingFlag]);
-
   return (
     <>
     <div className={classes.CheckoutCartContainer}>
