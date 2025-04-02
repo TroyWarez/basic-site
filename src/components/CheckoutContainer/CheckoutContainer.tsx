@@ -11,6 +11,7 @@ const CheckoutContainer = () : JSX.Element => {
   const[cartItems, setCartitems] = useState<CartItem[]>([]);
   useEffect(() => { 
     let itemCount = 0;
+    let cartTotalCost = 0;
     if(loadingFlag == false) {
     const cartItemsdb = storeApiService.getCartData('Debug');
     cartItemsdb.then((cartItemsFound) => {
@@ -27,6 +28,7 @@ const CheckoutContainer = () : JSX.Element => {
           const JpgUrl = URL.createObjectURL(JpgBlob);
           cartItem.productImageBinData = JpgUrl;
           itemCount += cartItem.quantityNumber;
+          cartTotalCost += (cartItem.displayCurrencyValue * cartItem.quantityNumber);
         })
         setloadingFlag(true);
         setCheckoutcontainer(
@@ -34,7 +36,7 @@ const CheckoutContainer = () : JSX.Element => {
         <NavigationBar cartItemAmount={itemCount} />
           <div className={classes.CheckoutContainer}>
               <OrderForm/>
-              <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound}/>
+              <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound} cartTotal={cartTotalCost}/>
           </div>
           </>
           );
