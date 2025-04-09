@@ -4,9 +4,12 @@ import OrderForm from '../OrderForm/OrderForm';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 import storeApiService from "../../services/storeApiService";
 import CartItem from "../../models/CartItem"
+import { Link } from "react-router-dom";
+
 import { useState, useEffect } from 'react';
 const CheckoutContainer = () : JSX.Element => {
-  const [Checkoutcontainer, setCheckoutcontainer] = useState(<></>);
+  const [Checkoutcontainer, setCheckoutcontainer] = useState(<>
+                  <title>Loading...</title></>);
   const[loadingFlag, setloadingFlag] = useState(false);
   const[cartItems, setCartitems] = useState<CartItem[]>([]);
   useEffect(() => { 
@@ -31,15 +34,30 @@ const CheckoutContainer = () : JSX.Element => {
           cartTotalCost += (cartItem.displayCurrencyValue * cartItem.quantityNumber);
         })
         setloadingFlag(true);
-        setCheckoutcontainer(
-        <>
-        <NavigationBar cartItemAmount={itemCount} />
-          <div className={classes.CheckoutContainer}>
-              <OrderForm/>
-              <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound} cartTotal={cartTotalCost}/>
-          </div>
-          </>
-          );
+        if(itemCount > 0)
+        {
+          setCheckoutcontainer(
+            <>
+            <title>Store Checkout</title>
+            <NavigationBar cartItemAmount={itemCount} />
+              <div className={classes.CheckoutContainer}>
+                  <OrderForm/>
+                  <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound} cartTotal={cartTotalCost}/>
+              </div>
+              </>
+              );
+        }
+        else
+        {
+          setCheckoutcontainer(
+            <>
+                <title>Failed to load the checkout</title>
+                  <h1>Failed to load the checkout</h1>
+                  <p>Cannot connect to the cart server.</p>
+                <button><Link to="/cart">Go back to the cart page</Link></button>
+            </>
+              );
+        }
       }
     })
     }

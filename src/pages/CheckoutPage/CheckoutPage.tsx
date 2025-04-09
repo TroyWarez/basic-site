@@ -2,7 +2,6 @@ import CheckoutContainer from "../../components/CheckoutContainer/CheckoutContai
 const CheckoutPage = () => {
   return (
     <div>
-    <title>Store Checkout</title>
     <CheckoutContainer/>
     </div>
   );
