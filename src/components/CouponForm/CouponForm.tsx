@@ -10,40 +10,40 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const CouponCode = (event.currentTarget[0] as HTMLFormElement)?.value;
-    if ((CouponCode.length >= 5))
+    const CouponCodeInput = (event.currentTarget[0] as HTMLFormElement);
+    const CouponCodeSubmitButton = (event.currentTarget[1] as HTMLFormElement);
+    if ((CouponCodeInput.value.length >= 5))
     {
-    if( event.currentTarget[1] && 
-      (event.currentTarget[1] as HTMLFormElement).type === 'submit' &&
-      (event.currentTarget[1] as HTMLFormElement).id !== ids.CouponInputButtonLoading )
+    if( CouponCodeSubmitButton && 
+      CouponCodeSubmitButton?.type === 'submit' &&
+      CouponCodeSubmitButton?.id !== ids.CouponInputButtonLoading )
     {
-      (event.currentTarget[1] as HTMLFormElement).id = ids.CouponInputButtonLoading;
-      (event.currentTarget[1] as HTMLFormElement).disabled = true;
+      CouponCodeSubmitButton.id = ids.CouponInputButtonLoading;
+      CouponCodeSubmitButton.disabled = true;
     }
-    if(event.currentTarget[0]) {
-      const couponState = storeApiService.getDiscountPercentage(CouponCode);
-      const TextInput = (event.currentTarget[0]) as HTMLInputElement;
-      const submitButton = (event.currentTarget[1]) as HTMLInputElement;
+    if(CouponCodeInput.value) {
+      const couponState = storeApiService.getDiscountPercentage(CouponCodeInput.value);
       couponState.then((discountPercentage) => {
         if(discountPercentage > 0) {
           Props.applyCouponDiscount(discountPercentage);
-          TextInput.style.border = '2px solid rgb(11, 255, 105)';
+          CouponCodeInput.style.border = '2px solid rgb(11, 255, 105)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'Applied discount.';
-          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(11, 255, 105)';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(10, 160, 67)';
+          CouponCodeSubmitButton.disabled = true;
         }
         else
         {
-          TextInput.style.border = '2px solid rgb(199, 1, 1)';
+          CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
-          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${CouponCode}' is not valid.`;
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${CouponCodeInput.value}' is not valid.`;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
         }
-      if (submitButton?.id === ids.CouponInputButtonLoading )
+      if (CouponCodeSubmitButton?.id === ids.CouponInputButtonLoading )
         {
         setTimeout(() => {
-          submitButton.id = '';
-          submitButton.disabled = false;
+          CouponCodeSubmitButton.id = '';
+          CouponCodeSubmitButton.disabled = false;
         }, 500);
         }
     }
@@ -52,8 +52,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   }
   else
   {
-    const TextInput = (event.currentTarget[0]) as HTMLInputElement;
-    TextInput.style.border = '2px solid rgb(199, 1, 1)';
+    CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${(event.currentTarget[0] as HTMLFormElement)?.value}' is too short.`;
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
