@@ -12,6 +12,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     event.preventDefault();
     const CouponCodeInput = (event.currentTarget[0] as HTMLFormElement);
     const CouponCodeSubmitButton = (event.currentTarget[1] as HTMLFormElement);
+    let discountValid = false;
     if ((CouponCodeInput.value.length >= 5))
     {
     if( CouponCodeSubmitButton && 
@@ -30,20 +31,24 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'Applied discount.';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(10, 160, 67)';
-          CouponCodeSubmitButton.disabled = true;
+          CouponCodeSubmitButton.style.border = "0px";
+          discountValid = true;
         }
         else
         {
           CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
+          CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${CouponCodeInput.value}' is not valid.`;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
+          CouponCodeSubmitButton.disabled = false;
+          discountValid = false;
         }
       if (CouponCodeSubmitButton?.id === ids.CouponInputButtonLoading )
         {
         setTimeout(() => {
           CouponCodeSubmitButton.id = '';
-          CouponCodeSubmitButton.disabled = false;
+        CouponCodeSubmitButton.disabled = discountValid;
         }, 500);
         }
     }
