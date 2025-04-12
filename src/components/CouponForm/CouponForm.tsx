@@ -27,16 +27,16 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       couponState.then((discountPercentage) => {
         if(discountPercentage > 0) {
           Props.applyCouponDiscount(discountPercentage);
-          CouponCodeInput.style.border = '2px solid rgb(11, 255, 105)';
+          CouponCodeInput.style.border = '2px solid rgb(10, 160, 67)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
-          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = 'Applied discount.';
+          (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `Successfully applied '${CouponCodeInput.value}'`;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(10, 160, 67)';
-          CouponCodeSubmitButton.style.border = "0px";
+          CouponCodeSubmitButton.hidden = true;
+          CouponCodeInput.disabled = 0
           discountValid = true;
         }
         else
         {
-          CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
           CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
           (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${CouponCodeInput.value}' is not valid.`;
@@ -59,7 +59,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   {
     CouponCodeInput.style.border = '2px solid rgb(199, 1, 1)';
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = false;
-    (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code '${(event.currentTarget[0] as HTMLFormElement)?.value}' is too short.`;
+    (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).textContent = `The coupon code is too short.`;
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
   }
   }}>
