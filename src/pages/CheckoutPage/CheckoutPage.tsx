@@ -3,22 +3,16 @@ import CheckoutCart from '../../components/CheckoutCart/CheckoutCart'
 import OrderForm from '../../components/OrderForm/OrderForm';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 import storeApiService from "../../services/storeApiService";
-import CartItem from "../../models/CartItem"
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
 const CheckoutContainer = () : JSX.Element => {
-  const [Checkoutcontainer, setCheckoutcontainer] = useState(<>
-                  <title>Loading...</title></>);
-  const[loadingFlag, setloadingFlag] = useState(false);
-  const[cartItems, setCartitems] = useState<CartItem[]>([]);
+  const [Checkoutcontainer, setCheckoutcontainer] = useState(<title>Loading...</title>);
   useEffect(() => { 
     let itemCount = 0;
     let cartTotalCost = 0;
-    if(loadingFlag == false) {
     const cartItemsdb = storeApiService.getCartData('Debug');
     cartItemsdb.then((cartItemsFound) => {
-      if(cartItems.length === 0){
         cartItemsFound.forEach((cartItem) => {
           const JpgBinCharData = atob(cartItem.productImageBinData);
           const JpgByteNumbers = new Array(JpgBinCharData.length);
@@ -33,7 +27,6 @@ const CheckoutContainer = () : JSX.Element => {
           itemCount += cartItem.quantityNumber;
           cartTotalCost += (cartItem.displayCurrencyValue * cartItem.quantityNumber);
         })
-        setloadingFlag(true);
         if(itemCount > 0)
         {
           setCheckoutcontainer(
@@ -58,12 +51,9 @@ const CheckoutContainer = () : JSX.Element => {
             </>
               );
         }
-      }
     })
-    }
-  }, [cartItems, loadingFlag]);
-  return (
-    Checkoutcontainer
-  )
+    
+  });
+  return ( Checkoutcontainer )
 }
 export default CheckoutContainer;
