@@ -6,8 +6,8 @@ import storeApiService from "../../services/storeApiService";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
-const CheckoutContainer = () : JSX.Element => {
-  const [Checkoutcontainer, setCheckoutcontainer] = useState(<title>Loading...</title>);
+const CheckoutPage = () : JSX.Element => {
+  const [CheckoutPage, setCheckoutPage] = useState(<title>Loading...</title>);
   useEffect(() => { 
     let itemCount = 0;
     let cartTotalCost = 0;
@@ -20,7 +20,6 @@ const CheckoutContainer = () : JSX.Element => {
             JpgByteNumbers[i] = JpgBinCharData.charCodeAt(i);
           }
           const JpgByteArray = new Uint8Array(JpgByteNumbers);
-
           const JpgBlob = new Blob([JpgByteArray], {type: 'contentType'});
           const JpgUrl = URL.createObjectURL(JpgBlob);
           cartItem.productImageBinData = JpgUrl;
@@ -29,7 +28,7 @@ const CheckoutContainer = () : JSX.Element => {
         })
         if(itemCount > 0)
         {
-          setCheckoutcontainer(
+          setCheckoutPage(
             <>
             <title>Store Checkout</title>
             <NavigationBar cartItemAmount={itemCount} />
@@ -42,18 +41,18 @@ const CheckoutContainer = () : JSX.Element => {
         }
         else
         {
-          setCheckoutcontainer(
+          setCheckoutPage(
             <>
                 <title>Failed to load the checkout</title>
                   <h1>Failed to load the checkout</h1>
                   <p>Cannot connect to the cart server.</p>
-                <button><Link to="/cart">Go back to the cart page</Link></button>
+                <button><Link to="/checkout/cart">Go back to the cart page</Link></button>
             </>
               );
         }
     })
     
   });
-  return ( Checkoutcontainer )
+  return ( CheckoutPage )
 }
-export default CheckoutContainer;
+export default CheckoutPage;
