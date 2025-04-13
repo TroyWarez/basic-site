@@ -9,9 +9,10 @@ const CartPage = () => {
     <PageContainer>
       <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
       <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
-      <button className={classes.button}>Sign in</button>
-      <button className={`${classes.button} ${classes.buttonColored}`}>Continue Shopping</button>
+      <a className={classes.button } href="/customer/account/login/">Sign in</a>
+      <a className={`${classes.button} ${classes.buttonColored}`} href="/en/products/">Continue shopping</a>
     </PageContainer>
+    <footer className={classes.footer}>Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.</footer>
     </>
   );
 };

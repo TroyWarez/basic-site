@@ -20,4 +20,8 @@
 }
 .buttonColored {
     background-color: black;
+    border: 1px solid var(--main-bg-accentColor);
+}
+.footer {
+    border-top: 1px solid var(--main-bg-accentColor);
 }
