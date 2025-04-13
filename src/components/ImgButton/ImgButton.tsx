@@ -7,15 +7,17 @@ interface ImageButtonProps {
     name?: ReactNode;
     altText: string;
     linkPath: string;
+    ImgChild?: ReactNode;
 }
-const ImgButton = ( {className, imgPath, name, altText, linkPath} : ImageButtonProps)  : JSX.Element => {
+const ImgButton = ( {className, imgPath, name, altText, linkPath, ImgChild} : ImageButtonProps)  : JSX.Element => {
     return (
         <div className={`${classes.ImgButton} ${className ? className : ''}`} >
         <Link className={classes.Link} to={linkPath}>
         <img className={classes.Img} src={imgPath} alt={altText}/>
+        {ImgChild}
         </Link>
         <Link className={classes.Link} to={linkPath}>
-        <p className={classes.p}><span>{name}</span></p>
+        <p className={classes.p}>{name}</p>
         </Link>
         </div>
     );

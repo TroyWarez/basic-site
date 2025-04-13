@@ -2,11 +2,9 @@ import classes from "./PageContainer.module.css";
 
 interface PageContainerProps {
   children: JSX.Element | JSX.Element[];
-  title: string;
 }
-const PageContainer = ({ children, title }: PageContainerProps) => (
+const PageContainer = ({ children }: PageContainerProps) => (
     <div className={classes.container}>
-    <title>{title}</title>
     {children}
     </div>
 );
