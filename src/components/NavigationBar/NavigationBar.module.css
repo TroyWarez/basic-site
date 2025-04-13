@@ -3,6 +3,7 @@
     padding-top: 1rem;
     display: flex;
     justify-content: flex-start!important;
+    border-bottom: 1px solid var(--main-bg-accentColor);
 }
 .badge {
     background-color: rgb(87, 87, 87);
