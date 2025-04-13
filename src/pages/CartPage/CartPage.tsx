@@ -12,7 +12,13 @@ const CartPage = () => {
       <a className={classes.button } href="/customer/account/login/">Sign in</a>
       <a className={`${classes.button} ${classes.buttonColored}`} href="/en/products/">Continue shopping</a>
     </PageContainer>
+    <div className={classes.container}>
+    <div>
+    <a className={classes.footer} href="/legal/">Legal  </a>
+    <a className={`${classes.footer} ${classes.privacy}`} href="/legal/privacy/privacy-policy/">  Privacy</a>
+    </div>
     <footer className={classes.footer}>Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.</footer>
+    </div>
     </>
   );
 };
