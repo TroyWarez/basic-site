@@ -1,0 +1,10 @@
+.span {
+    font-size: x-large;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.spanLarge {
+    font-size: xx-large;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+}
