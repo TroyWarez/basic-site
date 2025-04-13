@@ -1,9 +1,10 @@
 .span {
     font-size: x-large;
-    padding-top: 1rem;
+    margin-top: 2rem
 }
 .spanLarge {
     font-size: xx-large!important;
+    margin-top: 5rem!important;
 }
 .button {
     background-color: #2fac10; /* Green */
@@ -15,7 +16,7 @@
     font-size: large;
     margin-top: 2rem;
     min-width: 20rem;
-    padding: 1rem;
+    padding: 1.5rem;
 }
 .buttonColored {
     background-color: black;
