@@ -5,6 +5,12 @@
     min-width: 67rem;
     justify-items: flex-start;
 }
+.navbarcontainer {
+    border: 1px solid var(--main-bg-accentColor);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .badge {
     background-color: rgb(87, 87, 87);
     border-radius: 50%;
