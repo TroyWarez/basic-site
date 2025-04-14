@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classes from "./CartPage.module.css"
 import PageContainer from "../../components/PageContainer/PageContainer";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
@@ -11,8 +12,8 @@ const CartPage = () => {
     <div className={classes.cartcontainer}>
       <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
       <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
-      <a className={classes.button } href="/customer/account/login/">Sign in</a>
-      <a className={`${classes.button} ${classes.buttonColored}`} href="/en/products/">Continue shopping</a>
+      <Link className={classes.button } href="/customer/account/login/">Sign in</Link>
+      <Link className={`${classes.button} ${classes.buttonColored}`} href="/en/products/">Continue shopping</Link>
     </div>
     </PageContainer>
 
