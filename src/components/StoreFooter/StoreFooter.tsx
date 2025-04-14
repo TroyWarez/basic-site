@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classes from "./StoreFooter.module.css"
 interface StoreFooterProps {
     legal_href: string;
@@ -9,8 +10,8 @@ const StoreFooter = ({ legal_href, privacy_href, children} :StoreFooterProps) =>
     <footer className={classes.footer}>
     
     <div className={classes.footercontainer}>
-    <a className={`${classes.footer} ${classes.legal}`} href={legal_href}>Legal</a>
-    <a className={`${classes.footer} ${classes.privacy}`} href={privacy_href}>  Privacy</a>
+    <Link className={`${classes.footer} ${classes.legal}`} to={legal_href}>Legal</Link>
+    <Link className={`${classes.footer} ${classes.privacy}`} to={privacy_href}>  Privacy</Link>
     </div>
     Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.
     {children}
