@@ -7,7 +7,9 @@ const CartPage = () => {
     <title>Shopping Cart</title>
     <PageContainer>
     <div className={classes.container}>
+    <div className={classes.navbar}>
     <NavigationBar cartItemAmount={0}/>
+    </div>
       <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
       <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
       <a className={classes.button } href="/customer/account/login/">Sign in</a>
