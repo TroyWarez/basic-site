@@ -11,7 +11,7 @@ const StoreFooter = ({ legal_href, privacy_href, children} :StoreFooterProps) =>
     
     <div className={classes.footercontainer}>
     <Link className={`${classes.footer} ${classes.legal}`} to={legal_href}>Legal</Link>
-    <Link className={`${classes.footer} ${classes.privacy}`} to={privacy_href}>  Privacy</Link>
+    <Link className={`${classes.footer} ${classes.privacy}`} to={privacy_href}>Privacy</Link>
     </div>
     Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.
     {children}
