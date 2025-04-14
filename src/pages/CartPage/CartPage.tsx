@@ -19,12 +19,14 @@ const CartPage = () => {
     <div>
     </div>
     <footer className={classes.footer}>
-      
-    <div className={classes.footer}>
-    <a className={`${classes.footer} ${classes.legal}`} href="/legal/">Legal  </a>
+    
+    <div className={classes.footercontainer}>
+    <a className={`${classes.footer} ${classes.legal}`} href="/legal/">Legal</a>
     <a className={`${classes.footer} ${classes.privacy}`} href="/legal/privacy/privacy-policy/">  Privacy</a>
-    </div>  
-    Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.  </footer>
+    </div>
+    Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.
+    </footer>
+
     </>
   );
 };
