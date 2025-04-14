@@ -15,6 +15,7 @@ body {
   --main-bg-textColor: #e8e6e3;
   height: max-content;
   margin: 0;
+  overflow-x: hidden;
 }
 .hide {
   visibility: hidden;

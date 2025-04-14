@@ -1,10 +1,8 @@
 .navbar {
     display: flex;
-    border-bottom: 1px solid var(--main-bg-accentColor);
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
     height: 5rem;
+    min-width: 67rem;
     justify-items: flex-start;
 }
 .badge {
