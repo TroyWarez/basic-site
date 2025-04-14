@@ -1,6 +1,7 @@
 import classes from "./CartPage.module.css"
 import PageContainer from "../../components/PageContainer/PageContainer";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import StoreFooter from "../../components/StoreFooter/StoreFooter";
 const CartPage = () => {
   return (
     <>
@@ -18,14 +19,8 @@ const CartPage = () => {
     </PageContainer>
     <div>
     </div>
-    <footer className={classes.footer}>
     
-    <div className={classes.footercontainer}>
-    <a className={`${classes.footer} ${classes.legal}`} href="/legal/">Legal</a>
-    <a className={`${classes.footer} ${classes.privacy}`} href="/legal/privacy/privacy-policy/">  Privacy</a>
-    </div>
-    Copyright © {new Date().getFullYear()}, Company Inc. All rights reserved.
-    </footer>
+    <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
 
     </>
   );
