@@ -7,8 +7,9 @@ interface ShoppingCartProps {
   ProductPagePath: string;
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps) => {
+
   return (
-    <div className={`classes.cartcontainer ${className}`}>
+    <div className={(className) ? `${classes.cartcontainer} ${className}` : classes.cartcontainer}>
       <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
       <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
       <Link className={classes.button} to={SignInPagePath}>Sign in</Link>
