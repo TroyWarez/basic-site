@@ -94,9 +94,10 @@
     flex-direction: column;
     min-width: 50%;
 }
-.input img {
+.input {
     width: 3rem;
     height: 2rem;
+    padding-left: 2rem;
     align-items: flex-end;
 }
 .infopanel a {
