@@ -63,6 +63,7 @@
     border-color: transparent;
     height: 1rem;
     cursor: pointer;
+    align-items: flex-end!important;
 }
 .cartItemPrice {
     display: flex;
@@ -71,17 +72,14 @@
 }
 
 .cartitems {
-    padding-left: 2rem;
-    padding-right: 2rem;
     display: flex;
     flex-direction: column;
     background-color: var(--main-bg-accentColorAlt);
     width: 100%;
-    margin-right: 2rem;
     align-items: flex-end;
 }
 .item {
-    border-bottom: 1px solid var(--main-bg-accentColor);
+    border-bottom: 1px solid #181a1b;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -89,17 +87,17 @@
     align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    padding-left: 2rem;
+    padding-left: 4rem;
 }
 .cartInfo { 
     display: flex;
     flex-direction: column;
-    min-width: 70%;
+    min-width: 50%;
 }
-.input {
+.input img {
     width: 3rem;
     height: 2rem;
-    padding-left: 2rem;
+    align-items: flex-end;
 }
 .infopanel a {
     background-color: var(--main-bg-accentColorAlt);
