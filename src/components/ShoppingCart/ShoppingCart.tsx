@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import classes from "./ShoppingCart.module.css"
-import { useState } from "react";
 import storeApiService from "../../services/storeApiService";
 interface ShoppingCartProps {
   className?: string;
@@ -19,9 +18,37 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       </div>
     )
   }
+  let itemCount = 0;
+  cartData.forEach((cartDataItem) => {
+    itemCount += cartDataItem.quantityNumber
+
+  })
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
-      
+      <div className={classes.cartitems}>
+      <p className={`${classes.p} ${classes.pItemCount}`}>Shopping Cart ({itemCount} items)</p>
+        {cartData.map((cartItem) => (
+          <div className={classes.item}>
+            <img className={classes.img} alt="Product Image" src={cartItem.productImageBinData}></img>
+            <div className={classes.cartInfo}>
+              <p className={classes.p}>{`${cartItem.displayItemName} ${''}`}</p>
+              <p>{`Model No: ${cartItem.sku} ${''}`}</p>
+
+            <div className={classes.infopanel}>
+              <p>{`Quantity ${cartItem.quantityNumber}`}</p>
+              <Link to="checkout/cart/">Add to Wishlist</Link>
+            </div>
+            </div>
+            <div>
+              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</p>
+              <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s></p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className={classes.infopanel}>
+        <Link to={ProductPagePath}>Continue shopping</Link>
+      </div>
     </div>
   )
 }
