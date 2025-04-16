@@ -21,30 +21,32 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   let itemCount = 0;
   cartData.forEach((cartDataItem) => {
     itemCount += cartDataItem.quantityNumber
-
   })
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
-      <div className={classes.cartitems}>
+      <div>
       <p className={`${classes.p} ${classes.pItemCount}`}>Shopping Cart ({itemCount} items)</p>
+      <div className={classes.cartitems}>
         {cartData.map((cartItem) => (
           <div className={classes.item}>
-            <img className={classes.img} alt="Product Image" src={cartItem.productImageBinData}></img>
+            <img className={classes.img} alt="Product Image" src={cartItem.productImage}></img>
             <div className={classes.cartInfo}>
               <p className={classes.p}>{`${cartItem.displayItemName} ${''}`}</p>
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>
 
             <div className={classes.infopanel}>
-              <p>{`Quantity ${cartItem.quantityNumber}`}</p>
+              <input className={classes.input} title='Quantity' value={cartItem.quantityNumber.toString()} type="number"/>
               <Link to="checkout/cart/">Add to Wishlist</Link>
             </div>
             </div>
-            <div>
+            <div className={classes.cartItemPrice}>
               <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</p>
               <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s></p>
+              <button className={classes.button} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
             </div>
           </div>
         ))}
+      </div>
       </div>
       <div className={classes.infopanel}>
         <Link to={ProductPagePath}>Continue shopping</Link>

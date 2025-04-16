@@ -13,6 +13,7 @@
 }
 .pItemCount {
     padding-top: 2rem;
+    padding-bottom: 1rem;
 }
 .psale {
     color: red;
@@ -57,13 +58,27 @@
     height: 7rem;
     padding: 1rem;
 }
+.button {
+    background-color: transparent;
+    border-color: transparent;
+    height: 1rem;
+    cursor: pointer;
+}
+.cartItemPrice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .cartitems {
     padding-left: 2rem;
     padding-right: 2rem;
     display: flex;
     flex-direction: column;
-    background-color: #323638;
-    width: 70%;
+    background-color: var(--main-bg-accentColorAlt);
+    width: 100%;
+    margin-right: 2rem;
+    align-items: flex-end;
 }
 .item {
     border-bottom: 1px solid var(--main-bg-accentColor);
@@ -74,15 +89,22 @@
     align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
+    padding-left: 2rem;
 }
 .cartInfo { 
     display: flex;
     flex-direction: column;
     min-width: 70%;
 }
+.input {
+    width: 3rem;
+    height: 2rem;
+    padding-left: 2rem;
+}
 .infopanel a {
-    background-color: #323638;
+    background-color: var(--main-bg-accentColorAlt);
     text-decoration: none;
     font-weight: normal;
     color: #2fac10;
+    padding: 1rem;
 }
