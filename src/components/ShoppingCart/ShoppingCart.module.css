@@ -66,6 +66,10 @@
     text-decoration: none;
     display: inline-block;
     font-size: large;
+    cursor: pointer;
+    padding: 0;
+    border: none;
+    height: 24px;
 }
 .CheckoutButtonSignIn { 
     min-width: 14rem!important;
@@ -75,7 +79,7 @@
 .cartItemPrice {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .cartitems {
@@ -109,7 +113,7 @@
 }
 .AltText {
     text-decoration: none;
-    font-weight: normal;
+    font-weight: 500;
     color: #2fac10;
     padding-left: 0.5rem;
     padding-right: 0.5rem;

@@ -60,7 +60,7 @@ const httpClient = axios.create({
         productImage: "/car.jpg",
         quantityNumber: 4
       }];
-      return cartData;
+      return new Array<CartItem>();
       //return cartDataString;
       
     //  try
