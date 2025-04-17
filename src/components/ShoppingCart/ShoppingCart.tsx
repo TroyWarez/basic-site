@@ -46,6 +46,10 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
 
             <div className={classes.buttonPanel}>
             <div>
+              <div>
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'-'}
+              onChange={(e) => {
+              }}/>
               <input className={classes.input} title='Quantity'  type="number" minLength={1} maxLength={99}
               defaultValue={cartItem.quantityNumber}
               onChange={(e) => {
@@ -69,6 +73,10 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
               }}/>
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'+'}
+              onChange={(e) => {
+              }}/>
+              </div>
               <Link className={`${classes.AltText} ${classes.AltWishListText}`} to="checkout/cart/">{` Add to Wishlist `}</Link>
               </div>
               <button className={classes.CheckoutButton} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>

@@ -119,10 +119,19 @@
     min-width: 50%;
 }
 .input {
-    width: 3rem;
-    height: 2rem;
-    padding-left: 2rem;
-    align-items: flex-end;
+    width: 2rem;
+    height: 1.9rem;
+    padding-left: 1.5rem;
+    border: none;
+    background-color: var(--main-bg-accentColor);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+}
+.inputPlusMinus {
+    width: 2rem!important;
+    height: 2rem!important;
+    padding-right: 1.5rem;
 }
 .AltText {
     text-decoration: none;
