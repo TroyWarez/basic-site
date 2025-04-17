@@ -8,8 +8,12 @@ interface ShoppingCartProps {
   ProductPagePath: string;
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps) => {
-  const cartData = storeApiService.getCartDatalocal();
-  const [cartItemQuantity, setCartItemQuantity] = useState('');
+  let cartData = storeApiService.getCartDatalocal();
+  let TotalQuantityNumber = 0;
+  cartData.forEach((cartDataItem) => {
+    TotalQuantityNumber += cartDataItem.quantityNumber;
+  })
+  const [itemCount, setitemCount] = useState(TotalQuantityNumber);
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -20,10 +24,6 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       </div>
     )
   }
-  let itemCount = 0;
-  cartData.forEach((cartDataItem) => {
-    itemCount += cartDataItem.quantityNumber;
-  })
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
       <div>
@@ -37,8 +37,23 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>
 
             <div className={classes.infopanel}>
-              <input className={classes.input} title='Quantity'  type="number"
-              defaultValue={cartItem.quantityNumber}/>
+              <input className={classes.input} title='Quantity'  type="number" minLength={1} maxLength={99}
+              defaultValue={cartItem.quantityNumber}
+              onChange={(e) => {
+                if (e.currentTarget.valueAsNumber === 0)
+                  {
+                    e.currentTarget.value = '1';
+                    return;
+                  }
+                cartData = storeApiService.getCartDatalocal();
+                cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber = Number(e.currentTarget.value);
+                TotalQuantityNumber = 0;
+                cartData.forEach((cartDataItem) => {
+                  TotalQuantityNumber += cartDataItem.quantityNumber;
+                })
+                  setitemCount(TotalQuantityNumber);
+                  storeApiService.setCartDatalocal(cartData);
+              }}/>
               <Link to="checkout/cart/">Add to Wishlist</Link>
             </div>
             </div>
