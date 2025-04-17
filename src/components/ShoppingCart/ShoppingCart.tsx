@@ -9,7 +9,7 @@ interface ShoppingCartProps {
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps) => {
   const cartData = storeApiService.getCartDatalocal();
-  const [cartItemQuantity, setCartItemQuantity] = useState([]);
+  const [cartItemQuantity, setCartItemQuantity] = useState('');
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -23,7 +23,6 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   let itemCount = 0;
   cartData.forEach((cartDataItem) => {
     itemCount += cartDataItem.quantityNumber;
-    cartItemQuantity.push(itemCount as never);
   })
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
@@ -38,10 +37,8 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>
 
             <div className={classes.infopanel}>
-              <input className={classes.input} title='Quantity' value={cartItem.quantityNumber.toString()} type="number"
-              onChange={(e) => {
-                
-              }}/>
+              <input className={classes.input} title='Quantity'  type="number"
+              defaultValue={cartItem.quantityNumber}/>
               <Link to="checkout/cart/">Add to Wishlist</Link>
             </div>
             </div>
