@@ -106,7 +106,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
         <p>By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at
-         <Link className={classes.AltText} to={window.origin}>{` ${window.origin} `}</Link>This will allow your order to be processed for fulfillment.</p>
+         <Link className={classes.AltText} to={window.origin}>{` ${window.origin}.`}</Link>This will allow your order to be processed for fulfillment.</p>
       </div>
       </div>
     </div>
