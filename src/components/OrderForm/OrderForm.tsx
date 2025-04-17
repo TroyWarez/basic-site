@@ -3,7 +3,7 @@ import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
 import CheckoutFooter from "../../components/CheckoutFooter/CheckoutFooter";
-const OrderForm = ()  : JSX.Element => {
+const OrderForm = (): JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
         const provinceInputElement =  document.getElementsByName("canadianProvincesSelect")[0];

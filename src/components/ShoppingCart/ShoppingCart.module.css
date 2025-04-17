@@ -21,7 +21,7 @@
     font-weight: bold;
     margin: 0;
 }
-.button {
+.buttonSignIn {
     background-color: #2fac10; /* Green */
     border: none;
     color: white;
@@ -58,12 +58,19 @@
     height: 7rem;
     padding: 1rem;
 }
-.button {
+.CheckoutButton {
     background-color: transparent;
     border-color: transparent;
-    height: 1rem;
-    cursor: pointer;
-    align-items: flex-end!important;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+}
+.CheckoutButtonSignIn { 
+    min-width: 14rem!important;
+    margin-top: 1rem!important;
+    margin-bottom: 1rem!important;
 }
 .cartItemPrice {
     display: flex;
@@ -77,6 +84,7 @@
     background-color: var(--main-bg-accentColorAlt);
     width: 100%;
     align-items: flex-end;
+    padding-right: 1rem;
 }
 .item {
     border-bottom: 1px solid #181a1b;
@@ -87,7 +95,6 @@
     align-items: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    padding-left: 4rem;
 }
 .cartInfo { 
     display: flex;
@@ -100,10 +107,24 @@
     padding-left: 2rem;
     align-items: flex-end;
 }
-.infopanel a {
-    background-color: var(--main-bg-accentColorAlt);
+.AltText {
     text-decoration: none;
     font-weight: normal;
     color: #2fac10;
-    padding: 1rem;
+    padding-left: 1rem;
+}
+.infopanel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 15rem;
+    background-color: var(--main-bg-accentColorAlt);
+    padding: 2rem;
+}
+.Subtotal { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
 }
