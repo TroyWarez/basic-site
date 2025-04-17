@@ -84,16 +84,28 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       <Link className={classes.AltText} to={ProductPagePath}>Continue shopping</Link>
       <div className={classes.infopanel}>
         <p>Congratulations! You've qualified for FREE shipping!</p>
+        <div className={classes.bluebar}>
+          
+        </div>
         <p className={classes.p}>Order summary</p>
-        <div className={classes.Subtotal}>
-        <p>{`Subtotal (${itemCount} ${(itemCount > 1) ? 'Items' : 'Item'})`}</p>
-        <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
+
+        <div className={classes.PriceTotal}>
+          <p>{`Subtotal (${itemCount} ${(itemCount > 1) ? 'Items' : 'Item'})`}</p>
+          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
+        </div>
+        <div className={classes.PriceTotal}>
+          <p>Shipping</p>
+          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}0.00`}</p>
+        </div>
+        <div className={`${classes.p} ${classes.PriceTotal} ${classes.OrderTotal}`}>
+          <p>Order Total</p>
+          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
         </div>
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
-        <p>By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at</p>
+        <p>By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at
          <Link className={classes.AltText} to={window.origin}>{window.origin}</Link>
-         <p>This will allow your order to be processed for fulfillment.</p>
+         This will allow your order to be processed for fulfillment.</p>
       </div>
       </div>
     </div>

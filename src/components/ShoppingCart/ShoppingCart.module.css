@@ -111,7 +111,8 @@
     text-decoration: none;
     font-weight: normal;
     color: #2fac10;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .infopanel {
     display: flex;
@@ -119,12 +120,24 @@
     align-items: flex-start;
     width: 15rem;
     background-color: var(--main-bg-accentColorAlt);
-    padding: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
-.Subtotal { 
+.PriceTotal { 
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
     justify-content: space-between;
+}
+.OrderTotal {
+    border-top: 1px solid var(--main-bg-accentColor);
+    font-size: medium!important;
+}
+.bluebar {
+    background-color: #00a1dd;
+    border-radius: 30px;
+    min-width: 100%;
+    height: 0.75rem;
+    margin-bottom: 1rem;
 }
