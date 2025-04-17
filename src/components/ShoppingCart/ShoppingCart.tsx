@@ -45,12 +45,25 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>
 
             <div className={classes.buttonPanel}>
-            <div>
-              <div>
-              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'-'}
-              onChange={(e) => {
+            <div className={classes.buttonPanelContainer}>
+              <div >
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'-'} step="1"
+              onClick={(e) => {
+                if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber > 1)
+                {
+                  cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber--;
+                  TotalQuantityNumber = 0;
+                  TotalPriceAmount = 0;
+                  cartData.forEach((cartDataItem) => {
+                    (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
+                    (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                  })
+                    setitemCount(TotalQuantityNumber);
+                    setTotalPrice(TotalPriceAmount);
+                    storeApiService.setCartDatalocal(cartData);
+                }
               }}/>
-              <input className={classes.input} title='Quantity'  type="number" minLength={1} maxLength={99}
+              <input className={classes.input} title='Quantity'  type="tel" minLength={1} maxLength={99}
               defaultValue={cartItem.quantityNumber}
               onChange={(e) => {
                 if (e.currentTarget.valueAsNumber === 0)
@@ -62,7 +75,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                       e.currentTarget.value = '99';
                     }
                 cartData = storeApiService.getCartDatalocal();
-                cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber = Number(e.currentTarget.value);
+                cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber = e.currentTarget.valueAsNumber;
                 TotalQuantityNumber = 0;
                 TotalPriceAmount = 0;
                 cartData.forEach((cartDataItem) => {
@@ -73,8 +86,21 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
               }}/>
-              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'+'}
-              onChange={(e) => {
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Plus' type='button' value={'+'} step="1"
+              onClick={(e) => {
+                if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber <= 99)
+                  {
+                    cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber++;
+                    TotalQuantityNumber = 0;
+                    TotalPriceAmount = 0;
+                    cartData.forEach((cartDataItem) => {
+                      (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
+                      (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                    })
+                      setitemCount(TotalQuantityNumber);
+                      setTotalPrice(TotalPriceAmount);
+                      storeApiService.setCartDatalocal(cartData);
+                  }
               }}/>
               </div>
               <Link className={`${classes.AltText} ${classes.AltWishListText}`} to="checkout/cart/">{` Add to Wishlist `}</Link>
