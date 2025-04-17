@@ -61,22 +61,19 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 TotalQuantityNumber = 0;
                 TotalPriceAmount = 0;
                 cartData.forEach((cartDataItem) => {
-                  TotalQuantityNumber += cartDataItem.quantityNumber;
-                  TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                  (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
+                  (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
                 })
                   setitemCount(TotalQuantityNumber);
                   setTotalPrice(TotalPriceAmount);
-                  if (e.currentTarget.value !== '')
-                    {
-                      storeApiService.setCartDatalocal(cartData);
-                    }
+                  storeApiService.setCartDatalocal(cartData);
               }}/>
               <Link className={classes.AltText} to="checkout/cart/">Add to Wishlist</Link>
             </div>
             </div>
             <div className={classes.cartItemPrice}>
-              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber <= 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
-              <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber <= 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
+              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
+              <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
               <button className={classes.CheckoutButton} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
             </div>
           </div>
