@@ -30,7 +30,37 @@ const httpClient = axios.create({
       if (cartDataString && cartDataString !== '') {
         return JSON.parse(cartDataString);
       }
-      return new Array<CartItem>;
+      const cartData: Array<CartItem> = [{ //remove me
+        sku: "HPI160100",
+        displayItemName: "Red RC Car",
+        displayCurrencyValue: 650,
+        displayCurrencySaleValue: 550,
+        displayCurrencyValueType: "CA",
+        displayCurrencyValueSymbol: "$",
+        productImage: "/car.jpg",
+        quantityNumber: 3
+      },
+      {
+        sku: "HPI160101",
+        displayItemName: "Blue RC Car",
+        displayCurrencyValue: 550,
+        displayCurrencySaleValue: 450,
+        displayCurrencyValueType: "CA",
+        displayCurrencyValueSymbol: "$",
+        productImage: "/car.jpg",
+        quantityNumber: 7
+      },
+      {
+        sku: "HPI160102",
+        displayItemName: "Green RC Car",
+        displayCurrencyValue: 350,
+        displayCurrencySaleValue: 250,
+        displayCurrencyValueType: "CA",
+        displayCurrencyValueSymbol: "$",
+        productImage: "/car.jpg",
+        quantityNumber: 4
+      }];
+      return cartData;
       //return cartDataString;
       
     //  try
