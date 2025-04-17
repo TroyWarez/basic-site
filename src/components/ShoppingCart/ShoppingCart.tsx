@@ -34,8 +34,8 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   }
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
-      <div>
-      <p className={`${classes.p} ${classes.pItemCount}`}>Shopping Cart ({itemCount} items)</p>
+      <div className={classes.cartContainer}>
+      <p className={classes.pItemCount}>Shopping Cart ({itemCount} items)</p>
       <div className={classes.cartitems}>
         {cartData.map((cartItem) => (
           <div className={classes.item} key={cartItem.sku}>
@@ -68,13 +68,13 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
               }}/>
-              <Link className={classes.AltText} to="checkout/cart/">Add to Wishlist</Link>
+              <Link className={classes.AltText} to="checkout/cart/">{` Add to Wishlist `}</Link>
+              <button className={classes.CheckoutButton} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
             </div>
             </div>
             <div className={classes.cartItemPrice}>
               <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
               <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
-              <button className={classes.CheckoutButton} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
             </div>
           </div>
         ))}
@@ -104,8 +104,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
         <p>By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at
-         <Link className={classes.AltText} to={window.origin}>{window.origin}</Link>
-         This will allow your order to be processed for fulfillment.</p>
+         <Link className={classes.AltText} to={window.origin}>{` ${window.origin} `}</Link>This will allow your order to be processed for fulfillment.</p>
       </div>
       </div>
     </div>
