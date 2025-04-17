@@ -10,10 +10,18 @@ interface ShoppingCartProps {
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps) => {
   let cartData = storeApiService.getCartDatalocal();
   let TotalQuantityNumber = 0;
+  let TotalPriceAmount = 0;
+
+  let TotalCurrencyType = '';
+  let TotalCurrencySymbol = '';
   cartData.forEach((cartDataItem) => {
     TotalQuantityNumber += cartDataItem.quantityNumber;
+    TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+    TotalCurrencyType = cartDataItem.displayCurrencyValueType;
+    TotalCurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
   })
   const [itemCount, setitemCount] = useState(TotalQuantityNumber);
+  const [TotalPrice, setTotalPrice] = useState(TotalPriceAmount);
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -48,10 +56,13 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 cartData = storeApiService.getCartDatalocal();
                 cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber = Number(e.currentTarget.value);
                 TotalQuantityNumber = 0;
+                TotalPriceAmount = 0;
                 cartData.forEach((cartDataItem) => {
                   TotalQuantityNumber += cartDataItem.quantityNumber;
+                  TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
                 })
                   setitemCount(TotalQuantityNumber);
+                  setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
               }}/>
               <Link to="checkout/cart/">Add to Wishlist</Link>
@@ -68,6 +79,13 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       </div>
       <div className={classes.infopanel}>
         <Link to={ProductPagePath}>Continue shopping</Link>
+        <p>Congratulations! You've qualified for FREE shipping!</p>
+        <p>Order summary</p>
+        <p>{`Subtotal (${itemCount} ${(itemCount > 1) ? 'Items' : 'Item'})`}
+        {`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
+        <Link className={classes.button} to={'guestlogin/'}>Continue to checkout</Link>
+        <p className={classes.p}>Checkout with us</p>
+        <p>{`By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at ${window.origin} This will allow your order to be processed for fulfillment.`}</p>
       </div>
     </div>
   )
