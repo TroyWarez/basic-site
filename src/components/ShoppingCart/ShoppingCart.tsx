@@ -119,7 +119,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             </div>
             <div className={classes.cartItemPrice}>
               <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
-              <p className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
+              <p hidden={(cartItem.displayCurrencyValue === 0) ? true : false}className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
             </div>
           </div>
         ))}
