@@ -52,6 +52,10 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber > 1)
                 {
                   cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber--;
+                  if(e.currentTarget?.parentElement)
+                    {
+                      (e.currentTarget.parentElement.children[1] as HTMLInputElement).value = cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber.toString();
+                    }
                   TotalQuantityNumber = 0;
                   TotalPriceAmount = 0;
                   cartData.forEach((cartDataItem) => {
@@ -91,6 +95,11 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber <= 99)
                   {
                     cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber++;
+                    if(e.currentTarget?.parentElement)
+                    {
+                      (e.currentTarget.parentElement.children[1] as HTMLInputElement).value = cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber.toString();
+                    }
+
                     TotalQuantityNumber = 0;
                     TotalPriceAmount = 0;
                     cartData.forEach((cartDataItem) => {
