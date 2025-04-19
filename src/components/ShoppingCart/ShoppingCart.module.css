@@ -71,7 +71,9 @@
 .img {
     width: 7rem;
     height: 7rem;
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.75rem;
 }
 .CheckoutButton {
     background-color: transparent;
