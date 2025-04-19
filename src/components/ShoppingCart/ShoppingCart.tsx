@@ -119,9 +119,9 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
               </div>
               <Link className={`${classes.AltText} ${classes.AltWishListText}`} to="checkout/cart/">{` Add to Wishlist `}</Link>
               </div>
-              <button className={classes.CheckoutButton} title='Delete' type='button' onClick={(e) => {
+              <button className={classes.CheckoutButton} title='Delete' type='button' onClick={() => {
               setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
-              let updatedCartData = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
+              const updatedCartData = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                    TotalQuantityNumber = 0;
                    TotalPriceAmount = 0;
                    updatedCartData.forEach((cartDataItem) => {
