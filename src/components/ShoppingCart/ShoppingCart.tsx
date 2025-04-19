@@ -8,13 +8,14 @@ interface ShoppingCartProps {
   ProductPagePath: string;
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps): JSX.Element => {
-  let cartData = storeApiService.getCartDatalocal();
+  let cartDataSaved = null;
   let TotalQuantityNumber = 0;
   let TotalPriceAmount = 0;
 
   let TotalCurrencyType = '';
   let TotalCurrencySymbol = '';
-  cartData.forEach((cartDataItem) => {
+  cartDataSaved = storeApiService.getCartDatalocal();
+  cartDataSaved.forEach((cartDataItem) => {
     TotalQuantityNumber += cartDataItem.quantityNumber;
     TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
     TotalCurrencyType = cartDataItem.displayCurrencyValueType;
@@ -22,6 +23,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   })
   const [itemCount, setitemCount] = useState(TotalQuantityNumber);
   const [TotalPrice, setTotalPrice] = useState(TotalPriceAmount);
+  const [cartData, setCartData] = useState(cartDataSaved);
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -65,6 +67,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                     setitemCount(TotalQuantityNumber);
                     setTotalPrice(TotalPriceAmount);
                     storeApiService.setCartDatalocal(cartData);
+                    setCartData(cartData);
                 }
               }}/>
               <input className={classes.input} title='Quantity'  type="tel" minLength={1} maxLength={99}
@@ -78,7 +81,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                     {
                       e.currentTarget.value = '99';
                     }
-                cartData = storeApiService.getCartDatalocal();
+                setCartData(storeApiService.getCartDatalocal());
                 cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber = e.currentTarget.valueAsNumber;
                 TotalQuantityNumber = 0;
                 TotalPriceAmount = 0;
@@ -89,6 +92,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   setitemCount(TotalQuantityNumber);
                   setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
+                  setCartData(storeApiService.getCartDatalocal());
               }}/>
               <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Plus' type='button' value={'+'} step="1"
               onClick={(e) => {
@@ -109,12 +113,25 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                       setitemCount(TotalQuantityNumber);
                       setTotalPrice(TotalPriceAmount);
                       storeApiService.setCartDatalocal(cartData);
+                      setCartData(cartData);
                   }
               }}/>
               </div>
               <Link className={`${classes.AltText} ${classes.AltWishListText}`} to="checkout/cart/">{` Add to Wishlist `}</Link>
               </div>
-              <button className={classes.CheckoutButton} title='Delete' type='button'><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
+              <button className={classes.CheckoutButton} title='Delete' type='button' onClick={(e) => {
+              setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
+              let updatedCartData = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
+                   TotalQuantityNumber = 0;
+                   TotalPriceAmount = 0;
+                   updatedCartData.forEach((cartDataItem) => {
+                  (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
+                 (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                })
+                setitemCount(TotalQuantityNumber);
+                setTotalPrice(TotalPriceAmount);
+                storeApiService.setCartDatalocal(updatedCartData);
+              }}><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
             </div>
             </div>
             <div className={classes.cartItemPrice}>
