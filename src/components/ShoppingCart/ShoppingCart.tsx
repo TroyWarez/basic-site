@@ -37,7 +37,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
       <div className={classes.cartContainer}>
-      <p className={classes.pItemCount}>Shopping Cart ({itemCount} items)</p>
+      <p className={classes.pItemCount}>Shopping Cart ({itemCount} {`item${(itemCount > 1) ? 's' : ''}`})</p>
       <div className={classes.cartitems}>
         {cartData.map((cartItem) => (
           <div className={classes.item} key={cartItem.sku}>
