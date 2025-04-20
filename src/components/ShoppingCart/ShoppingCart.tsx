@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import classes from "./ShoppingCart.module.css"
 import storeApiService from "../../services/storeApiService";
+import CouponForm from "../CouponForm/CouponForm"
 import { useState } from "react";
 interface ShoppingCartProps {
   className?: string;
@@ -12,6 +13,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   let TotalQuantityNumber = 0;
   let TotalPriceAmount = 0;
 
+  
   let TotalCurrencyType = '';
   let TotalCurrencySymbol = '';
   cartDataSaved = storeApiService.getCartDatalocal();
@@ -34,6 +36,17 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       </div>
     )
   }
+  const applyDiscountPercentage = (DiscountPercentage: number) => {
+    if(DiscountPercentage === 0) {
+      return null;
+    }
+    TotalPriceAmount = 0;
+    cartDataSaved.forEach((cartDataItem) => {
+      TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+    })
+    console.log(DiscountPercentage);
+    setTotalPrice((TotalPriceAmount - (TotalPriceAmount * (DiscountPercentage / 100))));
+  };
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
       <div className={classes.cartContainer}>
@@ -148,6 +161,10 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         <p>Congratulations! You've qualified for FREE shipping!</p>
         <div className={classes.bluebar}>
           
+        </div>
+
+        <div>
+          <CouponForm applyCouponDiscount={applyDiscountPercentage}></CouponForm>
         </div>
         <p className={classes.p}>Order summary</p>
 

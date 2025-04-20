@@ -2,12 +2,20 @@ import FormInput from "../FormInput/FormInput"
 import classes from '../CouponForm/CouponForm.module.css'
 import ids from '../CouponForm/CouponForm.module.css'
 import storeApiService from "../../services/storeApiService";
+import { useState } from "react";
 interface CouponFormProps {
   applyCouponDiscount: (discountPercentage: number) => void;
 }
 const CouponForm = (Props: CouponFormProps) : JSX.Element => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
-    <>
+    <div className={classes.CouponContainer}>
+    <div className={classes.DropdownContainer}>
+    <p className={classes.p}><b>Enter Promo Code</b> (Optional)</p>
+    <input type='button' value='>' className={classes.DropdownButtonUp}/>
+    </div>
+
+    <div className={classes.FormContainer}>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const CouponCodeInput = (event.currentTarget[0] as HTMLFormElement);
@@ -63,7 +71,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
   }
   }}>
-    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Coupon code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Promo code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
@@ -79,7 +87,8 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       <FormInput className={classes.CouponInput} form={ids.CouponForm} type="submit" name="couponButton" value="Apply" required/>
       <p hidden={true} id={ids.CouponInputError}>The coupon is not valid.</p>
     </form>
-    </>
+    </div>
+    </div>
   )
 }
 

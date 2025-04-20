@@ -1,8 +1,7 @@
 .input {
-    background-color: #181a1b;
+    background-color: var(--main-bg-accentColorAlt);
     color: #e8e6e3;
-    border-radius: 20px;
-    border: 2px solid var(--main-bg-accentColor);
+    border: 1px solid var(--main-bg-accentColor);
     width: 90%;
     height: 2rem;
     outline: none;
@@ -10,7 +9,6 @@
     margin-top: 25px;
     padding-left: 2%;
     flex-wrap: nowrap;
-    box-shadow: rgba(2, 24, 49, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 .input:focus {
     border: 2px solid #1673b0;
