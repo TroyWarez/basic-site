@@ -8,19 +8,24 @@ interface CouponFormProps {
 }
 const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(true);
   return (
     <div className={classes.CouponContainer}>
     <div className={classes.DropdownContainer}>
     <p className={classes.p}><b>Enter Promo Code</b> (Optional)</p>
-    <input type='button' value='>' className={classes.DropdownButtonUp}/>
+    <input type='button' value='>' className={`${(isCollapsed) ? classes.DropdownButtonDown : classes.DropdownButtonUp }`} onClick={() => {
+      (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
+    }}
+    />
     </div>
 
-    <div className={classes.FormContainer}>
+    <div className={`${(isCollapsed) ? classes.FormContainerHidden : classes.FormContainer }`}>
     <form id={ids.CouponForm} onSubmit={(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const CouponCodeInput = (event.currentTarget[0] as HTMLFormElement);
     const CouponCodeSubmitButton = (event.currentTarget[1] as HTMLFormElement);
     let discountValid = false;
+
     if ((CouponCodeInput.value.length >= 5))
     {
     if( CouponCodeSubmitButton && 
@@ -71,7 +76,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).style.color = 'rgb(199, 1, 1)';
   }
   }}>
-    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Promo code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Promo Code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
@@ -81,10 +86,18 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
         (document.getElementById(ids.CouponInputError) as HTMLParagraphElement).hidden = true;
         (event.target as HTMLInputElement).style.border = '2px solid var(--main-bg-accentColor)';
         }
+        if (event.target.value.length > 0)
+          {
+            setIsDisabled(false);
+          }
+          else
+          {
+            setIsDisabled(true);
+          }
       }
     }
   } }/>
-      <FormInput className={classes.CouponInput} form={ids.CouponForm} type="submit" name="couponButton" value="Apply" required/>
+      <FormInput className={classes.CouponInput} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required/>
       <p hidden={true} id={ids.CouponInputError}>The coupon is not valid.</p>
     </form>
     </div>

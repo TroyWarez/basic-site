@@ -11,7 +11,7 @@
     flex-wrap: nowrap;
 }
 .input:focus {
-    border: 2px solid #1673b0;
+    border: 1px solid #1673b0;
     outline-offset: 0;
   }
 .input:hover {

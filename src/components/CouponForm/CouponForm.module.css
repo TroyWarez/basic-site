@@ -1,28 +1,31 @@
 .CouponInput {
     margin-left: 0!important;
     margin-top: 0!important;
-    border: 1px solid var(--main-bg-accentColor);
+    border: 2px solid var(--main-bg-accentColor);
     height: min-content;
-    margin-bottom: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    font-weight: bold;
     box-shadow: 0;
     padding: 1rem;
+    font-size: large;
 }
 .CouponInput:disabled {
-    border: 4px solid var(--main-bg-textColor);
-    color: #181a1b;
-    background-color: #181a1b;
+    border: 2px solid var(--main-bg-accentColor);
+    color:  var(--main-bg-accentColor);
+    background-color: var(--main-bg-accentColorAlt);
+    cursor: not-allowed;
+}
+.CouponInput:active {
+    box-shadow: none!important;
 }
 .CouponContainer {
-    height: 6rem;
     width: 18rem;
     padding-top: 1rem;
 }
 .FormContainer {
     height: 4rem;
     width: 100%;
+}
+.FormContainerHidden {
+    display: none!important;
 }
 .DropdownContainer {
     display: flex;
@@ -39,6 +42,14 @@
     background-color: var(--main-bg-accentColorAlt);
     color: white;
 }
+.DropdownButtonDown {
+    rotate: 90deg!important;
+    transform: scaleY(1.5);
+    font-size: large;
+    border: none;
+    background-color: var(--main-bg-accentColorAlt);
+    color: white;
+}
 .p {
     padding-right: 0.3rem;
 }
@@ -47,10 +58,11 @@
     flex-direction: row;
     box-shadow: none;
     padding-top: 0.5rem;
+    align-items: center;
 }
 #CouponCodeInput {
     width: 11rem;
-    margin-bottom: 1rem;
+    text-indent: 10px;
 }
 #CouponInputButtonLoading { 
     width: 2rem;
