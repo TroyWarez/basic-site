@@ -14,7 +14,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <div className={classes.DropdownContainer} onClick={() => {
       (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
     }}>
-    <p><b>Enter Promo Code</b> (Optional)</p>
+    <p className={classes.p}><b>Enter Promo Code</b> (Optional)</p>
     <input type='button' value='>' className={`${(isCollapsed) ? classes.DropdownButtonDown : classes.DropdownButtonUp }`} onClick={() => {
       (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
     }}

@@ -30,10 +30,13 @@
 .DropdownContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: baseline;
     font-size: large;
     cursor: pointer;
+}
+.p {
+    padding-right: 1.6rem;
 }
 .DropdownButtonUp {
     rotate: -90deg;
@@ -42,6 +45,7 @@
     border: none;
     background-color: var(--main-bg-accentColorAlt);
     color: white;
+    cursor: pointer;
 }
 .DropdownButtonDown {
     rotate: 90deg!important;
@@ -50,6 +54,7 @@
     border: none;
     background-color: var(--main-bg-accentColorAlt);
     color: white;
+    cursor: pointer;
 }
 .button {
     border: none;
