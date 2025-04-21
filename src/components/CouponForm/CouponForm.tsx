@@ -11,8 +11,10 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(true);
   return (
     <div className={classes.CouponContainer}>
-    <div className={classes.DropdownContainer}>
-    <p className={classes.p}><b>Enter Promo Code</b> (Optional)</p>
+    <div className={classes.DropdownContainer} onClick={() => {
+      (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
+    }}>
+    <p><b>Enter Promo Code</b> (Optional)</p>
     <input type='button' value='>' className={`${(isCollapsed) ? classes.DropdownButtonDown : classes.DropdownButtonUp }`} onClick={() => {
       (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
     }}
@@ -96,9 +98,8 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           }
       }
     }
-  } }/>
+  } }>      <p id={ids.CouponInputError}>The coupon is not valid.</p></FormInput>
       <FormInput className={classes.CouponInput} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required/>
-      <p hidden={true} id={ids.CouponInputError}>The coupon is not valid.</p>
     </form>
     </div>
     </div>

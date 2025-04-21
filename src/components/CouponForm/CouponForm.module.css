@@ -1,14 +1,14 @@
 .CouponInput {
     margin-left: 0!important;
     margin-top: 0!important;
-    border: 2px solid var(--main-bg-accentColor);
+    border: 1px solid var(--main-bg-accentColor);
     height: min-content;
     box-shadow: 0;
     padding: 1rem;
     font-size: large;
 }
 .CouponInput:disabled {
-    border: 2px solid var(--main-bg-accentColor);
+    border: 1px solid var(--main-bg-accentColor);
     color:  var(--main-bg-accentColor);
     background-color: var(--main-bg-accentColorAlt);
     cursor: not-allowed;
@@ -33,6 +33,7 @@
     justify-content: space-between;
     align-items: baseline;
     font-size: large;
+    cursor: pointer;
 }
 .DropdownButtonUp {
     rotate: -90deg;
@@ -50,8 +51,13 @@
     background-color: var(--main-bg-accentColorAlt);
     color: white;
 }
-.p {
-    padding-right: 0.3rem;
+.button {
+    border: none;
+    background-color: var(--main-bg-accentColorAlt);
+}
+.button p {
+    font-size: large;
+    color: white;
 }
 #CouponForm {
     display: flex;
@@ -101,11 +107,10 @@ textflyup {
 }
 #CouponInputError {
     color: rgb(199, 1, 1);
-    z-index: -1;
+    z-index: 1;
     margin-top: 1rem;
     margin-bottom: 3rem;
     padding-top: 1.25rem;
-    position: absolute;
     font-size: small;
     animation: textflydown 100ms linear;
     animation-duration: 200ms;
