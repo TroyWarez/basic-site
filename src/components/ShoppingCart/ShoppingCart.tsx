@@ -149,7 +149,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             </div>
             <div className={classes.cartItemPrice}>
               <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
-              <p hidden={(cartItem.displayCurrencyValue === 0) ? true : false}className={classes.psale}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
+              <p className={classes.psale} hidden={(cartItem.displayCurrencyValue === 0) ? true : false}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
             </div>
           </div>
         ))}
@@ -176,9 +176,16 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
           <p>Shipping</p>
           <p>{`${TotalCurrencyType}${TotalCurrencySymbol}0.00`}</p>
         </div>
+        <div className={classes.PriceTotal} hidden={(discount) ? false : true}>
+          <p>Discount</p>
+          <p><b>{`${TotalCurrencyType}${TotalCurrencySymbol}${(TotalPrice * discount)}`}</b></p>
+        </div>
         <div className={`${classes.p} ${classes.PriceTotal} ${classes.OrderTotal}`}>
-          <p>Order Total</p>
-          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${(discount) ? TotalPrice - (TotalPrice * discount) : TotalPrice}`}</p>
+          <p className={classes.p}>Order Total</p>
+          <div>
+          <p className={classes.p}>{`${TotalCurrencyType}${TotalCurrencySymbol}${(discount) ? TotalPrice - (TotalPrice * discount) : TotalPrice}`}</p>
+          <p className={classes.psale} hidden={(discount) ? false : true}><s>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</s></p>
+          </div>
         </div>
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
