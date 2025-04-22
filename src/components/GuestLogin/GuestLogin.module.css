@@ -1,0 +1,74 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 95vh;
+
+}
+.signInContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--main-bg-accentColorAlt);
+    width: 25rem;
+    padding: 4rem;
+}
+.OrHorizontalContainer {
+    display: flex;
+    align-items: anchor-center;
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.OrP {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.accent {
+    border-top: 2px solid  var(--main-bg-accentColor);
+    font-weight: bold;
+    width: 100%;
+}
+.button {
+    width: 90%!important;
+    font-weight: bold;
+    color: white;
+}
+.buttonClear {
+    background-color: transparent!important;
+    color: var(--main-bg-accentColor)!important;
+    width: 90%!important;
+    color: white!important;
+    font-weight: bold;
+}
+.p3 {
+    
+    margin: 0;
+    padding-bottom: 1rem!important;
+}
+.p2 {
+    font-size: large;
+    margin: 0;
+    padding-bottom: 0.5rem;
+}
+.p {
+    font-size: x-large!important;
+}
+
+.BenfitsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.Checkmark {
+    color: #2f733c;
+    padding-right: 0.5rem;
+}
+.CheckmarkContainer {
+    display: flex;
+    flex-direction: row;
+}
