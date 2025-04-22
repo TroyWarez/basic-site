@@ -11,6 +11,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isHidden, setIsHidden] = useState(true);
   const [couponMessage, setCouponMessage] = useState('The coupon is not valid.');
+  const [couponValid, setCouponValid] = useState(false);
   return (
     <div className={classes.CouponContainer}>
     <div className={classes.DropdownContainer} onClick={() => {
@@ -45,9 +46,9 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           CouponCodeInput.style.border = '1px solid rgb(10, 160, 67)';
           setIsHidden(false);
           setCouponMessage(`Successfully applied '${CouponCodeInput.value}'`);
-          //setCouponMessage('rgb(10, 160, 67)');
+          setCouponValid(true);
           CouponCodeSubmitButton.hidden = true;
-          CouponCodeInput.disabled = 0
+          CouponCodeInput.disabled = true;
           discountValid = true;
         }
         else
@@ -55,7 +56,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           CouponCodeInput.style.border = '1px solid rgb(199, 1, 1)';
           setIsHidden(false);
           setCouponMessage(`The coupon code '${CouponCodeInput.value}' is not valid.`);
-         // setCouponMessage('rgb(199, 1, 1)');
+          setCouponValid(false);
           CouponCodeSubmitButton.disabled = false;
           discountValid = false;
         }
@@ -99,7 +100,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   } }/>
         <FormInput className={classes.CouponInput} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required/>
     </div>
-      <p id={ids.CouponInputError} hidden={isHidden}>{couponMessage}</p>
+      <p id={(couponValid) ? ids.CouponInputGreenText : ids.CouponInputError } hidden={isHidden}>{couponMessage}</p>
       </div>
     </form>
     </div>

@@ -127,3 +127,10 @@ textflyup {
     animation: textflydown 100ms linear;
     animation-duration: 200ms;
 }
+#CouponInputGreenText {
+    color: rgb(10, 160, 67);
+    z-index: 1;
+    font-size: small;
+    animation: textflydown 100ms linear;
+    animation-duration: 200ms;
+}
