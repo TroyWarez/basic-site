@@ -3,6 +3,7 @@
     margin-top: 0!important;
     border: 1px solid var(--main-bg-accentColor);
     height: min-content;
+    width: min-content;
     box-shadow: 0;
     padding: 1rem;
     font-size: large;
@@ -17,14 +18,10 @@
     box-shadow: none!important;
 }
 .CouponContainer {
-    width: 18rem;
-    padding-top: 1rem;
-}
-.FormContainer {
-    height: 4rem;
-    width: 100%;
+    width: 20rem;
 }
 .FormContainerHidden {
+    height: 0!important;
     display: none!important;
 }
 .DropdownContainer {
@@ -36,7 +33,15 @@
     cursor: pointer;
 }
 .p {
+    display: block!important;
     padding-right: 1.6rem;
+}
+#form {
+    display: flex;
+    flex-direction: row;
+    box-shadow: none;
+    padding-top: 0.5rem;
+    align-items: baseline;
 }
 .DropdownButtonUp {
     rotate: -90deg;
@@ -64,11 +69,15 @@
     font-size: large;
     color: white;
 }
-#CouponForm {
+#CouponTextInputButton {
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+}
+#CouponTextInputSubmitButton {
     display: flex;
     flex-direction: row;
     box-shadow: none;
-    padding-top: 0.5rem;
     align-items: center;
 }
 #CouponCodeInput {
@@ -82,9 +91,10 @@
     color: #181a1b;
     border-bottom-color: transparent;
     border-radius: 50%;
-    display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
+    text-indent: 12rem;
+    margin-left: 1rem !important;
 }
 @keyframes rotation {
     0% {
@@ -113,9 +123,6 @@ textflyup {
 #CouponInputError {
     color: rgb(199, 1, 1);
     z-index: 1;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-    padding-top: 1.25rem;
     font-size: small;
     animation: textflydown 100ms linear;
     animation-duration: 200ms;
