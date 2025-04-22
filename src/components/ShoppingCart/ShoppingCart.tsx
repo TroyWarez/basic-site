@@ -26,6 +26,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   const [itemCount, setitemCount] = useState(TotalQuantityNumber);
   const [TotalPrice, setTotalPrice] = useState(TotalPriceAmount);
   const [cartData, setCartData] = useState(cartDataSaved);
+  const [discount, setDiscount] = useState(0);
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -44,8 +45,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
     cartDataSaved.forEach((cartDataItem) => {
       TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
     })
-    console.log(DiscountPercentage);
-    setTotalPrice((TotalPriceAmount - (TotalPriceAmount * (DiscountPercentage / 100))));
+    setDiscount((DiscountPercentage / 100));
   };
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
@@ -178,7 +178,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         </div>
         <div className={`${classes.p} ${classes.PriceTotal} ${classes.OrderTotal}`}>
           <p>Order Total</p>
-          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
+          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${(discount) ? TotalPrice - (TotalPrice * discount) : TotalPrice}`}</p>
         </div>
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
