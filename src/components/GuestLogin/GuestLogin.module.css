@@ -87,3 +87,38 @@
     display: flex;
     flex-direction: row;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+.formInput { 
+    height: 3rem!important;
+    font-size: larger;
+    margin: 0!important;
+    margin-bottom: 1rem!important;
+}
+.formInput:focus { 
+    border: 1px solid var(--main-bg-accentColor);
+    outline-offset: 0;
+}
+.formInputRadio {
+    width: min-content!important;
+    margin: 0!important;
+    height: min-content!important;
+    width: min-content!important;
+    border: 1px solid#2f733c;
+    
+} 
+.formRadioLabelContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+}
+.formRadioLabel {
+    text-align: left!important;
+}

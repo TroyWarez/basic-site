@@ -41,8 +41,11 @@ const GuestLogin = ()  : JSX.Element => {
             <p className={`${classes.p} ${classes.p2}`}><b>Checkout as a guest</b></p>
             <p className={classes.p2}>You can create an account later</p>
             <form className={classes.form}>
-                <FormInput type="text" placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true}/>
-                <FormInput type="radio" required={false}/>
+                <FormInput className={classes.formInput} type="text" placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true}/>
+                <div className={classes.formRadioLabelContainer}>
+                <input className={classes.formInputRadio} type="radio" required={false} id={`promo_emails ${classes.formInputButton}`}/>
+                <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>I would like to receive communications about store news, offers, products, and promotions.</label>
+                </div>
                 <FormInput className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" />
             </form>
         </div>
