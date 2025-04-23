@@ -30,7 +30,7 @@ const CheckoutPage = () : JSX.Element => {
         {
           setCheckoutPage(
             <>
-            <title>Store Checkout</title>
+            <title>Store - Checkout</title>
             <NavigationBar cartItemAmount={itemCount} />
               <PageContainer>
                   <OrderForm/>
