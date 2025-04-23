@@ -37,7 +37,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 550,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImage: "/car.jpg",
+        productImageBinData: "/car.jpg",
         quantityNumber: 3
       },
       {
@@ -47,7 +47,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 450,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImage: "/car.jpg",
+        productImageBinData: "/car.jpg",
         quantityNumber: 7
       },
       {
@@ -57,7 +57,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 250,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImage: "/car.jpg",
+        productImageBinData: "/car.jpg",
         quantityNumber: 4
       }];
       return new Array<CartItem>();
@@ -73,6 +73,17 @@ const httpClient = axios.create({
         //return [];
       //}
       },
+    getCartData: async (cartOwner: string): Promise<CartItem[]> => {
+        try
+        {
+          const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
+          return response.data?.cartData;
+        }
+        catch (error)
+        {
+          return [];
+        }
+      }
   }
 
   export default storeApiService;

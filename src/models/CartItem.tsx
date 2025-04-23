@@ -5,6 +5,6 @@ export default interface CartItem {
     displayCurrencySaleValue: number;
     displayCurrencyValueType: string;
     displayCurrencyValueSymbol: string;
-    productImage: string;
+    productImageBinData: string;
     quantityNumber: number;
 }

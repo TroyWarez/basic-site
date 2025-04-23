@@ -54,7 +54,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       <div className={classes.cartitems}>
         {cartData.map((cartItem) => (
           <div className={classes.item} key={cartItem.sku}>
-            <img className={classes.img} alt="Product Image" src={cartItem.productImage}></img>
+            <img className={classes.img} alt="Product Image" src={cartItem.productImageBinData}></img>
             <div className={classes.cartInfo}>
               <p className={classes.p}>{`${cartItem.displayItemName} ${''}`}</p>
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>

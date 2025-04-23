@@ -1,8 +1,8 @@
 import PageContainer from '../../components/PageContainer/PageContainer';
-import CheckoutCart from '../../components/CheckoutCart/CheckoutCart'
 import OrderForm from '../../components/OrderForm/OrderForm';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 import storeApiService from "../../services/storeApiService";
+import StoreFooter from '../../components/StoreFooter/StoreFooter';
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from 'react';
@@ -34,8 +34,8 @@ const CheckoutPage = () : JSX.Element => {
             <NavigationBar cartItemAmount={itemCount} />
               <PageContainer>
                   <OrderForm/>
-                  <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound} cartTotal={cartTotalCost}/>
               </PageContainer>
+              <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
               </>
               );
         }
@@ -43,10 +43,13 @@ const CheckoutPage = () : JSX.Element => {
         {
           setCheckoutPage(
             <>
+                          <PageContainer>
                 <title>Failed to load the checkout</title>
                   <h1>Failed to load the checkout</h1>
                   <p>Cannot connect to the cart server.</p>
                 <button><Link to="/checkout/cart">Go back to the cart page</Link></button>
+                </PageContainer>
+                <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
             </>
               );
         }
