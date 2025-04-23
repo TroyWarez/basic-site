@@ -8,9 +8,9 @@ const GuestLogin = ()  : JSX.Element => {
             <p className={classes.p2}>Sign in to check out faster</p>
             <input className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="button" placeholder="Sign In" title="Sign In" value="Sign In" />
             <div className={classes.OrHorizontalContainer}>
-                <div className={classes.accent}></div>
-                <p className={classes.OrP}><b>OR</b></p>
-                <div className={classes.accent}></div>
+                <div className={classes.HorizontalAccent}></div>
+                <p className={classes.OrHorizontalP}><b>OR</b></p>
+                <div className={classes.HorizontalAccent}></div>
             </div>
             <p className={`${classes.p} ${classes.p2}`}><b>Don't have an account?</b></p>
             <p className={classes.p2}>Create one today and enjoy:</p>
@@ -30,6 +30,11 @@ const GuestLogin = ()  : JSX.Element => {
 
             <input className={`${Cartclasses.buttonSignIn} ${Cartclasses.buttonColored} ${classes.buttonClear}`} type="button" placeholder="Create your account" title="Create your account" value="Create your account" />
             </div>
+        </div>
+        <div className={classes.OrVerticalContainer}>
+                <div className={classes.VerticalAccent}></div>
+                <p className={classes.OrVerticalP}><b>OR</b></p>
+                <div className={classes.VerticalAccent}></div>
         </div>
     </div>
   )
