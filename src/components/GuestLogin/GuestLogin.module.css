@@ -60,7 +60,6 @@
     font-weight: bold;
 }
 .p3 {
-    
     margin: 0;
     padding-bottom: 1rem!important;
 }
@@ -99,7 +98,7 @@
     height: 3rem!important;
     font-size: larger;
     margin: 0!important;
-    margin-bottom: 1rem!important;
+    margin-bottom: 0.5rem!important;
 }
 .formInput:focus { 
     border: 1px solid var(--main-bg-accentColor);
@@ -118,7 +117,12 @@
     flex-direction: row;
     align-items: baseline;
     justify-content: center;
+    margin-top: 1rem;
 }
 .formRadioLabel {
     text-align: left!important;
+}
+.formErrorLabel {
+    margin-top: 0.5rem;
+    font-size: large!important;
 }

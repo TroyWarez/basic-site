@@ -1,7 +1,10 @@
 import classes from "./GuestLogin.module.css"
+import ids from "../CouponForm/CouponForm.module.css"
 import Cartclasses from "../ShoppingCart/ShoppingCart.module.css"
 import FormInput from "../FormInput/FormInput"
+import { useState } from "react";
 const GuestLogin = ()  : JSX.Element => {
+    const [isHidden, setHidden] = useState(true)
   return (
     <div className={classes.container}>
         <div className={classes.signInContainer}>
@@ -40,8 +43,12 @@ const GuestLogin = ()  : JSX.Element => {
         <div className={classes.signInContainer}>
             <p className={`${classes.p} ${classes.p2}`}><b>Checkout as a guest</b></p>
             <p className={classes.p2}>You can create an account later</p>
-            <form className={classes.form}>
+            <form className={classes.form} onInvalid={(e) => {
+                e.preventDefault();
+                setHidden(false);
+            }}>
                 <FormInput className={classes.formInput} type="text" placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true}/>
+                <p id={ ids.CouponInputError } className={classes.formErrorLabel}hidden={isHidden}>This is a required field.</p>
                 <div className={classes.formRadioLabelContainer}>
                 <input className={classes.formInputRadio} type="radio" required={false} id={`promo_emails ${classes.formInputButton}`}/>
                 <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>I would like to receive communications about store news, offers, products, and promotions.</label>
