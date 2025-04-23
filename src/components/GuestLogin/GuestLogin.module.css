@@ -105,12 +105,8 @@
     outline-offset: 0;
 }
 .formInputRadio {
-    width: min-content!important;
-    margin: 0!important;
-    height: min-content!important;
-    width: min-content!important;
-    border: 1px solid#2f733c;
-    
+    color:#2f733c;
+    background-color: #2f733c;
 } 
 .formRadioLabelContainer {
     display: flex;
