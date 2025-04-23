@@ -125,7 +125,7 @@
 }
 .input {
     width: 1.5rem;
-    height: 1.9rem;
+    height: 2rem;
     padding-left: 1.5rem;
     border: none;
     background-color: var(--main-bg-accentColor);
@@ -137,7 +137,7 @@
 }
 .inputPlusMinus {
     width: 1.5rem!important;
-    height: 2rem!important;
+    height: 2.13rem!important;
     padding-right: 1.5rem;
 }
 .AltText {
