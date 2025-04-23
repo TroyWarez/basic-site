@@ -1,32 +1,46 @@
 .CouponInput {
     margin-left: 0!important;
     margin-top: 0!important;
-    border: 1px solid var(--main-bg-accentColor);
-    height: 2rem;
+    height: 3.5rem;
     width: min-content;
+    padding-left: 1rem!important;
+    padding-right: 1rem!important;
     box-shadow: 0;
-    padding: 1rem;
 }
-#CouponCodeLabel {
-    position: absolute!important;
+#CouponButtonApply {
+    height: 3.78rem!important;
     padding: 1rem!important;
-    color: #56766a!important;
+    font-size: large!important;
+    text-align: center!important;
 }
-#CouponCodeLabelAnitmated {
+.CouponCodeLabel {
     position: absolute!important;
-    padding: 1rem!important;
     color: #56766a!important;
-    animation: moving 400ms backwards;
-}
-.CouponCodeLabelForwards {
-    animation: moving 400ms forwards;
+    margin-left: 1.7rem!important;
 }
 .CouponCodeLabelBackwards {
-    animation: moving 400ms backwards;
+    animation: textflydown 200ms backwards!important;
+    animation-iteration-count: 1!important;
 }
-@keyframes moving {
-    from {transform: translateY(0px);}
-    to {transform: translateY(-1rem);}
+.CouponCodeLabelForwards {
+    animation: textflyup 200ms forwards!important;
+    animation-iteration-count: 1!important;
+}
+@keyframes textflydown {
+    from  {
+        transform: translateY(-1.25rem);
+    }
+    to  {
+        transform: translateY(0rem);
+    }
+}
+@keyframes textflyup {
+    from  {
+        transform: translateY(0rem);
+    }
+    to  {
+        transform: translateY(-1.25rem);
+    }
 }
 .CouponInput:disabled {
     border: 1px solid var(--main-bg-accentColor);
@@ -105,8 +119,8 @@
     text-indent: 10px;
 }
 #CouponInputButtonLoading { 
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border: 4px solid var(--main-bg-textColor);
     color: #181a1b;
     border-bottom-color: transparent;
@@ -115,30 +129,6 @@
     animation: rotation 1s linear infinite;
     text-indent: 12rem;
     margin-left: 1rem !important;
-}
-@keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-@keyframes textflydown {
-    from  {
-        transform: translateY(-1rem);
-    }
-    to  {
-        transform: translateY(0.1rem);
-    }
-}
-textflyup {
-    from  {
-        transform: translateY(0.1rem);
-    }
-    to  {
-        transform: translateY(-1rem);
-    }
 }
 #CouponInputError {
     color: rgb(199, 1, 1);
@@ -149,4 +139,12 @@ textflyup {
     color: rgb(10, 160, 67);
     z-index: 1;
     font-size: small;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }

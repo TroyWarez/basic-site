@@ -1,4 +1,3 @@
-import React from 'react'
 import classes from '../FormInput/FormInput.module.css'
 interface FormInputProps {
   className?: string | undefined;
