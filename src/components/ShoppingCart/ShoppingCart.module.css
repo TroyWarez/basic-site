@@ -25,7 +25,7 @@
     margin: 0;
 }
 .buttonSignIn {
-    background-color: #2fac10; /* Green */
+    background-color: #2fac10!important;; /* Green */
     border: none;
     color: white;
     text-align: center;

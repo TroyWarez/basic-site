@@ -1,5 +1,6 @@
 import classes from "./GuestLogin.module.css"
 import Cartclasses from "../ShoppingCart/ShoppingCart.module.css"
+import FormInput from "../FormInput/FormInput"
 const GuestLogin = ()  : JSX.Element => {
   return (
     <div className={classes.container}>
@@ -35,6 +36,15 @@ const GuestLogin = ()  : JSX.Element => {
                 <div className={classes.VerticalAccent}></div>
                 <p className={classes.OrVerticalP}><b>OR</b></p>
                 <div className={classes.VerticalAccent}></div>
+        </div>
+        <div className={classes.signInContainer}>
+            <p className={`${classes.p} ${classes.p2}`}><b>Checkout as a guest</b></p>
+            <p className={classes.p2}>You can create an account later</p>
+            <form className={classes.form}>
+                <FormInput type="text" placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true}/>
+                <FormInput type="radio" required={false}/>
+                <FormInput className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" />
+            </form>
         </div>
     </div>
   )
