@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import classes from "./ShoppingCart.module.css"
+import ids from "./ShoppingCart.module.css"
 import storeApiService from "../../services/storeApiService";
 import CouponForm from "../CouponForm/CouponForm"
 import { useState } from "react";
@@ -164,7 +165,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         </div>
 
         <div>
-          <CouponForm applyCouponDiscount={applyDiscountPercentage}></CouponForm>
+          <CouponForm applyCouponDiscount={applyDiscountPercentage}/>
         </div>
         <p className={classes.p}>Order summary</p>
 

@@ -9,6 +9,7 @@ interface CouponFormProps {
 const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isFocused, setIsFocused] = useState({ focused: false, firstFocus: false });
   const [isHidden, setIsHidden] = useState(true);
   const [couponMessage, setCouponMessage] = useState('The coupon is not valid.');
   const [couponValid, setCouponValid] = useState(false);
@@ -82,7 +83,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <div id={ids.CouponTextInputButton}>
 
     <div id={ids.CouponTextInputSubmitButton}>
-    <FormInput className={classes.CouponInput} type="text" name="coupon" required placeholder="Promo Code" maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <FormInput className={classes.CouponInput} form={ids.form}type="text" name="coupon" required maxLength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
@@ -94,10 +95,27 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           else
           {
             setIsDisabled(true);
+            setIsFocused(true);
           }
       }
     }
-  } }/>
+  } }
+    onBlur={() => {
+      if(isFocused.firstFocus === true && isFocused.focused === true) {
+        setIsFocused({ focused: false, firstFocus: true });
+      }
+    }}
+    onFocus={() => {
+      if(isFocused.firstFocus === false) {
+        setIsFocused({ focused: isFocused.focused, firstFocus: true });
+      }
+
+      if (isFocused.focused === false)  {
+        setIsFocused({ focused: true, firstFocus: true });
+      }
+    }}
+    />
+      <label className={(isFocused.firstFocus && isFocused.focused) ? classes.CouponCodeLabelForwards : ''} htmlFor={ids.CouponCodeInput} id={(isFocused.firstFocus && (isFocused.focused === false)) ? classes.CouponCodeLabelAnitmated : ids.CouponCodeLabel}>Promo Code</label>
         <FormInput className={classes.CouponInput} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required/>
     </div>
       <p id={(couponValid) ? ids.CouponInputGreenText : ids.CouponInputError } hidden={isHidden}>{couponMessage}</p>

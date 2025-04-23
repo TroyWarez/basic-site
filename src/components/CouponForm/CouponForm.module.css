@@ -2,11 +2,31 @@
     margin-left: 0!important;
     margin-top: 0!important;
     border: 1px solid var(--main-bg-accentColor);
-    height: min-content;
+    height: 2rem;
     width: min-content;
     box-shadow: 0;
     padding: 1rem;
-    font-size: large;
+}
+#CouponCodeLabel {
+    position: absolute!important;
+    padding: 1rem!important;
+    color: #56766a!important;
+}
+#CouponCodeLabelAnitmated {
+    position: absolute!important;
+    padding: 1rem!important;
+    color: #56766a!important;
+    animation: moving 400ms backwards;
+}
+.CouponCodeLabelForwards {
+    animation: moving 400ms forwards;
+}
+.CouponCodeLabelBackwards {
+    animation: moving 400ms backwards;
+}
+@keyframes moving {
+    from {transform: translateY(0px);}
+    to {transform: translateY(-1rem);}
 }
 .CouponInput:disabled {
     border: 1px solid var(--main-bg-accentColor);
