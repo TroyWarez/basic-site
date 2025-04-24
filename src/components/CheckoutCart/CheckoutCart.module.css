@@ -3,6 +3,7 @@
        border: 1px solid var(--main-bg-accentColor);
        border-radius: 6px;
        margin-top: 2rem;
+       margin-bottom: 2rem;
        margin-right: 3rem;
        padding-top: 3rem;
        padding-left: 2rem;
@@ -10,16 +11,19 @@
 }
 .CheckoutCartInfoItem {
        display: flex;
-       align-items: center;
-       padding-bottom: 0.70rem;
        flex-direction: column;
+       justify-content: space-between;
 }
 .CheckoutCartInfoItemContainer {
        display: flex;
        padding-bottom: 0.70rem;
        flex-direction: row;
        justify-content: space-between;
-       align-items: center;
+       width: 15rem;
+}
+.CheckoutCartInfoContainer {
+       display: flex;
+       flex-direction: row;
        width: 100%;
 }
 .CheckoutCartSubtotal {
@@ -29,25 +33,31 @@
        justify-content: space-between;
 }
 .p {
-       font-size: medium;
+       font-size: large;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-       padding-left: 1rem;
-       margin-bottom: 0;
+       margin: 0!important;
+       margin-bottom: 0.5rem!important;
 }
 .pItemPrice {
-       font-size: medium;
-       height: min-content;
+       font-size: large;
+       height: min-content!important;
+       width: min-content!important;
+       margin: 0!important;
 }
 .pItemPriceRed {
-       font-size: medium;
+       font-size: large;
        height: min-content;
        color: red;
+       margin-top: 0.5rem!important;
+}
+.CheckoutCartInfoItemPrice {
+       display: flex;
+       padding-bottom: 0.70rem;
+       flex-direction: column;
 }
 .pSubtotal {
        font-size: medium;
        font-weight: bold;
-       padding-left: 0!important;
-       margin: 0!important;
 }
 #pLight {
        font-weight: 400;
@@ -70,25 +80,10 @@
        font-size: medium;
        font-weight: lighter;
 }
-.quantityNumber {
-       background-color: rgb(87, 87, 87);
-       border-radius: 50%;
-       width: min-content;
-       padding-top: 0.25rem;
-       padding-bottom: 0.25rem;
-       padding-left: 0.5rem;
-       padding-right: 0.5rem;
-       color: white;
-       position: absolute;
-       z-index: 50;
-       top: -1rem;
-       right: 2rem;
-       left: 3rem;
-       font-size: small;
-       font-weight: bolder;
-}
 .img {
        border-radius: 6px;
-       height: 4rem;
-       width: 4rem;
+       height: 6rem;
+       width: 6rem;
+       margin-right: 1rem;
+       margin-top: 0.25rem;
 }

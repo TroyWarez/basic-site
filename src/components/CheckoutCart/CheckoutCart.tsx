@@ -38,25 +38,28 @@ const CheckoutCart = ({className}: CartProps) : JSX.Element => {
     CheckoutCart = <>
     <div className={classes.CheckoutCartContainer}>
     {cartItems.map((cartItem) => (
-          <div className={`${classes.CheckoutCartItem} ${className ? className : ''}`} key={cartItem.sku}>
-              <div className={classes.CheckoutCartInfoItem}>
+          <div className={`${(className) ? className : ''}`} key={cartItem.sku}>
+            <div className={classes.CheckoutCartInfoContainer}>
               <img className={classes.img}src={cartItem.productImageBinData} alt='ProductImage'/>
-              <b><p className={classes.p} id={ids.pItemName}>{cartItem.displayItemName}</p></b>
-              <div className={classes.CheckoutCartInfoItemContainer}>
-              <p className={classes.pItemPrice}>Quantity:</p>
-              <p className={classes.pItemPrice}>{cartItem.quantityNumber}</p>
-              </div>
-              <div className={classes.CheckoutCartInfoItemContainer}>
-              <p className={classes.pItemPrice}>Model:</p>
-              <p className={classes.pItemPrice}>{cartItem.sku}</p>
-              </div>
-              <div className={classes.CheckoutCartInfoItemContainer}>
-              <p className={classes.pItemPrice}>Price:</p>
-              <div>
-                <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}` }</p>
-                <s className={classes.pItemPriceRed}><p>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p></s>
-              </div>
-              </div></div>
+                  <div className={classes.CheckoutCartInfoItem}>
+                    <b><p className={classes.p} id={ids.pItemName}>{cartItem.displayItemName}</p></b>
+                      <div className={classes.CheckoutCartInfoItemContainer}>
+                      <p className={classes.pItemPrice}>Quantity:</p>
+                      <p className={classes.pItemPrice}>{cartItem.quantityNumber}</p>
+                      </div>
+                    <div className={classes.CheckoutCartInfoItemContainer}>
+                      <p className={classes.pItemPrice}>Model:</p>
+                      <p className={classes.pItemPrice}>{cartItem.sku}</p>
+                    </div>
+                      <div className={classes.CheckoutCartInfoItemContainer}>
+                      <p className={classes.pItemPrice}>Price:</p>
+                    <div className={classes.CheckoutCartInfoItemPrice}>
+                      <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}` }</p>
+                      <s className={classes.pItemPriceRed}><p>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p></s>
+                    </div>
+                  </div>
+                </div>
+                </div>
               <div hidden={true}>{ subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
                                 { subTotal.displayItemAmount = cartItemAmount}
                                 { subTotal.displayCurrencyValueSymbol = cartItem.displayCurrencyValueSymbol}

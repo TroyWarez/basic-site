@@ -2,17 +2,19 @@
     display: flex;
     align-items: center;
     height: 5rem;
-    min-width: 100%;
     justify-items: flex-start;
 }
 .navbarcontainer {
     border-bottom: 1px solid var(--main-bg-accentColor);
-    width: 100%;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
-.centered {
-    justify-content: end;
+.centered * {
+    width: min-content!important;
+}
+.noncentered {
+    width: 40.5rem!important;
 }
 .badge {
     background-color: rgb(87, 87, 87);
