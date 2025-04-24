@@ -5,11 +5,12 @@ import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 interface NavigationBarProps {
   cartItemAmount?: number;
   className?: string;
+  isCentered?: boolean;
 }
-export const NavigationBar = ( { cartItemAmount, className } : NavigationBarProps)  : JSX.Element => {
+export const NavigationBar = ( { cartItemAmount, className, isCentered } : NavigationBarProps)  : JSX.Element => {
   return (
-    <div className={classes.navbarcontainer}>
-    <header className={`${classes.navbar} ${(className) ? className : ''}`}>
+    <div className={`${classes.navbarcontainer} `}>
+    <header className={`${classes.navbar} ${(className) ? className : ''} ${(isCentered) ? classes.centered : ''}`}>
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
     {(cartItemAmount) ?
     <ImgButton className={classes.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="/cart" ImgChild={<p className={classes.badge}/>}/> : <></> }

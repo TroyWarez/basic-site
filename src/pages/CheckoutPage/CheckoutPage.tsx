@@ -32,7 +32,7 @@ const CheckoutPage = () : JSX.Element => {
           setCheckoutPage(
             <>
             <title>Store - Checkout</title>
-            <NavigationBar cartItemAmount={0} />
+            <NavigationBar cartItemAmount={0} isCentered={true}/>
               <PageContainer>
                 <div>
                   <OrderForm/>

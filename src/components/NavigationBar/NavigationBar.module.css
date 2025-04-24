@@ -11,6 +11,9 @@
     display: flex;
     justify-content: center;
 }
+.centered {
+    justify-content: end;
+}
 .badge {
     background-color: rgb(87, 87, 87);
     border-radius: 50%;

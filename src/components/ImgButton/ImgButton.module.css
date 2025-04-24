@@ -10,7 +10,7 @@
     height: 4rem;
 }
 .Link {
-    text-decoration: none;
+    text-decoration: none!important;
     height: min-content;
     color: var(--main-bg-textColor);
     display: flex;
