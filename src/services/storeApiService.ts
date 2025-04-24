@@ -26,10 +26,6 @@ const httpClient = axios.create({
       localStorage.setItem("cartData", JSON.stringify(cartData));
     },
     getCartDatalocal:():Array<CartItem>  => {
-      const cartDataString = localStorage.getItem("cartData");
-      if (cartDataString && cartDataString !== '') {
-        return JSON.parse(cartDataString);
-      }
       const cartData: Array<CartItem> = [{ //remove me
         sku: "HPI160100",
         displayItemName: "Red RC Car",
@@ -60,7 +56,7 @@ const httpClient = axios.create({
         productImageBinData: "/car green.jpg",
         quantityNumber: 4
       }];
-      return new Array<CartItem>();
+      return cartData;
       //return cartDataString;
       
     //  try

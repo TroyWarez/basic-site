@@ -1,16 +1,15 @@
 import classes from "../CheckoutCart/CheckoutCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
-import CartItem from "../../models/CartItem"
 import CouponForm from "../CouponForm/CouponForm"
 import { useState } from "react"
+import storeApiService from "../../services/storeApiService";
 interface CartProps {
-  cartItems: CartItem[];
   cartTotal: number;
   className?: string;
   cartItemAmount: number;
 }
-const CheckoutCart = ({ cartItems,  cartTotal, className, cartItemAmount}: CartProps) : JSX.Element => {
-
+const CheckoutCart = ({ cartTotal, className, cartItemAmount}: CartProps) : JSX.Element => {
+  const cartItems = storeApiService.getCartDatalocal();
   const[subTotal, setSubtotal] = useState(
     {
     displayCurrencyValue :  cartTotal,
