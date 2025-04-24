@@ -179,6 +179,7 @@ padding-left: 1rem;
 .OrderTotal {
     border-top: 1px solid var(--main-bg-accentColor);
     font-size: medium!important;
+    align-items: flex-start;
 }
 .bluebar {
     background-color: #00a1dd;
