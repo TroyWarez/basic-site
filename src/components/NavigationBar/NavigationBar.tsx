@@ -19,4 +19,4 @@ export const NavigationBar = ( { cartItemAmount, className, isCentered } : Navig
   )
 }
 
-export default NavigationBar
+export default NavigationBar;
