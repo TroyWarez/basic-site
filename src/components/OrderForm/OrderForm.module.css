@@ -21,17 +21,16 @@
 .form {
   outline: 0 !important;
   box-sizing: border-box;
-  width: 40rem;
+  width: 70%;
   height: 100%;
   text-align: left;
   border-radius: 6px;
   border: 1px solid var(--main-bg-accentColor);
   margin-top: 2rem;
-  margin-left: 3rem;
-  margin-right: 1rem;
+  margin-left: 2rem;
+  margin-right: 1.5rem;
   padding-top: 3rem;
-  padding-left: 3rem;
-  padding-right: 1rem;
+  padding-left: 1rem;
 }
 .p {
   font-family: "Roboto", sans-serif;
@@ -43,7 +42,7 @@
 .inputfirstlast {
   background-color: #181a1b;
   color: var(--main-bg-textColor);
-  width: 42.25%!important;
+  width: 43%!important;
   height: 2em!important;
   margin-left: 3%!important;
   padding-left: 2%!important;
