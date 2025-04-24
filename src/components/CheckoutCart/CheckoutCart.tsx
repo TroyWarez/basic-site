@@ -64,7 +64,7 @@ const CheckoutCart = ({ className, SignInPagePath }: CartProps) : JSX.Element =>
         <div className={classes.CheckoutCartSubtotal}>
           <p className={classes.p}>Import Fees</p>
           <p className={classes.p} id={classes.pCurrency}>{`${cartItems[0].displayCurrencyValueType}`}
-          {`${cartItems[0].displayCurrencyValueSymbol}${(cartTotal * 0.05) }`}</p>
+          {`${cartItems[0].displayCurrencyValueSymbol}${(cartTotal * 0.05).toFixed(2) }`}</p>
         </div>
       </div>
       <div className={classes.CheckoutCartSubtotal}>
