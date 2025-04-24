@@ -178,8 +178,8 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
           <p>{`${TotalCurrencyType}${TotalCurrencySymbol}0.00`}</p>
         </div>
         <div className={classes.PriceTotal} hidden={(discount) ? false : true}>
-          <p>Discount</p>
-          <p><b>{`${TotalCurrencyType}${TotalCurrencySymbol}${(TotalPrice * discount)}`}</b></p>
+          <p hidden={(discount) ? false : true}>Discount</p>
+          <p hidden={(discount) ? false : true}><b>{`${TotalCurrencyType}${TotalCurrencySymbol}${(TotalPrice * discount)}`}</b></p>
         </div>
         <div className={`${classes.p} ${classes.PriceTotal} ${classes.OrderTotal}`}>
           <p className={classes.p}>Order Total</p>
