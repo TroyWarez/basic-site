@@ -1,17 +1,27 @@
 .CheckoutCartContainer {
        width: 20rem;
-       border-left: 1px solid var(--main-bg-accentColor);
+       border: 1px solid var(--main-bg-accentColor);
+       border-radius: 6px;
+       margin-top: 2rem;
+       margin-left: 1rem;
+       margin-right: 1rem;
        padding-top: 3rem;
        padding-left: 3rem;
        padding-right: 1rem;
 }
-.CheckoutCartItem {
-       position: relative;
+.CheckoutCartInfoItem {
        display: flex;
-       justify-content: space-between;
        align-items: center;
        padding-bottom: 0.70rem;
-
+       flex-direction: column;
+}
+.CheckoutCartInfoItemContainer {
+       display: flex;
+       padding-bottom: 0.70rem;
+       flex-direction: row;
+       justify-content: space-between;
+       align-items: center;
+       width: 20rem;
 }
 .CheckoutCartSubtotal {
        position: relative;
@@ -21,7 +31,6 @@
 }
 .p {
        font-size: medium;
-       font-weight: 400;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
        padding-left: 1rem;
        margin-bottom: 0;
@@ -29,7 +38,11 @@
 .pItemPrice {
        font-size: medium;
        height: min-content;
-       
+}
+.pItemPriceRed {
+       font-size: medium;
+       height: min-content;
+       color: red;
 }
 .pSubtotal {
        font-size: medium;

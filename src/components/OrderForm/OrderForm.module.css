@@ -24,6 +24,14 @@
   width: 40rem;
   height: 100%;
   text-align: left;
+  border-radius: 6px;
+  border: 1px solid var(--main-bg-accentColor);
+  margin-top: 2rem;
+  margin-left: 3rem;
+  margin-right: 1rem;
+  padding-top: 3rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
 }
 .p {
   font-family: "Roboto", sans-serif;
