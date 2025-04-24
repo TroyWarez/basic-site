@@ -5,6 +5,8 @@
        margin-top: 2rem;
        margin-bottom: 2rem;
        margin-left: 4rem;
+       height: min-content;
+       padding-bottom: 2rem;
 
 }
 .CheckoutCartInfoItem {
@@ -19,7 +21,6 @@
        flex-direction: row;
        justify-content: space-between;
        width: 15rem;
-
 }
 .CheckoutCartInfoContainer {
        display: flex;
