@@ -47,8 +47,6 @@
        border-bottom: 1px solid var(--main-bg-accentColor);
        margin-bottom: 0.5rem!important;
        padding-bottom: 0.5rem!important;
-       margin-right: 1rem!important;
-       margin-left: 1rem!important;
 }
 .noborder {
        border-bottom: none!important;
@@ -74,8 +72,6 @@
        font-size: larger;
        padding-top: 0!important;
        padding-bottom: 0!important;
-       margin-right: 1rem!important;
-       margin-left: 1rem!important;
 }
 #pLight {
        font-weight: 400;
@@ -88,14 +84,12 @@
        height: min-content!important;
 }
 .pShippingTotal {
-       font-size: medium;
        font-weight: lighter;
 }
 .img {
        border-radius: 6px;
        height: 6rem;
        width: 6rem;
-       padding-left: 1rem;
 }
 
 .CheckoutCartTitle {
@@ -110,7 +104,7 @@
        background-color: transparent!important;
        border: 1px solid var(--main-bg-accentColor);
        margin: 1rem;
-       min-width: 92%!important;
+       min-width: 85%!important;
        margin-left: 1rem!important;
        margin-right: 1rem!important;
        padding-top: 0.5rem!important;
