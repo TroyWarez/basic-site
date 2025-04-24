@@ -37,7 +37,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 550,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car.jpg",
+        productImageBinData: "/car red.jpg",
         quantityNumber: 3
       },
       {
@@ -47,7 +47,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 450,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car.jpg",
+        productImageBinData: "/car blue.jpg",
         quantityNumber: 7
       },
       {
@@ -57,7 +57,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 250,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car.jpg",
+        productImageBinData: "/car green.jpg",
         quantityNumber: 4
       }];
       return new Array<CartItem>();
