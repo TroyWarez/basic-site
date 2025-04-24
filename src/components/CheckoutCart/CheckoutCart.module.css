@@ -47,6 +47,8 @@
        border-bottom: 1px solid var(--main-bg-accentColor);
        margin-bottom: 0.5rem!important;
        padding-bottom: 0.5rem!important;
+       margin-left: 0.5rem!important;
+       margin-right: 0.5rem!important;
 }
 .noborder {
        border-bottom: none!important;
@@ -72,6 +74,8 @@
        font-size: larger;
        padding-top: 0!important;
        padding-bottom: 0!important;
+       margin-left: 0.5rem!important;
+       margin-right: 0.5rem!important;
 }
 #pLight {
        font-weight: 400;
