@@ -34,7 +34,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
         <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
         <Link className={classes.buttonSignIn} to={SignInPagePath}>Sign in</Link>
-        <Link className={`${classes.buttonSignIn} ${classes.buttonColored}`} to={ProductPagePath}>Continue shopping</Link>
+        <Link className={`${classes.buttonSignIn} ${classes.buttonColoredShopping}`} to={ProductPagePath}>Continue shopping</Link>
       </div>
     )
   }

@@ -25,7 +25,7 @@
     margin: 0;
 }
 .buttonSignIn {
-    background-color: #2fac10!important;; /* Green */
+    background-color: #2fac10!important;
     border: none;
     color: white;
     text-align: center;
@@ -39,6 +39,10 @@
 }
 .buttonColored {
     background-color: black;
+    border: 1px solid var(--main-bg-accentColor);
+}
+.buttonColoredShopping {
+    background-color: black!important;;
     border: 1px solid var(--main-bg-accentColor);
 }
 .emptycart {
