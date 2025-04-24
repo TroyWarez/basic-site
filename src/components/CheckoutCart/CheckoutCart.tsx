@@ -1,45 +1,32 @@
 import classes from "../CheckoutCart/CheckoutCart.module.css"
+import ButtonClasses from "../ShoppingCart/ShoppingCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
-import { useState } from "react"
+import { Link } from "react-router-dom";
 import storeApiService from "../../services/storeApiService";
 interface CartProps {
   className?: string;
+  SignInPagePath: string;
 }
-const CheckoutCart = ({className}: CartProps) : JSX.Element => {
+const CheckoutCart = ({ className, SignInPagePath }: CartProps) : JSX.Element => {
   const cartItems = storeApiService.getCartDatalocal();
   let cartTotal = 0;
-  let cartItemAmount = cartItems.length;
-  const[subTotal, setSubtotal] = useState(
-    {
-    displayCurrencyValue :  cartTotal,
-    displayCurrencyValueType : '', 
-    displayCurrencyValueSymbol: '', 
-    displayItemAmount : 0, 
-    IsDiscounted: false,
-    displayTotalString: 'Total'});
-
-  const applyDiscountPercentage = (DiscountPercentage: number) => {
-    console.log(DiscountPercentage);
-    if (!subTotal.IsDiscounted) {
-      cartTotal = cartTotal - (cartTotal * (DiscountPercentage / 100));
-    setSubtotal({ 
-      displayCurrencyValue :  cartTotal,
-      displayCurrencyValueType : subTotal.displayCurrencyValueType, 
-      displayCurrencyValueSymbol: subTotal.displayCurrencyValueSymbol, 
-      displayItemAmount : subTotal.displayItemAmount,
-      IsDiscounted : true,
-      displayTotalString: ` ${DiscountPercentage}% discounted total`});
-    }
-  };
-  let CheckoutCart = <></>;
-
+  let cartItemAmount = 0;
+  cartItems.forEach((cartItem) => {
+    cartTotal += (cartItem.displayCurrencySaleValue * cartItem.quantityNumber);
+    cartItemAmount += cartItem.quantityNumber;
+  });
   if(cartItemAmount > 0)
   {
-    CheckoutCart = <>
+    return(
     <div className={classes.CheckoutCartContainer}>
-    {cartItems.map((cartItem) => (
+    <div className={classes.CheckoutCartTitle}>
+      <h2 className={classes.p}>Cart Overview</h2>
+    </div>
+    <Link className={`${ButtonClasses.buttonSignIn} ${classes.button}`} to={'/checkout/cart'}>{'< Back To Cart'}</Link>
+    {
+    cartItems.map((cartItem, index) => (
           <div className={`${(className) ? className : ''}`} key={cartItem.sku}>
-            <div className={classes.CheckoutCartInfoContainer}>
+            <div className={`${classes.CheckoutCartInfoContainer} ${(index === cartItems.length - 1) ? classes.noborder : ''}`}>
               <img className={classes.img}src={cartItem.productImageBinData} alt='ProductImage'/>
                   <div className={classes.CheckoutCartInfoItem}>
                     <b><p className={classes.p} id={ids.pItemName}>{cartItem.displayItemName}</p></b>
@@ -60,33 +47,37 @@ const CheckoutCart = ({className}: CartProps) : JSX.Element => {
                   </div>
                 </div>
                 </div>
-              <div hidden={true}>{ subTotal.displayCurrencyValueType = cartItem.displayCurrencyValueType}
-                                { subTotal.displayItemAmount = cartItemAmount}
-                                { subTotal.displayCurrencyValueSymbol = cartItem.displayCurrencyValueSymbol}
-              </div>
           </div>
     ))
     }
+    <div className={classes.border}>
         <div className={classes.CheckoutCartSubtotal}>
-              <p className={classes.pSubtotal} id={ids.pLight}><span id={ids.pSpan}>{
-              `Subtotal • ${cartItemAmount} items`
-              }
-              </span></p>
-              <p className={classes.pSubtotal}><span>{`${subTotal.displayCurrencyValueSymbol} ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></p>
+              <p id={ids.pLight}>
+              {`${cartItemAmount} item${(cartItemAmount > 1) ? 's' : ''}`}
+              </p>
+              <p>{`${cartItems[0].displayCurrencyValueType}${cartItems[0].displayCurrencyValueSymbol}${cartTotal.toFixed(2)}`}</p>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
-              <p className={classes.pShippingTotal}><span>{`Shipping`}</span></p>
-              <p className={classes.pShippingTotal}><span>{`Enter Shipping Address`}</span></p>
+              <p className={classes.pShippingTotal}>Delivery</p>
+              <p className={classes.pShippingTotal}>Free</p>
         </div>
         <div className={classes.CheckoutCartSubtotal}>
-          <p className={`${classes.p} ${classes.pTotal}`}><span>{subTotal.displayTotalString}</span></p>
-          <p className={`${classes.p} ${classes.pTotal}`} id={classes.pCurrency}><span>{`${subTotal.displayCurrencyValueType}`}&nbsp;</span>
-          <span className={`${classes.p} ${classes.pTotal}`}><span>
-          {`${subTotal.displayCurrencyValueSymbol}  ${subTotal.displayCurrencyValue.toFixed(2)}`}</span></span></p>
+          <p className={classes.p}>Import Fees</p>
+          <p className={classes.p} id={classes.pCurrency}>{`${cartItems[0].displayCurrencyValueType}`}
+          {`${cartItems[0].displayCurrencyValueSymbol}${(cartTotal * 0.05) }`}</p>
+        </div>
+      </div>
+      <div className={classes.CheckoutCartSubtotal}>
+              <p className={classes.pTotal}>Total:</p>
+              <p>{`${cartItems[0].displayCurrencyValueType}${cartItems[0].displayCurrencyValueSymbol}${(cartTotal + (cartTotal * 0.05)).toFixed(2)}`}</p>
         </div>
     </div>
-    </>;
+    );
   }
-  return ( CheckoutCart )
+  return (<div className={classes.CheckoutCartContainer}>
+    <div className={classes.CheckoutCartInfoContainer}>
+      <p className={classes.pItemPriceRed}>Failed to load the cart information...</p>
+      </div>
+    </div>);
 }
 export default CheckoutCart

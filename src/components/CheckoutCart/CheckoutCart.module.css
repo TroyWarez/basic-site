@@ -1,18 +1,17 @@
 .CheckoutCartContainer {
-       width: 30%;
+
        border: 1px solid var(--main-bg-accentColor);
        border-radius: 6px;
        margin-top: 2rem;
        margin-bottom: 2rem;
-       margin-right: 3rem;
-       padding-top: 3rem;
-       padding-left: 2rem;
-       padding-right: 2rem;
+       margin-left: 4rem;
+
 }
 .CheckoutCartInfoItem {
        display: flex;
        flex-direction: column;
        justify-content: space-between;
+       padding-left: 1rem;
 }
 .CheckoutCartInfoItemContainer {
        display: flex;
@@ -20,23 +19,39 @@
        flex-direction: row;
        justify-content: space-between;
        width: 15rem;
+
 }
 .CheckoutCartInfoContainer {
        display: flex;
        flex-direction: row;
-       width: 100%;
+       border-bottom: 1px solid var(--main-bg-accentColor);
+       margin-right: 1rem!important;
+       margin-left: 1rem!important;
+       margin-top: 1rem!important;
 }
 .CheckoutCartSubtotal {
        position: relative;
        align-items: center;
        display: flex;
        justify-content: space-between;
+       padding-left: 1rem;
+       padding-right: 1rem;
 }
 .p {
        font-size: large;
        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
        margin: 0!important;
        margin-bottom: 0.5rem!important;
+}
+.border {
+       border-bottom: 1px solid var(--main-bg-accentColor);
+       margin-bottom: 0.5rem!important;
+       padding-bottom: 0.5rem!important;
+       margin-right: 1rem!important;
+       margin-left: 1rem!important;
+}
+.noborder {
+       border-bottom: none!important;
 }
 .pItemPrice {
        font-size: large;
@@ -55,9 +70,12 @@
        padding-bottom: 0.70rem;
        flex-direction: column;
 }
-.pSubtotal {
-       font-size: medium;
-       font-weight: bold;
+.pTotal {
+       font-size: larger;
+       padding-top: 0!important;
+       padding-bottom: 0!important;
+       margin-right: 1rem!important;
+       margin-left: 1rem!important;
 }
 #pLight {
        font-weight: 400;
@@ -69,13 +87,6 @@
        align-items: center!important;
        height: min-content!important;
 }
-.pTotal {
-       font-size: large;
-       font-weight: bold;
-       padding: 0;
-       margin: 0;
-       display: flex;
-}
 .pShippingTotal {
        font-size: medium;
        font-weight: lighter;
@@ -84,6 +95,25 @@
        border-radius: 6px;
        height: 6rem;
        width: 6rem;
-       margin-right: 1rem;
-       margin-top: 0.25rem;
+       padding-top: 1rem;
+       padding-left: 1rem;
+}
+
+.CheckoutCartTitle {
+       font-weight: bold;
+       margin: 0;
+       background-color: var(--main-bg-accentColor);
+       border: 1px solid var(--main-bg-accentColor);
+       border-radius: 4px;
+       padding-left: 1rem;
+}
+.button {
+       background-color: transparent!important;
+       border: 1px solid var(--main-bg-accentColor);
+       margin: 1rem;
+       min-width: 92%!important;
+       margin-left: 1rem!important;
+       margin-right: 1rem!important;
+       padding-top: 0.5rem!important;
+       padding-bottom: 0.5rem!important;
 }

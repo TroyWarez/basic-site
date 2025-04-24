@@ -6,7 +6,7 @@ const CheckoutForm = (): JSX.Element  => {
   return (
     <div className={classes.formContainer}>
         <OrderForm/>
-        <CheckoutCart/>
+        <CheckoutCart SignInPagePath="/customer/account/login/"/>
     </div>
   )
 }
