@@ -35,8 +35,6 @@
 .inputfirstlast {
   background-color: #181a1b;
   color: var(--main-bg-textColor);
-  border-radius: 20px;
-  border: 2px solid var(--main-bg-accentColor);
   width: 42.25%!important;
   height: 2em!important;
   margin-left: 3%!important;

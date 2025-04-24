@@ -23,3 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 public/car.jpg
+public/car red.jpg
+public/car green.jpg
+public/car blue.jpg

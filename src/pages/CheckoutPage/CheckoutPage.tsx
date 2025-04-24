@@ -2,6 +2,7 @@ import PageContainer from '../../components/PageContainer/PageContainer';
 import OrderForm from '../../components/OrderForm/OrderForm';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 import storeApiService from "../../services/storeApiService";
+import CheckoutCart from '../../components/CheckoutCart/CheckoutCart';
 import StoreFooter from '../../components/StoreFooter/StoreFooter';
 import { Link } from "react-router-dom";
 
@@ -31,9 +32,12 @@ const CheckoutPage = () : JSX.Element => {
           setCheckoutPage(
             <>
             <title>Store - Checkout</title>
-            <NavigationBar cartItemAmount={itemCount} />
+            <NavigationBar cartItemAmount={0} />
               <PageContainer>
+                <div>
                   <OrderForm/>
+                  <CheckoutCart cartItemAmount={itemCount} cartItems={cartItemsFound} cartTotal={cartTotalCost}/>
+                </div>
               </PageContainer>
               <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
               </>
