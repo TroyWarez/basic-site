@@ -1,15 +1,14 @@
 import classes from "../CheckoutCart/CheckoutCart.module.css"
 import ids from "../CheckoutCart/CheckoutCart.module.css"
-import CouponForm from "../CouponForm/CouponForm"
 import { useState } from "react"
 import storeApiService from "../../services/storeApiService";
 interface CartProps {
-  cartTotal: number;
   className?: string;
-  cartItemAmount: number;
 }
-const CheckoutCart = ({ cartTotal, className, cartItemAmount}: CartProps) : JSX.Element => {
+const CheckoutCart = ({className}: CartProps) : JSX.Element => {
   const cartItems = storeApiService.getCartDatalocal();
+  let cartTotal = 0;
+  let cartItemAmount = cartItems.length;
   const[subTotal, setSubtotal] = useState(
     {
     displayCurrencyValue :  cartTotal,
@@ -52,9 +51,6 @@ const CheckoutCart = ({ cartTotal, className, cartItemAmount}: CartProps) : JSX.
           </div>
     ))
     }
-        <div className={classes.CheckoutCartSubtotal}>
-          <CouponForm applyCouponDiscount={applyDiscountPercentage}/>
-        </div>
         <div className={classes.CheckoutCartSubtotal}>
               <p className={classes.pSubtotal} id={ids.pLight}><span id={ids.pSpan}>{
               `Subtotal • ${cartItemAmount} items`
