@@ -521,12 +521,12 @@ const OrderForm = (): JSX.Element => {
                   value: state.value,
                   displayValue: state.displayValue,
                   }))} name="stateSelect" aria-label="Please select your state" required hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
-
+                <div>
                 <SelectMenu options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
                   }))} name="canadianProvincesSelect" aria-label="Please select your province" required title="Province menu, please select your province"/>
-
+                </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                 <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
 

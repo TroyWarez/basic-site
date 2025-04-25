@@ -48,6 +48,8 @@
   margin-top: 2rem;
   margin-left: 2rem;
   padding-bottom: 1rem;
+  width: 40rem;
+  height: min-content;
 }
 .delivery {
   height: 12%!important;
