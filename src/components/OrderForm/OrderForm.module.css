@@ -36,9 +36,9 @@
   padding-left: 3%;
 }
 .inputfirstlast {
-  background-color: #181a1b;
+  background-color: var(--main-bg-accentColorAlt);
   color: var(--main-bg-textColor);
-  width: 43%!important;
+  width: 42.25%!important;
   height: 2em!important;
   margin-left: 3%!important;
   padding-left: 2%!important;
@@ -77,7 +77,7 @@
   padding-bottom: 5%;
 }
 #submit {
-  background-color: #181a1b;
+  background-color: var(--main-bg-accentColorAlt);
   color: var(--main-bg-textColor);
   border-radius: 20px;
   border: 1px solid var(--main-bg-accentColor);
