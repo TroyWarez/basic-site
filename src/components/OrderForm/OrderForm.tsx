@@ -554,7 +554,7 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <div id={classes.paymentContainer}>
+          <form id={classes.paymentContainer}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
                   <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
@@ -563,7 +563,7 @@ const OrderForm = (): JSX.Element => {
                   </div>
                   <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} required value="Pay now"/>
                   <p id={classes.paymentSubtext}>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</p>
-                  </div>
+            </form>
           </div> 
         </div>
       );
