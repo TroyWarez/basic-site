@@ -74,9 +74,14 @@
 .pPrivacy {
   font-family: "Roboto", sans-serif;
   text-align: left;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-top: 1rem!important;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--main-bg-accentColor)!important;
+}
+.radioLabel {
+  margin-top: 1rem;;
+  margin-left: 1rem;
+  background-color: #6ebe49!important;
 }
 .inputfirstlast {
   background-color: var(--main-bg-accentColorAlt);

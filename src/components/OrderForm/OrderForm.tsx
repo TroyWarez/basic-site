@@ -526,14 +526,24 @@ const OrderForm = (): JSX.Element => {
                   value: province.value,
                   displayValue: province.displayValue,
                   }))} name="canadianProvincesSelect" aria-label="Please select your province" required title="Province menu, please select your province"/>
+
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
+
+                <div>
                 <SelectMenu className={classes.inputfirstlast} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
                   value: country.value,
                   displayValue: country.displayValue,
                   }))} name="country" aria-label="Please select your country" required value={'Canada'} title="Country menu, please select your country"/>
-                              <div>
+                </div>
+                  <div>
+                <div>
                 <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
                 <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={28}/>
+                </div>
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
