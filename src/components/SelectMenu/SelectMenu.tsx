@@ -3,6 +3,7 @@ import selectClasses from './SelectMenu.module.css'
 import SelectMenuOption from '../../models/selectMenuOption.tsx'
 import SelectMenuItem from '../SelectMenuItem/SelectMenuItem.tsx'
 interface SelectMenuProps {
+  className?: string;
   options: SelectMenuOption[];
   onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   value?: string | number;
@@ -13,9 +14,9 @@ interface SelectMenuProps {
   'aria-label'?: string;
   title? : string;
 }
-const SelectMenu = ({options, onChange, value, name, placeholder, required, 'aria-label':ariaLabel, title, hidden}: SelectMenuProps) : JSX.Element => {
+const SelectMenu = ({className, options, onChange, value, name, placeholder, required, 'aria-label':ariaLabel, title, hidden}: SelectMenuProps) : JSX.Element => {
   return (
-    <select className={`${FormInputclasses.input} ${selectClasses.select}`} value={value} onChange={onChange} name={name} aria-label={ariaLabel} required={required} title={title} hidden={hidden}>
+    <select className={`${FormInputclasses.input} ${selectClasses.select} ${(className) ? className : ''}`} value={value} onChange={onChange} name={name} aria-label={ariaLabel} required={required} title={title} hidden={hidden}>
     {placeholder && <SelectMenuItem>{placeholder}</SelectMenuItem>}
     {options.map((option) => (
         <SelectMenuItem key={option.value} value={option.value}>

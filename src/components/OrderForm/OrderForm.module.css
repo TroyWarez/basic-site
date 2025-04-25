@@ -18,6 +18,11 @@
   text-align: left;
   padding-left: 3%;
 }
+.payment {
+  height: min-content!important;
+  padding-bottom: 0!important;
+  margin: 1rem;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -42,9 +47,10 @@
   border: 1px solid var(--main-bg-accentColor);
   margin-top: 2rem;
   margin-left: 2rem;
+  padding-bottom: 1rem;
 }
 .delivery {
-  height: 10%!important;
+  height: 12%!important;
 }
 .deliveryText {
   height: 10%!important;
@@ -61,6 +67,17 @@
   text-align: left;
   padding-left: 3%;
 }
+.pPrivacy a {
+  text-decoration: underline!important;
+  color: #6ebe49!important;
+}
+.pPrivacy {
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-top: 1rem!important;
+}
 .inputfirstlast {
   background-color: var(--main-bg-accentColorAlt);
   color: var(--main-bg-textColor);
@@ -70,15 +87,6 @@
   padding-left: 2%!important;
   display: inline-flex!important;
   outline: none;
-}
-.inputfirstlast:focus {
-  border: 2px solid #1673b0;
-}
-.inputfirstlast input:focus {
-  border: 2px solid #1673b0;
-}
-.input:focus {
-  border: 2px solid #1673b0;
 }
 
 #securitycode {
@@ -101,6 +109,7 @@
 #paymentContainer  {
   margin-top: 2%;
   padding-bottom: 5%;
+  display: none;
 }
 #submit {
   background-color: var(--main-bg-accentColorAlt);
@@ -115,6 +124,7 @@
   font-weight: bold;
   font-style: normal;
   font-size: large;
+  margin-bottom: 1rem;
 }
 #submit:focus {
   background-color: #7e8a90;

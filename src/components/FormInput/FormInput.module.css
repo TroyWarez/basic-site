@@ -12,6 +12,7 @@
 }
 .input:focus {
     outline-offset: 0;
+    border: 1px solid #6ebe49;
   }
 .input:hover {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -29,9 +30,9 @@
   outline-offset: 0;
 }
 .input-error {
-    border: 2px solid #eb1919;
+    border: 1px solid #eb1919;
   }
 .input-error:focus {
-    border: 2px solid #eb1919;
+    border: 1px solid #eb1919;
     outline-offset: 0;
   }

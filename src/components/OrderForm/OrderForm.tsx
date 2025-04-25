@@ -1,8 +1,10 @@
 import classes from "./OrderForm.module.css"
 import CheckoutClasses from "../CheckoutCart/CheckoutCart.module.css"
+import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
+import { Link } from "react-router-dom";
 const OrderForm = (): JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
@@ -226,10 +228,10 @@ const OrderForm = (): JSX.Element => {
       ];
       
       const CountryList: SelectMenuOption[] = [
+        {value: "CA", displayValue: 'Canada'},
       {value: "US", displayValue: 'United States'},
       {value: "GB", displayValue: 'United Kingdom'},
       {value: "AE", displayValue: 'United Arab Emirates'},
-      {value: "CA", displayValue: 'Canada'},
       {value: "MX", displayValue: 'Mexico'},
       {value: "AU", displayValue: 'Australia'},
       {value: "JP", displayValue: 'Japan'},
@@ -484,7 +486,7 @@ const OrderForm = (): JSX.Element => {
       <div className={`${classes.form} ${classes.delivery}`}>
       <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Delivery Method</h2>
-        </div> 
+      </div> 
         <div className={`${classes.containerHeading} ${classes.deliveryText}`}>
           <b className={classes.b}>STANDARD Delivery: Free</b>
           <p className={classes.b}>{`Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
@@ -498,24 +500,19 @@ const OrderForm = (): JSX.Element => {
             <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
-            <h3 className={classes.heading}>Shipping Address</h3>
-            <p className={classes.p}><span>Please enter your shipping details.</span></p>
-            <SelectMenu onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
-                  value: country.value,
-                  displayValue: country.displayValue,
-                  }))} name="country" aria-label="Please select your country" required placeholder="Please select your country" title="Country menu, please select your country"/>
             <div>
                 <FormInput className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} onFocus={onFocus} autoFocus={true} required autoComplete="given-name" />
 
                 <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required autoComplete="family-name"/>
             </div>
-                <FormInput inputMode="email" type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
-
-                <FormInput onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={28}/>
-
                 <FormInput type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
+                <FormInput type="text" name="additional-information" id="Additional-Information" placeholder="Additional Information (Optional)" maxLength={95}/>
+            <div>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
 
-                <FormInput type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="Postal Code" maxLength={12} required={true} />
+            </div>
+
               <div hidden={true}>
                 <FormInput onInput={onInputHandler} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required={true} />
               </div>
@@ -523,26 +520,41 @@ const OrderForm = (): JSX.Element => {
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
                   displayValue: state.displayValue,
-                  }))} name="stateSelect" aria-label="Please select your state" required hidden placeholder="Please select your state" title="State menu, please select your state"/>
+                  }))} name="stateSelect" aria-label="Please select your state" required hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
 
                 <SelectMenu options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
-                  }))} name="canadianProvincesSelect" aria-label="Please select your province" required hidden placeholder="Please select your province" title="Province menu, please select your province"/>
+                  }))} name="canadianProvincesSelect" aria-label="Please select your province" required title="Province menu, please select your province"/>
+                <SelectMenu className={classes.inputfirstlast} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
+                  value: country.value,
+                  displayValue: country.displayValue,
+                  }))} name="country" aria-label="Please select your country" required value={'Canada'} title="Country menu, please select your country"/>
+                              <div>
+                <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
 
-                  <div id={classes.paymentContainer}>
-                  <h3 id={classes.paymentheading}>Payment</h3>
-                  <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
+                <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={28}/>
+                <div className={classes.pPrivacy}>
+                  <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
+                </div>
+                <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required value="Continue to payment"/>
+            </div>
+          </form>
+          <div className={`${classes.form} ${classes.payment}`}>
+          <div className={CheckoutClasses.CheckoutCartTitle}>
+            <h2 className={CheckoutClasses.p}>Payment</h2>
+          </div>
+          <div id={classes.paymentContainer}>
+                <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
                   <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required placeholder="Expiration date (MM / YY)" maxLength={5}/>
                     <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required placeholder="Security Code" maxLength={5}/>
                   </div>
-
-                  <FormInput type="submit" name="submit" id={classes.submit} required value="Pay now"/>
+                  <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} required value="Pay now"/>
                   <p id={classes.paymentSubtext}>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</p>
-                </div>
-          </form>
+                  </div>
+          </div> 
         </div>
       );
 };
