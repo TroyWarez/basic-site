@@ -21,16 +21,12 @@
 .form {
   outline: 0 !important;
   box-sizing: border-box;
-  width: 70%;
   height: 100%;
   text-align: left;
   border-radius: 6px;
   border: 1px solid var(--main-bg-accentColor);
   margin-top: 2rem;
   margin-left: 2rem;
-  margin-right: 1.5rem;
-  padding-top: 3rem;
-  padding-left: 1rem;
 }
 .p {
   font-family: "Roboto", sans-serif;
