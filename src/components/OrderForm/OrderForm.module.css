@@ -18,15 +18,41 @@
   text-align: left;
   padding-left: 3%;
 }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-bg-accentColorAlt);
+  margin-top: 2rem;
+  margin-left: 2rem;
+}
+.containerHeading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+}
 .form {
   outline: 0 !important;
   box-sizing: border-box;
-  height: 100%;
   text-align: left;
   border-radius: 6px;
   border: 1px solid var(--main-bg-accentColor);
   margin-top: 2rem;
   margin-left: 2rem;
+}
+.delivery {
+  height: 10%!important;
+}
+.deliveryText {
+  height: 10%!important;
+  align-items: baseline!important;
+}
+.b {
+  margin-top: 0.5rem!important;
+  margin-left: 1rem!important;
 }
 .p {
   font-family: "Roboto", sans-serif;

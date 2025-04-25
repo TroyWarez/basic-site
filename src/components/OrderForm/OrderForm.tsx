@@ -3,7 +3,6 @@ import CheckoutClasses from "../CheckoutCart/CheckoutCart.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
-import CheckoutFooter from "../../components/CheckoutFooter/CheckoutFooter";
 const OrderForm = (): JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
@@ -477,6 +476,24 @@ const OrderForm = (): JSX.Element => {
       {value: "NU", displayValue: 'Nunavut'},
       ];
     return (
+      <div>
+      <div className={classes.containerHeading}>
+        <b>Continue to pay below</b>
+        <p>We accept all major credit/debit cards</p>
+      </div>
+      <div className={`${classes.form} ${classes.delivery}`}>
+      <div className={CheckoutClasses.CheckoutCartTitle}>
+            <h2 className={CheckoutClasses.p}>Delivery Method</h2>
+        </div> 
+        <div className={`${classes.containerHeading} ${classes.deliveryText}`}>
+          <b className={classes.b}>STANDARD Delivery: Free</b>
+          <p className={classes.b}>{`Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
+          ${new Date(Date.now() + 464400000).getDate()}
+          ${new Date(Date.now() + 464400000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} and ${new Date(Date.now() + 982800000).toDateString().slice(0, 3)},
+          ${new Date(Date.now() + 982800000).getDate()}
+          ${new Date(Date.now() + 982800000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} `}</p>
+        </div>
+        </div>
         <form className={classes.form} autoComplete="off">
             <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
@@ -523,11 +540,11 @@ const OrderForm = (): JSX.Element => {
                   </div>
 
                   <FormInput type="submit" name="submit" id={classes.submit} required value="Pay now"/>
-                  <p id={classes.paymentSubtext}><span>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</span></p>
+                  <p id={classes.paymentSubtext}>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</p>
                 </div>
-                <CheckoutFooter/>
           </form>
-        );
+        </div>
+      );
 };
 
 export default OrderForm;
