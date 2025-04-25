@@ -1,4 +1,5 @@
 import classes from "./OrderForm.module.css"
+import CheckoutClasses from "../CheckoutCart/CheckoutCart.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
@@ -164,17 +165,9 @@ const OrderForm = (): JSX.Element => {
         }
         }
     const onBlur = (event : React.FocusEvent<HTMLInputElement>) => {
-      switch(event.currentTarget.name)
-      {
-        case "Card number":
-          {
-            if (event.target.classList.length > 1 && event.currentTarget.classList[1] === classes["input-error"])
-              {
-                event.currentTarget.classList.remove(classes["input-error"]);
-              } 
-            break;
-          }
-      }
+      event.currentTarget.classList.add(classes["input-error"]);
+    }
+    const onFocus = (event : React.FocusEvent<HTMLInputElement>) => {
     }
     const StateList: SelectMenuOption[] = [
       {value:'CA', displayValue:'California'},
@@ -485,6 +478,9 @@ const OrderForm = (): JSX.Element => {
       ];
     return (
         <form className={classes.form} autoComplete="off">
+            <div className={CheckoutClasses.CheckoutCartTitle}>
+            <h2 className={CheckoutClasses.p}>Delivery Address</h2>
+        </div>
             <h3 className={classes.heading}>Shipping Address</h3>
             <p className={classes.p}><span>Please enter your shipping details.</span></p>
             <SelectMenu onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
@@ -492,7 +488,7 @@ const OrderForm = (): JSX.Element => {
                   displayValue: country.displayValue,
                   }))} name="country" aria-label="Please select your country" required placeholder="Please select your country" title="Country menu, please select your country"/>
             <div>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} autoFocus={true} required autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} onFocus={onFocus} autoFocus={true} required autoComplete="given-name" />
 
                 <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required autoComplete="family-name"/>
             </div>
