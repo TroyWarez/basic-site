@@ -18,6 +18,7 @@ interface FormInputProps {
   disabled?: boolean | undefined;
   form?: string;
   label?: string | undefined;
+  error_message?: string | undefined;
 }
 const FormInput = (
   {className,
@@ -37,7 +38,8 @@ const FormInput = (
   value, 
   disabled, 
   form,
-  label
+  label,
+  error_message
 }: FormInputProps) : JSX.Element => {
   return (
     <div className={classes.container}>
@@ -61,6 +63,7 @@ const FormInput = (
           disabled={disabled}
           form={form}
         />
+        <p className={classes.error_message}>{error_message}</p>
     </div>
   )
 }

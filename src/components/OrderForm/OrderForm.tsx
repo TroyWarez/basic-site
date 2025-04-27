@@ -507,19 +507,19 @@ const OrderForm = (): JSX.Element => {
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
         <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} autoFocus={true} required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
+                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} autoFocus={true} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" maxLength={95}/>
+                <FormInput type="text" name="address" id="address" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" maxLength={95}/>
                 <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" maxLength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" required={true} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} required={true} onBlur={onBlur} onFocus={onFocus} />
+                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
             </div>
 
               <div hidden={true}>
-                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} required={true} onBlur={onBlur} onFocus={onFocus} />
+                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
               </div>
 
                 <SelectMenu options={StateList.map((state) => ({
@@ -532,7 +532,7 @@ const OrderForm = (): JSX.Element => {
                   displayValue: province.displayValue,
                   }))} name="canadianProvincesSelect" aria-label="Please select your province" required={true} title="Province menu, please select your province"/>
                 </div>
-                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Save this address for my next purchase." required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
 
                 <div>
@@ -543,11 +543,11 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" required={true} onBlur={onBlur} onFocus={onFocus} label="Email" title="Email" maxLength={62}/>
+                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required={true} onBlur={onBlur} onFocus={onFocus} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
-                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>

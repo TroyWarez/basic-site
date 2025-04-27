@@ -30,7 +30,6 @@
   align-items: center;
   background-color: var(--main-bg-accentColorAlt);
   margin-top: 2rem;
-  margin-left: 2rem;
 }
 .containerHeading {
   display: flex;
@@ -48,19 +47,16 @@
   margin-top: 2rem;
   margin-left: 2rem;
   padding-bottom: 1rem;
-  width: 40rem;
+  width: 45rem;
   height: min-content;
 }
-.delivery {
-  height: 12%!important;
-}
 .deliveryText {
-  height: 10%!important;
   align-items: baseline!important;
+  margin-top: 1rem!important;
+  margin-left: 1rem!important;
 }
 .b {
   margin-top: 0.5rem!important;
-  margin-left: 1rem!important;
 }
 .p {
   font-family: "Roboto", sans-serif;
@@ -81,29 +77,17 @@
   border: 1px solid var(--main-bg-accentColor)!important;
 }
 .radioLabel {
-  margin-top: 1rem;;
+  margin-top: 1rem;
   margin-left: 1rem;
   background-color: #6ebe49!important;
-}
-.inputfirstlast {
-  background-color: var(--main-bg-accentColorAlt);
-  color: var(--main-bg-textColor);
-  width: 17rem!important;
-  height: 2em!important;
-  margin-left: 1rem!important;
-  padding-left: 1rem!important;
-  display: inline-flex!important;
-  justify-content: space-around!important;
-  outline: none;
 }
 .inputSplitContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin-top: 1rem;
-}
-.inputSplitContainer label {
-  margin-left: 3%;
+  justify-content: center!important;
+  width: 97%!important;
 }
 #securitycode {
   width: 7em;
