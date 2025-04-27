@@ -66,9 +66,13 @@ const OrderForm = (): JSX.Element => {
         }
         return sum % 10 === 0;
       }
-    const onInputHandler = (event : React.ChangeEvent<HTMLInputElement>) => {
+    const onInput = (event : React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value !== "")
           {
+            if  (event.currentTarget.parentElement){
+              (event.currentTarget.parentElement.children[2] as HTMLInputElement).style.visibility = 'hidden';
+              event.currentTarget.style.border = "solid 1px #6ebe49";
+              }
             switch(event.target.inputMode) {
               case "numeric":
                   {
@@ -168,10 +172,16 @@ const OrderForm = (): JSX.Element => {
         }
     const onBlur = (event : React.FocusEvent<HTMLInputElement>) => {
       if (event.target.value === "") {
+        if  (event.currentTarget.parentElement){
+        (event.currentTarget.parentElement.children[2] as HTMLInputElement).style.visibility = 'visible';
         event.currentTarget.style.border = "solid 1px red";
+        }
       }
       else {
         event.currentTarget.style.border = "1px solid var(--main-bg-accentColor)";
+        if  (event.currentTarget.parentElement){
+          (event.currentTarget.parentElement.children[2] as HTMLInputElement).style.visibility = 'hidden';
+          }
       }
     }
     const onFocus = (event : React.FocusEvent<HTMLInputElement>) => {
@@ -508,19 +518,19 @@ const OrderForm = (): JSX.Element => {
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
         <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} autoFocus={true} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
+                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} onInput={onInput} autoFocus={true} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" message="Start typing a street address or postcode" maxLength={95}/>
-                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" required={false} maxLength={95}/>
+                <FormInput type="text" name="address" id="address" error_message='This is a mandatory field' required={true} onInput={onInput} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" message="Start typing a street address or postcode" maxLength={95}/>
+                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" required={false} onInput={onInput} maxLength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' required={true} onInput={onInput} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
+                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} onInput={onInput} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
             </div>
 
               <div hidden={true}>
-                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
+                <FormInput onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} />
               </div>
 
                 <SelectMenu options={StateList.map((state) => ({
@@ -544,9 +554,9 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Email" title="Email" maxLength={62}/>
+                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
@@ -562,10 +572,10 @@ const OrderForm = (): JSX.Element => {
           </div>
           <form id={classes.paymentContainer}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
+                  <FormInput onInput={onInput} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
                   </div>
                   <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>

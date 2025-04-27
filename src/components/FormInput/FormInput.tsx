@@ -65,7 +65,7 @@ const FormInput = (
           disabled={disabled}
           form={form}
         />
-        <p hidden={(error_message && (!message)) ? (false) : (true)} className={classes.error_message}><span className={classes.span}>⚠ </span>{error_message}</p>
+        <p className={classes.error_message}><span className={classes.span}>⚠ </span>{error_message}</p>
         <p hidden={(message) ? (false) : (true)} className={` ${classes.error_message} ${classes.message}`}>{message}</p>
     </div>
   )

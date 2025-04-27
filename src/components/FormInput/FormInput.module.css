@@ -4,10 +4,10 @@
     justify-content: center;
     align-items: start;
     width: 100%;
+    height: min-content;
 }
 .label {
     margin: 0;
-    padding-top: 3%;
     margin-left: 0.75rem;
 }
 .input {
@@ -23,20 +23,10 @@
     border: 1px solid var(--main-bg-accentColor);
     margin-left: 0.75rem;
 }
-.input:hover {
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
 .input:disabled {
   background-color: grey;
   color: #ff0000;
   box-shadow: none;
-}
-.input:active {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-}
-.input:disabled {
-  border: 2px solid #ff0000;
-  outline-offset: 0;
 }
 .input-error {
     border: 1px solid #eb1919;
@@ -44,7 +34,7 @@
 .error_message {
   color: #eb1919;
   margin-left: 0.75rem;
-  margin-top: 0.5rem;
+  visibility: hidden;
 }
 .message {
   color: #a5a5a5!important;
