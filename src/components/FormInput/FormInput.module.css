@@ -23,10 +23,6 @@
     border: 1px solid var(--main-bg-accentColor);
     margin-left: 0.75rem;
 }
-.input:focus {
-    outline-offset: 0;
-    border: 1px solid #6ebe49;
-  }
 .input:hover {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -45,12 +41,14 @@
 .input-error {
     border: 1px solid #eb1919;
   }
-.input-error:focus {
-    border: 1px solid #eb1919;
-    outline-offset: 0;
-}
 .error_message {
   color: #eb1919;
-  margin-left: 1rem;
+  margin-left: 0.75rem;
   margin-top: 0.5rem;
+}
+.message {
+  color: #a5a5a5!important;
+}
+.span {
+  user-select: none;
 }

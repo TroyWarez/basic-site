@@ -510,8 +510,8 @@ const OrderForm = (): JSX.Element => {
                 <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} autoFocus={true} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
                 <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" maxLength={95}/>
-                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" maxLength={95}/>
+                <FormInput type="text" name="address" id="address" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" message="Start typing a street address or postcode" maxLength={95}/>
+                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" required={false} maxLength={95}/>
             <div className={classes.inputSplitContainer}>
                 <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' required={true} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
 

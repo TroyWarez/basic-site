@@ -12,13 +12,14 @@ interface FormInputProps {
   id?: string | undefined;
   maxLength?: number | undefined;
   autoFocus?: boolean | undefined;
-  required?: boolean | undefined;
+  required: boolean | undefined;
   autoComplete?: string | undefined;
   value?: string | undefined;
   disabled?: boolean | undefined;
   form?: string;
   label?: string | undefined;
   error_message?: string | undefined;
+  message?: string | undefined;
 }
 const FormInput = (
   {className,
@@ -39,11 +40,12 @@ const FormInput = (
   disabled, 
   form,
   label,
-  error_message
+  error_message,
+  message,
 }: FormInputProps) : JSX.Element => {
   return (
     <div className={classes.container}>
-      <label className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}</label>
+      <label className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
         <input
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onInput={onInput}
@@ -63,7 +65,8 @@ const FormInput = (
           disabled={disabled}
           form={form}
         />
-        <p className={classes.error_message}>{error_message}</p>
+        <p hidden={(error_message && (!message)) ? (false) : (true)} className={classes.error_message}><span className={classes.span}>⚠ </span>{error_message}</p>
+        <p hidden={(message) ? (false) : (true)} className={` ${classes.error_message} ${classes.message}`}>{message}</p>
     </div>
   )
 }
