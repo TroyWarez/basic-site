@@ -53,7 +53,7 @@ const GuestLogin = ()  : JSX.Element => {
                 <input className={classes.formInputRadio} type="checkbox" required={false} id={`promo_emails ${classes.formInputButton}`}/>
                 <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>I would like to receive communications about store news, offers, products, and promotions.</label>
                 </div>
-                <FormInput className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" />
+                <FormInput required={true} className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" />
             </form>
         </div>
     </div>

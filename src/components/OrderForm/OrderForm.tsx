@@ -1,5 +1,6 @@
 import classes from "./OrderForm.module.css"
 import CheckoutClasses from "../CheckoutCart/CheckoutCart.module.css"
+import Cartclasses from "../ShoppingCart/ShoppingCart.module.css"
 import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
@@ -552,7 +553,7 @@ const OrderForm = (): JSX.Element => {
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
-                <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} value="Continue to payment"/>
+                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} value="Continue to payment"/>
             </div>
           </form>
           <div className={`${classes.form} ${classes.payment}`}>
@@ -561,13 +562,12 @@ const OrderForm = (): JSX.Element => {
           </div>
           <form id={classes.paymentContainer}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required placeholder="Card Number" maxLength={19} />
+                  <FormInput onInput={onInputHandler} onBlur={onBlur} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required placeholder="Security Code" maxLength={5}/>
+                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInputHandler} inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
                   </div>
-                  <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} required value="Pay now"/>
-                  <p id={classes.paymentSubtext}>By continuing, you agree to the store’s Terms of Service and acknowledge the Privacy Policy.</p>
+                  <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>
           </div> 
         </div>
