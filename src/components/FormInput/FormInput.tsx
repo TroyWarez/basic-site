@@ -17,6 +17,7 @@ interface FormInputProps {
   value?: string | undefined;
   disabled?: boolean | undefined;
   form?: string;
+  label?: string | undefined;
 }
 const FormInput = (
   {className,
@@ -35,28 +36,32 @@ const FormInput = (
   autoComplete, 
   value, 
   disabled, 
-  form  }: FormInputProps) : JSX.Element => {
+  form,
+  label
+}: FormInputProps) : JSX.Element => {
   return (
-    <input
-    className={(!className) ? classes.input : `${className} ${classes.input}`}
-    onInput={onInput}
-    onBlur={onBlur}
-    onFocus={onFocus}
-    title={title}
-    placeholder={placeholder}
-    inputMode={inputMode}
-    type={type}
-    name={name}
-    id={id}
-    maxLength={maxLength}
-    autoFocus={autoFocus}
-    required={required}
-    autoComplete={autoComplete}
-    value={value}
-    disabled={disabled}
-    form={form}
-    >
-    </input>
+    <div className={classes.container}>
+      <label className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}</label>
+        <input
+          className={(!className) ? classes.input : `${className} ${classes.input}`}
+          onInput={onInput}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          title={title}
+          placeholder={placeholder}
+          inputMode={inputMode}
+          type={type}
+          name={name}
+          id={id}
+          maxLength={maxLength}
+          autoFocus={autoFocus}
+          required={required}
+          autoComplete={autoComplete}
+          value={value}
+          disabled={disabled}
+          form={form}
+        />
+    </div>
   )
 }
 

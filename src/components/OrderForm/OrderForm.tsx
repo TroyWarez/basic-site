@@ -166,9 +166,15 @@ const OrderForm = (): JSX.Element => {
         }
         }
     const onBlur = (event : React.FocusEvent<HTMLInputElement>) => {
-      event.currentTarget.classList.add(classes["input-error"]);
+      if (event.target.value === "") {
+        event.currentTarget.style.border = "solid 1px red";
+      }
+      else {
+        event.currentTarget.style.border = "1px solid var(--main-bg-accentColor)";
+      }
     }
     const onFocus = (event : React.FocusEvent<HTMLInputElement>) => {
+        event.currentTarget.style.border = "solid 1px #6ebe49";
     }
     const StateList: SelectMenuOption[] = [
       {value:'CA', displayValue:'California'},
@@ -500,54 +506,53 @@ const OrderForm = (): JSX.Element => {
             <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
-            <div>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" placeholder="First Name" maxLength={50} onFocus={onFocus} autoFocus={true} required autoComplete="given-name" />
+        <div className={classes.inputSplitContainer}>
+                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} autoFocus={true} required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} required={true} onBlur={onBlur} onFocus={onFocus} autoComplete="family-name"/>
+        </div>
+                <FormInput type="text" name="address" id="address" required={true} onBlur={onBlur} onFocus={onFocus} label="Address" title="Address" maxLength={95}/>
+                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" title="Additional Information (Optional)" maxLength={95}/>
+            <div className={classes.inputSplitContainer}>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" required={true} onBlur={onBlur} onFocus={onFocus} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" placeholder="Last Name" maxLength={50} required autoComplete="family-name"/>
-            </div>
-                <FormInput type="text" name="address" id="address" required placeholder="Address" maxLength={95}/>
-                <FormInput type="text" name="additional-information" id="Additional-Information" placeholder="Additional Information (Optional)" maxLength={95}/>
-            <div>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" required placeholder="City" maxLength={35}/>
-
-                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="Postal Code" maxLength={12} required={true} />
+                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} required={true} onBlur={onBlur} onFocus={onFocus} />
             </div>
 
               <div hidden={true}>
-                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" title="ZIP Code" name="ZIP Code" id="zipCode" placeholder="" maxLength={12} required={true} />
+                <FormInput onInput={onInputHandler} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} required={true} onBlur={onBlur} onFocus={onFocus} />
               </div>
 
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
                   displayValue: state.displayValue,
-                  }))} name="stateSelect" aria-label="Please select your state" required hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
+                  }))} name="stateSelect" aria-label="Please select your state" required={true} hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
                 <div>
                 <SelectMenu options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
-                  }))} name="canadianProvincesSelect" aria-label="Please select your province" required title="Province menu, please select your province"/>
+                  }))} name="canadianProvincesSelect" aria-label="Please select your province" required={true} title="Province menu, please select your province"/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
-                <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
+                  <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
 
                 <div>
                 <SelectMenu className={classes.inputfirstlast} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
                   value: country.value,
                   displayValue: country.displayValue,
-                  }))} name="country" aria-label="Please select your country" required value={'Canada'} title="Country menu, please select your country"/>
+                  }))} name="country" aria-label="Please select your country" required={true} value={'Canada'} title="Country menu, please select your country"/>
                 </div>
                   <div>
-                <div>
-                <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" required placeholder="Email" maxLength={62}/>
+                <div className={classes.inputSplitContainer}>
+                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" required={true} onBlur={onBlur} onFocus={onFocus} label="Email" title="Email" maxLength={62}/>
 
-                <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required placeholder="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInputHandler} inputMode="tel" type="tel" name="Phone" id="Phone" required={true} onBlur={onBlur} onFocus={onFocus} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
-                <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
+                  <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
-                <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required value="Continue to payment"/>
+                <FormInput type="submit" name="submit" className={`${GuestLoginClasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} value="Continue to payment"/>
             </div>
           </form>
           <div className={`${classes.form} ${classes.payment}`}>

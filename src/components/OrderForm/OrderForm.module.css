@@ -88,14 +88,23 @@
 .inputfirstlast {
   background-color: var(--main-bg-accentColorAlt);
   color: var(--main-bg-textColor);
-  width: 42.25%!important;
+  width: 17rem!important;
   height: 2em!important;
-  margin-left: 3%!important;
-  padding-left: 2%!important;
+  margin-left: 1rem!important;
+  padding-left: 1rem!important;
   display: inline-flex!important;
+  justify-content: space-around!important;
   outline: none;
 }
-
+.inputSplitContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 1rem;
+}
+.inputSplitContainer label {
+  margin-left: 3%;
+}
 #securitycode {
   width: 7em;
   display: block;
