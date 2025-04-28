@@ -7,7 +7,6 @@
     height: min-content;
 }
 .label {
-    margin: 0;
     margin-left: 0.75rem;
 }
 .input {
@@ -24,21 +23,33 @@
     margin-left: 0.75rem;
 }
 .input:disabled {
-  background-color: grey;
   color: #ff0000;
   box-shadow: none;
 }
 .input-error {
-    border: 1px solid #eb1919;
-  }
-.error_message {
-  color: #eb1919;
-  margin-left: 0.75rem;
-  visibility: hidden;
+  border: 1px solid #eb1919;
 }
 .message {
   color: #a5a5a5!important;
+  visibility: visible!important;
+  padding-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.error_message {
+  color: #eb1919!important;
+  margin-left: 1rem;
+}
+.invisible {
+  visibility: hidden!important;
+}
+.displayNone {
+  display: none!important;
 }
 .span {
   user-select: none;
+}
+.spanError {
+  user-select: none;
+  color: #eb1919!important;
 }
