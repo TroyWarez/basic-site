@@ -21,7 +21,7 @@
        padding-bottom: 0.70rem;
        flex-direction: row;
        justify-content: space-between;
-       width: 15rem;
+       width: 9rem;
 }
 .CheckoutCartInfoContainer {
        display: flex;
@@ -108,7 +108,7 @@
        background-color: transparent!important;
        border: 1px solid var(--main-bg-accentColor);
        margin: 1rem;
-       min-width: 85%!important;
+       min-width: 80%!important;
        margin-left: 1rem!important;
        margin-right: 1rem!important;
        padding-top: 0.5rem!important;

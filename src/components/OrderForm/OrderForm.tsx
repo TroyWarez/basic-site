@@ -547,7 +547,17 @@ const OrderForm = (): JSX.Element => {
           ${new Date(Date.now() + 982800000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} `}</p>
         </div>
         </div>
-        <form className={classes.form} autoComplete="off">
+        <form className={classes.form} autoComplete="off" onSubmit={
+          (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            if (form.checkValidity()) {
+              console.log("Form is valid and ready for submission.");
+            } else {
+              console.log("Form is invalid. Please check the fields.");
+            }
+          }
+        }>
             <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
@@ -563,9 +573,7 @@ const OrderForm = (): JSX.Element => {
                 <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} onInput={onInput} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
             </div>
 
-              <div hidden={true}>
-                <FormInput onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
-              </div>
+                <FormInput hidden={true} onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
 
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
@@ -584,20 +592,20 @@ const OrderForm = (): JSX.Element => {
                 <SelectMenu className={classes.inputfirstlast} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
                   value: country.value,
                   displayValue: country.displayValue,
-                  }))} name="country" aria-label="Please select your country" required={true} value={'Canada'} title="Country menu, please select your country"/>
+                  }))} name="country" aria-label="Please select your country" disabled={true} required={true} value={'Canada'} title="Country menu, please select your country"/>
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
                   <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='' required={true}label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' message='We need your phone number to assist delivery' placeholder='506 555 5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='' placeholder='506 555 5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
-                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} value="Continue to payment"/>
+                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' value="Continue to payment"/>
             </div>
           </form>
           <div className={`${classes.form} ${classes.payment}`}>
@@ -606,12 +614,12 @@ const OrderForm = (): JSX.Element => {
           </div>
           <form id={classes.paymentContainer}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" required={true} placeholder="Card Number" maxLength={19} />
+                  <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
                   </div>
-                  <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
+                  <FormInput type="submit" name="submit" error_message='' message='' validation_message='' className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>
           </div> 
         </div>

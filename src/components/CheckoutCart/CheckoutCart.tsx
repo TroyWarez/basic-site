@@ -5,9 +5,8 @@ import { Link } from "react-router-dom";
 import storeApiService from "../../services/storeApiService";
 interface CartProps {
   className?: string;
-  SignInPagePath: string;
 }
-const CheckoutCart = ({ className, SignInPagePath }: CartProps) : JSX.Element => {
+const CheckoutCart = ({ className}: CartProps) : JSX.Element => {
   const cartItems = storeApiService.getCartDatalocal();
   let cartTotal = 0;
   let cartItemAmount = 0;

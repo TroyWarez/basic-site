@@ -19,12 +19,14 @@ interface FormInputProps {
   disabled?: boolean | undefined;
   form?: string;
   label?: string;
+  hidden?: boolean;
   message: string;
   error_message: string;
   validation_message: string;
 }
 const FormInput = (
-  {className,
+  {
+  className,
   onInput, 
   onBlur,
   onFocus, 
@@ -41,6 +43,7 @@ const FormInput = (
   value, 
   disabled, 
   form,
+  hidden,
   label,
   message,
   error_message,
@@ -51,9 +54,9 @@ const FormInput = (
   const [classStr, setClassString] = useState<string>((message !== '' && error_message !== '') ? classes.message : `${classes.error_message} ${classes.invisible}`);
   const [classSpanStr, setClassSpanStr] = useState<string>((message !== '' && error_message !== '') ? `${classes.spanError} ${classes.displayNone}` : `${classes.spanError} ${classes.displayNone}`);
   return (
-    <div className={classes.container}>
-      <label className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
-        <input
+    <div hidden={hidden} className={classes.container}>
+      <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
+        <input hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onInput={(e) => {
             if(onInput) {
@@ -118,13 +121,13 @@ const FormInput = (
           id={id}
           maxLength={maxLength}
           autoFocus={autoFocus}
-          required={required}
+          required={ (hidden) ? false : required }
           autoComplete={autoComplete}
           value={value}
           disabled={disabled}
           form={form}
         />
-        <p hidden={(!message && !error_message)} className={classStr}><span className={ classSpanStr }>⚠ </span>{messageValue}</p>
+        <p hidden={(!message && !error_message) || hidden} className={classStr}><span className={ classSpanStr }>⚠ </span>{messageValue}</p>
     </div>
   )
 }

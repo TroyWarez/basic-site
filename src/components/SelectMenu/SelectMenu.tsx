@@ -13,10 +13,11 @@ interface SelectMenuProps {
   hidden?: boolean;
   'aria-label'?: string;
   title? : string;
+  disabled?: boolean;
 }
-const SelectMenu = ({className, options, onChange, value, name, placeholder, required, 'aria-label':ariaLabel, title, hidden}: SelectMenuProps) : JSX.Element => {
+const SelectMenu = ({className, options, onChange, value, name, placeholder, required, 'aria-label':ariaLabel, title, hidden, disabled}: SelectMenuProps) : JSX.Element => {
   return (
-    <select className={`${FormInputclasses.input} ${selectClasses.select} ${(className) ? className : ''}`} value={value} onChange={onChange} name={name} aria-label={ariaLabel} required={required} title={title} hidden={hidden}>
+    <select className={`${FormInputclasses.input} ${selectClasses.select} ${(className) ? className : ''}`} value={value} disabled={disabled} onChange={onChange} name={name} aria-label={ariaLabel} required={required} title={title} hidden={hidden}>
     {placeholder && <SelectMenuItem>{placeholder}</SelectMenuItem>}
     {options.map((option) => (
         <SelectMenuItem key={option.value} value={option.value}>

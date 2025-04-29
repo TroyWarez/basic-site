@@ -23,7 +23,6 @@
     margin-left: 0.75rem;
 }
 .input:disabled {
-  color: #ff0000;
   box-shadow: none;
 }
 .input-error {
