@@ -21,6 +21,7 @@ interface FormInputProps {
   label?: string;
   message: string;
   error_message: string;
+  validation_message: string;
 }
 const FormInput = (
   {className,
@@ -43,6 +44,7 @@ const FormInput = (
   label,
   message,
   error_message,
+  validation_message,
 }: FormInputProps) : JSX.Element => {
 
   const [messageValue, setMessageValue] = useState<string>((message !== '') ? message : error_message);
@@ -57,7 +59,17 @@ const FormInput = (
             if(onInput) {
               onInput(e as React.ChangeEvent<HTMLInputElement>);
             }
-            if ((message !== '' && error_message !== '') && e.currentTarget.value !== '')
+            if ((message !== '' && error_message !== '' && validation_message !== '') && e.currentTarget.value !== '')
+              {
+                if(message !== '')
+                {
+                  setMessageValue(validation_message);
+                }
+                setClassString(classes.message);
+                setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+                e.currentTarget.style.border = '1px solid #6ebe49';
+              }
+            else if ((message !== '' && error_message !== '') && e.currentTarget.value !== '')
             {
               if(message !== '')
               {
@@ -75,7 +87,7 @@ const FormInput = (
             } 
           }}
           onBlur={(e) => {
-            if (e.target.value === '') {
+            if (e.target.value === '' && required && (type !== 'submit')) {
               setMessageValue(error_message);
               setClassString(classes.error_message);
               setClassSpanStr(classes.spanError);
@@ -90,7 +102,14 @@ const FormInput = (
             onBlur(e);
           }
         }}
-          onFocus={onFocus}
+          onFocus={(e) => {
+            e.currentTarget.style.border = '1px solid #6ebe49';
+            setClassString(`${classes.error_message} ${classes.invisible}`);
+            setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
+            if(onFocus) {
+            onFocus(e)
+            }
+          }}
           title={title}
           placeholder={placeholder}
           inputMode={inputMode}

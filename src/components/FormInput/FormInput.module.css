@@ -38,6 +38,7 @@
 
 .error_message {
   color: #eb1919!important;
+  padding-bottom: 1rem;
   margin-left: 1rem;
 }
 .invisible {

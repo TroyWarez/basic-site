@@ -41,8 +41,8 @@ const CheckoutCart = ({ className, SignInPagePath }: CartProps) : JSX.Element =>
                       <div className={classes.CheckoutCartInfoItemContainer}>
                       <p className={classes.pItemPrice}>Price:</p>
                     <div className={classes.CheckoutCartInfoItemPrice}>
-                      <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}` }</p>
-                      <s className={classes.pItemPriceRed}><p>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}` }</p></s>
+                      <p className={classes.pItemPrice}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}` }</p>
+                      <s hidden={(cartItem.displayCurrencyValue === 0) ? true : false} className={classes.pItemPriceRed}><p>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}` }</p></s>
                     </div>
                   </div>
                 </div>

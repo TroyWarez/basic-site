@@ -166,6 +166,61 @@ const OrderForm = (): JSX.Element => {
           }
         }
         }
+        const isValid = (event : React.ChangeEvent<HTMLInputElement>) => {
+          switch(event.target.name) {
+            case "Postal Code": 
+            {
+              event.target.value.toUpperCase();
+              if(event.target.value !== '')
+                {
+                  event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+                  if (event.target.value.length > 3 && event.target.value[3] !== ' ')
+                  {
+                    event.target.value = `${event.target.value.slice(0, 3)} ${event.target.value.slice(3, event.target.value.length)}`;
+                  }
+                }
+              break;
+            }
+          case "Card number":
+              {
+                if(!luhnCheck(event.target.value) && event.target.value.length === 16)
+                {
+                  event.target.classList.add(classes["input-error"]);
+                }
+                else if (event.target.classList.length > 0)
+                {
+                  event.target.classList.remove(classes["input-error"]);
+                }
+                
+                if( event.target.value.length > 4 && event.target.value[4] !== ' ') 
+                {
+                  event.target.value = `${event.target.value.slice(0, 4)} ${event.target.value.slice(4, event.target.value.length)}`;
+                }
+                if( event.target.value.length > 9 && event.target.value[9] !== ' ') 
+                  {
+                    event.target.value = `${event.target.value.slice(0, 9)} ${event.target.value.slice(9, event.target.value.length)}`;
+                  }
+                if( event.target.value.length > 14 && event.target.value[14] !== ' ') 
+                {
+                  event.target.value = `${event.target.value.slice(0, 14)} ${event.target.value.slice(14, event.target.value.length)}`;
+                }
+                break;
+              }
+            case "Expiration date (MM / YY)": 
+              {
+                event.target.value.toUpperCase();
+                if(event.target.value !== '')
+                  {
+                    event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+                    if (event.target.value.length > 3 && event.target.value[3] !== ' ')
+                    {
+                      event.target.value = `${event.target.value.slice(0, 2)}/${event.target.value.slice(2, event.target.value.length)}`;
+                    }
+                  }
+                break;
+              }
+        }
+        }
     const StateList: SelectMenuOption[] = [
       {value:'CA', displayValue:'California'},
       {value:'TX', displayValue:'Texas'},
@@ -497,19 +552,19 @@ const OrderForm = (): JSX.Element => {
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
         <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} onInput={onInput} autoFocus={true} error_message='This is a mandatory field' message='' required={true} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' required={true} autoComplete="family-name"/>
+                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} onInput={onInput} autoFocus={true} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' required={true} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' required={true} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address or postcode' maxLength={95}/>
-                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' title="Additional Information (Optional)" required={false} onInput={onInput} maxLength={95}/>
+                <FormInput type="text" name="address" id="address" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address or postcode' validation_message='This is too short, minimum 5 allowed' maxLength={95}/>
+                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} maxLength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' validation_message='' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} onInput={onInput} error_message='This is a mandatory field' message=''  required={true}/>
+                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} onInput={onInput} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
             </div>
 
               <div hidden={true}>
-                <FormInput onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' message=''  required={true}/>
+                <FormInput onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
               </div>
 
                 <SelectMenu options={StateList.map((state) => ({
@@ -533,9 +588,9 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' message='' required={true}label="Email" title="Email" maxLength={62}/>
+                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='' required={true}label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' message='' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' message='We need your phone number to assist delivery' placeholder='506 555 5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
