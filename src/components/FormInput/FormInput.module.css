@@ -22,23 +22,26 @@
     border: 1px solid var(--main-bg-accentColor);
     margin-left: 0.75rem;
 }
-.input:disabled {
-  box-shadow: none;
+.input + span {
+  position: relative;
 }
-.input-error {
-  border: 1px solid #eb1919;
+.input span::before {
+  display: none;
+}
+.input:focus {
+  border: 1px solid #2f733c;
 }
 .message {
   color: #a5a5a5!important;
   visibility: visible!important;
-  padding-bottom: 1rem;
   margin-left: 1rem;
+  padding-bottom: 0.5rem;
 }
 
 .error_message {
   color: #eb1919!important;
-  padding-bottom: 1rem;
   margin-left: 1rem;
+  padding-bottom: 0.5rem;
 }
 .invisible {
   visibility: hidden!important;

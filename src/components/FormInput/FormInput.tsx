@@ -1,28 +1,14 @@
 import classes from '../FormInput/FormInput.module.css'
 import { useState } from 'react';
-interface FormInputProps {
-  className?: string | undefined;
-  onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void | undefined;
-  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void | undefined;
-  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void | undefined;
-  title?: string | undefined;
-  placeholder?: string | undefined;
-  inputMode?: "none" | "text" | "tel" | "url" | "email" | "numeric" | "decimal" | "search" | undefined;
-  type?: string | undefined;
-  name?: string | undefined;
-  id?: string | undefined;
-  maxLength?: number | undefined;
-  autoFocus?: boolean | undefined;
-  required: boolean | undefined;
-  autoComplete?: string | undefined;
-  value?: string | undefined;
-  disabled?: boolean | undefined;
-  form?: string;
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  minlength?: number;
+  maxlength?: number;
   label?: string;
-  hidden?: boolean;
+  pattern?: string;
   message: string;
   error_message: string;
   validation_message: string;
+  tooShort_message: string;
 }
 const FormInput = (
   {
@@ -35,8 +21,9 @@ const FormInput = (
   inputMode, 
   type, 
   name, 
-  id, 
-  maxLength, 
+  id,
+  minlength,
+  maxlength, 
   autoFocus, 
   required, 
   autoComplete, 
@@ -45,9 +32,12 @@ const FormInput = (
   form,
   hidden,
   label,
+  pattern,
   message,
   error_message,
   validation_message,
+  tooShort_message,
+  ...FormInput
 }: FormInputProps) : JSX.Element => {
 
   const [messageValue, setMessageValue] = useState<string>((message !== '') ? message : error_message);
@@ -56,61 +46,65 @@ const FormInput = (
   return (
     <div hidden={hidden} className={classes.container}>
       <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
-        <input hidden={hidden}
-          className={(!className) ? classes.input : `${className} ${classes.input}`}
-          onInput={(e) => {
-            if(onInput) {
-              onInput(e as React.ChangeEvent<HTMLInputElement>);
-            }
-            if ((message !== '' && error_message !== '' && validation_message !== '') && e.currentTarget.value !== '')
-              {
-                if(message !== '')
-                {
-                  setMessageValue(validation_message);
-                }
-                setClassString(classes.message);
-                setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
-                e.currentTarget.style.border = '1px solid #6ebe49';
-              }
-            else if ((message !== '' && error_message !== '') && e.currentTarget.value !== '')
-            {
-              if(message !== '')
-              {
-                setMessageValue(message);
-              }
-              setClassString(classes.message);
-              setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
-              e.currentTarget.style.border = '1px solid #6ebe49';
-            }
-            else if (e.currentTarget.value !== '')
-            {
-              e.currentTarget.style.border = '1px solid #6ebe49';
-              setClassString(`${classes.error_message} ${classes.invisible}`);
-              setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
-            } 
-          }}
-          onBlur={(e) => {
-            if (e.target.value === '' && required && (type !== 'submit')) {
-              setMessageValue(error_message);
-              setClassString(classes.error_message);
-              setClassSpanStr(classes.spanError);
-              e.currentTarget.style.border = '1px solid #eb1919';
-          }
-          else
-          {
-            setMessageValue(message);
-            e.currentTarget.style.border = '1px solid var(--main-bg-accentColor)';
-          }
-          if(onBlur) {
-            onBlur(e);
-          }
+        <input 
+
+        pattern={(pattern) ? pattern : undefined}
+        minLength={(minlength) ? minlength : 0}
+        maxLength={(maxlength) ? maxlength : 10}
+        onInvalid={(e) => {
+          e.preventDefault();
         }}
-          onFocus={(e) => {
-            e.currentTarget.style.border = '1px solid #6ebe49';
+        onBlur={(e) => {
+          if (e.target.value === '') {
+            e.target.style.borderColor = '#eb1919';
+            setMessageValue(error_message);
+            setClassString(`${classes.error_message}`);
+            setClassSpanStr(`${classes.spanError}`);
+          }
+          else if (e.target.validity.patternMismatch) {
+            e.target.style.borderColor = '#eb1919';
+            setMessageValue(validation_message);
+            setClassString(`${classes.error_message}`);
+            setClassSpanStr(`${classes.spanError}`);
+          } else if (e.target.validity.tooShort) {
+            e.target.style.borderColor = '#eb1919';
+            setMessageValue(tooShort_message);
+            setClassString(`${classes.error_message}`);
+            setClassSpanStr(`${classes.spanError}`);
+
+          } else if (e.target.validity.valid) {
+            if(message !== '') {
+            setMessageValue(message);
+            setClassString(`${classes.message}`);
+            setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+            }
+            else {
             setClassString(`${classes.error_message} ${classes.invisible}`);
             setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
+            }
+            e.target.style.borderColor = 'var(--main-bg-accentColor)';
+          }
+
+          if(onBlur) {
+            onBlur(e)
+          }
+        }}
+        hidden={hidden}
+          className={(!className) ? classes.input : `${className} ${classes.input}`}
+          onFocus={(e) => {
+            e.target.style.borderColor = '#2f733c';
+            setMessageValue(message);
+            setClassString(classes.message);
+            setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
             if(onFocus) {
-            onFocus(e)
+              onFocus(e)
+            }
+          }}
+          onInput={(e) => {
+            setMessageValue(message);
+            setClassString(classes.message);
+            if(onInput) {
+              onInput(e)
             }
           }}
           title={title}
@@ -119,15 +113,15 @@ const FormInput = (
           type={type}
           name={name}
           id={id}
-          maxLength={maxLength}
           autoFocus={autoFocus}
           required={ (hidden) ? false : required }
           autoComplete={autoComplete}
           value={value}
           disabled={disabled}
           form={form}
+          {...FormInput}
         />
-        <p hidden={(!message && !error_message) || hidden} className={classStr}><span className={ classSpanStr }>⚠ </span>{messageValue}</p>
+        <p className={classStr}><span className={ classSpanStr }>⚠ </span>{messageValue}</p>
     </div>
   )
 }

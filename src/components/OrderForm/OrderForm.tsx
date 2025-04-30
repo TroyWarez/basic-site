@@ -114,15 +114,27 @@ const OrderForm = (): JSX.Element => {
             switch(event.target.name) {
               case "Postal Code": 
               {
-                event.target.value.toUpperCase();
+                event.target.value = event.target.value.toUpperCase();
+                event.target.value = event.target.value.replace(' ', '');
                 if(event.target.value !== '')
                   {
-                    event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
-                    if (event.target.value.length > 3 && event.target.value[3] !== ' ')
+                    let CurrentChar = event.target.value.slice(-1);
+                    if (event.target.value.length % 2){
+                      CurrentChar = CurrentChar.replace(/([\d0-9:./()\-\s])/g, "");
+                    }
+                    else{
+                      CurrentChar = CurrentChar.replace(/([^a-z0-9:./()\-\s])/g, "");
+                      
+                    }
+                    console.log(CurrentChar);
+                    if (CurrentChar === ''){
+                    event.target.value = `${event.target.value.slice(0, event.target.value.length - 1)}${CurrentChar}`;
+                    }
+                  }
+                  if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                     {
                       event.target.value = `${event.target.value.slice(0, 3)} ${event.target.value.slice(3, event.target.value.length)}`;
                     }
-                  }
                 break;
               }
             case "Card number":
@@ -539,8 +551,8 @@ const OrderForm = (): JSX.Element => {
             <h2 className={CheckoutClasses.p}>Delivery Method</h2>
       </div> 
         <div className={`${classes.containerHeading} ${classes.deliveryText}`}>
-          <b className={classes.b}>STANDARD Delivery: Free</b>
-          <p className={classes.b}>{`Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
+          <b>STANDARD Delivery: Free</b>
+          <p>{`Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
           ${new Date(Date.now() + 464400000).getDate()}
           ${new Date(Date.now() + 464400000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} and ${new Date(Date.now() + 982800000).toDateString().slice(0, 3)},
           ${new Date(Date.now() + 982800000).getDate()}
@@ -562,18 +574,16 @@ const OrderForm = (): JSX.Element => {
             <h2 className={CheckoutClasses.p}>Delivery Address</h2>
         </div>
         <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="name" label="First Name" title="First Name" maxLength={50} onInput={onInput} autoFocus={true} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' required={true} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' required={true} autoComplete="family-name"/>
+                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="name" label="First Name" title="First Name" onInput={onInput} autoFocus={true} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="name" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address or postcode' validation_message='This is too short, minimum 5 allowed' maxLength={95}/>
-                <FormInput type="text" name="additional-information" id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} maxLength={95}/>
+                <FormInput type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxLength={95}/>
+                <FormInput type="text" name="additional-information"  id="Additional-Information" pattern="[A-Za-z0-9'\.\-\s\,]+" label="Additional Information (Optional)" error_message='' message='' title="Additional Information (Optional)" tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' required={false} onInput={onInput} minlength={5} maxLength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' validation_message='' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="Postal Code" title="Postal Code" maxLength={12} onInput={onInput} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
+                <FormInput className={classes.inputfirstlast} inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={7} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
             </div>
-
-                <FormInput hidden={true} onInput={onInput} inputMode="numeric" type="text" name="ZIP Code" id="zipCode" label="ZIP Code" title="ZIP Code" maxLength={12} error_message='This is a mandatory field' message='' validation_message=''  required={true}/>
 
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
@@ -596,16 +606,16 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='' required={true}label="Email" title="Email" maxLength={62}/>
+                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='' placeholder='506 555 5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
-                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' value="Continue to payment"/>
+                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Continue to payment"/>
             </div>
           </form>
           <div className={`${classes.form} ${classes.payment}`}>
@@ -614,12 +624,12 @@ const OrderForm = (): JSX.Element => {
           </div>
           <form id={classes.paymentContainer}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' required={true} placeholder="Card Number" maxLength={19} />
+                  <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
                   </div>
-                  <FormInput type="submit" name="submit" error_message='' message='' validation_message='' className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
+                  <FormInput type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>
           </div> 
         </div>

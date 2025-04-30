@@ -110,7 +110,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }}}
     />
       <label htmlFor={ids.CouponCodeInput} className={`${classes.CouponCodeLabel} ${couponInputClass}`}>Promo Code</label>
-        <FormInput className={classes.CouponInput} id={ids.CouponButtonApply} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required/>
+        <FormInput className={classes.CouponInput} id={ids.CouponButtonApply} form={ids.CouponForm} disabled={isDisabled} type="submit" name="couponButton" value="Apply" required={true}/>
     </div>
       <p id={(couponValid) ? ids.CouponInputGreenText : ids.CouponInputError } hidden={isHidden}>{couponMessage}</p>
       </div>
