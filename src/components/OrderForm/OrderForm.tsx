@@ -666,11 +666,10 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
-                <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
-                  <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} placeholder="Card Number" maxLength={19} />
+                  <FormInput onInput={onInput}type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} placeholder="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} placeholder="Security Code" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="Security Code" maxLength={5}/>
                   </div>
                   <FormInput type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>
