@@ -37,6 +37,10 @@
     height: auto!important;
     padding: 0.75rem;
 }
+.buttonSignIn:hover {
+    background-color: #377a15!important;
+    transition: 0.3s;
+}
 .buttonColored {
     background-color: black;
     border: 1px solid var(--main-bg-accentColor);

@@ -84,6 +84,8 @@
 }
 .radioLabel {
   margin-top: 1rem;
+  margin-bottom: 1rem;
+
   margin-left: 1rem;
   background-color: #6ebe49!important;
 }
@@ -159,4 +161,7 @@
   font-style: normal;
   font-size: large;
   margin-left: 1rem;
+}
+.countrySelect {
+  width: min-content!important;
 }

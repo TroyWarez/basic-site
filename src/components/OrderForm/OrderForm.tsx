@@ -498,7 +498,7 @@ const OrderForm = (): JSX.Element => {
           {value: "NU", displayValue: 'Nunavut'},
           ];
 
-    const [displayNoneClass, setDisplayNoneClass] = useState('');
+    const [displayNoneClass, setDisplayNoneClass] = useState(classes.displayNone);
     const [Address, setAddress] = useState(Array<Address>());
     return (
       <div>
@@ -560,21 +560,21 @@ const OrderForm = (): JSX.Element => {
                 <SelectMenu options={StateList.map((state) => ({
                   value: state.value,
                   displayValue: state.displayValue,
-                  }))} name="stateSelect" aria-label="Please select your state" required={true} hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
+                  }))} name="stateSelect" aria-label="Please select your state" label="State" required={true} hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
                 <div>
                 <SelectMenu options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
-                  }))} name="provincesSelect" aria-label="Please select your province" required={true} title="Province menu, please select your province"/>
+                  }))} name="provincesSelect" aria-label="Please select your province" label="Province/Territory" required={true} title="Province menu, please select your province"/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Save this address for my next purchase." required={false} id="save_address"/>
-                  <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
+                  <label className={classes.formRadioLabel} htmlFor={`save_address ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
 
                 <div>
-                <SelectMenu className={classes.inputfirstlast} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
+                <SelectMenu className={classes.countrySelect} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
                   value: country.value,
                   displayValue: country.displayValue,
-                  }))} name="country" aria-label="Please select your country" disabled={true} required={true} value={'Canada'} title="Country menu, please select your country"/>
+                  }))} name="country" aria-label="Please select your country" label="Country" disabled={true} required={true} value={'Canada'} title="Country menu, please select your country"/>
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
@@ -610,7 +610,62 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <form id={classes.paymentContainer}  hidden={(displayNoneClass === '') ? true : false}>
+          <form id={classes.paymentContainer}>
+          <form  autoComplete="on" onSubmit={
+          (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const form = event.currentTarget;
+            if (form.checkValidity()) {
+              console.log("Form is valid and ready for submission.");
+              setDisplayNoneClass(`${classes.displayNone}`);
+              setAddress([{ firstName: form.firstname.value, lastName: form.lastname.value,
+                 residentialAddress: form.address.value,
+                  ExtraInfomation: form["additional-information"].value,
+                   cityName: form.City.value, PostalCode: form["Postal Code"].value,
+                    State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
+                    countryName: CountryList[0].displayValue,
+                     email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
+                      promoEmails: form.promo_emails.checked }]);
+            } else {
+              console.log("Form is invalid. Please check the fields.");
+            }
+          }
+        }>
+        <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address same as delivery address" required={false} id="save_address_payment"/>
+        <label className={classes.formRadioLabel} htmlFor={`save_address_payment ${classes.formInputButton}`}>{'Billing address same as delivery address'}</label>
+        <div className={classes.inputSplitContainer}>
+                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
+                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
+        </div>
+                <FormInput type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxLength={95}/>
+                <FormInput type="text" name="additional-information"  id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' tooShort_message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} minlength={5} maxLength={95}/>
+            <div className={classes.inputSplitContainer}>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
+
+                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
+            </div>
+
+              <SelectMenu options={StateList.map((state) => ({
+                  value: state.value,
+                  displayValue: state.displayValue,
+                  }))} name="stateSelect" aria-label="Please select your state" label="State" required={true} hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
+                <div>
+                <SelectMenu options={ProvinceList.map((province) => ({
+                  value: province.value,
+                  displayValue: province.displayValue,
+                  }))} name="provincesSelect" aria-label="Please select your province" label="Province/Territory" required={true} title="Province menu, please select your province"/>
+                </div>
+
+                <div>
+                <SelectMenu className={classes.countrySelect} onChange={onChangeSelectHandler} options={CountryList.map((country) => ({
+                  value: country.value,
+                  displayValue: country.displayValue,
+                  }))} name="country" aria-label="Please select your country" label="Country" disabled={true} required={true} value={'Canada'} title="Country menu, please select your country"/>
+                </div>
+                  <div>
+                <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
+            </div>
+        </form>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
                   <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
