@@ -613,7 +613,7 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <form  autoComplete="on" onSubmit={
+          <form  autoComplete="on" className={`${classes.form} ${displayNoneClass}`} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
