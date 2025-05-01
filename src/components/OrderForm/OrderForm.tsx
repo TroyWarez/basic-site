@@ -500,7 +500,8 @@ const OrderForm = (): JSX.Element => {
           ];
 
     const [displayNoneClass, setDisplayNoneClass] = useState(classes.displayNone);
-    const [Address, setAddress] = useState(Array<Address>());
+    const [Address, setAddress] = useState<Address>();
+    const [BillingAddress, setBillingAddress] = useState<Address>();
     return (
       <div>
       <div className={`${classes.containerHeading} ${displayNoneClass}`}>
@@ -523,7 +524,7 @@ const OrderForm = (): JSX.Element => {
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
               setDisplayNoneClass(`${classes.displayNone}`);
-              setAddress([{ firstName: form.firstname.value, lastName: form.lastname.value,
+              setAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
                  residentialAddress: form.address.value,
                   ExtraInfomation: form["additional-information"].value,
                    cityName: form.City.value, PostalCode: form["Postal Code"].value,
@@ -531,7 +532,7 @@ const OrderForm = (): JSX.Element => {
                     countryName: CountryList[0].displayValue,
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
                       promoEmails: form.promo_emails.checked,
-                      orderedItems: [] }]);
+                      orderedItems: [] });
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -595,13 +596,13 @@ const OrderForm = (): JSX.Element => {
         <div className={classes.bAddress} hidden={(displayNoneClass === '') ? true : false}>
             <b className={classes.b}>Shipping Address</b>
         <br/>
-        <p className={classes.b}>{(Address.length > 0) ? `${Address[0].firstName} ${Address[0].lastName}` : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? Address[0].residentialAddress : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? `${Address[0].cityName}, ${Address[0].PostalCode}` : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? Address[0].State : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? Address[0].countryName : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? Address[0].email : ''}</p>
-        <p className={classes.b}>{(Address.length > 0) ? Address[0].phoneNumber : ''}</p>
+        <p className={classes.b}>{(Address) ? `${Address.firstName} ${Address.lastName}` : ''}</p>
+        <p className={classes.b}>{(Address) ? Address.residentialAddress : ''}</p>
+        <p className={classes.b}>{(Address) ? `${Address.cityName}, ${Address.PostalCode}` : ''}</p>
+        <p className={classes.b}>{(Address) ? Address.State : ''}</p>
+        <p className={classes.b}>{(Address) ? Address.countryName : ''}</p>
+        <p className={classes.b}>{(Address) ? Address.email : ''}</p>
+        <p className={classes.b}>{(Address) ? Address.phoneNumber : ''}</p>
         <br/>
 
         <b className={classes.b}>STANDARD Delivery<br/><b className={classes.b}>Free</b></b>
@@ -619,15 +620,16 @@ const OrderForm = (): JSX.Element => {
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
               setDisplayNoneClass(`${classes.displayNone}`);
-              setAddress([{ firstName: form.firstname.value, lastName: form.lastname.value,
+              setBillingAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
                  residentialAddress: form.address.value,
                   ExtraInfomation: form["additional-information"].value,
                    cityName: form.City.value, PostalCode: form["Postal Code"].value,
                     State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
                     countryName: CountryList[0].displayValue,
-                     email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
-                      promoEmails: form.promo_emails.checked,
-                    orderedItems: [] }]);
+                     email: (Address) ? Address.email : '',
+                     phoneNumber: (Address) ? Address.phoneNumber : '',
+                      promoEmails:  (Address) ? Address.promoEmails : false,
+                    orderedItems: [] });
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -636,14 +638,14 @@ const OrderForm = (): JSX.Element => {
         <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address same as delivery address" required={false} id="save_address_payment" 
         onChange={(e) => {
           const form = (e.currentTarget.parentElement) as HTMLFormElement;
-          if (e.target.checked && Address.length > 0) {
-            form.firstname.value = Address[0].firstName;
-            form.lastname.value = Address[0].lastName;
-            form.address.value = Address[0].residentialAddress;
-            form["additional-information"].value = Address[0].ExtraInfomation;
-            form.City.value = Address[0].cityName;
-            form.provincesSelect.value = Address[0].State;
-            form["Postal Code"].value = Address[0].PostalCode;
+          if (e.target.checked && Address) {
+            form.firstname.value = Address.firstName;
+            form.lastname.value = Address.lastName;
+            form.address.value = Address.residentialAddress;
+            form["additional-information"].value = Address.ExtraInfomation;
+            form.City.value = Address.cityName;
+            form.provincesSelect.value = Address.State;
+            form["Postal Code"].value = Address.PostalCode;
           } else {
             form.firstname.value = '';
             form.lastname.value = '';
@@ -688,6 +690,15 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
+        <div className={classes.bAddress} hidden={(displayNoneClass === '') ? true : false}>
+            <b className={classes.b}>Payment Address</b>
+        <br/>
+        <p className={classes.b}>{(BillingAddress) ? `${BillingAddress.firstName} ${BillingAddress.lastName}` : ''}</p>
+        <p className={classes.b}>{(BillingAddress) ? BillingAddress.residentialAddress : ''}</p>
+        <p className={classes.b}>{(BillingAddress) ? `${BillingAddress.cityName}, ${BillingAddress.PostalCode}` : ''}</p>
+        <p className={classes.b}>{(BillingAddress) ? BillingAddress.State : ''}</p>
+        <p className={classes.b}>{(BillingAddress) ? BillingAddress.countryName : ''}</p>
+        </div>
           <form id={classes.paymentContainer}>
                   <FormInput onInput={onInput}type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
