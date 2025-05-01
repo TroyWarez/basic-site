@@ -131,10 +131,12 @@ const OrderForm = (): JSX.Element => {
                     event.target.value = `${event.target.value.slice(0, event.target.value.length - 1)}${CurrentChar}`;
                     }
                   }
-                  if (event.target.value.length > 3 && event.target.value[3] !== ' ')
-                    {
-                      event.target.value = `${event.target.value.slice(0, 3)} ${event.target.value.slice(3, event.target.value.length)}`;
-                    }
+
+                
+                if (event.target.value.length > 3 && event.target.value[3] !== ' ')
+                  {
+                    event.target.value = `${event.target.value.slice(0, 3)} ${event.target.value.slice(3, event.target.value.length)}`;
+                  }
                 break;
               }
             case "Card number":
@@ -527,7 +529,7 @@ const OrderForm = (): JSX.Element => {
             <div className={classes.inputSplitContainer}>
                 <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
 
-                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={7} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
+                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
             </div>
 
                 <SelectMenu options={StateList.map((state) => ({
