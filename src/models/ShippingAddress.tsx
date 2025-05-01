@@ -1,3 +1,4 @@
+import StoreItem from "./StoreItem";
 export default interface Address {
     firstName: string;
     lastName: string;
@@ -10,4 +11,5 @@ export default interface Address {
     email: string;
     phoneNumber: string;
     promoEmails: boolean;
+    orderedItems: StoreItem[];
 }

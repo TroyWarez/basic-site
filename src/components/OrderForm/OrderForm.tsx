@@ -5,7 +5,8 @@ import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
-import Address from "../../models/Address.tsx";
+import StoreItem from "../../models/StoreItem.tsx";
+import Address from "../../models/ShippingAddress.tsx";
 import { Link } from "react-router-dom";
 import { useState } from "react"
 const OrderForm = (): JSX.Element => {
@@ -529,7 +530,8 @@ const OrderForm = (): JSX.Element => {
                     State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
                     countryName: CountryList[0].displayValue,
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
-                      promoEmails: form.promo_emails.checked }]);
+                      promoEmails: form.promo_emails.checked,
+                      orderedItems: [] }]);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -610,7 +612,6 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <form id={classes.paymentContainer}>
           <form  autoComplete="on" onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
@@ -625,13 +626,34 @@ const OrderForm = (): JSX.Element => {
                     State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
                     countryName: CountryList[0].displayValue,
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
-                      promoEmails: form.promo_emails.checked }]);
+                      promoEmails: form.promo_emails.checked,
+                    orderedItems: [] }]);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
           }
         }>
-        <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address same as delivery address" required={false} id="save_address_payment"/>
+        <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address same as delivery address" required={false} id="save_address_payment" 
+        onChange={(e) => {
+          const form = (e.currentTarget.parentElement) as HTMLFormElement;
+          if (e.target.checked && Address.length > 0) {
+            form.firstname.value = Address[0].firstName;
+            form.lastname.value = Address[0].lastName;
+            form.address.value = Address[0].residentialAddress;
+            form["additional-information"].value = Address[0].ExtraInfomation;
+            form.City.value = Address[0].cityName;
+            form.provincesSelect.value = Address[0].State;
+            form["Postal Code"].value = Address[0].PostalCode;
+          } else {
+            form.firstname.value = '';
+            form.lastname.value = '';
+            form.address.value = '';
+            form["additional-information"].value = '';
+            form.City.value = '';
+            form.provincesSelect.value = '';
+            form["Postal Code"].value = '';
+          }
+        }}/>
         <label className={classes.formRadioLabel} htmlFor={`save_address_payment ${classes.formInputButton}`}>{'Billing address same as delivery address'}</label>
         <div className={classes.inputSplitContainer}>
                 <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
@@ -666,6 +688,7 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
+          <form id={classes.paymentContainer}>
                   <FormInput onInput={onInput}type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
