@@ -584,8 +584,8 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Continue to payment"/>
             </div>
         </div>
-        <div>
-        <b className={classes.b}>Shipping Address</b>
+        <div className={classes.bAddress}>
+            <b className={classes.b}>Shipping Address</b>
         <br/>
         <p className={classes.b}>{(Address.length > 0) ? `${Address[0].firstName} ${Address[0].lastName}` : ''}</p>
         <p className={classes.b}>{(Address.length > 0) ? Address[0].residentialAddress : ''}</p>
