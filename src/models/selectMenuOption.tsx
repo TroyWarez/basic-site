@@ -1,4 +1,4 @@
 export default interface SelectMenuOption {
-    value: number | string;
+    value: string[];
     displayValue: string;
 }
