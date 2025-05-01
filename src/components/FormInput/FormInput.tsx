@@ -55,24 +55,24 @@ const FormInput = (
           e.preventDefault();
         }}
         onBlur={(e) => {
-          if (e.target.value === '') {
+          if (e.target.value === '' && e.target.required) {
             e.target.style.borderColor = '#eb1919';
             setMessageValue(error_message);
             setClassString(`${classes.error_message}`);
             setClassSpanStr(`${classes.spanError}`);
           }
-          else if (e.target.validity.patternMismatch) {
+          else if (e.target.validity.patternMismatch && e.target.required) {
             e.target.style.borderColor = '#eb1919';
             setMessageValue(validation_message);
             setClassString(`${classes.error_message}`);
             setClassSpanStr(`${classes.spanError}`);
-          } else if (e.target.validity.tooShort) {
+          } else if (e.target.validity.tooShort && e.target.required) {
             e.target.style.borderColor = '#eb1919';
             setMessageValue(tooShort_message);
             setClassString(`${classes.error_message}`);
             setClassSpanStr(`${classes.spanError}`);
 
-          } else if (e.target.validity.valid) {
+          } else if (e.target.validity.valid && e.target.required) {
             if(message !== '') {
             setMessageValue(message);
             setClassString(`${classes.message}`);
@@ -82,8 +82,10 @@ const FormInput = (
             setClassString(`${classes.error_message} ${classes.invisible}`);
             setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
             }
-            e.target.style.borderColor = 'var(--main-bg-accentColor)';
           }
+          else if(e.target.required === false){
+            e.target.style.borderColor = 'var(--main-bg-accentColor)';
+            }
 
           if(onBlur) {
             onBlur(e)
