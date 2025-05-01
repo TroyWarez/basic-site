@@ -5,6 +5,7 @@ import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
+import Address from "../../models/Address.tsx";
 import { Link } from "react-router-dom";
 import { useState } from "react"
 const OrderForm = (): JSX.Element => {
@@ -67,6 +68,14 @@ const OrderForm = (): JSX.Element => {
         }
         return sum % 10 === 0;
       }
+      const getDeilveryDate = () => {
+        return `Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
+          ${new Date(Date.now() + 464400000).getDate()}
+          ${new Date(Date.now() + 464400000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} and ${new Date(Date.now() + 982800000).toDateString().slice(0, 3)},
+          ${new Date(Date.now() + 982800000).getDate()}
+          ${new Date(Date.now() + 982800000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} `;
+      }
+
     const onInput = (event : React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value !== "")
           {
@@ -489,7 +498,8 @@ const OrderForm = (): JSX.Element => {
           {value: "NU", displayValue: 'Nunavut'},
           ];
 
-          const [displayNoneClass, setDisplayNoneClass] = useState('');
+    const [displayNoneClass, setDisplayNoneClass] = useState('');
+    const [Address, setAddress] = useState(Array<Address>());
     return (
       <div>
       <div className={`${classes.containerHeading} ${displayNoneClass}`}>
@@ -502,28 +512,33 @@ const OrderForm = (): JSX.Element => {
       </div> 
         <div className={`${classes.containerHeading} ${classes.deliveryText}`}>
           <b>STANDARD Delivery: Free</b>
-          <p>{`Delivered between ${new Date(Date.now() + 464400000).toDateString().slice(0, 3)},
-          ${new Date(Date.now() + 464400000).getDate()}
-          ${new Date(Date.now() + 464400000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} and ${new Date(Date.now() + 982800000).toDateString().slice(0, 3)},
-          ${new Date(Date.now() + 982800000).getDate()}
-          ${new Date(Date.now() + 982800000).toDateString().replace(/^\S+\s/,'').slice(0, 3)} `}</p>
+          <p>{getDeilveryDate()}</p>
         </div>
         </div>
-        <form className={`${classes.form} ${displayNoneClass}`}  autoComplete="on" onSubmit={
+        <form className={classes.form}  autoComplete="on" onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
               setDisplayNoneClass(`${classes.displayNone}`);
+              setAddress([{ firstName: form.firstname.value, lastName: form.lastname.value,
+                 residentialAddress: form.address.value,
+                  ExtraInfomation: form["additional-information"].value,
+                   cityName: form.City.value, PostalCode: form["Postal Code"].value,
+                    State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
+                    countryName: CountryList[0].displayValue,
+                     email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
+                      promoEmails: form.promo_emails.checked }]);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
           }
         }>
             <div className={CheckoutClasses.CheckoutCartTitle}>
-            <h2 className={CheckoutClasses.p}>Delivery Address</h2>
+            <h2 className={CheckoutClasses.p}><b hidden={(displayNoneClass === '') ? true : false}>✔ </b>Delivery Address</h2>
         </div>
+        <div className={displayNoneClass}>
         <div className={classes.inputSplitContainer}>
                 <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
                 <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
@@ -544,9 +559,9 @@ const OrderForm = (): JSX.Element => {
                 <SelectMenu options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
-                  }))} name="canadianProvincesSelect" aria-label="Please select your province" required={true} title="Province menu, please select your province"/>
+                  }))} name="provincesSelect" aria-label="Please select your province" required={true} title="Province menu, please select your province"/>
                 </div>
-                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Save this address for my next purchase." required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Save this address for my next purchase." required={false} id="save_address"/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{' Save this address for my next purchase.'}</label>
 
                 <div>
@@ -559,15 +574,31 @@ const OrderForm = (): JSX.Element => {
                 <div className={classes.inputSplitContainer}>
                   <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxLength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="Phone" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="phoneNumber" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>
-                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id={`save_address ${GuestLoginClasses.formInputButton}`}/>
+                <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id="promo_emails"/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
                 <div className={classes.pPrivacy}>
                   <p>Please note, by continuing with checkout we will process your personal data in accordance with its Data Privacy Statement. You can read about how and why we processes personal data <Link to='/'>here</Link>.</p>
                 </div>
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Continue to payment"/>
             </div>
+        </div>
+        <div>
+        <b className={classes.b}>Shipping Address</b>
+        <br/>
+        <p className={classes.b}>{(Address.length > 0) ? `${Address[0].firstName} ${Address[0].lastName}` : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? Address[0].residentialAddress : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? `${Address[0].cityName}, ${Address[0].PostalCode}` : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? Address[0].State : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? Address[0].countryName : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? Address[0].email : ''}</p>
+        <p className={classes.b}>{(Address.length > 0) ? Address[0].phoneNumber : ''}</p>
+        <br/>
+
+        <b className={classes.b}>STANDARD Delivery<br/><b className={classes.b}>Free</b></b>
+        <p className={classes.b}>{getDeilveryDate()}</p>
+        </div>
         </form>
           <div className={`${classes.form} ${classes.payment}`}>
           <div className={CheckoutClasses.CheckoutCartTitle}>

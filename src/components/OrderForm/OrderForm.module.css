@@ -61,6 +61,10 @@
   text-align: left;
   padding-left: 3%;
 }
+.b {
+  padding-left: 3%;
+  padding-bottom: 0.25rem;
+}
 .pPrivacy a {
   text-decoration: underline!important;
   color: #6ebe49!important;

@@ -81,9 +81,10 @@ const FormInput = (
             else {
             setClassString(`${classes.error_message} ${classes.invisible}`);
             setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
+            e.target.style.borderColor = 'var(--main-bg-accentColor)';
             }
           }
-          else if(e.target.required === false){
+          else if(e.target.required === false || e.target.style.borderColor === '#2f733c'){
             e.target.style.borderColor = 'var(--main-bg-accentColor)';
             }
 
@@ -94,7 +95,6 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-            e.target.style.borderColor = '#2f733c';
             setMessageValue(message);
             setClassString(classes.message);
             setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
