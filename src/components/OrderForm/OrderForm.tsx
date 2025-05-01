@@ -536,7 +536,13 @@ const OrderForm = (): JSX.Element => {
           }
         }>
             <div className={CheckoutClasses.CheckoutCartTitle}>
-            <h2 className={CheckoutClasses.p}><b hidden={(displayNoneClass === '') ? true : false}>✔ </b>Delivery Address</h2>
+              <div className={classes.editContainer}>
+                <h2 className={CheckoutClasses.p}><b hidden={(displayNoneClass === '') ? true : false}>✔ </b>Delivery Address</h2>
+                <button className={classes.editButton} hidden={(displayNoneClass === '') ? true : false} type='button'
+                onClick={() => {
+                  setDisplayNoneClass('');
+                }}>{'< Edit'}</button>
+            </div>
         </div>
         <div className={displayNoneClass}>
         <div className={classes.inputSplitContainer}>
@@ -584,7 +590,7 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Continue to payment"/>
             </div>
         </div>
-        <div className={classes.bAddress}>
+        <div className={classes.bAddress} hidden={(displayNoneClass === '') ? true : false}>
             <b className={classes.b}>Shipping Address</b>
         <br/>
         <p className={classes.b}>{(Address.length > 0) ? `${Address[0].firstName} ${Address[0].lastName}` : ''}</p>
@@ -604,7 +610,7 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <form id={classes.paymentContainer}>
+          <form id={classes.paymentContainer}  hidden={(displayNoneClass === '') ? true : false}>
                 <p id={classes.paymentSubtext} >All transactions are secure and encrypted.</p>
                   <FormInput onInput={onInput} id={classes.cardnumber} type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} placeholder="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
