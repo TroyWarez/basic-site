@@ -5,7 +5,6 @@ import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
-import StoreItem from "../../models/StoreItem.tsx";
 import Address from "../../models/ShippingAddress.tsx";
 import { Link } from "react-router-dom";
 import { useState } from "react"
@@ -499,7 +498,7 @@ const OrderForm = (): JSX.Element => {
           {value: "NU", displayValue: 'Nunavut'},
           ];
 
-    const [displayNoneClass, setDisplayNoneClass] = useState('');
+    const [displayNoneClass, setDisplayNoneClass] = useState(classes.displayNone);
     const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState('');
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
@@ -614,7 +613,7 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
         onChange={(e) => {
           const form = (e.currentTarget.parentElement) as HTMLFormElement;
           if (e.target.checked && Address && (displayNoneClassPayment !== '')) {
@@ -625,7 +624,9 @@ const OrderForm = (): JSX.Element => {
             form.City.value = Address.cityName;
             form.provincesSelect.value = Address.State;
             form["Postal Code"].value = Address.PostalCode;
-          } else if ((displayNoneClassPayment !== '')) {
+            setDisplayNoneClassPayment(classes.displayNone);
+            form.submit();
+          } else if (form){
             form.firstname.value = '';
             form.lastname.value = '';
             form.address.value = '';
@@ -633,10 +634,16 @@ const OrderForm = (): JSX.Element => {
             form.City.value = '';
             form.provincesSelect.value = '';
             form["Postal Code"].value = '';
+            setDisplayNoneClassPayment('');
+            form.submit();
+          }
+          else
+          {
+            setDisplayNoneClassPayment('');
           }
         }}/>
         <label className={classes.formRadioLabel} htmlFor="paymentAddressForm" hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
-        <form id="paymentAddressForm" autoComplete="on" hidden={(displayNoneClassPayment === '') ? true : false} onSubmit={
+        <form id="paymentAddressForm" autoComplete="on" className={displayNoneClassPayment} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
@@ -701,15 +708,24 @@ const OrderForm = (): JSX.Element => {
         <p className={classes.b}>{(BillingAddress) ? BillingAddress.State : ''}</p>
         <p className={classes.b}>{(BillingAddress) ? BillingAddress.countryName : ''}</p>
         </div>
+
+        <div id={classes.radioContainer}>
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} checked={true} type="radio" title="Save this address for my next purchase." required={false} id="payment_option"/>
+          <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
+        </div>
           <form id={classes.paymentContainer} hidden={(displayNoneClass === '' && displayNoneClassPayment === '') ? true : false}>
-            <h2 className={classes.b}>Credit Card</h2>
-                  <FormInput onInput={onInput}type="text" inputMode="numeric" name="Card number" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
+                  <FormInput onInput={onInput}type="text" inputMode="numeric" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" maxLength={19} />
+                  <FormInput onInput={onInput}type="text" inputMode="numeric" name="cardnumber" title="Card Number" error_message='Card number is required' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Expiration date (MM / YY)" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" name="Security Code" error_message='This is a mandatory field' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="Security Code" maxLength={5}/>
+                    <div id={classes.securitycodeBlock}>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" maxLength={5}/>
+                    </div>
                   </div>
-                  <FormInput type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} required={true} value="Pay now"/>
             </form>
+            <p className={classes.p}>By clicking Pay now, you agree to the Terms and Conditions.</p>
+            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
+
           </div> 
         </div>
       );

@@ -8,16 +8,6 @@
   padding-left: 3%;
   padding-top: 3%;
 }
-#paymentheading {
-  font-size: x-large;
-  text-align: left;
-  padding-left: 3%;
-}
-#paymentSubtext {
-  font-size: large;
-  text-align: left;
-  padding-left: 3%;
-}
 .payment {
   height: min-content!important;
   padding-bottom: 0!important;
@@ -92,31 +82,40 @@
 .inputSplitContainer {
   display: flex;
   flex-direction: row;
-  justify-content: center!important;
   width: 97%!important;
   margin-top: 0.5rem;
 }
 #securitycode {
-  width: 7em;
+  width: 6rem;
   display: block;
-  margin-left: 15px;
 }
 #expireDate {
-  width: 12em;
-  margin-left: 3%;
+  margin-right: 1rem!important;
+  width: 12rem;
 }
 #securitycodeBlock {
   display: flex;
 }
-#cardnumber {
-  width: 90%;
-  margin-left: 3%;
+#radioContainer {
   display: flex;
+  border: 1px solid white;
+  align-items: baseline;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: 1px solid var(--main-bg-accentColor);
+  border-radius: 6px;
+  width: 7rem;
+  min-height: 2rem;
 }
 #paymentContainer  {
-  margin-top: 2%;
-  padding-bottom: 5%;
-  margin-bottom: 0!important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1rem;
+  background-color: var(--main-bg-accentColorAlt);
+  border: 1px solid var(--main-bg-accentColor);
+  border-radius: 6px;
+  margin: 1rem;
 }
 #submit {
   width: 1rem!important;
@@ -129,6 +128,7 @@
   font-style: normal;
   font-size: large;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 #submit:focus {
   background-color: #7e8a90;
@@ -136,10 +136,9 @@
 #submit:hover {
   background-color: #7e8a90;
 }
-#submit:active {
-  box-shadow:
-    inset -2px -2px 3px #7e8a90,
-    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+#submit:disabled {
+  background-color: var(--main-bg-accentColor)!important;
+  color: var(--main-bg-accentColorAlt)!important;
 }
 .displayNone {
   display: none!important;

@@ -15,7 +15,7 @@ const FormInput = (
   className,
   onInput, 
   onBlur,
-  onFocus, 
+  onFocus,
   title, 
   placeholder, 
   inputMode, 
