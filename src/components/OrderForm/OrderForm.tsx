@@ -723,7 +723,7 @@ const OrderForm = (): JSX.Element => {
                     </div>
                   </div>
             </form>
-            <p className={classes.p}>By clicking Pay now, you agree to the Terms and Conditions.</p>
+            <p className={`${classes.pPrivacy} ${classes.noBorder}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
             <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
 
           </div> 

@@ -118,9 +118,8 @@
   margin: 1rem;
 }
 #submit {
-  width: 1rem!important;
+  width: min-content!important;
   border-radius: 0%;
-  height: 3em;
   outline: none;
   display: flex;
   font-family: "Roboto", sans-serif;
@@ -142,6 +141,9 @@
 }
 .displayNone {
   display: none!important;
+}
+.noBorder {
+  border: none!important;
 }
 .editContainer {
   display: flex;
