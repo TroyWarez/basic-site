@@ -77,6 +77,10 @@ const OrderForm = (): JSX.Element => {
       }
 
     const onInput = (event : React.ChangeEvent<HTMLInputElement>) => {
+      if(event.target.value.length === 1)
+      {
+        event.target.value = event.target.value.toUpperCase();
+      }
         if (event.target.value !== "")
           {
             switch(event.target.inputMode) {
@@ -523,7 +527,8 @@ const OrderForm = (): JSX.Element => {
             const form = event.currentTarget;
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
-              setDisplayNoneClass(`${classes.displayNone}`);
+              setDisplayNoneClass(classes.displayNone);
+              setDisplayNoneClassPayment(classes.displayNone);
               setAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
                  residentialAddress: form.address.value,
                   ExtraInfomation: form["additional-information"].value,
@@ -533,6 +538,7 @@ const OrderForm = (): JSX.Element => {
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
                       promoEmails: form.promo_emails.checked,
                       orderedItems: [] });
+                      setBillingAddress(Address);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -618,6 +624,7 @@ const OrderForm = (): JSX.Element => {
           const form = e.currentTarget.form;
           if (e.target.checked && form && Address) {
             setBillingAddress(Address);
+            setDisplayNoneClassPayment(classes.displayNoneClass);
           } else if (form) {
             form.firstname.value = '';
             form.lastname.value = '';
@@ -628,13 +635,9 @@ const OrderForm = (): JSX.Element => {
             form["Postal Code"].value = '';
             setDisplayNoneClassPayment('');
           }
-          else
-          {
-            setDisplayNoneClassPayment('');
-          }
         }}/>
         <label className={classes.formRadioLabel} htmlFor={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
-        <form id="paymentAddressForm" autoComplete="on" className={displayNoneClassPayment} onSubmit={
+        <form id="paymentAddressForm" autoComplete="on" className={displayNoneClassPayment} hidden={(displayNoneClass === '') ? true : false} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
@@ -701,7 +704,7 @@ const OrderForm = (): JSX.Element => {
         </div>
 
         <div id={classes.radioContainer} className={displayNoneClassPayment}>
-          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} readOnly={true} checked={true} type="radio" title="Save this address for my next purchase." required={false} id="payment_option"/>
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} readOnly={true} checked={true} type="radio" title="Select payment option" required={false} id="payment_option"/>
           <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
         </div>
           <form id={classes.paymentContainer} className={displayNoneClassPayment}>
