@@ -142,6 +142,9 @@
 .displayNone {
   display: none!important;
 }
+.displayNone * p, span{
+  padding: 0rem!important;
+}
 .noBorder {
   border: none!important;
 }
