@@ -498,8 +498,8 @@ const OrderForm = (): JSX.Element => {
           {value: "NU", displayValue: 'Nunavut'},
           ];
 
-    const [displayNoneClass, setDisplayNoneClass] = useState('');
-    const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState(classes.displayNone);
+    const [displayNoneClass, setDisplayNoneClass] = useState(classes.displayNone);
+    const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState('');
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
     return (
@@ -613,10 +613,10 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} form="paymentAddressForm" type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
         onChange={(e) => {
-          const form = (e.currentTarget.parentElement) as HTMLFormElement;
-          if (e.target.checked && Address && (displayNoneClassPayment !== '')) {
+          const form = e.currentTarget.form;
+          if (e.target.checked && form && Address && (displayNoneClassPayment !== '')) {
             form.firstname.value = Address.firstName;
             form.lastname.value = Address.lastName;
             form.address.value = Address.residentialAddress;
@@ -625,8 +625,7 @@ const OrderForm = (): JSX.Element => {
             form.provincesSelect.value = Address.State;
             form["Postal Code"].value = Address.PostalCode;
             setDisplayNoneClassPayment(classes.displayNone);
-            form.submit();
-          } else if (form){
+          } else if (form) {
             form.firstname.value = '';
             form.lastname.value = '';
             form.address.value = '';
@@ -635,14 +634,13 @@ const OrderForm = (): JSX.Element => {
             form.provincesSelect.value = '';
             form["Postal Code"].value = '';
             setDisplayNoneClassPayment('');
-            form.submit();
           }
           else
           {
             setDisplayNoneClassPayment('');
           }
         }}/>
-        <label className={classes.formRadioLabel} htmlFor="paymentAddressForm" hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
+        <label className={classes.formRadioLabel} htmlFor={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
         <form id="paymentAddressForm" autoComplete="on" className={displayNoneClassPayment} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
