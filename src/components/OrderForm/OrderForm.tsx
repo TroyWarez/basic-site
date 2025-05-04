@@ -498,8 +498,8 @@ const OrderForm = (): JSX.Element => {
           {value: "NU", displayValue: 'Nunavut'},
           ];
 
-    const [displayNoneClass, setDisplayNoneClass] = useState(classes.displayNone);
-    const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState('');
+    const [displayNoneClass, setDisplayNoneClass] = useState('');
+    const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState(classes.displayNone);
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
     return (
@@ -616,15 +616,8 @@ const OrderForm = (): JSX.Element => {
           <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} form="paymentAddressForm" type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
         onChange={(e) => {
           const form = e.currentTarget.form;
-          if (e.target.checked && form && Address && (displayNoneClassPayment !== '')) {
-            form.firstname.value = Address.firstName;
-            form.lastname.value = Address.lastName;
-            form.address.value = Address.residentialAddress;
-            form["additional-information"].value = Address.ExtraInfomation;
-            form.City.value = Address.cityName;
-            form.provincesSelect.value = Address.State;
-            form["Postal Code"].value = Address.PostalCode;
-            setDisplayNoneClassPayment(classes.displayNone);
+          if (e.target.checked && form && Address) {
+            setBillingAddress(Address);
           } else if (form) {
             form.firstname.value = '';
             form.lastname.value = '';
