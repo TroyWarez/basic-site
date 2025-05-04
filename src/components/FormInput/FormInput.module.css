@@ -35,13 +35,10 @@
   color: #a5a5a5!important;
   visibility: visible!important;
   margin-left: 1rem;
-  padding-bottom: 0.5rem;
 }
 
 .error_message {
   color: #eb1919!important;
-  margin-left: 1rem;
-  padding-bottom: 0.5rem;
 }
 .invisible {
   visibility: hidden!important;

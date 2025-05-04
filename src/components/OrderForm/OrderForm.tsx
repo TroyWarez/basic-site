@@ -699,7 +699,7 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
-        <div className={classes.bAddress} hidden={(displayNoneClassPayment === '') ? false : true}>
+        <div className={`${classes.bAddress} ${displayNoneClassPayment}`} >
             <b className={classes.b}>Payment Address</b>
         <br/>
         <p className={classes.b}>{(BillingAddress) ? `${BillingAddress.firstName} ${BillingAddress.lastName}` : ''}</p>
@@ -709,13 +709,13 @@ const OrderForm = (): JSX.Element => {
         <p className={classes.b}>{(BillingAddress) ? BillingAddress.countryName : ''}</p>
         </div>
 
-        <div id={classes.radioContainer}>
-          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} checked={true} type="radio" title="Save this address for my next purchase." required={false} id="payment_option"/>
+        <div id={classes.radioContainer} className={displayNoneClassPayment}>
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} readOnly={true} checked={true} type="radio" title="Save this address for my next purchase." required={false} id="payment_option"/>
           <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
         </div>
-          <form id={classes.paymentContainer} hidden={(displayNoneClass === '' && displayNoneClassPayment === '') ? false : true}>
-                  <FormInput onInput={onInput}type="text" inputMode="text" pattern="[A-Za-z]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
-                  <FormInput onInput={onInput}type="text" inputMode="numeric" pattern="[0-9]+" name="cardnumber" title="Card Number" error_message='Card number is required' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
+          <form id={classes.paymentContainer} className={displayNoneClassPayment}>
+                  <FormInput onInput={onInput} type="text" inputMode="text" pattern="[A-Za-z]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
+                  <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9]+" name="cardnumber" title="Card Number" error_message='Card number is required' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <div id={classes.securitycodeBlock}>
                     <FormInput type="text" onInput={onInput} inputMode="numeric" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
@@ -723,9 +723,8 @@ const OrderForm = (): JSX.Element => {
                     </div>
                   </div>
             </form>
-            <p className={`${classes.pPrivacy} ${classes.noBorder}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
-            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
-
+            <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
+            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
           </div> 
         </div>
       );
