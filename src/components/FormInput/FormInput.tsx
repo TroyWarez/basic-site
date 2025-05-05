@@ -95,7 +95,7 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-            if(message)
+            if(e.target.required)
             {
               setMessageValue(message);
               setClassString(classes.message);
