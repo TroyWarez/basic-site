@@ -95,7 +95,10 @@
   margin-right: 1rem!important;
   width: 12rem;
 }
-#securitycodeBlock {
+#displayOuterFlex {
+  display: flex;
+}
+#displayFlex {
   display: flex;
 }
 #radioContainer {

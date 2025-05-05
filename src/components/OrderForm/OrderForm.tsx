@@ -742,8 +742,8 @@ const OrderForm = (): JSX.Element => {
             }}}>
                   <FormInput onInput={onInput} type="text" inputMode="text" pattern="[a-zA-Z ]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
                   <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9 ]+" name="Card number" title="Card Number" error_message='Card number is required' message='' validation_message='Invalid card number' tooShort_message='' required={true} label="Card Number" minLength={16} maxLength={19} />
-                  <div id={classes.securitycodeBlock}>
-                    <div id={classes.securitycodeBlock}>
+                  <div id={classes.displayOuterFlex}>
+                    <div id={classes.displayFlex}>
                     <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9\/]+" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
                     <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9]+" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" minLength={3} maxLength={5}/>
                     </div>
