@@ -77,7 +77,7 @@ const OrderForm = (): JSX.Element => {
       }
 
     const onInput = (event : React.ChangeEvent<HTMLInputElement>) => {
-      if(event.target.value.length === 1)
+      if(event.target.value.length === 1 && event.target.name !== 'email')
       {
         event.target.value = event.target.value.toUpperCase();
       }
@@ -529,6 +529,7 @@ const OrderForm = (): JSX.Element => {
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
               setDisplayNoneClass(classes.displayNone);
+              setDisplayNoneClassPaymentAddr('');
               setDisplayNoneClassPayment('');
               setAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
                  residentialAddress: form.address.value,
@@ -539,7 +540,16 @@ const OrderForm = (): JSX.Element => {
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
                       promoEmails: form.promo_emails.checked,
                       orderedItems: [] });
-                      setBillingAddress(Address);
+
+                      setBillingAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
+                        residentialAddress: form.address.value,
+                         ExtraInfomation: form["additional-information"].value,
+                          cityName: form.City.value, PostalCode: form["Postal Code"].value,
+                           State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
+                           countryName: CountryList[0].displayValue,
+                            email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
+                             promoEmails: form.promo_emails.checked,
+                             orderedItems: [] });
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -642,7 +652,7 @@ const OrderForm = (): JSX.Element => {
           }
         }}/>
         <label className={classes.formRadioLabel} htmlFor={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
-        <form id="paymentAddressForm" autoComplete="on" className={`${displayNoneClassPayment}`} onSubmit={
+        <form id="paymentAddressForm" autoComplete="on" hidden={true} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
@@ -701,6 +711,7 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
+
         <div className={`${classes.bAddress} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} >
         <b className={classes.b}>{(BillingAddress) ? `${BillingAddress.firstName} ${BillingAddress.lastName}` : ''}</b>
         <p className={classes.b2}>{(BillingAddress) ? BillingAddress.residentialAddress : ''}</p>
