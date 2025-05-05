@@ -155,15 +155,22 @@ const OrderForm = (): JSX.Element => {
               }
             case "Card number":
                 {
-                  if(!luhnCheck(event.target.value) && event.target.value.length === 16)
-                  {
-                    event.target.classList.add(classes["input-error"]);
+                  if(luhnCheck(event.target.value) && event.target.value.length === 16)
+                    {
+                      event.target.setCustomValidity('');
+                      if (event.target.form)
+                      {
+                        (event.target.form.submitButton as HTMLInputElement).disabled = false;
+                      }
+                    }
+                  else {
+                    event.target.setCustomValidity('Luhn check failed');
+                    event.target.reportValidity();
+                    if (event.target.form)
+                      {
+                        (event.target.form.submitButton as HTMLInputElement).disabled = true;
+                      }
                   }
-                  else if (event.target.classList.length > 0)
-                  {
-                    event.target.classList.remove(classes["input-error"]);
-                  }
-                  
                   if( event.target.value.length > 4 && event.target.value[4] !== ' ') 
                   {
                     event.target.value = `${event.target.value.slice(0, 4)} ${event.target.value.slice(4, event.target.value.length)}`;
@@ -178,7 +185,7 @@ const OrderForm = (): JSX.Element => {
                   }
                   break;
                 }
-              case "Expiration date (MM / YY)": 
+              case "expiredate": 
                 {
                   event.target.value.toUpperCase();
                   if(event.target.value !== '')
@@ -194,7 +201,7 @@ const OrderForm = (): JSX.Element => {
           }
         }
         }
-        const StateList: SelectMenuOption[] = [
+          const StateList: SelectMenuOption[] = [
           {value:'CA', displayValue:'California'},
           {value:'TX', displayValue:'Texas'},
           {value:'FL', displayValue:'Florida'},
@@ -724,18 +731,26 @@ const OrderForm = (): JSX.Element => {
           <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} readOnly={true} checked={true} type="radio" title="Select payment option" required={false} id="payment_option"/>
           <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
         </div>
-          <form id={classes.paymentContainer} className={`${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>
-                  <FormInput onInput={onInput} type="text" inputMode="text" pattern="[A-Za-z]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
-                  <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9]+" name="cardnumber" title="Card Number" error_message='Card number is required' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
+          <form id={classes.paymentContainer} className={`${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}
+          onSubmit={(event) => {      
+            event.preventDefault();
+            const form = event.currentTarget;
+            if (form.checkValidity()) {
+              console.log("The credit card form form is valid and ready for submission.");
+            } else {
+              console.log("Form is invalid. Please check the fields.");
+            }}}>
+                  <FormInput onInput={onInput} type="text" inputMode="text" pattern="[a-zA-Z ]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
+                  <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9 ]+" name="Card number" title="Card Number" error_message='Card number is required' message='' validation_message='Invalid card number' tooShort_message='' required={true} label="Card Number" minLength={16} maxLength={19} />
                   <div id={classes.securitycodeBlock}>
                     <div id={classes.securitycodeBlock}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" minLength={3} maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9\/]+" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9]+" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" minLength={3} maxLength={5}/>
                     </div>
                   </div>
             </form>
             <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
-            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
+            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submitButton" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
           </div> 
         </div>
       );
