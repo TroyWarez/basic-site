@@ -53,13 +53,15 @@
 }
 .bAddress {
   text-align: left;
-  margin-left: 1rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .b {
   padding-left: 3%;
-  margin-top: 0.5rem;
-
+  margin-top: 0.1rem;
+}
+.b2 {
+  padding-left: 3%;
 }
 .pPrivacy a {
   text-decoration: underline!important;

@@ -50,6 +50,8 @@
 }
 .displayNone {
   display: none!important;
+  margin-left: 0rem!important;
+  padding-bottom: 0rem!important;
 }
 .span {
   user-select: none;

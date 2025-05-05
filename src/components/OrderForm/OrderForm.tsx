@@ -504,6 +504,7 @@ const OrderForm = (): JSX.Element => {
 
     const [displayNoneClass, setDisplayNoneClass] = useState('');
     const [displayNoneClassPayment, setDisplayNoneClassPayment] = useState(classes.displayNone);
+    const [displayNoneClassPaymentAddr, setDisplayNoneClassPaymentAddr] = useState(classes.displayNone);
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
     return (
@@ -528,7 +529,7 @@ const OrderForm = (): JSX.Element => {
             if (form.checkValidity()) {
               console.log("Form is valid and ready for submission.");
               setDisplayNoneClass(classes.displayNone);
-              setDisplayNoneClassPayment(classes.displayNone);
+              setDisplayNoneClassPayment('');
               setAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
                  residentialAddress: form.address.value,
                   ExtraInfomation: form["additional-information"].value,
@@ -619,12 +620,14 @@ const OrderForm = (): JSX.Element => {
           <div className={CheckoutClasses.CheckoutCartTitle}>
             <h2 className={CheckoutClasses.p}>Payment</h2>
           </div>
-          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} form="paymentAddressForm" type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
+          <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} name="billingCheckbox" form="paymentAddressForm" type="checkbox" title="Billing address the same as delivery address" hidden={(displayNoneClass === '') ? true : false} defaultChecked={true} required={false} id="save_address_payment" 
         onChange={(e) => {
           const form = e.currentTarget.form;
           if (e.target.checked && form && Address) {
             setBillingAddress(Address);
-            setDisplayNoneClassPayment(classes.displayNoneClass);
+            setDisplayNoneClassPayment('');
+            form.hidden = true;
+            setDisplayNoneClassPaymentAddr('');
           } else if (form) {
             form.firstname.value = '';
             form.lastname.value = '';
@@ -634,27 +637,32 @@ const OrderForm = (): JSX.Element => {
             form.provincesSelect.value = '';
             form["Postal Code"].value = '';
             setDisplayNoneClassPayment('');
+            form.hidden = false;
+            setDisplayNoneClassPaymentAddr(classes.displayNone);
           }
         }}/>
         <label className={classes.formRadioLabel} htmlFor={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} hidden={(displayNoneClass === '') ? true : false}>Billing address same as delivery address</label>
-        <form id="paymentAddressForm" autoComplete="on" className={displayNoneClassPayment} hidden={(displayNoneClass === '') ? true : false} onSubmit={
+        <form id="paymentAddressForm" autoComplete="on" className={`${displayNoneClassPayment}`} onSubmit={
           (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             const form = event.currentTarget;
             if (form.checkValidity()) {
-              console.log("Form is valid and ready for submission.");
+              console.log("Billing form is valid and ready for submission.");
               setDisplayNoneClass(`${classes.displayNone}`);
-              setBillingAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
+              setBillingAddress({ firstName: form.firstname.value, 
+                lastName: form.lastname.value,
                  residentialAddress: form.address.value,
                   ExtraInfomation: form["additional-information"].value,
                    cityName: form.City.value, PostalCode: form["Postal Code"].value,
-                    State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value: form.provincesSelect.value,
+                    State: (form.stateSelect.value !== 'Please select your state') ? form.stateSelect.value : form.provincesSelect.value,
                     countryName: CountryList[0].displayValue,
                      email: (Address) ? Address.email : '',
                      phoneNumber: (Address) ? Address.phoneNumber : '',
                       promoEmails:  (Address) ? Address.promoEmails : false,
                     orderedItems: [] });
-                    setDisplayNoneClassPayment(classes.displayNone);
+                    form.hidden = true;
+                    (form.billingCheckbox as HTMLInputElement).checked = false;
+                    setDisplayNoneClassPaymentAddr('');
             } else {
               console.log("Form is invalid. Please check the fields.");
             }
@@ -693,21 +701,19 @@ const OrderForm = (): JSX.Element => {
                 <FormInput type="submit" name="submit" className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button}`} id={classes.submit} required={true} error_message='' message='' validation_message='' tooShort_message='' value="Use this payment address"/>
             </div>
         </form>
-        <div className={`${classes.bAddress} ${displayNoneClassPayment}`} >
-            <b className={classes.b}>Payment Address</b>
-        <br/>
-        <p className={classes.b}>{(BillingAddress) ? `${BillingAddress.firstName} ${BillingAddress.lastName}` : ''}</p>
-        <p className={classes.b}>{(BillingAddress) ? BillingAddress.residentialAddress : ''}</p>
-        <p className={classes.b}>{(BillingAddress) ? `${BillingAddress.cityName}, ${BillingAddress.PostalCode}` : ''}</p>
-        <p className={classes.b}>{(BillingAddress) ? BillingAddress.State : ''}</p>
-        <p className={classes.b}>{(BillingAddress) ? BillingAddress.countryName : ''}</p>
+        <div className={`${classes.bAddress} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} >
+        <b className={classes.b}>{(BillingAddress) ? `${BillingAddress.firstName} ${BillingAddress.lastName}` : ''}</b>
+        <p className={classes.b2}>{(BillingAddress) ? BillingAddress.residentialAddress : ''}</p>
+        <p className={classes.b2}>{(BillingAddress) ? `${BillingAddress.cityName}, ${BillingAddress.PostalCode}` : ''}</p>
+        <p className={classes.b2}>{(BillingAddress) ? BillingAddress.State : ''}</p>
+        <p className={classes.b2}>{(BillingAddress) ? BillingAddress.countryName : ''}</p>
         </div>
 
-        <div id={classes.radioContainer} className={displayNoneClassPayment}>
+        <div id={classes.radioContainer} className={`${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>
           <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} readOnly={true} checked={true} type="radio" title="Select payment option" required={false} id="payment_option"/>
           <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
         </div>
-          <form id={classes.paymentContainer} className={displayNoneClassPayment}>
+          <form id={classes.paymentContainer} className={`${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>
                   <FormInput onInput={onInput} type="text" inputMode="text" pattern="[A-Za-z]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
                   <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9]+" name="cardnumber" title="Card Number" error_message='Card number is required' message='' validation_message='' tooShort_message='' required={true} label="Card Number" maxLength={19} />
                   <div id={classes.securitycodeBlock}>
@@ -717,8 +723,8 @@ const OrderForm = (): JSX.Element => {
                     </div>
                   </div>
             </form>
-            <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
-            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
+            <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
+            <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submit" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
           </div> 
         </div>
       );
