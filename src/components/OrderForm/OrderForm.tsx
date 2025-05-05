@@ -193,8 +193,8 @@ const OrderForm = (): JSX.Element => {
                       event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
                       if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                       {
-                        const expireMonth = new Number(event.target.value.slice(0, 2).replace('0', '')).toString();
-                        const expireYear = new Number(event.target.value.slice(2, event.target.value.length).replace('0', '')).toString();
+                        const expireMonth = new Number(event.target.value.slice(0, 2)).toString();
+                        const expireYear = new Number(event.target.value.slice(2, event.target.value.length)).toString();
                         const currentMonth = new Number((new Date().getMonth() + 1)).toString();
                         const currentYear = new Number(new Date().getFullYear().toString().slice(2, new Date().getFullYear().toString().length)).toString();
 
