@@ -45,13 +45,13 @@
 }
 .invisible {
   visibility: hidden!important;
-  margin-left: 0rem!important;
-  padding-bottom: 0rem!important;
+  margin: 0!important;
+  padding: 0!important;
 }
 .displayNone {
   display: none!important;
-  margin-left: 0rem!important;
-  padding-bottom: 0rem!important;
+  margin: 0!important;
+  padding: 0!important;
 }
 .span {
   user-select: none;

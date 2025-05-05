@@ -84,7 +84,7 @@ const FormInput = (
             e.target.style.borderColor = 'var(--main-bg-accentColor)';
             }
           }
-          else if(e.target.required === false || e.target.style.borderColor === '#2f733c'){
+         if(e.target.style.borderColor === 'rgb(47, 115, 60)'){
             e.target.style.borderColor = 'var(--main-bg-accentColor)';
             }
 
@@ -95,9 +95,14 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-            setMessageValue(message);
-            setClassString(classes.message);
-            setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+            if(message)
+            {
+              setMessageValue(message);
+              setClassString(classes.message);
+              setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+            }
+
+            e.target.style.borderColor = '#2f733c';
             if(onFocus) {
               onFocus(e)
             }
