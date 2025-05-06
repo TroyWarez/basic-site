@@ -191,6 +191,13 @@ const OrderForm = (): JSX.Element => {
                   if(event.target.value !== '')
                     {
                       event.target.value = event.target.value.toUpperCase().replace(/([^A-Z0-9:./()\-\s])/g, "");
+                      if (event.target.value.length < 6 )
+                      {
+                        if (event.target.form)
+                          {
+                            (event.target.form.submitButton as HTMLInputElement).disabled = true;
+                          }
+                      }
                       if (event.target.value.length > 3 && event.target.value[3] !== ' ')
                       {
                         const expireMonth = new Number(event.target.value.slice(0, 2)).toString();
