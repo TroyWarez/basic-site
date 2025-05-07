@@ -6,8 +6,10 @@ import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
 import Address from "../../models/ShippingAddress.tsx";
+import storeApiService from "../../services/storeApiService.ts"
 import { Link } from "react-router-dom";
 import { useState } from "react"
+import StoreItem from "../../models/StoreItem.tsx"
 const OrderForm = (): JSX.Element => {
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
@@ -553,6 +555,10 @@ const OrderForm = (): JSX.Element => {
     const [displayNoneClassPaymentAddr, setDisplayNoneClassPaymentAddr] = useState(classes.displayNone);
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
+    const CartItems = new Array<StoreItem>();
+    storeApiService.getCartDatalocal().forEach((cartItem) => {
+      CartItems.push({ sku: cartItem.sku, quantityNumber: cartItem.quantityNumber });
+    });
     return (
       <div>
       <div className={`${classes.containerHeading} ${displayNoneClass}`}>
@@ -777,8 +783,15 @@ const OrderForm = (): JSX.Element => {
           onSubmit={(event) => {      
             event.preventDefault();
             const form = event.currentTarget;
-            if (form.checkValidity()) {
+            if (form.checkValidity() && Address) { // Test card number: 4444333322221111
               console.log("The credit card form form is valid and ready for submission.");
+              const CartItems = new Array<StoreItem>();
+              const sentOrder = Address;
+              storeApiService.getCartDatalocal().forEach((cartItem) => {
+                CartItems.push({ sku: cartItem.sku, quantityNumber: cartItem.quantityNumber });
+                sentOrder.orderedItems = CartItems;
+              });
+              storeApiService.placeOrder(sentOrder);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }}}>

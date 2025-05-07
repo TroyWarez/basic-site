@@ -4,12 +4,13 @@ import CartPage from "../pages/CartPage/CartPage"
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage"
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage"
 import GuestLoginPage from "../pages/GuestLoginPage/GuestLoginPage"
-
+import OrderSuccessPage from "../pages/OrderSuccessPage/OrderSuccessPage";
 const AppRoutes = () => (
   <Routes>
     <Route path="/checkout" element={<CheckoutPage />} />
     <Route path="/checkout/cart" element={<CartPage />} />
     <Route path="/checkout/cart/guestlogin" element={<GuestLoginPage />} />
+    <Route path="/ordersuccess" element={<OrderSuccessPage />} />
     <Route path="/" element={<NotFoundPage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>

@@ -1,7 +1,7 @@
 import axios from "axios";
 import CartItem from "../models/CartItem"
 import Address from "../models/ShippingAddress";
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
     headers: {}
@@ -86,15 +86,16 @@ const httpClient = axios.create({
           return [];
         }
       },
-    placeOrder: async (orderData: Address): Promise<string> => {
+    placeOrder: async (orderData: Address) => {
         try
         {
-          const response =  await httpClient.post(`${basePaths.orders} ${(orderData.guestOrder) ? 'Guest' : ''}`);//Username here
-          return response.data?.cartData;
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
+          window.location.href = `${window.origin}${response.data?.redirectUrl}`
         }
         catch (error)
         {
-          return "";
+          window.location.href = `${window.origin}/OrderFailed`
         }
       }
   }
