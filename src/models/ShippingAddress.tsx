@@ -11,5 +11,6 @@ export default interface Address {
     email: string;
     phoneNumber: string;
     promoEmails: boolean;
+    guestOrder: boolean;
     orderedItems: StoreItem[];
 }

@@ -585,6 +585,7 @@ const OrderForm = (): JSX.Element => {
                     countryName: CountryList[0].displayValue,
                      email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
                       promoEmails: form.promo_emails.checked,
+                      guestOrder: true,
                       orderedItems: [] });
 
                       setBillingAddress({ firstName: form.firstname.value, lastName: form.lastname.value,
@@ -595,6 +596,7 @@ const OrderForm = (): JSX.Element => {
                            countryName: CountryList[0].displayValue,
                             email: form.email.value, phoneNumber: `(+1) ${form.phoneNumber.value}`,
                              promoEmails: form.promo_emails.checked,
+                             guestOrder: true,
                              orderedItems: [] });
             } else {
               console.log("Form is invalid. Please check the fields.");
@@ -715,6 +717,7 @@ const OrderForm = (): JSX.Element => {
                      email: (Address) ? Address.email : '',
                      phoneNumber: (Address) ? Address.phoneNumber : '',
                       promoEmails:  (Address) ? Address.promoEmails : false,
+                      guestOrder: true,
                     orderedItems: [] });
                     form.hidden = true;
                     (form.billingCheckbox as HTMLInputElement).checked = false;

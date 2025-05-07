@@ -1,13 +1,15 @@
 import axios from "axios";
 import CartItem from "../models/CartItem"
+import Address from "../models/ShippingAddress";
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
     headers: {}
   });
   const basePaths = {
-    coupons: "coupons/",
-    cart: "cart/",
+    coupons: "api/get/coupons/",
+    cart: "api/get/cart/",
+    orders: "api/post/orders/",
   };
   const storeApiService = {
     getDiscountPercentage: async (coupon: string): Promise<number> => {
@@ -82,6 +84,17 @@ const httpClient = axios.create({
         catch (error)
         {
           return [];
+        }
+      },
+    placeOrder: async (orderData: Address): Promise<string> => {
+        try
+        {
+          const response =  await httpClient.post(`${basePaths.orders} ${(orderData.guestOrder) ? 'Guest' : ''}`);//Username here
+          return response.data?.cartData;
+        }
+        catch (error)
+        {
+          return "";
         }
       }
   }
