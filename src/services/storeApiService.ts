@@ -86,16 +86,16 @@ const httpClient = axios.create({
           return [];
         }
       },
-    placeOrder: async (orderData: Address) => {
+    placeOrder: async (orderData: Address, deliveryDate: string) => {
         try
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
-          window.location.href = `${window.origin}${response.data?.redirectUrl}`
+          window.location.href = `${window.origin}${response.data?.redirectUrl}&deliveryDate=${deliveryDate}`
         }
         catch (error)
         {
-          window.location.href = `${window.origin}/OrderFailed`
+          window.location.href = `${window.origin}/order-status`
         }
       }
   }

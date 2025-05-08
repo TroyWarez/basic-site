@@ -10,10 +10,11 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
     return (
       <>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
-          <h2  className={classes.h2}>Your order was confirmed.</h2>
+          <h2  className={classes.h2}>Your order is confirmed.</h2>
           <p className={classes.p}>{`Thank you for the order ${queryParams.get('firstName')}`}</p>
           <p className={classes.p}>{`An email confirmation has been sent to: ${queryParams.get('email')} .`}</p>
           <p className={classes.p}>{`Order Number: #${queryParams.get('OrderNumber')}`}</p>
+          <p className={classes.p}>{`${queryParams.get('deliveryDate')}`}</p>
       </div>
       </>
     );
