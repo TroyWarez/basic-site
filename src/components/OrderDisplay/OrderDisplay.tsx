@@ -10,6 +10,7 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
   {
     return (
       <>
+      <title>Order confirmed</title>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
           <h2  className={classes.h2}>{`Thanks for your order, ${(queryParams.get('firstName') !== null) ? queryParams.get('firstName') : 'First name not found.'}`}</h2>
           <p className={classes.p}>{`Here's your order number: #${(queryParams.get('OrderNumber') !== null) ? queryParams.get('OrderNumber') : 'Order number not found.'}. We can't wait for you to see what's in store.`}</p>
@@ -25,11 +26,13 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
   }
   return (
     <>
+    <title>Failed to confirm order</title>
     <div className={`${classes.container} ${(className) ? className : ''}`}>
         <h2>Failed to order your items.</h2>
-        <p className={classes.p}>We're sorry, but the store was not able to place your order at this time.</p>
+        <p className={classes.p}>We're sorry, but the Store was not able to place your order at this time</p>
+        <p className={classes.p}> You were not charged</p>
         <p className={classes.p}>Please try again later.</p>
-        <Link to='/'>Go to the home page.</Link>
+        <Link to='/' className={CartClasses.AltText}>Go to the home page.</Link>
     </div>
     </>
   );

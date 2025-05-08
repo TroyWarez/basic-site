@@ -3,8 +3,7 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import OrderDisplay from '../../components/OrderDisplay/OrderDisplay';
 import StoreFooter from '../../components/StoreFooter/StoreFooter';
 const OrderStatusPage = () : JSX.Element => {
-  return (         <>
-    <title>Order Confirmed</title>
+  return (<>
     <NavigationBar cartItemAmount={0} isCentered={true}/>
       <PageContainer>
         <OrderDisplay/>
