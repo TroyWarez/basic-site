@@ -1,24 +1,15 @@
-import { Link, useSearchParams } from "react-router-dom";
-
-const OrderSuccessPage = () => {
-  const [queryParams, setQueryParams] = useSearchParams()
-  if(queryParams.get('firstName'))
-  {
-    return (
-      <>
-      <title>Order Confirmed</title>
-      <h1>Order Number</h1>
-      <b>{queryParams.get('OrderNumber')}</b>
-      </>
-    );
-  }
-  return (
-    <div>
-      <title>Order Placed Succesfully</title>
-      <h1>Order Confirmed</h1>
-      <button><Link to="/">Go back to home page</Link></button>
-    </div>
-  );
-};
-
+import PageContainer from '../../components/PageContainer/PageContainer';
+import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import OrderDisplay from '../../components/OrderDisplay/OrderDisplay';
+import StoreFooter from '../../components/StoreFooter/StoreFooter';
+const OrderSuccessPage = () : JSX.Element => {
+  return (         <>
+    <title>Order Confirmed</title>
+    <NavigationBar cartItemAmount={0} isCentered={true}/>
+      <PageContainer>
+        <OrderDisplay/>
+      </PageContainer>
+      <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
+      </> )
+}
 export default OrderSuccessPage;
