@@ -1,4 +1,5 @@
 import classes from './OrderDisplay.module.css'
+import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import { useSearchParams, Link } from "react-router-dom";
 interface OrderDisplayProps {
     className?: string;
@@ -10,11 +11,14 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
     return (
       <>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
-          <h2  className={classes.h2}>Your order is confirmed.</h2>
-          <p className={classes.p}>{`Thank you for the order ${queryParams.get('firstName')}`}</p>
-          <p className={classes.p}>{`An email confirmation has been sent to: ${queryParams.get('email')} .`}</p>
-          <p className={classes.p}>{`Order Number: #${queryParams.get('OrderNumber')}`}</p>
+          <h2  className={classes.h2}>{`Thanks for your order, ${queryParams.get('firstName')}`}</h2>
+          <p className={classes.p}>{`Here's your order number: #${queryParams.get('OrderNumber')}. We can't wait for you to see what's in store.`}</p>
+          <p className={classes.p}></p>
+          <br/>
+          <p className={classes.p}>Once your package ships, we'll see you a tracking number.</p>
+          <br/>
           <p className={classes.p}>{`${queryParams.get('deliveryDate')}`}</p>
+          <p>Have a question about your order? <Link to='/' className={CartClasses.AltText} >Send us a message</Link> and a Store team member will be in touch.</p>
       </div>
       </>
     );
