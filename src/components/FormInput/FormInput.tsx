@@ -99,7 +99,7 @@ const FormInput = (
             {
               setMessageValue(message);
               setClassString(classes.message);
-              setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+              setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
             }
 
             e.target.style.borderColor = '#2f733c';

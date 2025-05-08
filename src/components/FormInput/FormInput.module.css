@@ -34,19 +34,19 @@
 .message {
   color: #a5a5a5!important;
   visibility: visible!important;
-  margin-left: 1rem;
-  padding-bottom: 0.5rem;
+  margin-left: 1rem!important;
+  padding-bottom: 0.5rem!important;;
 }
 
 .error_message {
   color: #eb1919!important;
-  margin-left: 1rem;
-  padding-bottom: 0.5rem;
+  margin-left: 1rem!important;;
+  padding-bottom: 0.5rem!important;;
 }
 .invisible {
   visibility: hidden!important;
   margin: 0!important;
-  padding: 0!important;
+  min-height: min-content!important;
 }
 .displayNone {
   display: none!important;
