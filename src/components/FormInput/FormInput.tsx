@@ -95,12 +95,15 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-            if(e.target.required)
-            {
+
               setMessageValue(message);
               setClassString(classes.message);
-              setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
-            }
+              if(message) {
+              setClassSpanStr(`${classes.spanError} ${classes.displayNone}`);
+              }
+              else {
+                setClassSpanStr(`${classes.spanError} ${classes.invisible}`);
+              }
 
             e.target.style.borderColor = '#2f733c';
             if(onFocus) {
