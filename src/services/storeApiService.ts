@@ -91,6 +91,7 @@ const httpClient = axios.create({
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
+          storeApiService.setCartDatalocal(new Array<CartItem>());
           window.location.href = `${window.origin}${response.data?.redirectUrl}&deliveryDate=${deliveryDate}`
         }
         catch (error)
