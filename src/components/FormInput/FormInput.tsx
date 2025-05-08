@@ -4,6 +4,7 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   minlength?: number;
   maxlength?: number;
   label?: string;
+  divclassName?: string;
   pattern?: string;
   message: string;
   error_message: string;
@@ -13,6 +14,7 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 const FormInput = (
   {
   className,
+  divclassName,
   onInput, 
   onBlur,
   onFocus,
@@ -44,7 +46,7 @@ const FormInput = (
   const [classStr, setClassString] = useState<string>((message !== '' && error_message !== '') ? classes.message : `${classes.error_message} ${classes.invisible}`);
   const [classSpanStr, setClassSpanStr] = useState<string>((message !== '' && error_message !== '') ? `${classes.spanError} ${classes.displayNone}` : `${classes.spanError} ${classes.displayNone}`);
   return (
-    <div hidden={hidden} className={classes.container}>
+    <div hidden={hidden} className={`${classes.container} ${(divclassName) ? divclassName : ''}`}>
       <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
         <input 
 
