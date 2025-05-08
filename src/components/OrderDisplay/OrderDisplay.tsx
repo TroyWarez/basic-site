@@ -16,7 +16,7 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
           <p className={classes.p}>{`Here's your order number: #${(queryParams.get('OrderNumber') !== null) ? queryParams.get('OrderNumber') : 'Order number not found.'}. We can't wait for you to see what's in store.`}</p>
           <p className={classes.p}>{`A confirmation email was sent to your email address: ${(queryParams.get('email') !== null) ? queryParams.get('email') : 'Email not found.'}`}</p>
           <br/>
-          <p className={classes.p}>Once your package ships, we'll see you a tracking number.</p>
+          <p className={classes.p}>Once your package ships, we'll send you a tracking number.</p>
           <br/>
           <p className={classes.p}>{`${queryParams.get('deliveryDate')}`}</p>
           <p>Have a question about your order? <Link to='/' className={CartClasses.AltText} >Send us a message</Link> and a Store team member will be in touch.</p>
