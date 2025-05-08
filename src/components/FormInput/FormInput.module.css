@@ -35,22 +35,24 @@
   color: #a5a5a5!important;
   visibility: visible!important;
   margin-left: 1rem;
-  padding-bottom: 0.5rem!important;
+  padding-bottom: 0.5rem;
 }
 
 .error_message {
   color: #eb1919!important;
   margin-left: 1rem;
-  padding-bottom: 0.5rem!important;
+  padding-bottom: 0.5rem;
 }
 .invisible {
   visibility: hidden!important;
   margin: 0!important;
   min-height: min-content!important;
+  padding-bottom: 0!important;
 }
 .displayNone {
   display: none!important;
   margin: 0!important;
+  padding-bottom: 0!important;
 }
 .span {
   user-select: none;
