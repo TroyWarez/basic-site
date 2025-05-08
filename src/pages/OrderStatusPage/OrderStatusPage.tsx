@@ -2,7 +2,7 @@ import PageContainer from '../../components/PageContainer/PageContainer';
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import OrderDisplay from '../../components/OrderDisplay/OrderDisplay';
 import StoreFooter from '../../components/StoreFooter/StoreFooter';
-const OrderStatusPage = () : JSX.Element => {
+const OrderStatusPage = () => {
   return (<>
     <NavigationBar cartItemAmount={0} isCentered={true}/>
       <PageContainer>

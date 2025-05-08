@@ -2,7 +2,7 @@ import PageContainer from '../../components/PageContainer/PageContainer';
 import NavigationBar from "../../components/NavigationBar/NavigationBar"
 import StoreFooter from '../../components/StoreFooter/StoreFooter';
 import CheckoutForm from '../../components/CheckoutForm/CheckoutForm';
-const CheckoutPage = () : JSX.Element => {
+const CheckoutPage = () => {
   return (         <>
     <title>Store - Checkout</title>
     <NavigationBar cartItemAmount={0} isCentered={true}/>
