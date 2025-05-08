@@ -5,18 +5,15 @@ interface OrderDisplayProps {
 }
 const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
   const [queryParams, setQueryParams] = useSearchParams();
-  if(queryParams.size)
+  if(queryParams.size >= 3)
   {
-    const firstName = queryParams.get('firstName');
-    const orderNumber = queryParams.get('OrderNumber');
-    const email = queryParams.get('email');
     return (
       <>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
           <h2>Order Confirmed</h2>
-          <b>{`Thank you for the order ${firstName}`}</b>
-          <b>{`An email confirmation has been sent to: ${email} .`}</b>
-          <b>{`Order Number: #${orderNumber}`}</b>
+          <b>{`Thank you for the order ${queryParams.get('firstName')}`}</b>
+          <b>{`An email confirmation has been sent to: ${queryParams.get('email')} .`}</b>
+          <b>{`Order Number: #${queryParams.get('OrderNumber')}`}</b>
       </div>
       </>
     );
