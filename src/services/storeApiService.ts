@@ -10,6 +10,7 @@ const httpClient = axios.create({
     coupons: "api/get/coupons/",
     cart: "api/get/cart/",
     orders: "api/post/orders/",
+    signup: "api/post/signups/",
   };
   const storeApiService = {
     getDiscountPercentage: async (coupon: string): Promise<number> => {
@@ -86,13 +87,24 @@ const httpClient = axios.create({
           return [];
         }
       },
-    placeOrder: async (orderData: Address, deliveryDate: string) => {
+    placeOrder: async (orderData: Address) => {
         try
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
-          storeApiService.setCartDatalocal(new Array<CartItem>());
-          window.location.href = `${window.origin}${response.data?.redirectUrl}&deliveryDate=${deliveryDate}`
+          return response.statusText;
+        }
+        catch (error)
+        {
+          window.location.href = `${window.origin}/order-status`
+        }
+      },
+      SignUpUser: async (username: string, password: string) => {
+        try
+        {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          const response =  await httpClient.post(basePaths.signup, {Username: username, Password: password });
+          return response.statusText;
         }
         catch (error)
         {

@@ -3,7 +3,8 @@ import ShoppingCartClasses from '../ShoppingCart/ShoppingCart.module.css';
 import classes from '../SignupForm/SignupForm.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import FormInput from '../FormInput/FormInput';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 const SignupForm = () : JSX.Element => {
   return (
     <>
