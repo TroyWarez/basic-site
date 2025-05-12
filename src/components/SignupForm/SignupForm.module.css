@@ -14,3 +14,10 @@
     margin-top: 2rem;
     cursor: pointer;
 }
+.invisible { 
+    visibility: hidden!important;
+}
+.p {
+    margin-top: 1rem;
+    color: #eb1919!important;
+}
