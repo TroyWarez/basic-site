@@ -1,11 +1,11 @@
 import classes from "./PageContainer.module.css";
 
 interface PageContainerProps {
-  className?: string;
   children: JSX.Element | JSX.Element[];
+  isCentered?: boolean;
 }
-const PageContainer = ({ children, className }: PageContainerProps): JSX.Element  => (
-    <div className={`${classes.container}${(className) ? ` ${className}` : ''}`}>
+const PageContainer = ({ children, isCentered }: PageContainerProps): JSX.Element  => (
+    <div className={`${classes.container}${(isCentered) ? ` ${classes.centered}` : ''}`}>
     {children}
     </div>
 );
