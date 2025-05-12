@@ -143,6 +143,7 @@
 #submit:disabled {
   background-color: var(--main-bg-accentColor)!important;
   color: var(--main-bg-accentColorAlt)!important;
+  cursor: not-allowed;
 }
 .displayNone {
   display: none!important;

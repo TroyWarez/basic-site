@@ -791,7 +791,7 @@ const OrderForm = (): JSX.Element => {
                 CartItems.push({ sku: cartItem.sku, quantityNumber: cartItem.quantityNumber });
                 sentOrder.orderedItems = CartItems;
               });
-              storeApiService.placeOrder(sentOrder, encodeURIComponent(getDeilveryDate()));
+              storeApiService.placeOrder(sentOrder);
             } else {
               console.log("Form is invalid. Please check the fields.");
             }}}>
