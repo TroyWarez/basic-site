@@ -5,42 +5,49 @@ import classes from '../SignupForm/SignupForm.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import PaymentIds from '../OrderForm/OrderForm.module.css'
 import FormInput from '../FormInput/FormInput';
+import storeApiService from '../../services/storeApiService';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false)
-  return (
-    <>
-    <form className={`${classes.formcontainer} ${checkoutClasses.form}`}
-      onSubmit={(event) =>{
+  const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
-        const password = event.currentTarget.password;
-        const confirmpassword = event.currentTarget.confirmpassword;
+        const password = event.currentTarget.password as HTMLInputElement;
+        const confirmpassword = event.currentTarget.confirmpassword as HTMLInputElement;
         if(form && form.checkValidity()){
         if(password && confirmpassword && password.value !== confirmpassword.value)
         {
-          setErrorMessage('The passwords must match');
+          password.style.borderColor = '#eb1919';
+          confirmpassword.style.borderColor = '#eb1919';
+          setErrorMessage('The passwords do not match');
           setInvisibleClass('');
           return;
         }
         else
         {
+          setIsSubmitting(true);
+          const message = await storeApiService.SignUpUser(form.username.value, password.value)
           setErrorMessage('');
           setInvisibleClass(classes.invisible);
+          setIsSubmitting(false);
           return;
         }
       }
-      }}>
+      };
+  return (
+    <>
+    <form className={`${classes.formcontainer} ${checkoutClasses.form}`}
+      onSubmit={onSubmitHandler}>
         <h2>Create Your Store Account</h2>
         <p>Sign up benefits: Save your shipping address and cart for later!</p>
         <br/>
         
     <FormInput type="text" pattern="[A-Za-z0-9]+" name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxLength={20}/>
     <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxLength={20}/>
-    <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
+    <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols with upper and lower case letters.' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
   
     <p className={`${classes.p} ${invisibleClass}`}>{errorMessage}</p>
     <FormInput 

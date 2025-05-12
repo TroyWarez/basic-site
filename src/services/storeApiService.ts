@@ -10,7 +10,7 @@ const httpClient = axios.create({
     coupons: "api/get/coupons/",
     cart: "api/get/cart/",
     orders: "api/post/orders/",
-    signup: "api/post/signups/",
+    users: "api/users/signup",
   };
   const storeApiService = {
     getDiscountPercentage: async (coupon: string): Promise<number> => {
@@ -103,12 +103,12 @@ const httpClient = axios.create({
         try
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
-          const response =  await httpClient.post(basePaths.signup, {Username: username, Password: password });
+          const response =  await httpClient.post(basePaths.users, {username: username, password: password });
           return response.statusText;
         }
         catch (error)
         {
-          window.location.href = `${window.origin}/order-status`
+                    return error;
         }
       }
   }
