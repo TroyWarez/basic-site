@@ -17,8 +17,10 @@ const SignupForm = () : JSX.Element => {
       onSubmit={(event) =>{
         event.preventDefault();
         const form = event.currentTarget;
+        const password = event.currentTarget.password;
+        const confirmpassword = event.currentTarget.confirmpassword;
         if(form && form.checkValidity()){
-        if(form.password.value !== form.confirmpassword.value)
+        if(password && confirmpassword && password.value !== confirmpassword.value)
         {
           setErrorMessage('The passwords must match');
           setInvisibleClass('');
@@ -26,6 +28,7 @@ const SignupForm = () : JSX.Element => {
         }
         else
         {
+          setErrorMessage('');
           setInvisibleClass(classes.invisible);
           return;
         }
