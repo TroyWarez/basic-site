@@ -9,6 +9,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
 const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false)
   return (
     <>
     <form className={`${classes.formcontainer} ${checkoutClasses.form}`}
@@ -18,6 +20,7 @@ const SignupForm = () : JSX.Element => {
         if(form && form.checkValidity()){
         if(form.password.value !== form.confirmpassword.value)
         {
+          setErrorMessage('The passwords must match');
           setInvisibleClass('');
           return;
         }
@@ -36,7 +39,7 @@ const SignupForm = () : JSX.Element => {
     <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxLength={20}/>
     <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
   
-    <p className={`${classes.p} ${invisibleClass}`}>The passwords don't match.</p>
+    <p className={`${classes.p} ${invisibleClass}`}>{errorMessage}</p>
     <FormInput 
       className={`${ShoppingCartClasses.buttonSignIn} ${GuestClasses.button}`}
       divclassName={classes.submit}
@@ -48,7 +51,7 @@ const SignupForm = () : JSX.Element => {
       validation_message='' 
       tooShort_message='' 
       required
-      disabled
+      disabled={isSubmitting}
       value="Sign Up"/>
     <b>Already have an account? Click<Link to='/login' className={CartClasses.AltText}> here</Link> to login.</b>
     </form>
