@@ -804,7 +804,7 @@ const OrderForm = (): JSX.Element => {
                     </div>
                   </div>
             </form>
-            <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>By clicking Pay now, you agree to the <Link to='/legal'>Terms and Conditions.</Link></p>
+            <p className={`${classes.pPrivacy} ${classes.noBorder} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}>By clicking Pay now, you agree to the <Link to='/terms-and-conditions'>Terms and Conditions.</Link></p>
             <FormInput className={`${Cartclasses.buttonSignIn} ${GuestLoginClasses.button} ${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`} id={classes.submit} form={classes.paymentContainer} type="submit" name="submitButton" error_message='' message='' validation_message='' tooShort_message='' required={true} disabled={true} value="Pay now"/>
           </div> 
         </div>
