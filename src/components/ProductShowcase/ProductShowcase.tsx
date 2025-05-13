@@ -5,7 +5,7 @@ const ProductShowcase = (): JSX.Element  => {
   <>
   <NavigationBar/>
     <div className={classes.container}>
-        <div>ProductShowcase</div>
+        <div></div>
     </div>
   </>
   )
