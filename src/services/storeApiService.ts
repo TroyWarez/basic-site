@@ -18,6 +18,7 @@ const httpClient = axios.create({
     cart: "api/get/cart/",
     orders: "api/post/orders/",
     users: "api/users/signup",
+    logins: "api/users/login",
   };
   const storeApiService = {
     getDiscountPercentage: async (coupon: string): Promise<number> => {
@@ -113,9 +114,27 @@ const httpClient = axios.create({
           const response =  await httpClient.post(basePaths.users, {username: username, password: password });
           return {status: response.status, statusText: response.statusText };
         }
-        catch (error)
+        catch (error: unknown)
         {
-            return {status: 500, statusText: "Failed" };
+          if (error instanceof AxiosError) {
+            return {status: 500, statusText: error.message }
+        }
+        return {status: 500, statusText: 'Failed' }
+        }
+      },
+      LoginUser: async (username: string, password: string): Promise< {status: number, statusText: string }> => {
+        try
+        {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          const response =  await httpClient.post(basePaths.logins, {username: username, password: password });
+          return {status: response.status, statusText: response.statusText };
+        }
+        catch (error: unknown)
+        {
+          if (error instanceof AxiosError) {
+            return {status: 500, statusText: error.message }
+        }
+        return {status: 500, statusText: 'Failed' }
         }
       }
   }
