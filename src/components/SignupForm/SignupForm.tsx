@@ -11,7 +11,9 @@ import { useState } from 'react';
 const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+              const navitgate = useNavigate();
+
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const form = event.currentTarget;
@@ -29,10 +31,15 @@ const SignupForm = () : JSX.Element => {
         else
         {
           setIsSubmitting(true);
-          const message = await storeApiService.SignUpUser(form.username.value, password.value)
-          setErrorMessage('');
-          setInvisibleClass(classes.invisible);
+          const Response = await storeApiService.SignUpUser(form.username.value, password.value);
           setIsSubmitting(false);
+          if(Response.status === 201) {
+            navitgate('/cart');
+          }
+          else {
+             setErrorMessage(`${Response.statusText} Response code: ${Response.status}`);
+             setInvisibleClass('');
+          }
           return;
         }
       }

@@ -43,7 +43,7 @@ const FormInput = (
 }: FormInputProps) : JSX.Element => {
 
   const [messageValue, setMessageValue] = useState<string>((message !== '') ? message : error_message);
-  const [classStr, setClassString] = useState<string>((message !== '' && error_message !== '') ? classes.message : `${classes.error_message} ${classes.invisible}`);
+  const [classStr, setClassString] = useState<string>((message !== '' && error_message !== '') ? classes.message : `${classes.error_message} ${classes.invisible} ${(type === 'submit') ? classes.displayNone : ''}`);
   const [classSpanStr, setClassSpanStr] = useState<string>((message !== '' && error_message !== '') ? `${classes.spanError} ${classes.displayNone}` : `${classes.spanError} ${classes.displayNone}`);
   return (
     <div hidden={hidden} className={`${classes.container} ${(divclassName) ? divclassName : ''}`}>
@@ -97,7 +97,7 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-
+            if(type !== 'submit'){
               setMessageValue(message);
               setClassString(classes.message);
               if(message) {
@@ -110,7 +110,7 @@ const FormInput = (
             e.target.style.borderColor = '#2f733c';
             if(onFocus) {
               onFocus(e)
-            }
+            }}
           }}
           onInput={(e) => {
             setMessageValue(message);

@@ -1,6 +1,13 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import CartItem from "../models/CartItem"
 import Address from "../models/ShippingAddress";
+interface CustomError {
+  message: string;
+  code?: string;
+  request?: any;
+  response?: AxiosResponse;
+  config?: AxiosRequestConfig;
+}
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
@@ -99,16 +106,16 @@ const httpClient = axios.create({
           window.location.href = `${window.origin}/order-status`
         }
       },
-      SignUpUser: async (username: string, password: string) => {
+      SignUpUser: async (username: string, password: string): Promise< {status: number, statusText: string }> => {
         try
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(basePaths.users, {username: username, password: password });
-          return response.statusText;
+          return {status: response.status, statusText: response.statusText };
         }
         catch (error)
         {
-                    return error;
+            return {status: 500, statusText: "Failed" };
         }
       }
   }
