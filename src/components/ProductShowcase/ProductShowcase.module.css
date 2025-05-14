@@ -1,29 +1,47 @@
 .h1 {
     width: 65rem!important;
-    font-size: xx-large;
+    font-size: 3rem;
+}
+.h2 {
+    padding-left: 2rem;
 }
 .img {
-    width: 12rem;
-    height: 12rem;
+    width: 20rem;
+    height: 20rem;
     margin-bottom: 1rem;
 }
 .ProductContainer {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 2rem;
     cursor: pointer;
+    flex-direction: row;
+    padding-left: 52rem;
+    padding-right: 52rem;
+}
+.ProductShowcaseContainer {
+    display: flex;
 }
 .CheckboxesContainer {
     display: flex;
-    width: 65rem!important;
     flex-direction: column;
-    align-items: flex-start;
-    margin-left: 3rem;
+    align-items: center;
+    height: 100%;
+    width: 70rem;
+    padding-left: 1rem;
 }
 .Product {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: space-evenly;
+}
+.ProductItem {
+    display: flex;
     flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
 }
 .ProductPrice {
     font-size: 1.5rem;
