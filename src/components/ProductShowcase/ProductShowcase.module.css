@@ -1,3 +1,27 @@
-.container {
+.h1 {
+    width: 65rem!important;
+    font-size: xx-large;
+}
+.img {
+    width: 12rem;
+    height: 12rem;
+    margin-bottom: 1rem;
+}
+.Product {
     display: flex;
+    flex-direction: column;
+    width: min-content;
+    align-items: flex-start;
+}
+.ProductPrice {
+    font-size: 1.5rem;
+    height: 2rem;
+    font-weight: bold;
+}
+.ProductPriceContainer {
+    display: flex;
+    align-items: center;
+}
+.from {
+    margin-right: 1rem;
 }
