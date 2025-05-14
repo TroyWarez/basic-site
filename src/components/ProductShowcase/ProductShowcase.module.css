@@ -1,6 +1,7 @@
 .h1 {
-    width: 65rem!important;
+    width: 85rem!important;
     font-size: 3rem;
+        padding-left: 2rem;
 }
 .h2 {
     padding-left: 2rem;
@@ -16,7 +17,7 @@
     cursor: pointer;
     flex-direction: row;
     padding-left: 52rem;
-    padding-right: 52rem;
+    margin-right: 52rem;
 }
 .ProductShowcaseContainer {
     display: flex;
@@ -35,6 +36,7 @@
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-evenly;
+    padding-right: 6rem;
 }
 .ProductItem {
     display: flex;
