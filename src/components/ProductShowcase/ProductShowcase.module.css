@@ -46,13 +46,14 @@
     margin-top: 1rem;
 }
 .ProductPrice {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     height: 2rem;
     font-weight: bold;
+        margin-bottom: 1rem;
 }
 .ProductPriceContainer {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 .ProductSalePriceContainer {
     display: flex;
