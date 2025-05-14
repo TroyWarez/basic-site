@@ -7,11 +7,23 @@
     height: 12rem;
     margin-bottom: 1rem;
 }
+.ProductContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem;
+    cursor: pointer;
+}
+.CheckboxesContainer {
+    display: flex;
+    width: 65rem!important;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 3rem;
+}
 .Product {
     display: flex;
     flex-direction: column;
-    width: min-content;
-    align-items: flex-start;
 }
 .ProductPrice {
     font-size: 1.5rem;
@@ -22,6 +34,15 @@
     display: flex;
     align-items: center;
 }
+.ProductSalePriceContainer {
+    display: flex;
+}
 .from {
+    margin-right: 1rem;
+}
+.sale {
+    color: red;
+    font-size: large!important;
+    height: 2rem!important;
     margin-right: 1rem;
 }
