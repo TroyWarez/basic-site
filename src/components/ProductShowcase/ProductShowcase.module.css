@@ -1,10 +1,12 @@
 .h1 {
     width: 85rem!important;
     font-size: 3rem;
-        padding-left: 2rem;
+    font-weight: 600;
+    padding-left: 2rem;
 }
 .h2 {
     padding-left: 2rem;
+    font-weight: 600;
 }
 .img {
     width: 20rem;
