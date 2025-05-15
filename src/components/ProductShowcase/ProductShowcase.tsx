@@ -2,6 +2,7 @@ import classes from '../ProductShowcase/ProductShowcase.module.css'
 import NavigationBar from '../NavigationBar/NavigationBar';
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
+import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
 const ProductShowcase = (): JSX.Element  => {
   const [products, setProducts] = useState(new Array<ProductItem>);
@@ -26,8 +27,16 @@ const ProductShowcase = (): JSX.Element  => {
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
     <div>
+    <DropdownContainer label='Catagory' collapsed={true}>
+          <div className={classes.Product}>
     <input title='Brand' type='checkbox' id='Test'/>
     <label>Test</label>
+        <input title='Brand' type='checkbox' id='Test'/>
+    <label>Test</label>
+        <input title='Brand' type='checkbox' id='Test'/>
+    <label>Test</label>
+    </div>
+    </DropdownContainer>
     </div>
     
     </div>
