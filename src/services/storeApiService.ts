@@ -1,5 +1,6 @@
 import axios, { AxiosError } from "axios";
 import CartItem from "../models/CartItem"
+import ProductItem from "../models/ProductItem";
 import Address from "../models/ShippingAddress";
 interface CustomError {
   message: string;
@@ -16,6 +17,7 @@ const httpClient = axios.create({
   const basePaths = {
     coupons: "api/get/coupons/",
     cart: "api/get/cart/",
+    products: "api/get/products/",
     orders: "api/post/orders/",
     users: "api/users/signup",
     logins: "api/users/login",
@@ -89,6 +91,17 @@ const httpClient = axios.create({
         {
           const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
           return response.data?.cartData;
+        }
+        catch (error)
+        {
+          return [];
+        }
+      },
+      getProductData: async (): Promise<ProductItem[]> => {
+        try
+        {
+          const response =  await httpClient.get(`${basePaths.products}${0}`);
+          return response.data as ProductItem[];
         }
         catch (error)
         {

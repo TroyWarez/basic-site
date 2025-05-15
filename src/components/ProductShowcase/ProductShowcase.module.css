@@ -1,16 +1,21 @@
 .h1 {
-    width: 85rem!important;
     font-size: 3rem;
     font-weight: 600;
     padding-left: 2rem;
+    width: 60rem;
 }
 .h2 {
-    padding-left: 2rem;
+    margin-right: 60rem;
     font-weight: 600;
+    padding-bottom: 1rem;
+    padding-left: 4rem;
+    margin-left: 10rem;
+    width: 10rem;
+    border-bottom: solid 1px var(--main-bg-accentColor);
 }
 .img {
-    width: 20rem;
-    height: 20rem;
+    width: 12rem;
+    height: 12rem;
     margin-bottom: 1rem;
 }
 .ProductContainer {
@@ -18,8 +23,9 @@
     justify-content: space-between;
     cursor: pointer;
     flex-direction: row;
-    padding-left: 52rem;
-    margin-right: 52rem;
+    padding-left: 42rem;
+    margin-right: 42rem;
+    width: 62rem
 }
 .ProductShowcaseContainer {
     display: flex;
@@ -38,7 +44,6 @@
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: space-evenly;
-    padding-right: 6rem;
 }
 .ProductItem {
     display: flex;
@@ -62,10 +67,14 @@
 }
 .from {
     margin-right: 1rem;
+    font-size: 1.35rem!important;
 }
 .sale {
     color: red;
     font-size: 1.35rem!important;
     height: 2rem!important;
     margin-right: 1rem;
+}
+.displayNone * {
+    display: none!important;
 }
