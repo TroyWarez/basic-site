@@ -5,13 +5,28 @@ import ProductItem from '../../models/ProductItem';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
 const ProductShowcase = (): JSX.Element  => {
+  const filterLessThan50 = ( product: ProductItem) => {
+  return (product.displayCurrencyValue < 50)
+  }
   const [products, setProducts] = useState(new Array<ProductItem>);
+  const [categories, setCategories] = useState(new Array<string>);
       if(products.length === 0) 
     {
   const productsHandler = storeApiService.getProductData();
   productsHandler.then((value) => {
-
+    value.forEach((Product) => {
+      Product.categories.forEach((Category) => {
+        if(categories.includes(Category))
+        {
+          console.log(Category);
+        }
+        else {
+          categories.push(Category);
+        }
+      })
+    })
       setProducts(value);
+      setCategories(categories);
 
   })
       }
@@ -21,27 +36,27 @@ const ProductShowcase = (): JSX.Element  => {
   <h1 className={classes.h1}>Products</h1>
   <div>
         <h2 className={classes.h2}>Filters</h2>
-        <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.length} Products)`}</p>
+        <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterLessThan50).length} Products)`}</p>
   </div>
   <div className={classes.ProductShowcaseContainer}>
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
     <div>
-    <DropdownContainer label='Catagory' collapsed={true}>
-          <div className={classes.Product}>
-    <input title='Brand' type='checkbox' id='Test'/>
-    <label>Test</label>
-        <input title='Brand' type='checkbox' id='Test'/>
-    <label>Test</label>
-        <input title='Brand' type='checkbox' id='Test'/>
-    <label>Test</label>
-    </div>
+    <DropdownContainer label='Catagory' collapsed={false}>
+
+      {categories.map((Category) => (
+            <div className={classes.Product}>
+    <input title='Category' type='checkbox' id={Category} name={Category}/>
+            <label>{`${Category} (${products.filter((Product) => (Product.categories.includes(Category))).length})`}</label>
+              </div>
+      ))}
+
     </DropdownContainer>
     </div>
     
     </div>
     <div className={classes.Product}>
-        {products.map((ProductItem) => (
+        {products.filter(filterLessThan50).map((ProductItem) => (
         <div className={classes.ProductItem} key={ProductItem.sku}>
           <img alt='Product Image' className={classes.img} src={ProductItem.productImageBinData}></img>
           <b>{ProductItem.displayItemName}</b>
