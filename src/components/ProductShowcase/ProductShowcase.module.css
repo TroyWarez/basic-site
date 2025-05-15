@@ -6,12 +6,16 @@
 }
 .h2 {
     margin-right: 60rem;
-    font-weight: 600;
-    padding-bottom: 1rem;
+    font-weight: 900;
     padding-left: 4rem;
     margin-left: 10rem;
     width: 10rem;
+}
+.TotalProducts {
     border-bottom: solid 1px var(--main-bg-accentColor);
+    font-weight: normal!important;
+    padding-bottom: 3rem!important;;
+    color: #c3c0c0;
 }
 .img {
     width: 12rem;

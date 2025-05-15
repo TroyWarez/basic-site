@@ -18,7 +18,10 @@ const ProductShowcase = (): JSX.Element  => {
   <>
   <NavigationBar/>
   <h1 className={classes.h1}>Products</h1>
-                <h2 className={classes.h2}>Filters</h2>
+  <div>
+        <h2 className={classes.h2}>Filters</h2>
+        <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.length} Products)`}</p>
+  </div>
   <div className={classes.ProductShowcaseContainer}>
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
