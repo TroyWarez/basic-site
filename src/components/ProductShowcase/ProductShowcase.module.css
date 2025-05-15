@@ -63,7 +63,7 @@
 }
 .ProductSalePriceContainer {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 .from {
     margin-right: 1rem;
@@ -71,7 +71,7 @@
 }
 .sale {
     color: red;
-    font-size: 1.35rem!important;
+    font-size: 1rem!important;
     height: 2rem!important;
     margin-right: 1rem;
 }
