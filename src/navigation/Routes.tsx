@@ -9,6 +9,7 @@ import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import OrderStatusPage from "../pages/OrderStatusPage/OrderStatusPage";
 import PlaceholderPage from "../pages/PlaceholderPage/PlaceholderPage";
 import Homepage from "../pages/Homepage/Homepage";
+import ProductPage from "../pages/ProductPage/ProductPage";
 const AppRoutes = () => (
   <Routes>
     <Route path="/checkout" element={<CheckoutPage />} />
@@ -20,6 +21,7 @@ const AppRoutes = () => (
     <Route path="/terms-and-conditions" element={<PlaceholderPage HeadingText="Terms and Conditions"/>} />
     <Route path="/legal" element={<PlaceholderPage HeadingText="Legal"/>} />
     <Route path="/order-status" element={<OrderStatusPage />} />
+        <Route path="/products/*" element={<ProductPage />} />
     <Route path="/" element={<Homepage />} />
     <Route path="*" element={<NotFoundPage />} />
   </Routes>
