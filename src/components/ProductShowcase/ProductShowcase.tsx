@@ -9,11 +9,19 @@ const ProductShowcase = (): JSX.Element  => {
   const [products, setProducts] = useState(new Array<ProductItem>);
   const [categories, setCategories] = useState(new Array<string>);
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
+  const [filteredPrices, setFilteredPrices] = useState(new Array({min: 0, max: 0}));
 
   const filterCategories = ( product: ProductItem) => {
     let filterCheck = true;
     filteredCategories.forEach((Category) => {
       filterCheck = (product.categories.includes(Category));
+      if(filterCheck === false)
+        return filterCheck;
+    });
+        filteredPrices.forEach((Price) => {
+          if(Price.max > Price.min){
+          filterCheck = (product.displayCurrencyValue > Price.min && product.displayCurrencyValue < Price.max);
+          }
       if(filterCheck === false)
         return filterCheck;
     });
@@ -82,19 +90,19 @@ const ProductShowcase = (): JSX.Element  => {
         <div hidden={(products.filter((Product) => (Product.displayCurrencyValue < 99.99)).length === 0)}>
           <input type='checkbox' className={classes.Categorybox}
           onClick={(event) => {
-            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
-              filteredCategories.push(event.currentTarget.name);
-               setProducts(products.filter(filterCategories));
+            if(event.currentTarget.checked && !filteredPrices.includes({min: 0, max: 99.99})) {
+              filteredPrices.push({min: 0, max: 99.99});
+              setProducts(products.filter((Product) => (Product.displayCurrencyValue < 99.99)));
             }
             else if (!event.currentTarget.checked)
             {
-              const index = filteredCategories.indexOf(event.currentTarget.name);
+              const index = filteredPrices.indexOf({min: 0, max: 99.99});
                 if (index > -1) {
-                filteredCategories.splice(index, 1);
+                filteredPrices.splice(index, 1);
                 }
-                setProducts(Savedproducts.filter(filterCategories));
+                setProducts(products);
             }
-               setFilteredCategories(filteredCategories);
+               setFilteredPrices(filteredPrices);
           }}/>
           <label>{`< CA$99.99 (${products.filter((Product) => (Product.displayCurrencyValue < 99.99)).length})`}</label>
         </div>
