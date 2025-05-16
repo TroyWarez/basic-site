@@ -35,7 +35,11 @@ const ProductShowcase = (): JSX.Element  => {
       setCategories(categories);
       setSavedProducts(value);
   })
-      }
+  }
+  if((products.length === 0))
+  {
+    return (<></>);
+  }
   return (
   <>
   <NavigationBar/>
