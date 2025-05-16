@@ -25,6 +25,7 @@
 }
 .ProductLink {
     width: min-content;
+    text-decoration: none!important;
 }
 .ProductB {
     text-decoration: none;
