@@ -2,13 +2,6 @@ import axios, { AxiosError } from "axios";
 import CartItem from "../models/CartItem"
 import ProductItem from "../models/ProductItem";
 import Address from "../models/ShippingAddress";
-interface CustomError {
-  message: string;
-  code?: string;
-  request?: any;
-  response?: AxiosResponse;
-  config?: AxiosRequestConfig;
-}
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
@@ -106,6 +99,17 @@ const httpClient = axios.create({
         catch (error)
         {
           return [];
+        }
+      },
+      getSingleProductData: async (sku: string): Promise<ProductItem | null> => {
+        try
+        {
+          const response =  await httpClient.get(`${basePaths.products}${sku}`);
+          return response.data as ProductItem;
+        }
+        catch (error)
+        {
+          return null;
         }
       },
     placeOrder: async (orderData: Address) => {
