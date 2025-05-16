@@ -76,6 +76,69 @@ const ProductShowcase = (): JSX.Element  => {
       ))}
 
     </DropdownContainer>
+
+        <DropdownContainer label='Price' collapsed={false}>
+
+        <div hidden={(products.filter((Product) => (Product.displayCurrencyValue < 99.99)).length === 0)}>
+          <input type='checkbox' className={classes.Categorybox}
+          onClick={(event) => {
+            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
+              filteredCategories.push(event.currentTarget.name);
+               setProducts(products.filter(filterCategories));
+            }
+            else if (!event.currentTarget.checked)
+            {
+              const index = filteredCategories.indexOf(event.currentTarget.name);
+                if (index > -1) {
+                filteredCategories.splice(index, 1);
+                }
+                setProducts(Savedproducts.filter(filterCategories));
+            }
+               setFilteredCategories(filteredCategories);
+          }}/>
+          <label>{`< CA$99.99 (${products.filter((Product) => (Product.displayCurrencyValue < 99.99)).length})`}</label>
+        </div>
+
+        <div hidden={(products.filter((Product) => (Product.displayCurrencyValue > 99.99 && Product.displayCurrencyValue < 299.99)).length === 0)}>
+          <input type='checkbox' className={classes.Categorybox}
+          onClick={(event) => {
+            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
+              filteredCategories.push(event.currentTarget.name);
+               setProducts(products.filter(filterCategories));
+            }
+            else if (!event.currentTarget.checked)
+            {
+              const index = filteredCategories.indexOf(event.currentTarget.name);
+                if (index > -1) {
+                filteredCategories.splice(index, 1);
+                }
+                setProducts(Savedproducts.filter(filterCategories));
+            }
+               setFilteredCategories(filteredCategories);
+          }}/>
+          <label>{`CA$100 - CA$300 (${products.filter((Product) => (Product.displayCurrencyValue > 99.99 && Product.displayCurrencyValue < 299.99)).length})`}</label>
+        </div>
+
+        <div hidden={(products.filter((Product) => (Product.displayCurrencyValue > 299.99) && Product.displayCurrencyValue < 500).length === 0)}>
+          <input type='checkbox' className={classes.Categorybox}
+          onClick={(event) => {
+            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
+              filteredCategories.push(event.currentTarget.name);
+               setProducts(products.filter(filterCategories));
+            }
+            else if (!event.currentTarget.checked)
+            {
+              const index = filteredCategories.indexOf(event.currentTarget.name);
+                if (index > -1) {
+                filteredCategories.splice(index, 1);
+                }
+                setProducts(Savedproducts.filter(filterCategories));
+            }
+               setFilteredCategories(filteredCategories);
+          }}/>
+          <label>{`CA$300 - CA$500 (${products.filter((Product) => (Product.displayCurrencyValue > 299.99) && Product.displayCurrencyValue < 500).length})`}</label>
+        </div>
+    </DropdownContainer>
     </div>
     
     </div>

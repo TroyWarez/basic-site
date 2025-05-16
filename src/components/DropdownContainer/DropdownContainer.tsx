@@ -9,7 +9,7 @@ interface DropdownProps {
 const DropdownContainer = ({ children, label, collapsed}: DropdownProps): JSX.Element   => {
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
   return (
-    <>
+    <div>
     <div className={`${CouponClasses.DropdownContainer} ${classes.labelBorder}`} onClick={() => {
       (isCollapsed) ? setIsCollapsed(false) : setIsCollapsed(true);
     }}>
@@ -19,7 +19,7 @@ const DropdownContainer = ({ children, label, collapsed}: DropdownProps): JSX.El
     <div hidden={isCollapsed}>
         {children}
     </div>
-    </>
+    </div>
   )
 }
 

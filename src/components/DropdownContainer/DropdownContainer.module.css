@@ -1,12 +1,10 @@
 .transparentBackground {
     background-color: transparent!important;
 }
-.labelDropdown {
-    margin-right: 3rem;
-}
 .labelBorder {
         border-top: solid 1px var(--main-bg-accentColor);
         margin-bottom: 1.5rem;
         padding-top: 1.5rem;
+        justify-content: space-between;
         min-width: 13rem;
 }
