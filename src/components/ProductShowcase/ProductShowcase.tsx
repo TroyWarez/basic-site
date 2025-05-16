@@ -5,6 +5,7 @@ import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import SelectMenu from '../SelectMenu/SelectMenu';
 import SelectMenuOption from '../../models/selectMenuOption';
 const ProductShowcase = (): JSX.Element  => {
@@ -67,32 +68,28 @@ const ProductShowcase = (): JSX.Element  => {
         <h2 className={classes.h2}>Filters</h2>
         <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterCategories).length} Product${(products.filter(filterCategories).length === 1) ? '' : 's'})`}</p>
     </div>
-                <SelectMenu options={SortList.map((sort) => ({
+                <SelectMenu className={classes.selectInput} options={SortList.map((sort) => ({
                   value: sort.value,
                   displayValue: sort.displayValue,
                   }))} onChange={(selectedOption) => {
                     switch(selectedOption.currentTarget.value)
                     {
                       case 'DATE': {
-                        setProducts(products.sort((a, b) => {
-                          if(new Date(a.dateAdded).getTime() < new Date(b.dateAdded).getTime())
-                          {
-                            return -1;
-                          }
-                         else if(new Date(a.dateAdded).getTime() > new Date(b.dateAdded).getTime())
-                          {
-                            return -1;
-                          }
-                          return 0;
-                        }))
+                        const newProducts = [...products];
+                        setProducts(newProducts.sort((a, b) => (new Date(b.dateAdded).getTime() - new Date(a.dateAdded).getTime())));
+                        setSavedProducts(newProducts);
                         break;
                       }
                       case 'PRICE_HIGH': {
-                        
+                        const newProducts = [...products];
+                        setProducts(newProducts.sort((a, b) => (b.displayCurrencyValue - a.displayCurrencyValue)));
+                        setSavedProducts(newProducts);
                         break;
                       }
                        case 'PRICE_LOW': {
-                        
+                        const newProducts = [...products];
+                        setProducts(newProducts.sort((a, b) => (a.displayCurrencyValue - b.displayCurrencyValue)));
+                        setSavedProducts(newProducts);
                         break;
                       }
                     }
@@ -194,9 +191,12 @@ const ProductShowcase = (): JSX.Element  => {
     </div>
     <div className={classes.Product}>
         {products.filter(filterCategories).map((ProductItem) => (
+
         <div className={classes.ProductItem} key={ProductItem.sku}>
+          <Link to={`products/?sku=${ProductItem.sku}`} className={classes.ProductLink}>
           <img alt='Product Image' className={classes.img} src={ProductItem.productImageBinData}></img>
-          <b>{ProductItem.displayItemName}</b>
+          <b className={classes.ProductB}>{ProductItem.displayItemName}</b>
+          </Link>
           <div className={classes.ProductPriceContainer}>
             <p className={classes.from}>From: </p>
             <b className={classes.ProductPrice}>{`${ProductItem.displayCurrencyValueType}${ProductItem.displayCurrencyValueSymbol}${ProductItem.displayCurrencyValue}`}</b>

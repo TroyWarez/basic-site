@@ -6,6 +6,7 @@
 }
 .h2 {
     font-weight: 700;
+    min-width: max-content;
 }
 .TotalProducts {
     font-weight: normal!important;
@@ -19,9 +20,15 @@
 }
 .ProductContainer {
     display: flex;
-    cursor: pointer;
     flex-direction: row;
     width: 70rem;
+}
+.ProductLink {
+    width: min-content;
+}
+.ProductB {
+    text-decoration: none;
+    color: white;
 }
 .CheckboxesContainer {
     display: flex;
@@ -79,12 +86,14 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 149rem;
+    width: 145rem;
 }
-.filterContainer input{
+.filterContainer *{
     width: min-content;
 }
-.selectInput input {
+.selectInput {
     height: 2rem!important;
-    padding: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: large;
 }
