@@ -74,10 +74,17 @@ const ProductShowcase = (): JSX.Element  => {
                     switch(selectedOption.currentTarget.value)
                     {
                       case 'DATE': {
-                        const sortedProducts = new Array<ProductItem>;
-                        products.forEach((product) => {
-                          new Date(product.dateAdded).getTime();
-                        })
+                        setProducts(products.sort((a, b) => {
+                          if(new Date(a.dateAdded).getTime() < new Date(b.dateAdded).getTime())
+                          {
+                            return -1;
+                          }
+                         else if(new Date(a.dateAdded).getTime() > new Date(b.dateAdded).getTime())
+                          {
+                            return -1;
+                          }
+                          return 0;
+                        }))
                         break;
                       }
                       case 'PRICE_HIGH': {
