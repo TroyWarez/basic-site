@@ -2,6 +2,7 @@ import classes from './ProductDisplay.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
+import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useSearchParams, Link } from "react-router-dom";
 import { useState } from 'react';
 interface ProductDisplayProps {
@@ -31,9 +32,12 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     return (
       <>
       <title>{`${product?.displayItemName} | Store`}</title>
-      <p>{product?.displayItemName}</p>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
-      <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
+        <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
+        <p>{product?.displayItemName}</p>
+        <p>{`Model No: ${product?.sku}`}</p>
+        <p>{product?.displayItemDescription}</p>
+        <p>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</p>
       </div>
       </>
     );
