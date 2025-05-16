@@ -5,13 +5,22 @@ import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
+import SelectMenu from '../SelectMenu/SelectMenu';
+import SelectMenuOption from '../../models/selectMenuOption';
 const ProductShowcase = (): JSX.Element  => {
+
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
   const [products, setProducts] = useState(new Array<ProductItem>);
   const [categories, setCategories] = useState(new Array<string>);
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
   const [filteredPrices, setFilteredPrices] = useState(new Array<MinMax>);
 
+    const SortList: SelectMenuOption[] = [
+
+            {value: "DATE", displayValue: 'By Date - Newest First'},
+            {value: "PRICE_HIGH", displayValue: 'By Price - High to Low'},
+            {value: "PRICE_LOW", displayValue: 'By Price - Low to High'},
+            ];
   const filterCategories = ( product: ProductItem) => {
     let filterCheck = true;
     filteredCategories.forEach((Category) => {
@@ -53,9 +62,34 @@ const ProductShowcase = (): JSX.Element  => {
   <>
   <NavigationBar/>
   <h1 className={classes.h1}>Products</h1>
-  <div>
+  <div className={classes.filterContainer}>
+    <div>
         <h2 className={classes.h2}>Filters</h2>
         <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterCategories).length} Product${(products.filter(filterCategories).length === 1) ? '' : 's'})`}</p>
+    </div>
+                <SelectMenu options={SortList.map((sort) => ({
+                  value: sort.value,
+                  displayValue: sort.displayValue,
+                  }))} onChange={(selectedOption) => {
+                    switch(selectedOption.currentTarget.value)
+                    {
+                      case 'DATE': {
+                        const sortedProducts = new Array<ProductItem>;
+                        products.forEach((product) => {
+                          new Date(product.dateAdded).getTime();
+                        })
+                        break;
+                      }
+                      case 'PRICE_HIGH': {
+                        
+                        break;
+                      }
+                       case 'PRICE_LOW': {
+                        
+                        break;
+                      }
+                    }
+                  }} name="sortSelect" aria-label="Sort method" label="" placeholder="Sort By" title="Sort menu, please select which way to sort the product page."/>
   </div>
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>

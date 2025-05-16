@@ -20,7 +20,7 @@ interface SelectMenuProps {
 const SelectMenu = ({className, options, onChange, value, name, placeholder, required, 'aria-label':ariaLabel, label, title, hidden, disabled}: SelectMenuProps) : JSX.Element => {
   return (
     <div hidden={hidden} className={FormInputClasses.container}>
-    <label hidden={hidden} className={FormInputClasses.label} htmlFor={(!className) ? FormInputClasses.input : `${className} ${FormInputClasses.input}`}>{label}<span className={FormInputClasses.span}> *</span></label>
+    <label hidden={hidden} className={FormInputClasses.label} htmlFor={(!className) ? FormInputClasses.input : `${className} ${FormInputClasses.input}`}>{label}<span className={FormInputClasses.span}> {`${(label) ? '*' : ''}`}</span></label>
     <select className={`${FormInputclasses.input} ${selectClasses.select} ${(className) ? className : ''}`} value={value} disabled={disabled} onChange={onChange} name={name} aria-label={ariaLabel} required={required} title={title} hidden={hidden}>
     {placeholder && <SelectMenuItem>{placeholder}</SelectMenuItem>}
     {options.map((option) => (
