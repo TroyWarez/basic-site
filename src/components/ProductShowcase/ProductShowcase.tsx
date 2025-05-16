@@ -5,6 +5,7 @@ import ProductItem from '../../models/ProductItem';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
 const ProductShowcase = (): JSX.Element  => {
+  const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
   const [products, setProducts] = useState(new Array<ProductItem>);
   const [categories, setCategories] = useState(new Array<string>);
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
@@ -24,18 +25,15 @@ const ProductShowcase = (): JSX.Element  => {
   productsHandler.then((value) => {
     value.forEach((Product) => {
       Product.categories.forEach((Category) => {
-        if(categories.includes(Category))
+        if(!categories.includes(Category))
         {
-          console.log(Category);
-        }
-        else {
           categories.push(Category);
         }
       })
     })
       setProducts(value);
       setCategories(categories);
-
+      setSavedProducts(value);
   })
       }
   return (
@@ -50,14 +48,25 @@ const ProductShowcase = (): JSX.Element  => {
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
     <div>
-    <DropdownContainer label='Catagory' collapsed={false}>
+    <DropdownContainer label='Category' collapsed={false}>
 
       {categories.map((Category) => (
-        <div>
+        <div key={Category} hidden={(products.filter((Product) => (Product.categories.includes(Category))).length === 0)}>
           <input title={`Category: ${Category}`} type='checkbox' id={Category} name={Category} className={classes.Categorybox}
           onClick={(event) => {
-            filteredCategories.push(event.currentTarget.name);
-            setFilteredCategories(filteredCategories);
+            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
+              filteredCategories.push(event.currentTarget.name);
+               setProducts(products.filter(filterCategories));
+            }
+            else if (!event.currentTarget.checked)
+            {
+              const index = filteredCategories.indexOf(event.currentTarget.name);
+                if (index > -1) {
+                filteredCategories.splice(index, 1);
+                }
+                setProducts(Savedproducts.filter(filterCategories));
+            }
+               setFilteredCategories(filteredCategories);
           }}/>
           <label>{`${Category} (${products.filter((Product) => (Product.categories.includes(Category))).length})`}</label>
         </div>
