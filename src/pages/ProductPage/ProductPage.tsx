@@ -1,10 +1,9 @@
 import PageContainer from '../../components/PageContainer/PageContainer';
-import ProductShowcase from '../../components/ProductShowcase/ProductShowcase';
+import ProductDisplay from '../../components/ProductDisplay/ProductDisplay';
 const ProductPage = () => {
   return (<>
-      <title>All Store Products</title>
       <PageContainer>
-        <div>Test</div>
+        <ProductDisplay/>
       </PageContainer>
       </> )
 }
