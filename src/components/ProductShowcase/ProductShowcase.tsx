@@ -44,7 +44,6 @@ const ProductShowcase = (): JSX.Element  => {
         <h2 className={classes.h2}>Filters</h2>
         <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterCategories).length} Products)`}</p>
   </div>
-  <div className={classes.ProductShowcaseContainer}>
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
     <div>
@@ -93,7 +92,6 @@ const ProductShowcase = (): JSX.Element  => {
         </div>
         ))}
     </div>
-  </div>
   </div>
   </>
   )

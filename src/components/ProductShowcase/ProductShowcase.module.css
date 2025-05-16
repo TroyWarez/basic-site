@@ -23,23 +23,16 @@
 }
 .ProductContainer {
     display: flex;
-    justify-content: space-between;
     cursor: pointer;
     flex-direction: row;
-    padding-left: 42rem;
-    margin-right: 42rem;
-    width: 62rem
-}
-.ProductShowcaseContainer {
-    display: flex;
+    width: 70rem;
 }
 .CheckboxesContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
-    width: 70rem;
-    padding-left: 1rem;
+    padding-left: 4rem;
 }
 .Product {
     display: flex;
