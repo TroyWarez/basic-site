@@ -15,28 +15,25 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   {
     const productDataHandler = storeApiService.getSingleProductData(sku);
     productDataHandler.then((Product) => {
-      setProduct(Product);
+      if(Product?.sku !== product?.sku)
+      {
+        setProduct(Product);
+      }
     })
     if(product?.displayItemName === '')
     {
       return(
         <>
-        <title>{'Loading...'}</title>
+        <title>Loading...</title>
         </>
       );
     }
     return (
       <>
-      <title>{product?.displayItemName}</title>
+      <title>{`${product?.displayItemName} | Store`}</title>
+      <p>{product?.displayItemName}</p>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
-          <h2  className={classes.h2}>{`Thanks for your order, ${(queryParams.get('firstName') !== null) ? queryParams.get('firstName') : 'First name not found.'}`}</h2>
-          <p className={classes.p}>{`Here's your order number: #${(queryParams.get('OrderNumber') !== null) ? queryParams.get('OrderNumber') : 'Order number not found.'}. We can't wait for you to see what's in store.`}</p>
-          <p className={classes.p}>{`A confirmation email was sent to your email address: ${(queryParams.get('email') !== null) ? queryParams.get('email') : 'Email not found.'}`}</p>
-          <br/>
-          <p className={classes.p}>Once your package ships, we'll send you a tracking number.</p>
-          <br/>
-          <p className={classes.p}>{`${queryParams.get('deliveryDate')}`}</p>
-          <p>Have a question about your order? <Link to='/' className={CartClasses.AltText} >Send us a message</Link> and a Store team member will be in touch.</p>
+      <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
       </div>
       </>
     );
