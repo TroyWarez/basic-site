@@ -101,15 +101,15 @@ const httpClient = axios.create({
           return [];
         }
       },
-      getSingleProductData: async (sku: string): Promise<ProductItem | null> => {
+      getSingleProductData: async (sku: string): Promise<ProductItem | undefined> => {
         try
         {
           const response =  await httpClient.get(`${basePaths.products}${sku}`);
-          return response.data as ProductItem;
+          return response.data[0] as ProductItem;
         }
         catch (error)
         {
-          return null;
+          return;
         }
       },
     placeOrder: async (orderData: Address) => {
