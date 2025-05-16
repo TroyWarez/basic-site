@@ -2,6 +2,7 @@ import classes from '../ProductShowcase/ProductShowcase.module.css'
 import NavigationBar from '../NavigationBar/NavigationBar';
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
+import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
 const ProductShowcase = (): JSX.Element  => {
@@ -9,7 +10,7 @@ const ProductShowcase = (): JSX.Element  => {
   const [products, setProducts] = useState(new Array<ProductItem>);
   const [categories, setCategories] = useState(new Array<string>);
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
-  const [filteredPrices, setFilteredPrices] = useState(new Array({min: 0, max: 0}));
+  const [filteredPrices, setFilteredPrices] = useState(new Array<MinMax>);
 
   const filterCategories = ( product: ProductItem) => {
     let filterCheck = true;
@@ -54,7 +55,7 @@ const ProductShowcase = (): JSX.Element  => {
   <h1 className={classes.h1}>Products</h1>
   <div>
         <h2 className={classes.h2}>Filters</h2>
-        <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterCategories).length} Products)`}</p>
+        <p className={`${classes.h2} ${classes.TotalProducts}`}>{`(${products.filter(filterCategories).length} Product${(products.filter(filterCategories).length === 1) ? '' : 's'})`}</p>
   </div>
     <div className={classes.ProductContainer}>
     <div className={classes.CheckboxesContainer}>
@@ -96,11 +97,11 @@ const ProductShowcase = (): JSX.Element  => {
             }
             else if (!event.currentTarget.checked)
             {
-              const index = filteredPrices.indexOf({min: 0, max: 99.99});
+              const index = filteredPrices.findIndex((price) => {return(price.min === 0 && price.max === 99.99)})
                 if (index > -1) {
                 filteredPrices.splice(index, 1);
                 }
-                setProducts(products);
+                setProducts(Savedproducts);
             }
                setFilteredPrices(filteredPrices);
           }}/>
@@ -110,19 +111,19 @@ const ProductShowcase = (): JSX.Element  => {
         <div hidden={(products.filter((Product) => (Product.displayCurrencyValue > 99.99 && Product.displayCurrencyValue < 299.99)).length === 0)}>
           <input type='checkbox' className={classes.Categorybox}
           onClick={(event) => {
-            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
-              filteredCategories.push(event.currentTarget.name);
-               setProducts(products.filter(filterCategories));
+            if(event.currentTarget.checked && !filteredPrices.includes({min: 99.99, max: 299.99})) {
+              filteredPrices.push({min: 99.99, max: 299.99});
+              setProducts(products.filter((Product) => (Product.displayCurrencyValue > 99.99 && Product.displayCurrencyValue < 299.99)));
             }
             else if (!event.currentTarget.checked)
             {
-              const index = filteredCategories.indexOf(event.currentTarget.name);
+              const index = filteredPrices.findIndex((price) => {return(price.min === 99.99 && price.max === 299.99)})
                 if (index > -1) {
-                filteredCategories.splice(index, 1);
+                filteredPrices.splice(index, 1);
                 }
-                setProducts(Savedproducts.filter(filterCategories));
+                setProducts(Savedproducts);
             }
-               setFilteredCategories(filteredCategories);
+               setFilteredPrices(filteredPrices);
           }}/>
           <label>{`CA$100 - CA$300 (${products.filter((Product) => (Product.displayCurrencyValue > 99.99 && Product.displayCurrencyValue < 299.99)).length})`}</label>
         </div>
@@ -130,19 +131,19 @@ const ProductShowcase = (): JSX.Element  => {
         <div hidden={(products.filter((Product) => (Product.displayCurrencyValue > 299.99) && Product.displayCurrencyValue < 500).length === 0)}>
           <input type='checkbox' className={classes.Categorybox}
           onClick={(event) => {
-            if(event.currentTarget.checked && !filteredCategories.includes(event.currentTarget.name)) {
-              filteredCategories.push(event.currentTarget.name);
-               setProducts(products.filter(filterCategories));
+            if(event.currentTarget.checked && !filteredPrices.includes({min: 299.99, max: 500})) {
+              filteredPrices.push({min: 299.99, max: 500});
+              setProducts(products.filter((Product) => (Product.displayCurrencyValue > 299.99 && Product.displayCurrencyValue < 500)));
             }
             else if (!event.currentTarget.checked)
             {
-              const index = filteredCategories.indexOf(event.currentTarget.name);
+              const index = filteredPrices.findIndex((price) => {return(price.min === 299.99 && price.max === 500)})
                 if (index > -1) {
-                filteredCategories.splice(index, 1);
+                filteredPrices.splice(index, 1);
                 }
-                setProducts(Savedproducts.filter(filterCategories));
+                setProducts(Savedproducts);
             }
-               setFilteredCategories(filteredCategories);
+               setFilteredPrices(filteredPrices);
           }}/>
           <label>{`CA$300 - CA$500 (${products.filter((Product) => (Product.displayCurrencyValue > 299.99) && Product.displayCurrencyValue < 500).length})`}</label>
         </div>
