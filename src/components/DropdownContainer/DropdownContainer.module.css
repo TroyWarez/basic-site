@@ -8,4 +8,5 @@
         border-top: solid 1px var(--main-bg-accentColor);
         margin-bottom: 1.5rem;
         padding-top: 1.5rem;
+        min-width: 13rem;
 }
