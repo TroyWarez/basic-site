@@ -61,7 +61,9 @@ const ProductShowcase = (): JSX.Element  => {
   }
   if((products.length === 0))
   {
-    return (<></>);
+    return (<>
+        <title>Loading...</title>
+        </>);
   }
   return (
   <>

@@ -41,13 +41,17 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     if (product) {
     return (
       <>
-      <title>{`${product?.displayItemName} | Store`}</title>
+    <title>{`${product?.displayItemName} | Store`}</title>
+
     <div className={Navclasses.navbarcontainer}>
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
     <ImgButton className={Navclasses.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath=""><p className={Navclasses.badge}>0</p></ImgButton>
+    
     </header>
     </div>
+
       <div className={`${classes.container} ${(className) ? className : ''}`}>
         <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
         <div className={classes.containerProductInfo}>
