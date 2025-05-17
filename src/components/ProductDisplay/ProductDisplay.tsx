@@ -18,6 +18,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [product, setProduct] = useState<ProductItem>();
   const [maxStock, setMaxStock] = useState(1);
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
+  const [cartAmount, setCartAmount] = useState(cartData.length);
 
   const [itemAmount, setItemAmount] = useState(1);
   const sku = queryParams.get('sku');
@@ -67,21 +68,17 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
     <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
         <div className={classes.MiniCartContainerAlt}>
-        <p className={Navclasses.badge}>0</p>
+        <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
       {(cartData.length) ? 
 
-      <div className={CartClasses.MiniCartContainer}>
-        <div>
+      <div className={classes.MiniCartContainer}>
+        <div className={classes.MiniCart}>
+
         <p>Congratulations! You've qualified for FREE shipping!</p>
         <div className={CartClasses.bluebar}/>
-        </div>
-        {cartData.map((cartData) => (
-        <div>
 
-        <b className={classes.MiniCart}>{cartData.displayItemName}</b>
         </div>
-        ))}
       </div>
        : 
       <div className={classes.MiniCartContainer}>
