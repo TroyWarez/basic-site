@@ -5,6 +5,10 @@ import ProductItem from '../../models/ProductItem';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useSearchParams, Link } from "react-router-dom";
 import { useState } from 'react';
+import ImgButton from '../ImgButton/ImgButton';
+import Navclasses from "../NavigationBar/NavigationBar.module.css"
+import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
+import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 interface ProductDisplayProps {
     className?: string;
 }
@@ -38,6 +42,12 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     return (
       <>
       <title>{`${product?.displayItemName} | Store`}</title>
+    <div className={Navclasses.navbarcontainer}>
+    <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton className={Navclasses.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath=""><p className={Navclasses.badge}>0</p></ImgButton>
+    </header>
+    </div>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
         <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
         <div className={classes.containerProductInfo}>

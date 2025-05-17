@@ -1,6 +1,5 @@
 .navbar {
     display: flex;
-    align-items: center;
     height: 5rem;
     justify-items: flex-start;
 }
@@ -14,22 +13,24 @@
     width: min-content!important;
 }
 .noncentered {
-    width: 85rem!important;
+    width: 65rem!important;
 }
 .badge {
     background-color: rgb(87, 87, 87);
     border-radius: 50%;
     min-width: min-content;
-    padding-top: 0.1rem;
-    padding-bottom: 0.15rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.30rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     z-index: 50;
     font-size: small;
     font-weight: bold;
     position: relative;
     left: -1.3rem;
-    top: -0.5rem;
+    top: -1.0rem;
+    height: min-content;
+    cursor: pointer;
 }
 .hidden {
     visibility: hidden;

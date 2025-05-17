@@ -8,6 +8,7 @@
 }
 .Img {
     height: 4rem;
+    cursor: pointer;
 }
 .Link {
     text-decoration: none!important;
@@ -21,4 +22,5 @@
     margin: 0;
     display: flex;
     height: min-content;
+    cursor: pointer;
 }
