@@ -47,13 +47,12 @@
 .AddtoCart {
     background-color: #2fac10;
     color: white;
-    min-height: 3rem;
     width: 80%;
     border: none;
     cursor: pointer;
-    margin-top: 6rem;
     margin-left: 2rem;
     font-size: large;
+    padding: 1rem;
 }
 .AddtoCart:hover {
     background-color: #39c216;
@@ -62,12 +61,13 @@
 .itemAmountControl {
     background-color: var(--main-bg-accentColor);
     min-width: min-content;
-    padding: 1rem;
+        padding: 1rem;
 }
 .itemAddToCartContainer {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: stretch;
+    margin-top: 5rem;
 }
 .itemCursor {
     cursor: pointer;
