@@ -3,7 +3,6 @@
     justify-content: center;
     flex-direction: row;
     width: 100%;
-    height: 95vh;
     align-items: start;
     margin-top: 8rem;
 }
@@ -78,4 +77,9 @@
 }
 .pSaleRed {
     color: #eb1919!important;
+}
+
+.MiniCartContainer {
+    display: flex;
+    flex-direction: column;
 }
