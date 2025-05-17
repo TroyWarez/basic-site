@@ -30,7 +30,7 @@
 .ProductImg {
     height: 20rem;
     width: 20rem;
-    margin-top: 11.55rem;
+    margin-top: 11rem;
     margin-right: 2rem;
 }
 .pDiscount {
@@ -42,4 +42,37 @@
     font-size: 100%;
     font-weight: normal;
     color: #2fac10;
+    margin-top: 1rem;
+}
+.AddtoCart {
+    background-color: #2fac10;
+    color: white;
+    min-height: 3rem;
+    width: 80%;
+    border: none;
+    cursor: pointer;
+    margin-top: 6rem;
+    margin-left: 2rem;
+    font-size: large;
+}
+.AddtoCart:hover {
+    background-color: #39c216;
+}
+
+.itemAmountControl {
+    background-color: var(--main-bg-accentColor);
+    min-width: min-content;
+    padding: 1rem;
+}
+.itemAddToCartContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+.itemCursor {
+    cursor: pointer;
+    user-select: none;
+}
+.itemWidth {
+    width: 2rem;
 }

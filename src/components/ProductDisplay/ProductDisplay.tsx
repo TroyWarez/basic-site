@@ -11,6 +11,8 @@ interface ProductDisplayProps {
 const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [queryParams, setQueryParams] = useSearchParams();
   const [product, setProduct] = useState<ProductItem>();
+  const [maxStock, setMaxStock] = useState(1);
+  const [itemAmount, setItemAmount] = useState(1);
   const sku = queryParams.get('sku');
   if(queryParams.size === 1 && sku !== null)
   {
@@ -18,7 +20,10 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     productDataHandler.then((Product) => {
       if(Product?.sku !== product?.sku)
       {
+        if(Product){
         setProduct(Product);
+        setMaxStock(Product.stockAmount);
+        }
       }
     })
     if(product?.displayItemName === '')
@@ -40,9 +45,31 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <div>
           <b className={classes.p}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</b>
           <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
-          <b hidden={(product?.displayCurrencySaleValue) ? false : true}>{`${((product?.displayCurrencyValue / product?.displayCurrencySaleValue) * 100).toFixed(0)}% off`}</b>
+          <b hidden={(product?.displayCurrencySaleValue) ? false : true}>{`${((product?.displayCurrencyValue / product?.displayCurrencySaleValue) * 100)?.toFixed(0)}% off`}</b>
           </div>
           <p className={classes.instock}>{`${(product?.stockAmount) ? 'In stock' : `${(product?.stockAmount && product?.stockAmount < 10) ? `Only ${product.stockAmount} items left in stock!` : '' }`}`}</p>
+          <div className={classes.itemAddToCartContainer}>
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
+                if(itemAmount > 1)
+                {
+                  setItemAmount(itemAmount - 1)
+                }
+              }}>
+                <b>-</b>
+              </div>
+               <div className={`${classes.itemAmountControl} ${classes.itemWidth}`}>
+                <b>{itemAmount}</b>
+              </div>
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
+                if(itemAmount < maxStock)
+                {
+                  setItemAmount(itemAmount + 1)
+                }
+              }}>
+                <b>+</b>
+              </div>
+          <button className={classes.AddtoCart}><b>Add To Cart</b></button>
+          </div>
         </div>
       </div>
       </>
