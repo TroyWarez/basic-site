@@ -1,8 +1,19 @@
 .container {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    background-color: var(--main-bg-accentColor);
+    margin: 1rem;
+    padding: 2rem;
+    width: 100%;
+    min-height: 100%;
+}
+.containerProductInfo {
+    display: flex;
+    justify-content: space-evenly;
+    width: 10rem;
     flex-direction: column;
-    background-color: var(--main-bg-accentColorAlt);
+    background-color: var(--main-bg-accentColor);
     margin: 1rem;
     padding: 2rem;
 }

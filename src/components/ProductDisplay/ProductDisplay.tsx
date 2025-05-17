@@ -34,10 +34,13 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
       <title>{`${product?.displayItemName} | Store`}</title>
       <div className={`${classes.container} ${(className) ? className : ''}`}>
         <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${product?.productImageBinData}`}></img>
-        <p>{product?.displayItemName}</p>
-        <p>{`Model No: ${product?.sku}`}</p>
-        <p>{product?.displayItemDescription}</p>
-        <p>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</p>
+        <div className={classes.containerProductInfo}>
+          <h1>{product?.displayItemName}</h1>
+          <p>{`Model No: ${product?.sku}`}</p>
+          <p>{product?.displayItemDescription}</p>
+          <p>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</p>
+          <p>{`${(product?.stockAmount) ? 'In stock' : `${(product?.stockAmount && product?.stockAmount < 10) ? `Only ${product.stockAmount} items left in stock!` : '' }`}`}</p>
+        </div>
       </div>
       </>
     );
