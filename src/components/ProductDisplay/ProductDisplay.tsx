@@ -9,6 +9,7 @@ import ImgButton from '../ImgButton/ImgButton';
 import Navclasses from "../NavigationBar/NavigationBar.module.css"
 import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
+import CartItem from '../../models/CartItem';
 interface ProductDisplayProps {
     className?: string;
 }
@@ -16,6 +17,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [queryParams, setQueryParams] = useSearchParams();
   const [product, setProduct] = useState<ProductItem>();
   const [maxStock, setMaxStock] = useState(1);
+  const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
+
   const [itemAmount, setItemAmount] = useState(1);
   const sku = queryParams.get('sku');
   if(queryParams.size === 1 && sku !== null)
@@ -66,9 +69,24 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         <div className={classes.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>0</p>
         </div>
+      {(cartData.length) ? 
+
+      <div className={CartClasses.MiniCartContainer}>
+        <div>
+        <p>Congratulations! You've qualified for FREE shipping!</p>
+        <div className={CartClasses.bluebar}/>
+        </div>
+        {cartData.map((cartData) => (
+        <div>
+
+        <b className={classes.MiniCart}>{cartData.displayItemName}</b>
+        </div>
+        ))}
+      </div>
+       : 
       <div className={classes.MiniCartContainer}>
         <b className={classes.MiniCart}>Your shopping cart is empty</b>
-      </div>
+      </div>}
       </ImgButton>
 
     </header>

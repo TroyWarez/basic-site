@@ -20,6 +20,7 @@ const ProductShowcase = (): JSX.Element  => {
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
   const [filteredPrices, setFilteredPrices] = useState(new Array<MinMax>);
 
+  
     const SortList: SelectMenuOption[] = [
 
             {value: "DATE", displayValue: 'By Date - Newest First'},

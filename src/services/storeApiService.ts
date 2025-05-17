@@ -33,7 +33,7 @@ const httpClient = axios.create({
     },
     getCartDatalocal:():Array<CartItem>  => {
       const cartDataString = localStorage.getItem("cartData");
-      if (cartDataString && cartDataString !== '') {
+      if (cartDataString !== "undefined" && cartDataString) {
         return JSON.parse(cartDataString);
       }
       const cartData: Array<CartItem> = [{ //remove me
