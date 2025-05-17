@@ -75,4 +75,9 @@
 }
 .itemWidth {
     width: 2rem;
+    display: flex;
+    justify-content: center;
+}
+.pSaleRed {
+    color: #eb1919!important;
 }

@@ -34,6 +34,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         </>
       );
     }
+    if (product) {
     return (
       <>
       <title>{`${product?.displayItemName} | Store`}</title>
@@ -47,7 +48,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
           <b hidden={(product?.displayCurrencySaleValue) ? false : true}>{`${((product?.displayCurrencyValue / product?.displayCurrencySaleValue) * 100)?.toFixed(0)}% off`}</b>
           </div>
-          <p className={classes.instock}>{`${(product?.stockAmount) ? 'In stock' : `${(product?.stockAmount && product?.stockAmount < 10) ? `Only ${product.stockAmount} items left in stock!` : '' }`}`}</p>
+          <p className={`${(product.stockAmount > 10) ? classes.instock : `${classes.instock} ${classes.pSaleRed}` }`}>{`${(product?.stockAmount > 10) ? 'In stock' : `${(product?.stockAmount && product?.stockAmount < 10) ? `Only ${product.stockAmount} items left in stock!` : '' }`}`}</p>
           <div className={classes.itemAddToCartContainer}>
               <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
                 if(itemAmount > 1)
@@ -74,17 +75,10 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
       </div>
       </>
     );
-  }
+  }}
   return (
     <>
-    <title>Failed to confirm order</title>
-    <div className={`${classes.container} ${(className) ? className : ''}`}>
-        <h2>Failed to order your items.</h2>
-        <p className={classes.p}>We're sorry, but the Store was not able to place your order at this time</p>
-        <p className={classes.p}> You were not charged</p>
-        <p className={classes.p}>Please try again later.</p>
-        <Link to='/' className={CartClasses.AltText}>Go to the home page.</Link>
-    </div>
+    <title>Loading</title>
     </>
   );
 }
