@@ -8,6 +8,10 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import SelectMenu from '../SelectMenu/SelectMenu';
 import SelectMenuOption from '../../models/selectMenuOption';
+import ImgButton from '../ImgButton/ImgButton';
+import Navclasses from "../NavigationBar/NavigationBar.module.css"
+import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
+import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
@@ -61,7 +65,12 @@ const ProductShowcase = (): JSX.Element  => {
   }
   return (
   <>
-  <NavigationBar/>
+  <div className={Navclasses.navbarcontainer}>
+    <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton className={Navclasses.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath=""><p className={Navclasses.badge}>0</p></ImgButton>
+    </header>
+    </div>
   <h1 className={classes.h1}>Products</h1>
   <div className={classes.filterContainer}>
     <div>
