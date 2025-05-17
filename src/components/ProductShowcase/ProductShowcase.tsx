@@ -1,5 +1,5 @@
 import classes from '../ProductShowcase/ProductShowcase.module.css'
-import NavigationBar from '../NavigationBar/NavigationBar';
+import NavProductClasses from '../ProductDisplay/ProductDisplay.module.css'
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
@@ -63,14 +63,38 @@ const ProductShowcase = (): JSX.Element  => {
   {
     return (<>
         <title>Loading...</title>
+          <div className={Navclasses.navbarcontainer}>
+    <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+        <div className={NavProductClasses.MiniCartContainerAlt}>
+        <p className={Navclasses.badge}>0</p>
+        </div>
+      <div className={NavProductClasses.MiniCartContainer}>
+        <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
+      </div>
+      </ImgButton>
+
+    </header>
+    </div>
         </>);
   }
   return (
   <>
-  <div className={Navclasses.navbarcontainer}>
+    <div className={Navclasses.navbarcontainer}>
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
-    <ImgButton className={Navclasses.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath=""><p className={Navclasses.badge}>0</p></ImgButton>
+    <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+        <div className={NavProductClasses.MiniCartContainerAlt}>
+        <p className={Navclasses.badge}>0</p>
+        </div>
+      <div className={NavProductClasses.MiniCartContainer}>
+        <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
+      </div>
+      </ImgButton>
+
     </header>
     </div>
   <h1 className={classes.h1}>Products</h1>

@@ -1,7 +1,9 @@
 .navbar {
     display: flex;
     height: 5rem;
-    justify-items: flex-start;
+    justify-items: right;
+    align-items: center;
+    justify-content: space-between;
 }
 .navbarcontainer {
     border-bottom: 1px solid var(--main-bg-accentColor);
@@ -26,9 +28,9 @@
     z-index: 50;
     font-size: small;
     font-weight: bold;
-    position: relative;
+    position: absolute;
     left: -1.3rem;
-    top: -1.0rem;
+    top: -2rem;
     height: min-content;
     cursor: pointer;
 }

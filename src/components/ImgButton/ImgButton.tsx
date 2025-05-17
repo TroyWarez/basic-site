@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 import classes from "./ImgButton.module.css"
 import { Link } from "react-router-dom";
 interface ImageButtonProps {
@@ -7,11 +7,12 @@ interface ImageButtonProps {
     name?: ReactNode;
     altText: string;
     linkPath: string;
+    onClick?: MouseEventHandler;
     children?: JSX.Element | JSX.Element[];
 }
-const ImgButton = ( {className, imgPath, name, altText, linkPath, children} : ImageButtonProps)  : JSX.Element => {
+const ImgButton = ( {className, imgPath, name, altText, linkPath, children, onClick} : ImageButtonProps)  : JSX.Element => {
     return (
-        <div className={`${classes.ImgButton} ${className ? className : ''}`} >
+        <div className={`${classes.ImgButton} ${className ? className : ''}`} onClick={onClick}>
         {(linkPath) ? <Link className={classes.Link} to={linkPath}>
         <img className={classes.Img} src={imgPath} alt={altText}/>
         {children}

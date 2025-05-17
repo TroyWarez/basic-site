@@ -79,7 +79,28 @@
     color: #eb1919!important;
 }
 
+.ImgButton:hover .MiniCartContainer {
+    display: block;
+}
+.MiniCartContainerAlt {
+    position: relative;
+}
 .MiniCartContainer {
-    display: flex;
-    flex-direction: column;
+    display: none;
+    position: relative;
+}
+.MiniCartContainer:hover {
+    visibility: visible!important;
+    background-color: #808080;
+
+}
+.MiniCart {
+    position: absolute;
+    padding: 1.5rem;
+    padding-right: 6rem;
+    background-color: var(--main-bg-accentColor);
+    left: -19rem;
+    top: 2.5rem;
+    font-size: 0.9rem;
+    transition: height 500ms;
 }

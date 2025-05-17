@@ -35,6 +35,21 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
       return(
         <>
         <title>Loading...</title>
+            <div className={Navclasses.navbarcontainer}>
+    <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
+
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+        <div className={classes.MiniCartContainerAlt}>
+        <p className={Navclasses.badge}>0</p>
+        </div>
+      <div className={classes.MiniCartContainer}>
+        <b className={classes.MiniCart}>Your shopping cart is empty</b>
+      </div>
+      </ImgButton>
+
+    </header>
+    </div>
         </>
       );
     }
@@ -47,8 +62,15 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
-    <ImgButton className={Navclasses.cart} imgPath={storefrontCartIcon} altText={"Cart"} linkPath=""><p className={Navclasses.badge}>0</p></ImgButton>
-    
+    <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+        <div className={classes.MiniCartContainerAlt}>
+        <p className={Navclasses.badge}>0</p>
+        </div>
+      <div className={classes.MiniCartContainer}>
+        <b className={classes.MiniCart}>Your shopping cart is empty</b>
+      </div>
+      </ImgButton>
+
     </header>
     </div>
 
