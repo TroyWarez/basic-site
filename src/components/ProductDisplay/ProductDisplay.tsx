@@ -87,7 +87,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
     <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
-        <div className={ProducDisplayClasses.MiniCartContainerAlt}>
+        <div className={classes.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
       {(cartData.length) ? 
