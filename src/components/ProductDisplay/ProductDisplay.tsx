@@ -2,7 +2,6 @@ import classes from './ProductDisplay.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
-import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useSearchParams, Link } from "react-router-dom";
 import { useState } from 'react';
 import ImgButton from '../ImgButton/ImgButton';
