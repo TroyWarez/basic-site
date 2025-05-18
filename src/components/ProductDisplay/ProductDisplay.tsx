@@ -19,10 +19,22 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [product, setProduct] = useState<ProductItem>();
   const [maxStock, setMaxStock] = useState(1);
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
-  const [cartAmount, setCartAmount] = useState(cartData.length);
-
   const [itemAmount, setItemAmount] = useState(1);
+
   const sku = queryParams.get('sku');
+  let cartItemAmount = 0;
+  let CurrencyAmount = 0;
+  let CurrencySymbol = '';
+  let CurrencySymbolType = '';
+  cartData.forEach((cartData) => {
+           cartItemAmount += cartData.quantityNumber;
+           CurrencyAmount += (cartData.displayCurrencyValue * cartData.quantityNumber);
+           CurrencySymbol = cartData.displayCurrencyValueSymbol;
+           CurrencySymbolType = cartData.displayCurrencyValueType;
+          });
+
+  const [cartCurrencyAmount, setCartCurrencyAmount] = useState(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+  const [cartAmount, setCartAmount] = useState(cartItemAmount);
   if(queryParams.size === 1 && sku !== null)
   {
     const productDataHandler = storeApiService.getSingleProductData(sku);
@@ -85,8 +97,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         <div className={classes.containerProductInfoCart}>
           <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
-          <b className={classes.p}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</b>
-          <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
+          <b className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
           </div>
           <div className={classes.containerCartItemTrash}>
           <div className={classes.itemAddTo}>
@@ -120,8 +132,20 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           </div>
 
           <img className={classes.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
-                setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
-                setCartAmount(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku).length);
+                const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
+                setCartData(filteredArray);
+                let cartItemAmount = 0;
+                let CurrencyAmount = 0;
+                let CurrencySymbol = '';
+                let CurrencySymbolType = '';
+                filteredArray.forEach((cartData) => {
+                        cartItemAmount += cartData.quantityNumber;
+                        CurrencyAmount += (cartData.displayCurrencyValue * cartData.quantityNumber);
+                        CurrencySymbol = cartData.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartData.displayCurrencyValueType;
+                        });
+                setCartAmount(cartItemAmount);
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
               }}/>
               </div>
         </div>
@@ -132,8 +156,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
       <div className={classes.containerCartInfo}>
         <div className={classes.containerCartItemTrash}>
-          <b>{`Subtotal: ${cartData.length}`}</b>
-          <b>{`$100`}</b>
+          <b>{`Subtotal (${cartAmount} items)`}</b>
+          <b>{cartCurrencyAmount}</b>
         </div>
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
         <Link to={'/checkout/cart'} className={`${classes.AddtoCart} ${classes.AltButtonInfo}`}><b>View cart & checkout</b></Link>
