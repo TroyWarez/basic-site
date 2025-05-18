@@ -87,7 +87,9 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         </div>
       {(cartData.length) ? 
 
-      <div className={`${classes.MiniCartContainer}${ClassDisplayBlock}`}>
+      <div className={`${classes.MiniCartContainer}${ClassDisplayBlock}`} onMouseLeave={() => {
+            setclassDisplayBlock('');
+          }}>
         <div className={classes.MiniCart}>
         <p>Congratulations! You've qualified for FREE shipping!</p>
         <div className={`${CartClasses.bluebar} ${classes.pBluebar}`}/>
@@ -273,9 +275,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               }}>
                 <b>+</b>
               </div>
-          <button className={classes.AddtoCart} onMouseLeave={() => {
-            setclassDisplayBlock('');
-          }}onClick={() => {
+          <button className={classes.AddtoCart} onClick={() => {
             setclassDisplayBlock(` ${classes.displayBlock}`);
           }}><b>Add To Cart</b></button>
           </div>
