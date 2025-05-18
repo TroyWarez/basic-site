@@ -21,6 +21,10 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [itemAmount, setItemAmount] = useState(1);
   const [isBusy, setIsBusy] = useState(false);
 
+  const [cartStatusMessage, setCartStatusMessage] = useState('');
+  const [cartStatusSymbol, setcartStatusSymbol] = useState('');
+  const [cartStatusSymbolClass, setcartStatusSymbolClass] = useState('');
+
   const [ClassDisplayBlock, setclassDisplayBlock] = useState('');
 
   const sku = queryParams.get('sku');
@@ -91,7 +95,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
             setclassDisplayBlock('');
           }}>
         <div className={classes.MiniCart}>
-        <b hidden={(ClassDisplayBlock === '') ? true : false}><b className={classes.bCheckmark}>✓</b> Succesfully added to cart.</b>
+        <b hidden={(ClassDisplayBlock === '') ? true : false}><b className={cartStatusSymbolClass}>{cartStatusSymbol}</b>{cartStatusMessage}</b>
         <p className={`${(ClassDisplayBlock === '') ? '' : classes.pMessage}`}>Congratulations! You've qualified for FREE shipping!</p>
         <div className={`${CartClasses.bluebar} ${classes.pBluebar}`}/>
         <h2>Your Cart</h2>
@@ -276,7 +280,9 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               }}>
                 <b>+</b>
               </div>
-          <button className={classes.AddtoCart} onClick={async () => {
+          <button className={classes.AddtoCart} onClick={async (event) => {
+            const button = event.currentTarget;
+            button.disabled = true;
             if(product)
             {
               const newStock = await storeApiService.getSingleProductData(product.sku.toString());
@@ -288,12 +294,60 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               const cartIndex = cartData.findIndex((cartItem) => (cartItem.sku === product.sku))
               if(newStock && cartIndex !== -1 && (cartData[cartIndex].quantityNumber + itemAmount) < newStock?.stockAmount)
               {
+                  let CurrencyAmount = 0;
+                  let CurrencySymbol = '';
+                  let CurrencySymbolType = '';
                 cartData[cartIndex].quantityNumber = (cartData[cartIndex].quantityNumber + itemAmount);
+                                  cartData.forEach((cartData2) => {
+                          cartItemAmount += cartData2.quantityNumber;
+                          CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
+                          CurrencySymbol = cartData2.displayCurrencyValueSymbol;
+                          CurrencySymbolType = cartData2.displayCurrencyValueType;
+                          });
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${(CurrencyAmount).toFixed(2)}`);
+                setCartAmount(itemAmount + cartAmount)
                 setCartData(cartData);
+                setCartStatusMessage(' Succesfully added to cart!');
+                setcartStatusSymbol('✓');
+                setcartStatusSymbolClass(classes.bCheckmark);
+              }
+              else if(newStock && itemAmount < newStock?.stockAmount && cartIndex === -1){
+                const newCartItem = {
+                      sku: product.sku,
+                      displayItemName: product.displayItemName,
+                      displayCurrencyValue: product.displayCurrencyValue,
+                      displayCurrencySaleValue: product.displayCurrencySaleValue,
+                      displayCurrencyValueType: product.displayCurrencyValueType,
+                      displayCurrencyValueSymbol: product.displayCurrencyValueSymbol,
+                      productImageBinData: product.productImageBinData,
+                      quantityNumber: itemAmount,
+                } as CartItem;
+                cartData.push(newCartItem);
+                setCartData(cartData);
+                setCartAmount(cartAmount + itemAmount);
+                
+                  let CurrencyAmount = 0;
+                  let CurrencySymbol = '';
+                  let CurrencySymbolType = '';
+                  cartData.forEach((cartData2) => {
+                          cartItemAmount += cartData2.quantityNumber;
+                          CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
+                          CurrencySymbol = cartData2.displayCurrencyValueSymbol;
+                          CurrencySymbolType = cartData2.displayCurrencyValueType;
+                          });
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${(CurrencyAmount).toFixed(2)}`);
+                setCartStatusMessage(' Succesfully added to cart!');
+                setcartStatusSymbol('✓');
+                setcartStatusSymbolClass(classes.bCheckmark);
+              }
+              else {
+                setCartStatusMessage(' Failed to add item to cart. Max stock exceeded!');
+                setcartStatusSymbol('✖');
+                setcartStatusSymbolClass(classes.bCheckmarkRed);
               }
             }
             setclassDisplayBlock(` ${classes.displayBlock}`);
-
+            button.disabled = false;
 
           }}><b>Add To Cart</b></button>
           </div>

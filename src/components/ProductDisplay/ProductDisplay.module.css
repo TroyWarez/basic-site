@@ -179,6 +179,9 @@
 .bCheckmark {
     color: #39c216;
 }
+.bCheckmarkRed {
+    color: #eb1919;
+}
 .MiniCart {
     position: absolute;
     padding: 2rem;
