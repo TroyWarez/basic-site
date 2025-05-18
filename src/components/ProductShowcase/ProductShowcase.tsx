@@ -85,30 +85,30 @@ const ProductShowcase = (): JSX.Element  => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
-    <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
-        <div className={classes.MiniCartContainerAlt}>
+    <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
+        <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
       {(cartData.length) ? 
 
-      <div className={classes.MiniCartContainer}>
-        <div className={classes.MiniCart}>
+      <div className={NavProductClasses.MiniCartContainer}>
+        <div className={NavProductClasses.MiniCart}>
         <p>Congratulations! You've qualified for FREE shipping!</p>
-        <div className={`${CartClasses.bluebar} ${classes.pBluebar}`}/>
+        <div className={`${CartClasses.bluebar} ${NavProductClasses.pBluebar}`}/>
         <h2>Your Cart</h2>
-        <div className={classes.containerCart}>
+        <div className={NavProductClasses.containerCart}>
         {cartData.map((cartItem) => (
-        <div className={classes.containerCartItem} key={cartItem.sku}>
-        <img className={classes.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
-        <div className={classes.containerProductInfoCart}>
-          <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
+        <div className={NavProductClasses.containerCartItem} key={cartItem.sku}>
+        <img className={NavProductClasses.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
+        <div className={NavProductClasses.containerProductInfoCart}>
+          <h1 className={NavProductClasses.h1}>{cartItem.displayItemName} <p className={NavProductClasses.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
-          <b className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
+          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
           </div>
-          <div className={classes.containerCartItemTrash}>
-          <div className={classes.itemAddTo}>
-              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={(event) => {
+          <div className={NavProductClasses.containerCartItemTrash}>
+          <div className={NavProductClasses.itemAddTo}>
+              <div className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemCursor}`} onClick={(event) => {
                 const currentValue = (event.currentTarget.nextElementSibling as HTMLParagraphElement).textContent;
                 if(Number(currentValue) > 1)
                 {
@@ -144,10 +144,10 @@ const ProductShowcase = (): JSX.Element  => {
               }}>
                 <b>-</b>
               </div>
-               <div className={`${classes.itemAmountControl} ${classes.itemWidth}`}>
+               <div className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemWidth}`}>
                 <b>{cartItem.quantityNumber}</b>
               </div>
-              <button className={`${classes.itemAmountControl} ${classes.itemCursor} ${classes.itemAmountControlPlus}`} disabled={isBusy}  onClick={async (event) => {
+              <button className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemCursor} ${NavProductClasses.itemAmountControlPlus}`} disabled={isBusy}  onClick={async (event) => {
                 const currentValue = (event.currentTarget.previousElementSibling as HTMLParagraphElement).textContent;
                 if(Number(currentValue))
                 {
@@ -192,7 +192,7 @@ const ProductShowcase = (): JSX.Element  => {
               </button>
           </div>
 
-          <img className={classes.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
+          <img className={NavProductClasses.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
                 const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                 setCartData(filteredArray);
                 let cartItemAmount2 = 0;
@@ -215,13 +215,13 @@ const ProductShowcase = (): JSX.Element  => {
         ))}
         </div>
 
-      <div className={classes.containerCartInfo}>
-        <div className={classes.containerCartItemTrash}>
+      <div className={NavProductClasses.containerCartInfo}>
+        <div className={NavProductClasses.containerCartItemTrash}>
           <b>{`Subtotal (${cartAmount} item${(cartAmount > 1) ? 's' : ''})`}</b>
           <b>{cartCurrencyAmount}</b>
         </div>
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
-        <Link to={'/checkout/cart'} className={`${classes.AddtoCart} ${classes.AltButtonInfo}`}><b>View cart & checkout</b></Link>
+        <Link to={'/checkout/cart'} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
         <Link onClick={(event) => {
           if(event.currentTarget.parentElement?.parentElement?.parentElement)
           {
@@ -233,13 +233,13 @@ const ProductShowcase = (): JSX.Element  => {
           {
             event.currentTarget.parentElement.parentElement.parentElement.style = '';
           }
-        }} to={window.location.href}  className={`${classes.AddtoCart} ${classes.AltButtonInfo} ${classes.AltButtonShopping}`} ><b>Continue shopping</b></Link>
+        }} to={window.location.href}  className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo} ${NavProductClasses.AltButtonShopping}`} ><b>Continue shopping</b></Link>
         </div>
         </div>
       </div>
        : 
-      <div className={classes.MiniCartContainer}>
-        <b className={classes.MiniCart}>Your shopping cart is empty</b>
+      <div className={NavProductClasses.MiniCartContainer}>
+        <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
       </div>}
     </ImgButton>
 
@@ -253,14 +253,163 @@ const ProductShowcase = (): JSX.Element  => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
-    <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+    <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
-        <p className={Navclasses.badge}>0</p>
+        <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
+      {(cartData.length) ? 
+
+      <div className={NavProductClasses.MiniCartContainer}>
+        <div className={NavProductClasses.MiniCart}>
+        <p>Congratulations! You've qualified for FREE shipping!</p>
+        <div className={`${CartClasses.bluebar} ${NavProductClasses.pBluebar}`}/>
+        <h2>Your Cart</h2>
+        <div className={NavProductClasses.containerCart}>
+        {cartData.map((cartItem) => (
+        <div className={NavProductClasses.containerCartItem} key={cartItem.sku}>
+        <img className={NavProductClasses.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
+        <div className={NavProductClasses.containerProductInfoCart}>
+          <h1 className={NavProductClasses.h1}>{cartItem.displayItemName} <p className={NavProductClasses.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
+          <div>
+          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
+          </div>
+          <div className={NavProductClasses.containerCartItemTrash}>
+          <div className={NavProductClasses.itemAddTo}>
+              <div className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemCursor}`} onClick={(event) => {
+                const currentValue = (event.currentTarget.nextElementSibling as HTMLParagraphElement).textContent;
+                if(Number(currentValue) > 1)
+                {
+                  if(currentValue !== null){
+                    const newValue = Number(currentValue) - 1;
+                    ((event.currentTarget.nextElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                        let CurrencyAmount = 0;
+                        let CurrencySymbol = '';
+                        let CurrencySymbolType = '';
+                        cartData.forEach((cartDataItem) => {
+                          if(cartDataItem.sku === cartItem.sku)
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * (cartDataItem.quantityNumber - 1));
+                            const index = cartData.findIndex((cartDataItem) => cartDataItem.sku === cartItem.sku);
+                            if(index !== -1) 
+                            {
+                              const changedCartData = cartData;
+                              changedCartData[index].quantityNumber = changedCartData[index].quantityNumber - 1;
+                              setCartData(changedCartData);
+                            }
+                          }
+                          else
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
+                          }
+                        CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartDataItem.displayCurrencyValueType;
+                        });
+                        setCartAmount(cartAmount - 1);
+                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                  }
+                }
+              }}>
+                <b>-</b>
+              </div>
+               <div className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemWidth}`}>
+                <b>{cartItem.quantityNumber}</b>
+              </div>
+              <button className={`${NavProductClasses.itemAmountControl} ${NavProductClasses.itemCursor} ${NavProductClasses.itemAmountControlPlus}`} disabled={isBusy}  onClick={async (event) => {
+                const currentValue = (event.currentTarget.previousElementSibling as HTMLParagraphElement).textContent;
+                if(Number(currentValue))
+                {
+                  if(currentValue !== null){
+                    const newValue = Number(currentValue) + 1;
+                    const textContent = (event.currentTarget.previousElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement;
+                    setIsBusy(true);
+                      const foundProduct = await storeApiService.getSingleProductData(cartItem.sku.toString());
+                    setIsBusy(false);
+                      if(foundProduct && Number(currentValue) < foundProduct.stockAmount)
+                        {
+                    textContent.textContent = newValue.toFixed();
+                        let CurrencyAmount = 0;
+                        let CurrencySymbol = '';
+                        let CurrencySymbolType = '';
+                        cartData.forEach((cartDataItem) => {
+                          if(cartDataItem.sku === cartItem.sku)
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * (cartDataItem.quantityNumber + 1));
+                            const index = cartData.findIndex((cartDataItem) => cartDataItem.sku === cartItem.sku);
+                            if(index !== -1) 
+                            {
+                              const changedCartData = cartData;
+                              changedCartData[index].quantityNumber = changedCartData[index].quantityNumber + 1;
+                              setCartData(changedCartData);
+                            }
+                          }
+                          else
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
+                          }
+                        CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartDataItem.displayCurrencyValueType;
+                        });
+                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                          setCartAmount(cartAmount + 1);
+                        }
+                  }
+                }
+              }}>
+                <b>+</b>
+              </button>
+          </div>
+
+          <img className={NavProductClasses.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
+                const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
+                setCartData(filteredArray);
+                let cartItemAmount2 = 0;
+                let CurrencyAmount = 0;
+                let CurrencySymbol = '';
+                let CurrencySymbolType = '';
+                filteredArray.forEach((cartData) => {
+                        cartItemAmount2 += cartData.quantityNumber;
+                        CurrencyAmount += (cartData.displayCurrencyValue * cartData.quantityNumber);
+                        CurrencySymbol = cartData.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartData.displayCurrencyValueType;
+                        });
+                setCartAmount(cartItemAmount2);
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+              }}/>
+              </div>
+        </div>
+
+      </div>
+        ))}
+        </div>
+
+      <div className={NavProductClasses.containerCartInfo}>
+        <div className={NavProductClasses.containerCartItemTrash}>
+          <b>{`Subtotal (${cartAmount} item${(cartAmount > 1) ? 's' : ''})`}</b>
+          <b>{cartCurrencyAmount}</b>
+        </div>
+        <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
+        <Link to={'/checkout/cart'} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
+        <Link onClick={(event) => {
+          if(event.currentTarget.parentElement?.parentElement?.parentElement)
+          {
+            event.currentTarget.parentElement.parentElement.parentElement.style.display = 'none';
+          }
+        }}
+         onBlur={(event) => {
+          if(event.currentTarget.parentElement?.parentElement?.parentElement)
+          {
+            event.currentTarget.parentElement.parentElement.parentElement.style = '';
+          }
+        }} to={window.location.href}  className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo} ${NavProductClasses.AltButtonShopping}`} ><b>Continue shopping</b></Link>
+        </div>
+        </div>
+      </div>
+       : 
       <div className={NavProductClasses.MiniCartContainer}>
         <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
-      </div>
-      </ImgButton>
+      </div>}
+    </ImgButton>
 
     </header>
     </div>
