@@ -173,6 +173,12 @@
 .displayBlock {
     display: block!important;
 }
+.pMessage {
+    margin-top: 2rem;
+}
+.bCheckmark {
+    color: #39c216;
+}
 .MiniCart {
     position: absolute;
     padding: 2rem;

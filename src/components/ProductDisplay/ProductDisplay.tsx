@@ -91,7 +91,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
             setclassDisplayBlock('');
           }}>
         <div className={classes.MiniCart}>
-        <p>Congratulations! You've qualified for FREE shipping!</p>
+        <b hidden={(ClassDisplayBlock === '') ? true : false}><b className={classes.bCheckmark}>✓</b> Succesfully added to cart.</b>
+        <p className={`${(ClassDisplayBlock === '') ? '' : classes.pMessage}`}>Congratulations! You've qualified for FREE shipping!</p>
         <div className={`${CartClasses.bluebar} ${classes.pBluebar}`}/>
         <h2>Your Cart</h2>
         <div className={classes.containerCart}>
