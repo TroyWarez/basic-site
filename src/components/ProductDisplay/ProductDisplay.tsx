@@ -9,6 +9,7 @@ import ImgButton from '../ImgButton/ImgButton';
 import Navclasses from "../NavigationBar/NavigationBar.module.css"
 import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
+import trashIcon from "../../assets/icons/deleteIcon.svg"
 import CartItem from '../../models/CartItem';
 interface ProductDisplayProps {
     className?: string;
@@ -115,7 +116,9 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               }}>
                 <b>+</b>
               </div>
-              <button><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
+              <img alt="Delete Icon" src={trashIcon} onClick={(event) => {
+                console.log('test');
+              }}/>
           </div>
         </div>
 
