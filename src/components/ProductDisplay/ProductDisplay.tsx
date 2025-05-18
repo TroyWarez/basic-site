@@ -33,7 +33,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
            CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
            CurrencySymbol = cartData2.displayCurrencyValueSymbol;
            CurrencySymbolType = cartData2.displayCurrencyValueType;
-           cartItemMax = storeApiService.getSingleProductData(cartData2.sku.toString());
+                     cartItemMax = storeApiService.getSingleProductData(cartData2.sku.toString());
+          });
 
   const [cartCurrencyAmount, setCartCurrencyAmount] = useState(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
   const [cartAmount, setCartAmount] = useState(cartItemAmount);
