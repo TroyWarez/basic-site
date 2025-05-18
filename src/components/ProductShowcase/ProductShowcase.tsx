@@ -14,6 +14,7 @@ import Navclasses from "../NavigationBar/NavigationBar.module.css"
 import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
+import loginIcon from "../../assets/icons/LoginIcon.svg"
 const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
@@ -85,6 +86,9 @@ const ProductShowcase = (): JSX.Element  => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+
+    <div className={NavProductClasses.LoginContainer}>
+    <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -242,6 +246,7 @@ const ProductShowcase = (): JSX.Element  => {
         <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
       </div>}
     </ImgButton>
+    </div>
 
     </header>
     </div>
@@ -251,8 +256,10 @@ const ProductShowcase = (): JSX.Element  => {
   <>
     <div className={Navclasses.navbarcontainer}>
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
-
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+
+    <div className={NavProductClasses.LoginContainer}>
+    <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -410,6 +417,7 @@ const ProductShowcase = (): JSX.Element  => {
         <b className={NavProductClasses.MiniCart}>Your shopping cart is empty</b>
       </div>}
     </ImgButton>
+    </div>
 
     </header>
     </div>
