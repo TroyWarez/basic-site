@@ -1,5 +1,6 @@
 import classes from './ProductDisplay.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
+import ProducDisplayClasses from '../OrderDisplay/OrderDisplay.module.css'
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
 import { useSearchParams, Link } from "react-router-dom";
@@ -86,7 +87,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
     <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
-        <div className={classes.MiniCartContainerAlt}>
+        <div className={ProducDisplayClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
       {(cartData.length) ? 
@@ -244,7 +245,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
       <div className={classes.MiniCartContainer}>
         <b className={classes.MiniCart}>Your shopping cart is empty</b>
       </div>}
-      </ImgButton>
+    </ImgButton>
 
     </header>
     </div>
