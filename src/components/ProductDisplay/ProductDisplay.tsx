@@ -75,7 +75,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
       <div className={classes.MiniCartContainer}>
         <div className={classes.MiniCart}>
         <p>Congratulations! You've qualified for FREE shipping!</p>
-        <div className={CartClasses.bluebar}/>
+        <div className={`${CartClasses.bluebar} ${classes.pBluebar}`}/>
         <h2>Your Cart</h2>
         <div className={classes.containerCart}>
         {cartData.map((cartItem) => (
@@ -88,25 +88,34 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
           </div>
           <div className={classes.itemAddTo}>
-              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
-                if(itemAmount > 1)
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={(event) => {
+                const currentValue = (event.currentTarget.nextElementSibling as HTMLParagraphElement).textContent;
+                if(Number(currentValue) > 1)
                 {
-                  setItemAmount(itemAmount - 1)
+                  if(currentValue !== null){
+                    const newValue = Number(currentValue) - 1;
+                    ((event.currentTarget.nextElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                  }
                 }
               }}>
                 <b>-</b>
               </div>
                <div className={`${classes.itemAmountControl} ${classes.itemWidth}`}>
-                <b>{itemAmount}</b>
+                <b>{cartItem.quantityNumber}</b>
               </div>
-              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
-                if(itemAmount < maxStock)
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={(event) => {
+                const currentValue = (event.currentTarget.previousElementSibling as HTMLParagraphElement).textContent;
+                if(Number(currentValue) < 99)
                 {
-                  setItemAmount(itemAmount + 1)
+                  if(currentValue !== null){
+                    const newValue = Number(currentValue) + 1;
+                    ((event.currentTarget.previousElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                  }
                 }
               }}>
                 <b>+</b>
               </div>
+              <button><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
           </div>
         </div>
 

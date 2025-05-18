@@ -19,11 +19,18 @@
     flex-direction: column;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-color: var(--main-bg-accentColorAlt) var(--main-bg-accentColor);
     height: 15rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--main-bg-accentColor);
 }
 .containerCartItem {
     display: flex;
     align-items: flex-start;
+    border: 1px solid var(--main-bg-accentColorAlt);
+}
+.pBluebar {
+    margin-top: 1rem;
 }
 .p {
     font-size: 150%;
@@ -90,6 +97,7 @@
 }
 .itemAddTo * {
  padding: 0.2rem;
+ width: 1.25rem;
 }
 .itemCursor {
     cursor: pointer;
