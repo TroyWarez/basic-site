@@ -82,12 +82,12 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         <div className={classes.containerCartItem} key={cartItem.sku}>
         <img className={classes.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
         <div className={classes.containerProductInfo}>
-          <h1>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
+          <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
           <b className={classes.p}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</b>
           <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
           </div>
-          <div className={classes.itemAddToCartContainer}>
+          <div className={classes.itemAddTo}>
               <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
                 if(itemAmount > 1)
                 {

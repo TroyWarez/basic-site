@@ -23,11 +23,14 @@
 }
 .containerCartItem {
     display: flex;
-    justify-content: space-evenly;
+    align-items: flex-start;
 }
 .p {
     font-size: 150%;
     width: 100%;
+}
+.h1 {
+    margin: 0;
 }
 .h2 {
     font-size: 400%;
@@ -78,14 +81,19 @@
     align-items: stretch;
     margin-top: 2.90rem;
 }
+.itemAddTo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.itemAddTo * {
+ padding: 0.2rem;
+}
 .itemCursor {
     cursor: pointer;
     user-select: none;
-}
-.itemWidth {
-    width: 2rem;
-    display: flex;
-    justify-content: center;
 }
 .pSaleRed {
     color: #eb1919!important;
@@ -106,13 +114,12 @@
 }
 .MiniCartContainer:hover {
     visibility: visible!important;
-    background-color: #808080;
-
 }
 .MiniCart {
     position: absolute;
     padding: 2rem;
-    background-color: var(--main-bg-accentColor);
+    background-color: var(--main-bg-accentColorAlt);
+    border: solid 1px var(--main-bg-accentColor);
     left: -25rem;
     top: 1.5rem;
     font-size: 0.9rem;
