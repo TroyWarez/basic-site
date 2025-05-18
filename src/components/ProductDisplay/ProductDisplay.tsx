@@ -276,8 +276,25 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               }}>
                 <b>+</b>
               </div>
-          <button className={classes.AddtoCart} onClick={() => {
+          <button className={classes.AddtoCart} onClick={async () => {
+            if(product)
+            {
+              const newStock = await storeApiService.getSingleProductData(product.sku.toString());
+              setMaxStock(Number(newStock?.stockAmount));
+              if(newStock && itemAmount > newStock?.stockAmount)
+              {
+                setItemAmount(newStock.stockAmount);
+              }
+              const cartIndex = cartData.findIndex((cartItem) => (cartItem.sku === product.sku))
+              if(newStock && cartIndex !== -1 && (cartData[cartIndex].quantityNumber + itemAmount) < newStock?.stockAmount)
+              {
+                cartData[cartIndex].quantityNumber = (cartData[cartIndex].quantityNumber + itemAmount);
+                setCartData(cartData);
+              }
+            }
             setclassDisplayBlock(` ${classes.displayBlock}`);
+
+
           }}><b>Add To Cart</b></button>
           </div>
         </div>
