@@ -199,3 +199,13 @@
 .MiniCartItem {
     display: flex;
 }
+.LoginContainer {
+    display: flex;
+}
+.LoginImg {
+    width: 2rem;
+    height: 2rem;
+}
+.LoginDiv {
+    margin-right: 1rem;
+}

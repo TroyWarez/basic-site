@@ -1,6 +1,5 @@
 import classes from './ProductDisplay.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
-import ProducDisplayClasses from '../OrderDisplay/OrderDisplay.module.css'
 import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
 import { useSearchParams, Link } from "react-router-dom";
@@ -10,6 +9,7 @@ import Navclasses from "../NavigationBar/NavigationBar.module.css"
 import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
+import loginIcon from "../../assets/icons/LoginIcon.svg"
 import CartItem from '../../models/CartItem';
 interface ProductDisplayProps {
     className?: string;
@@ -86,6 +86,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <div className={classes.LoginContainer}>
+    <ImgButton imgClassName={classes.LoginImg} className={classes.LoginDiv} imgPath={loginIcon} name={"Login"} altText={"Login"} linkPath="/login"/>
     <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={classes.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -246,6 +248,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         <b className={classes.MiniCart}>Your shopping cart is empty</b>
       </div>}
     </ImgButton>
+    </div>
 
     </header>
     </div>
