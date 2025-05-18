@@ -67,7 +67,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
-    <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} linkPath="">
+    <ImgButton className={`${Navclasses.cart} ${classes.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={classes.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
         </div>
@@ -82,12 +82,13 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         {cartData.map((cartItem) => (
         <div className={classes.containerCartItem} key={cartItem.sku}>
         <img className={classes.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
-        <div className={classes.containerProductInfo}>
+        <div className={classes.containerProductInfoCart}>
           <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
           <b className={classes.p}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</b>
           <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
           </div>
+          <div className={classes.containerCartItemTrash}>
           <div className={classes.itemAddTo}>
               <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={(event) => {
                 const currentValue = (event.currentTarget.nextElementSibling as HTMLParagraphElement).textContent;
@@ -116,14 +117,38 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               }}>
                 <b>+</b>
               </div>
-              <img alt="Delete Icon" src={trashIcon} onClick={(event) => {
-                console.log('test');
-              }}/>
           </div>
+
+          <img className={classes.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
+                setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
+                setCartAmount(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku).length);
+              }}/>
+              </div>
         </div>
 
       </div>
         ))}
+        </div>
+
+      <div className={classes.containerCartInfo}>
+        <div className={classes.containerCartItemTrash}>
+          <b>{`Subtotal: ${cartData.length}`}</b>
+          <b>{`$100`}</b>
+        </div>
+        <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
+        <Link to={'/checkout/cart'} className={`${classes.AddtoCart} ${classes.AltButtonInfo}`}><b>View cart & checkout</b></Link>
+        <Link onClick={(event) => {
+          if(event.currentTarget.parentElement?.parentElement?.parentElement)
+          {
+            event.currentTarget.parentElement.parentElement.parentElement.style.display = 'none';
+          }
+        }}
+         onBlur={(event) => {
+          if(event.currentTarget.parentElement?.parentElement?.parentElement)
+          {
+            event.currentTarget.parentElement.parentElement.parentElement.style = '';
+          }
+        }} to={window.location.href}  className={`${classes.AddtoCart} ${classes.AltButtonInfo} ${classes.AltButtonShopping}`} ><b>Continue shopping</b></Link>
         </div>
         </div>
       </div>

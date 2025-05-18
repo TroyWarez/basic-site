@@ -3,14 +3,22 @@
     justify-content: center;
     flex-direction: row;
     width: 100%;
-    align-items: start;
-    margin-top: 8rem;
+    height: 60rem;
+    align-items: center;
 }
-.containerProductInfo {
+.containerProductInfoCart {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
     width: 25rem;
+    margin-left: 2rem;
+}
+.containerProductInfo {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 25rem;
+    height: 35rem;
     margin-left: 2rem;
 }
 .containerCart {
@@ -20,7 +28,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-color: var(--main-bg-accentColorAlt) var(--main-bg-accentColor);
-    height: 15rem;
+    height: 12rem;
     padding: 1rem;
     border-bottom: 1px solid var(--main-bg-accentColor);
 }
@@ -28,6 +36,24 @@
     display: flex;
     align-items: flex-start;
     border: 1px solid var(--main-bg-accentColorAlt);
+}
+.containerCartItemTrash {
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.containerCartInfo {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 15rem;
+}
+.trashImg {
+    width: 2rem!important;
+    height: 2rem!important;
+    cursor: pointer;
+    margin-right: 1rem;
 }
 .pBluebar {
     margin-top: 1rem;
@@ -49,8 +75,8 @@
     margin-top: 0.75rem;
 }
 .ProductImg {
-    height: 20rem;
-    width: 20rem;
+    height: 40rem;
+    width: 40rem;
 }
 .pDiscount {
     color: #eb1919;
@@ -76,7 +102,21 @@
 .AddtoCart:hover {
     background-color: #39c216;
 }
-
+.AltButtonInfo {
+    width: auto!important;
+    margin-left: 0!important;
+    text-decoration: none!important;
+    text-align: center;
+}
+.AltButtonShopping {
+    background-color: var(--main-bg-accentColor);
+    border: solid 1px var(--main-bg-accentColorAlt);
+    text-decoration: none!important;
+    text-align: center;
+}
+.AltButtonShopping:hover {
+    background-color: #707779;
+}
 .itemAmountControl {
     background-color: var(--main-bg-accentColor);
     min-width: min-content;
@@ -128,10 +168,10 @@
     padding: 2rem;
     background-color: var(--main-bg-accentColorAlt);
     border: solid 1px var(--main-bg-accentColor);
-    left: -25rem;
+    left: -22rem;
     top: 1.5rem;
     font-size: 0.9rem;
-    width: 21rem;
+    width: 22rem;
 }
 .MiniCartImg {
     width: 5rem!important;
