@@ -119,7 +119,7 @@
 }
 .itemAmountControl {
     background-color: var(--main-bg-accentColor);
-    min-width: min-content;
+    width: 1rem;
     padding: 1rem;
 }
 .itemAddToCartContainer {

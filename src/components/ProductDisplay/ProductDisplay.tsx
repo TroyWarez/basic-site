@@ -19,19 +19,21 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [product, setProduct] = useState<ProductItem>();
   const [maxStock, setMaxStock] = useState(1);
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
+  const [cartDataMax, setCartDataMax] = useState([{}]);
   const [itemAmount, setItemAmount] = useState(1);
 
   const sku = queryParams.get('sku');
   let cartItemAmount = 0;
+    let cartItemMax;
   let CurrencyAmount = 0;
   let CurrencySymbol = '';
   let CurrencySymbolType = '';
-  cartData.forEach((cartData) => {
-           cartItemAmount += cartData.quantityNumber;
-           CurrencyAmount += (cartData.displayCurrencyValue * cartData.quantityNumber);
-           CurrencySymbol = cartData.displayCurrencyValueSymbol;
-           CurrencySymbolType = cartData.displayCurrencyValueType;
-          });
+  cartData.forEach((cartData2) => {
+           cartItemAmount += cartData2.quantityNumber;
+           CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
+           CurrencySymbol = cartData2.displayCurrencyValueSymbol;
+           CurrencySymbolType = cartData2.displayCurrencyValueType;
+           cartItemMax = storeApiService.getSingleProductData(cartData2.sku.toString());
 
   const [cartCurrencyAmount, setCartCurrencyAmount] = useState(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
   const [cartAmount, setCartAmount] = useState(cartItemAmount);
@@ -109,6 +111,30 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
                   if(currentValue !== null){
                     const newValue = Number(currentValue) - 1;
                     ((event.currentTarget.nextElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                        let CurrencyAmount = 0;
+                        let CurrencySymbol = '';
+                        let CurrencySymbolType = '';
+                        cartData.forEach((cartDataItem) => {
+                          if(cartDataItem.sku === cartItem.sku)
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * (cartDataItem.quantityNumber - 1));
+                            const index = cartData.findIndex((cartDataItem) => cartDataItem.sku === cartItem.sku);
+                            if(index !== -1) 
+                            {
+                              const changedCartData = cartData;
+                              changedCartData[index].quantityNumber = changedCartData[index].quantityNumber - 1;
+                              setCartData(changedCartData);
+                            }
+                          }
+                          else
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
+                          }
+                        CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartDataItem.displayCurrencyValueType;
+                        });
+                        setCartAmount(cartAmount - 1);
+                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
                   }
                 }
               }}>
@@ -124,6 +150,30 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
                   if(currentValue !== null){
                     const newValue = Number(currentValue) + 1;
                     ((event.currentTarget.previousElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                        let CurrencyAmount = 0;
+                        let CurrencySymbol = '';
+                        let CurrencySymbolType = '';
+                        cartData.forEach((cartDataItem) => {
+                          if(cartDataItem.sku === cartItem.sku)
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * (cartDataItem.quantityNumber + 1));
+                            const index = cartData.findIndex((cartDataItem) => cartDataItem.sku === cartItem.sku);
+                            if(index !== -1) 
+                            {
+                              const changedCartData = cartData;
+                              changedCartData[index].quantityNumber = changedCartData[index].quantityNumber + 1;
+                              setCartData(changedCartData);
+                            }
+                          }
+                          else
+                          {
+                            CurrencyAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
+                          }
+                        CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
+                        CurrencySymbolType = cartDataItem.displayCurrencyValueType;
+                        });
+                        setCartAmount(cartAmount + 1);
+                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
                   }
                 }
               }}>
@@ -134,17 +184,17 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <img className={classes.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
                 const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                 setCartData(filteredArray);
-                let cartItemAmount = 0;
+                let cartItemAmount2 = 0;
                 let CurrencyAmount = 0;
                 let CurrencySymbol = '';
                 let CurrencySymbolType = '';
                 filteredArray.forEach((cartData) => {
-                        cartItemAmount += cartData.quantityNumber;
+                        cartItemAmount2 += cartData.quantityNumber;
                         CurrencyAmount += (cartData.displayCurrencyValue * cartData.quantityNumber);
                         CurrencySymbol = cartData.displayCurrencyValueSymbol;
                         CurrencySymbolType = cartData.displayCurrencyValueType;
                         });
-                setCartAmount(cartItemAmount);
+                setCartAmount(cartItemAmount2);
                 setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
               }}/>
               </div>
@@ -156,7 +206,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
       <div className={classes.containerCartInfo}>
         <div className={classes.containerCartItemTrash}>
-          <b>{`Subtotal (${cartAmount} items)`}</b>
+          <b>{`Subtotal (${cartAmount} item${(cartAmount > 1) ? 's' : ''})`}</b>
           <b>{cartCurrencyAmount}</b>
         </div>
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
