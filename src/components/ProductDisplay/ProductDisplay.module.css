@@ -6,22 +6,24 @@
     align-items: start;
     margin-top: 8rem;
 }
-.containerCart {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    width: 100%;
-    align-items: start;
-    margin-top: 8rem;
-    overflow-y: auto;
-    max-height: 20rem;
-}
 .containerProductInfo {
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
     width: 25rem;
     margin-left: 2rem;
+}
+.containerCart {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 15rem;
+}
+.containerCartItem {
+    display: flex;
+    justify-content: space-evenly;
 }
 .p {
     font-size: 150%;
@@ -68,7 +70,7 @@
 .itemAmountControl {
     background-color: var(--main-bg-accentColor);
     min-width: min-content;
-        padding: 1rem;
+    padding: 1rem;
 }
 .itemAddToCartContainer {
     display: flex;
@@ -109,11 +111,17 @@
 }
 .MiniCart {
     position: absolute;
-    padding: 2.5rem;
+    padding: 2rem;
     background-color: var(--main-bg-accentColor);
-    left: -26rem;
+    left: -25rem;
     top: 1.5rem;
     font-size: 0.9rem;
     width: 21rem;
-    max-height: 20rem;
+}
+.MiniCartImg {
+    width: 5rem!important;
+    height: 5rem!important;
+}
+.MiniCartItem {
+    display: flex;
 }

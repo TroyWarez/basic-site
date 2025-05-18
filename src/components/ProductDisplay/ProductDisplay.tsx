@@ -77,9 +77,10 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
         <p>Congratulations! You've qualified for FREE shipping!</p>
         <div className={CartClasses.bluebar}/>
         <h2>Your Cart</h2>
+        <div className={classes.containerCart}>
         {cartData.map((cartItem) => (
-      <div key={cartItem.sku} className={classes.containerCart}>
-        <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
+        <div className={classes.containerCartItem} key={cartItem.sku}>
+        <img className={classes.MiniCartImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
         <div className={classes.containerProductInfo}>
           <h1>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
@@ -108,8 +109,10 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
               </div>
           </div>
         </div>
+
       </div>
         ))}
+        </div>
         </div>
       </div>
        : 
