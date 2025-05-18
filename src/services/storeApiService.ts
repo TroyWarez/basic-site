@@ -33,9 +33,6 @@ const httpClient = axios.create({
     },
     getCartDatalocal:():Array<CartItem>  => {
       const cartDataString = localStorage.getItem("cartData");
-      if (cartDataString !== "undefined" && cartDataString) {
-        return JSON.parse(cartDataString);
-      }
       const cartData: Array<CartItem> = [{ //remove me
         sku: "HPI160100",
         displayItemName: "Red RC Car",
@@ -43,7 +40,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 550,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car red.jpg",
+        productImageBinData: "Red RC Car.jpeg",
         quantityNumber: 3
       },
       {
@@ -53,7 +50,7 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 450,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car blue.jpg",
+        productImageBinData: "GT Teal Racer Car.jpeg",
         quantityNumber: 7
       },
       {
@@ -63,10 +60,10 @@ const httpClient = axios.create({
         displayCurrencySaleValue: 250,
         displayCurrencyValueType: "CA",
         displayCurrencyValueSymbol: "$",
-        productImageBinData: "/car green.jpg",
+        productImageBinData: "Green RC Car.jpeg",
         quantityNumber: 4
       }];
-      return new Array<CartItem>();
+      return cartData;
       //return cartDataString;
       
     //  try

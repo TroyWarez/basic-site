@@ -74,10 +74,42 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
       <div className={classes.MiniCartContainer}>
         <div className={classes.MiniCart}>
-
         <p>Congratulations! You've qualified for FREE shipping!</p>
         <div className={CartClasses.bluebar}/>
-
+        <h2>Your Cart</h2>
+        {cartData.map((cartItem) => (
+      <div key={cartItem.sku} className={classes.containerCart}>
+        <img className={classes.ProductImg} title='Product Image' src={`${window.origin}/${cartItem.productImageBinData}`}></img>
+        <div className={classes.containerProductInfo}>
+          <h1>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
+          <div>
+          <b className={classes.p}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencyValue}`}</b>
+          <s hidden={(product?.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${product?.displayCurrencyValueType}${product?.displayCurrencyValueSymbol}${product?.displayCurrencySaleValue}`}</s>
+          </div>
+          <div className={classes.itemAddToCartContainer}>
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
+                if(itemAmount > 1)
+                {
+                  setItemAmount(itemAmount - 1)
+                }
+              }}>
+                <b>-</b>
+              </div>
+               <div className={`${classes.itemAmountControl} ${classes.itemWidth}`}>
+                <b>{itemAmount}</b>
+              </div>
+              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={() => {
+                if(itemAmount < maxStock)
+                {
+                  setItemAmount(itemAmount + 1)
+                }
+              }}>
+                <b>+</b>
+              </div>
+          </div>
+        </div>
+      </div>
+        ))}
         </div>
       </div>
        : 
