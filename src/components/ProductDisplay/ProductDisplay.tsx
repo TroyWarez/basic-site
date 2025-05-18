@@ -19,6 +19,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
   const [maxStock, setMaxStock] = useState(1);
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
   const [itemAmount, setItemAmount] = useState(1);
+  const [isBusy, setIsBusy] = useState(false);
 
   const sku = queryParams.get('sku');
   let cartItemAmount = 0;
@@ -140,13 +141,19 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
                <div className={`${classes.itemAmountControl} ${classes.itemWidth}`}>
                 <b>{cartItem.quantityNumber}</b>
               </div>
-              <div className={`${classes.itemAmountControl} ${classes.itemCursor}`} onClick={(event) => {
+              <button className={`${classes.itemAmountControl} ${classes.itemCursor} ${classes.itemAmountControlPlus}`} disabled={isBusy}  onClick={async (event) => {
                 const currentValue = (event.currentTarget.previousElementSibling as HTMLParagraphElement).textContent;
-                if(Number(currentValue) < 99)
+                if(Number(currentValue))
                 {
                   if(currentValue !== null){
                     const newValue = Number(currentValue) + 1;
-                    ((event.currentTarget.previousElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement).textContent = newValue.toFixed();
+                    const textContent = (event.currentTarget.previousElementSibling as HTMLParagraphElement).firstElementChild as HTMLParagraphElement;
+                    setIsBusy(true);
+                      const foundProduct = await storeApiService.getSingleProductData(cartItem.sku.toString());
+                    setIsBusy(false);
+                      if(foundProduct && Number(currentValue) < foundProduct.stockAmount)
+                        {
+                    textContent.textContent = newValue.toFixed();
                         let CurrencyAmount = 0;
                         let CurrencySymbol = '';
                         let CurrencySymbolType = '';
@@ -169,13 +176,14 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
                         CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
                         CurrencySymbolType = cartDataItem.displayCurrencyValueType;
                         });
-                        setCartAmount(cartAmount + 1);
-                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                          setCartAmount(cartAmount + 1);
+                        }
                   }
                 }
               }}>
                 <b>+</b>
-              </div>
+              </button>
           </div>
 
           <img className={classes.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {

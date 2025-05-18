@@ -121,6 +121,13 @@
     background-color: var(--main-bg-accentColor);
     width: 1rem;
     padding: 1rem;
+    border: none;
+    color: white;
+    background: var(--main-bg-accentColor);
+
+}
+.itemAmountControlPlus {
+   height: 1.5rem!important;
 }
 .itemAddToCartContainer {
     display: flex;
