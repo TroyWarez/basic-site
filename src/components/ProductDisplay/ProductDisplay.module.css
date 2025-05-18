@@ -170,6 +170,9 @@
 .MiniCartContainer:hover {
     visibility: visible!important;
 }
+.displayBlock {
+    display: block!important;
+}
 .MiniCart {
     position: absolute;
     padding: 2rem;
