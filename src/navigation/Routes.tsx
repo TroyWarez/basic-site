@@ -16,7 +16,7 @@ const AppRoutes = () => (
     <Route path="/checkout/cart" element={<CartPage />} />
     <Route path="/checkout/cart/guestlogin" element={<GuestLoginPage />} />
     <Route path="/signup" element={<SignUpPage />} />
-    <Route path="/login" element={<LoginPage />} />
+    <Route path="/customer/account/login/" element={<LoginPage />} />
     <Route path="/legal/privacy/privacy-policy" element={<PlaceholderPage HeadingText="Privacy Policy"/>} />
     <Route path="/terms-and-conditions" element={<PlaceholderPage HeadingText="Terms and Conditions"/>} />
     <Route path="/legal" element={<PlaceholderPage HeadingText="Legal"/>} />

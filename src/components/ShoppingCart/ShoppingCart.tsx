@@ -30,6 +30,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   const [TotalPrice, setTotalPrice] = useState(TotalPriceAmount);
   const [cartData, setCartData] = useState(cartDataSaved);
   const [discount, setDiscount] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   if(cartData?.length === 0) {
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
@@ -65,7 +66,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             <div className={classes.buttonPanel}>
             <div className={classes.buttonPanelContainer}>
               <div >
-              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Minus' type='button' value={'-'} step="1"
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} disabled={isSubmitting} title='Minus' type='button' value={'-'} step="1"
               onClick={(e) => {
                 if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber > 1)
                 {
@@ -84,7 +85,9 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                     setTotalPrice(TotalPriceAmount);
                     if(location.state && location.state['userId'] !== '')
                               {
-                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                                 setIsSubmitting(true);
+                                  const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                                  setIsSubmitting(false);
                                 storeApiService.setCartDatalocal(cartData)
                                 cartDataHandler.then((cartItem) => {
                                 console.log(cartItem);
@@ -126,7 +129,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                       }
                   
               }}/>
-              <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Plus' type='button' value={'+'} step="1"
+              <input className={`${classes.input} ${classes.inputPlusMinus}`} disabled={isSubmitting} title='Plus' type='button' value={'+'} step="1"
               onClick={(e) => {
                 if (cartData[cartData.findIndex((e) => e.sku === cartItem.sku)].quantityNumber <= 99)
                   {
@@ -148,7 +151,9 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                       setCartData(cartData);
                                         if(location.state && location.state['userId'] !== '')
                     {
+                      setIsSubmitting(true);
                       const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                      setIsSubmitting(false);
                         storeApiService.setCartDatalocal(cartData)
                         cartDataHandler.then((cartItem) => {
                         console.log(cartItem);
