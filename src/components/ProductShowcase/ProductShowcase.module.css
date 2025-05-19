@@ -31,9 +31,6 @@
     text-decoration: none;
     color: white;
 }
-.AccountName {
-    margin: 1rem;
-}
 .CheckboxesContainer {
     display: flex;
     flex-direction: column;

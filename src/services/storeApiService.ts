@@ -10,14 +10,14 @@ const httpClient = axios.create({
   });
   const basePaths = {
     coupons: "api/get/coupons/",
-    cart: "api/get/cart/",
+    cart: "api/cart/",
     products: "api/get/products/",
     orders: "api/post/orders/",
     users: "api/users/signup",
     logins: "api/users/login",
   };
   const storeApiService = {
-    getDiscountPercentage: async (coupon: string): Promise<number> => {
+      getDiscountPercentage: async (coupon: string): Promise<number> => {
     try
     {
       const response = await httpClient.get(`${basePaths.coupons}${coupon}`);
@@ -27,29 +27,17 @@ const httpClient = axios.create({
     {
       return 0;
     }
-    },
-    
-    setCartDatalocal:(cartData: Array<CartItem>)  => { 
+      },
+      setCartDatalocal:(cartData: Array<CartItem>)  => { 
       localStorage.setItem("cartData", JSON.stringify(cartData));
-    },
-    getCartDatalocal:():Array<CartItem>  => {
+      },
+      getCartDatalocal:():Array<CartItem>  => {
       const cartDataString = localStorage.getItem("cartData");
       if (cartDataString !== "undefined" && cartDataString) {
         return JSON.parse(cartDataString);
       }
 
       return new Array<CartItem>();
-      },
-    getCartData: async (cartOwner: string): Promise<CartItem[]> => {
-        try
-        {
-          const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
-          return response.data?.cartData;
-        }
-        catch (error)
-        {
-          return [];
-        }
       },
       getProductData: async (): Promise<ProductItem[]> => {
         try
@@ -73,7 +61,7 @@ const httpClient = axios.create({
           return;
         }
       },
-    placeOrder: async (orderData: Address) => {
+      placeOrder: async (orderData: Address) => {
         try
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
@@ -94,6 +82,30 @@ const httpClient = axios.create({
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(basePaths.logins, {username: username, password: password });
           return response.data;
+      },
+      getUserCartData: async (userId: string): Promise<CartItem[]> => {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          if(userId === '')
+          {
+            return storeApiService.getCartDatalocal();
+          }
+          try{
+          const response = await httpClient.get(basePaths.cart + "/users/" + userId);
+          return response.data['cartData'];
+          }
+          catch (e){
+            return [];
+          }
+      },
+      setUserCartData: async (userId: string, cartItems: CartItem[]): Promise<string> => {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          try{
+          const response = (await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems}));
+          return 'Good';
+          }
+          catch (e){
+            return "Bad";
+          }
       }
   }
 

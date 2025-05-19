@@ -5,8 +5,8 @@ import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
-import { useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SelectMenu from '../SelectMenu/SelectMenu';
 import SelectMenuOption from '../../models/selectMenuOption';
 import ImgButton from '../ImgButton/ImgButton';
@@ -15,6 +15,7 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
+import CartItem from '../../models/CartItem';
 const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
@@ -22,23 +23,46 @@ const ProductShowcase = (): JSX.Element  => {
   const [categories, setCategories] = useState(new Array<string>);
   const [filteredCategories, setFilteredCategories] = useState(new Array<string>);
   const [filteredPrices, setFilteredPrices] = useState(new Array<MinMax>);
-
-  const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
   const [isBusy, setIsBusy] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
+  const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
   let cartItemAmount = 0;
   let CurrencyAmount = 0;
   let CurrencySymbol = '';
   let CurrencySymbolType = '';
-  cartData.forEach((cartData2) => {
+  if(location.state && location.state['userId'] !== '')
+  {
+    const cartDataHandler = storeApiService.getUserCartData(location.state['userId']);
+    
+    cartDataHandler.then((value) => {
+      if(cartData.length === 0){
+      storeApiService.setCartDatalocal(value);
+      setCartData(value);
+        value.forEach((cartData2) => {
            cartItemAmount += cartData2.quantityNumber;
            CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
            CurrencySymbol = cartData2.displayCurrencyValueSymbol;
            CurrencySymbolType = cartData2.displayCurrencyValueType;
           });
+          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
+          setCartAmount(cartItemAmount);
+        }
+    })
+    
+  }
+  else 
+  {
+    storeApiService.setCartDatalocal([]);
+  }
 
-  const [cartCurrencyAmount, setCartCurrencyAmount] = useState(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+    cartData.forEach((cartData2) => {
+           cartItemAmount += cartData2.quantityNumber;
+           CurrencyAmount += (cartData2.displayCurrencyValue * cartData2.quantityNumber);
+           CurrencySymbol = cartData2.displayCurrencyValueSymbol;
+           CurrencySymbolType = cartData2.displayCurrencyValueType;
+          });
+  const [cartCurrencyAmount, setCartCurrencyAmount] = useState(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
   const [cartAmount, setCartAmount] = useState(cartItemAmount);
     const SortList: SelectMenuOption[] = [
 
@@ -86,10 +110,13 @@ const ProductShowcase = (): JSX.Element  => {
           <div className={Navclasses.navbarcontainer}>
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
 
-    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/" onclickHandler={(event) => {
+            event.preventDefault();
+            navigate("/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }}/>
 
     <div className={NavProductClasses.LoginContainer}>
-    {((location.state)) ? <b className={classes.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
+    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -133,6 +160,14 @@ const ProductShowcase = (): JSX.Element  => {
                               const changedCartData = cartData;
                               changedCartData[index].quantityNumber = changedCartData[index].quantityNumber - 1;
                               setCartData(changedCartData);
+                              if(location.state && location.state['userId'] !== '')
+                              {
+                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], changedCartData);
+                                storeApiService.setCartDatalocal(changedCartData)
+                                cartDataHandler.then((cartItem) => {
+                                  console.log(cartItem);
+                                })
+                              }
                             }
                           }
                           else
@@ -143,7 +178,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbolType = cartDataItem.displayCurrencyValueType;
                         });
                         setCartAmount(cartAmount - 1);
-                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
                   }
                 }
               }}>
@@ -178,6 +213,14 @@ const ProductShowcase = (): JSX.Element  => {
                               const changedCartData = cartData;
                               changedCartData[index].quantityNumber = changedCartData[index].quantityNumber + 1;
                               setCartData(changedCartData);
+                              if(location.state && location.state['userId'] !== '')
+                              {
+                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], changedCartData);
+                                storeApiService.setCartDatalocal(changedCartData)
+                                cartDataHandler.then((cartItem) => {
+                                  console.log(cartItem);
+                                })
+                              }
                             }
                           }
                           else
@@ -187,7 +230,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
                         CurrencySymbolType = cartDataItem.displayCurrencyValueType;
                         });
-                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
                           setCartAmount(cartAmount + 1);
                         }
                   }
@@ -200,6 +243,14 @@ const ProductShowcase = (): JSX.Element  => {
           <img className={NavProductClasses.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
                 const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                 setCartData(filteredArray);
+                if(location.state && location.state['userId'] !== '')
+                {
+                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], filteredArray);
+                storeApiService.setCartDatalocal(filteredArray)
+                cartDataHandler.then((cartItem) => {
+                console.log(cartItem);
+                })
+              }
                 let cartItemAmount2 = 0;
                 let CurrencyAmount = 0;
                 let CurrencySymbol = '';
@@ -211,7 +262,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbolType = cartData.displayCurrencyValueType;
                         });
                 setCartAmount(cartItemAmount2);
-                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
               }}/>
               </div>
         </div>
@@ -257,10 +308,13 @@ const ProductShowcase = (): JSX.Element  => {
   <>
     <div className={Navclasses.navbarcontainer}>
     <header className={`${Navclasses.navbar} ${Navclasses.noncentered}`}>
-    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
+    <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/" onclickHandler={(event) => {
+            event.preventDefault();
+            navigate("/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }}/>
 
     <div className={NavProductClasses.LoginContainer}>
-    {((location.state)) ? <b className={classes.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
+    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -304,6 +358,14 @@ const ProductShowcase = (): JSX.Element  => {
                               const changedCartData = cartData;
                               changedCartData[index].quantityNumber = changedCartData[index].quantityNumber - 1;
                               setCartData(changedCartData);
+                            if(location.state && location.state['userId'] !== '')
+                              {
+                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], changedCartData);
+                                storeApiService.setCartDatalocal(changedCartData)
+                                cartDataHandler.then((cartItem) => {
+                                console.log(cartItem);
+                                })
+                             }
                             }
                           }
                           else
@@ -314,7 +376,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbolType = cartDataItem.displayCurrencyValueType;
                         });
                         setCartAmount(cartAmount - 1);
-                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                        setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
                   }
                 }
               }}>
@@ -349,6 +411,14 @@ const ProductShowcase = (): JSX.Element  => {
                               const changedCartData = cartData;
                               changedCartData[index].quantityNumber = changedCartData[index].quantityNumber + 1;
                               setCartData(changedCartData);
+                              if(location.state && location.state['userId'] !== '')
+                              {
+                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], changedCartData);
+                                storeApiService.setCartDatalocal(changedCartData)
+                                cartDataHandler.then((cartItem) => {
+                                console.log(cartItem);
+                                })
+                             }
                             }
                           }
                           else
@@ -358,7 +428,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
                         CurrencySymbolType = cartDataItem.displayCurrencyValueType;
                         });
-                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                          setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
                           setCartAmount(cartAmount + 1);
                         }
                   }
@@ -371,6 +441,14 @@ const ProductShowcase = (): JSX.Element  => {
           <img className={NavProductClasses.trashImg} alt="Delete Icon" src={trashIcon} onClick={() => {
                 const filteredArray = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                 setCartData(filteredArray);
+                if(location.state && location.state['userId'] !== '')
+                {
+                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], filteredArray);
+                storeApiService.setCartDatalocal(filteredArray)
+                cartDataHandler.then((cartItem) => {
+                console.log(cartItem);
+                })
+                }
                 let cartItemAmount2 = 0;
                 let CurrencyAmount = 0;
                 let CurrencySymbol = '';
@@ -382,7 +460,7 @@ const ProductShowcase = (): JSX.Element  => {
                         CurrencySymbolType = cartData.displayCurrencyValueType;
                         });
                 setCartAmount(cartItemAmount2);
-                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount}`);
+                setCartCurrencyAmount(`${CurrencySymbolType}${CurrencySymbol}${CurrencyAmount.toFixed(2)}`);
               }}/>
               </div>
         </div>
@@ -553,7 +631,10 @@ const ProductShowcase = (): JSX.Element  => {
         {products.filter(filterCategories).map((ProductItem) => (
 
         <div className={classes.ProductItem} key={ProductItem.sku}>
-          <Link to={`products/?sku=${ProductItem.sku}`} className={classes.ProductLink}>
+          <Link to={`products/?sku=${ProductItem.sku}`} className={classes.ProductLink} onClick={(event) => {
+            event.preventDefault();
+            navigate(`products/?sku=${ProductItem.sku}`, {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }}>
           <img alt='Product Image' className={classes.img} src={ProductItem.productImageBinData}></img>
           <b className={classes.ProductB}>{ProductItem.displayItemName}</b>
           </Link>
