@@ -15,7 +15,6 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
-import CartItem from '../../models/CartItem';
 const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);

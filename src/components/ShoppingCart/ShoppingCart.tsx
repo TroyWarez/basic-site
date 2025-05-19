@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import classes from "./ShoppingCart.module.css"
 import storeApiService from "../../services/storeApiService";
 import CouponForm from "../CouponForm/CouponForm"
+import trashIcon from "../../assets/icons/deleteIcon.svg"
 import { useState } from "react";
 interface ShoppingCartProps {
   className?: string;
@@ -54,7 +55,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       <div className={classes.cartitems}>
         {cartData.map((cartItem) => (
           <div className={classes.item} key={cartItem.sku}>
-            <img className={classes.img} alt="Product Image" src={cartItem.productImageBinData}></img>
+            <img className={classes.img} alt="Product Image" src={`/${cartItem.productImageBinData}`}></img>
             <div className={classes.cartInfo}>
               <p className={classes.p}>{`${cartItem.displayItemName} ${''}`}</p>
               <p>{`Model No: ${cartItem.sku} ${''}`}</p>
@@ -144,7 +145,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 setitemCount(TotalQuantityNumber);
                 setTotalPrice(TotalPriceAmount);
                 storeApiService.setCartDatalocal(updatedCartData);
-              }}><img alt="Delete Icon" src='/deleteIcon.svg'/></button>
+              }}><img alt="Delete Icon" src={trashIcon} /></button>
             </div>
             </div>
             <div className={classes.cartItemPrice}>
