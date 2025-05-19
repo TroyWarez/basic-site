@@ -12,7 +12,7 @@ const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-              const navitgate = useNavigate();
+  const navitgate = useNavigate();
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -26,7 +26,7 @@ const SignupForm = () : JSX.Element => {
             navitgate('/');
           }
           else {
-             setErrorMessage(`${Response.statusText} Response code: ${Response.status}`);
+             setErrorMessage(Response.statusText);
              setInvisibleClass('');
           }
           return;

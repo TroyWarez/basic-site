@@ -11,6 +11,7 @@ import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
 import CartItem from '../../models/CartItem';
+import { useUserContext } from '../../contexts/userContext';
 interface ProductDisplayProps {
     className?: string;
 }
@@ -28,6 +29,8 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
 
   const [ClassDisplayBlock, setclassDisplayBlock] = useState('');
 
+  const user = useUserContext();
+  console.log(user);
   const sku = queryParams.get('sku');
   let cartItemAmount = 0;
   let CurrencyAmount = 0;

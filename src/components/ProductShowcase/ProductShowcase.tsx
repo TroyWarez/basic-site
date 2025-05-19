@@ -15,7 +15,11 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
-const ProductShowcase = (): JSX.Element  => {
+import { useUserContext } from '../../contexts/userContext';
+interface ProductShowcaseProps {
+  state: number;
+}
+const ProductShowcase = ({ state } : ProductShowcaseProps): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
   const [products, setProducts] = useState(new Array<ProductItem>);
@@ -25,6 +29,7 @@ const ProductShowcase = (): JSX.Element  => {
 
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
   const [isBusy, setIsBusy] = useState(false);
+  const  username  = state; // state is MyState here
 
   let cartItemAmount = 0;
   let CurrencyAmount = 0;

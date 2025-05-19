@@ -1,7 +1,8 @@
 import axios, { AxiosError } from "axios";
 import CartItem from "../models/CartItem"
 import ProductItem from "../models/ProductItem";
-import Address from "../models/ShippingAddress";
+import Address from "../models/Address";
+import User from "../models/User";
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 const httpClient = axios.create({
     baseURL: "http://localhost:3000/",
@@ -121,20 +122,10 @@ const httpClient = axios.create({
           window.location.href = `${window.origin}/order-status`
         }
       },
-      SignUpUser: async (username: string, password: string): Promise< {status: number, statusText: string }> => {
-        try
-        {
+      SignUpUser: async (username: string, password: string): Promise<User> => {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(basePaths.users, {username: username, password: password });
-          return {status: response.status, statusText: response.statusText };
-        }
-        catch (error: unknown)
-        {
-          if (error instanceof AxiosError) {
-            return {status: 500, statusText: error.message }
-        }
-        return {status: 500, statusText: 'Failed' }
-        }
+          return response.data;
       },
       LoginUser: async (username: string, password: string): Promise< {status: number, statusText: string }> => {
         try
@@ -145,8 +136,8 @@ const httpClient = axios.create({
         }
         catch (error: unknown)
         {
-          if (error instanceof AxiosError) {
-            return {status: 500, statusText: error.message }
+          if (error instanceof AxiosError && error.response) {
+            return {status: error.response.status, statusText: error.response?.data.message }
         }
         return {status: 500, statusText: 'Failed' }
         }

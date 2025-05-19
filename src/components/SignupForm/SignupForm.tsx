@@ -8,11 +8,12 @@ import FormInput from '../FormInput/FormInput';
 import storeApiService from '../../services/storeApiService';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { AxiosError } from "axios";
 const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-              const navitgate = useNavigate();
+  const navitgate = useNavigate();
 
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -30,17 +31,23 @@ const SignupForm = () : JSX.Element => {
         }
         else
         {
+          try {
           setIsSubmitting(true);
           const Response = await storeApiService.SignUpUser(form.username.value, password.value);
-          setIsSubmitting(false);
-          if(Response.status === 201) {
-            navitgate('/cart');
-          }
-          else {
-             setErrorMessage(`${Response.statusText} Response code: ${Response.status}`);
-             setInvisibleClass('');
-          }
-          return;
+          
+            navitgate('/', {
+            state: { username: Response.username, userId: Response._id },
+          });
+        }
+        catch(error : unknown)
+        {
+                    if (error instanceof AxiosError && error.response) {
+                            setErrorMessage(error.response.data.message);
+                            setInvisibleClass('');
+                            setIsSubmitting(false);
+                    }
+
+        }
         }
       }
       };
@@ -52,9 +59,9 @@ const SignupForm = () : JSX.Element => {
         <p>Sign up benefits: Save your shipping address and cart for later!</p>
         <br/>
         
-    <FormInput type="text" pattern="[A-Za-z0-9]+" name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxLength={20}/>
-    <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxLength={20}/>
-    <FormInput type="password" pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols with upper and lower case letters.' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
+    <FormInput type="text" autoComplete='username' pattern="[A-Za-z0-9]+" name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxLength={20}/>
+    <FormInput type="password" autoComplete='new-password' pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxLength={20}/>
+    <FormInput type="password" autoComplete='new-password' pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols with upper and lower case letters.' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
   
     <p className={`${classes.p} ${invisibleClass}`}>{errorMessage}</p>
     <FormInput 

@@ -5,7 +5,7 @@ import GuestLoginClasses from "../GuestLogin/GuestLogin.module.css"
 import FormInput from "../FormInput/FormInput.tsx"
 import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
-import Address from "../../models/ShippingAddress.tsx";
+import Address from "../../models/Address.tsx";
 import storeApiService from "../../services/storeApiService.ts"
 import { Link } from "react-router-dom";
 import { useState } from "react"
