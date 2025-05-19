@@ -85,7 +85,7 @@ const httpClient = axios.create({
       },
       getUserCartData: async (userId: string): Promise<CartItem[]> => {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
-          if(userId === '')
+          if(userId === '' || userId.length < 24)
           {
             return storeApiService.getCartDatalocal();
           }
@@ -100,7 +100,14 @@ const httpClient = axios.create({
       setUserCartData: async (userId: string, cartItems: CartItem[]): Promise<string> => {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           try{
-          const response = (await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems}));
+            if(userId.length < 24)
+            {
+              return 'UserId too is short';
+            }
+            else
+            {
+              const response = (await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems}));
+            }
           return 'Good';
           }
           catch (e){

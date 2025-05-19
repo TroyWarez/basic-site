@@ -149,8 +149,8 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             </div>
             </div>
             <div className={classes.cartItemPrice}>
-              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</p>
-              <p className={classes.psale} hidden={(cartItem.displayCurrencyValue === 0) ? true : false}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1) : (cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</s></p>
+              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1).toFixed(2) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</p>
+              <p className={classes.psale} hidden={(cartItem.displayCurrencyValue === 0) ? true : false}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1).toFixed(2) : (cartItem.displayCurrencyValue * cartItem.quantityNumber).toFixed(2)}`}</s></p>
             </div>
           </div>
         ))}
@@ -171,7 +171,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
 
         <div className={classes.PriceTotal}>
           <p>{`Subtotal (${itemCount} ${(itemCount > 1) ? 'Items' : 'Item'})`}</p>
-          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</p>
+          <p>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice.toFixed(2)}`}</p>
         </div>
         <div className={classes.PriceTotal}>
           <p>Shipping</p>
@@ -179,13 +179,13 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
         </div>
         <div className={classes.PriceTotal} hidden={(discount) ? false : true}>
           <p hidden={(discount) ? false : true}>Discount</p>
-          <p hidden={(discount) ? false : true}><b>{`${TotalCurrencyType}${TotalCurrencySymbol}${(TotalPrice * discount)}`}</b></p>
+          <p hidden={(discount) ? false : true}><b>{`${TotalCurrencyType}${TotalCurrencySymbol}${(TotalPrice * discount).toFixed(2)}`}</b></p>
         </div>
         <div className={`${classes.p} ${classes.PriceTotal} ${classes.OrderTotal}`}>
           <p className={classes.p}>Order Total</p>
           <div>
-          <p className={classes.p}>{`${TotalCurrencyType}${TotalCurrencySymbol}${(discount) ? TotalPrice - (TotalPrice * discount) : TotalPrice}`}</p>
-          <p className={classes.psale} hidden={(discount) ? false : true}><s>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice}`}</s></p>
+          <p className={classes.p}>{`${TotalCurrencyType}${TotalCurrencySymbol}${(discount) ? (TotalPrice - (TotalPrice * discount)).toFixed(2) : TotalPrice.toFixed(2)}`}</p>
+          <p className={classes.psale} hidden={(discount) ? false : true}><s>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice.toFixed(2)}`}</s></p>
           </div>
         </div>
         <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
