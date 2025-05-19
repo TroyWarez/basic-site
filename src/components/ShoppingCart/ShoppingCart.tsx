@@ -78,7 +78,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   TotalPriceAmount = 0;
                   cartData.forEach((cartDataItem) => {
                     (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
-                    (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                    (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencyValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
                   })
                     setitemCount(TotalQuantityNumber);
                     setTotalPrice(TotalPriceAmount);
@@ -103,7 +103,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 TotalPriceAmount = 0;
                 cartData.forEach((cartDataItem) => {
                   (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
-                  (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                  (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencyValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
                 })
                   setitemCount(TotalQuantityNumber);
                   setTotalPrice(TotalPriceAmount);
@@ -124,7 +124,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                     TotalPriceAmount = 0;
                     cartData.forEach((cartDataItem) => {
                       (cartDataItem.quantityNumber === 0) ? TotalQuantityNumber += 1 : TotalQuantityNumber += cartDataItem.quantityNumber;
-                      (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+                      (cartDataItem.quantityNumber === 0) ? TotalPriceAmount += (cartDataItem.displayCurrencyValue * 1) : TotalPriceAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
                     })
                       setitemCount(TotalQuantityNumber);
                       setTotalPrice(TotalPriceAmount);

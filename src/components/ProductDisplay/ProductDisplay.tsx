@@ -539,14 +539,14 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
                 const newCartItem = {
                       sku: product.sku,
                       displayItemName: product.displayItemName,
-                      displayCurrencyValue: product.displayCurrencyValue,
+                      displayCurrencyValue: Number(product.displayCurrencyValue),
                       displayCurrencySaleValue: product.displayCurrencySaleValue,
                       displayCurrencyValueType: product.displayCurrencyValueType,
                       displayCurrencyValueSymbol: product.displayCurrencyValueSymbol,
                       productImageBinData: product.productImageBinData,
                       quantityNumber: itemAmount,
                 } as CartItem;
-                cartData.push(newCartItem);
+                cartData.unshift(newCartItem);
                 setCartData(cartData);
                 if(location.state && location.state['userId'] !== '')
                  {
