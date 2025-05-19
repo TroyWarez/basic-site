@@ -34,48 +34,11 @@ const httpClient = axios.create({
     },
     getCartDatalocal:():Array<CartItem>  => {
       const cartDataString = localStorage.getItem("cartData");
-      const cartData: Array<CartItem> = [{ //remove me
-        sku: "HPI160100",
-        displayItemName: "Red RC Car",
-        displayCurrencyValue: 650,
-        displayCurrencySaleValue: 550,
-        displayCurrencyValueType: "CA",
-        displayCurrencyValueSymbol: "$",
-        productImageBinData: "Red RC Car.jpeg",
-        quantityNumber: 3
-      },
-      {
-        sku: "HPI160101",
-        displayItemName: "Blue RC Car",
-        displayCurrencyValue: 550,
-        displayCurrencySaleValue: 450,
-        displayCurrencyValueType: "CA",
-        displayCurrencyValueSymbol: "$",
-        productImageBinData: "GT Teal Racer Car.jpeg",
-        quantityNumber: 7
-      },
-      {
-        sku: "HPI160102",
-        displayItemName: "Green RC Car",
-        displayCurrencyValue: 350,
-        displayCurrencySaleValue: 250,
-        displayCurrencyValueType: "CA",
-        displayCurrencyValueSymbol: "$",
-        productImageBinData: "Green RC Car.jpeg",
-        quantityNumber: 4
-      }];
-      return cartData;
-      //return cartDataString;
-      
-    //  try
-     // {
-     //   const response =  await httpClient.get(`${basePaths.cart}${cartOwner}`);
-      //  return response.data?.cartData;
-      //}
-      //catch (error)
-      //{
-        //return [];
-      //}
+      if (cartDataString !== "undefined" && cartDataString) {
+        return JSON.parse(cartDataString);
+      }
+
+      return new Array<CartItem>();
       },
     getCartData: async (cartOwner: string): Promise<CartItem[]> => {
         try
@@ -127,20 +90,10 @@ const httpClient = axios.create({
           const response =  await httpClient.post(basePaths.users, {username: username, password: password });
           return response.data;
       },
-      LoginUser: async (username: string, password: string): Promise< {status: number, statusText: string }> => {
-        try
-        {
+      LoginUser: async (username: string, password: string): Promise<User> => {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(basePaths.logins, {username: username, password: password });
-          return {status: response.status, statusText: response.statusText };
-        }
-        catch (error: unknown)
-        {
-          if (error instanceof AxiosError && error.response) {
-            return {status: error.response.status, statusText: error.response?.data.message }
-        }
-        return {status: 500, statusText: 'Failed' }
-        }
+          return response.data;
       }
   }
 

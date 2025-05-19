@@ -8,6 +8,7 @@ import FormInput from '../FormInput/FormInput';
 import storeApiService from '../../services/storeApiService';
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { AxiosError } from "axios";
 const SignupForm = () : JSX.Element => {
   const [invisibleClass, setInvisibleClass] = useState(classes.invisible);
   const [errorMessage, setErrorMessage] = useState('');
@@ -19,16 +20,23 @@ const SignupForm = () : JSX.Element => {
         const form = event.currentTarget;
         const password = event.currentTarget.password as HTMLInputElement;
         if(form && form.checkValidity()){
+          try {
           setIsSubmitting(true);
           const Response = await storeApiService.LoginUser(form.username.value, password.value);
           setIsSubmitting(false);
-          if(Response.status === 200) {
-            navitgate('/');
-          }
-          else {
-             setErrorMessage(Response.statusText);
-             setInvisibleClass('');
-          }
+            navitgate('/', {
+            state: { username: Response.username, userId: Response._id },
+          });
+        }
+        catch(error : unknown)
+        {
+                    if (error instanceof AxiosError && error.response) {
+                            setErrorMessage(error.response.data.message);
+                            setInvisibleClass('');
+                            setIsSubmitting(false);
+                    }
+
+        }
           return;
       }
       };

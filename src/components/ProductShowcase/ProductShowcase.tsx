@@ -6,7 +6,7 @@ import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
 import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import SelectMenu from '../SelectMenu/SelectMenu';
 import SelectMenuOption from '../../models/selectMenuOption';
 import ImgButton from '../ImgButton/ImgButton';
@@ -15,11 +15,7 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
-import { useUserContext } from '../../contexts/userContext';
-interface ProductShowcaseProps {
-  state: number;
-}
-const ProductShowcase = ({ state } : ProductShowcaseProps): JSX.Element  => {
+const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
   const [products, setProducts] = useState(new Array<ProductItem>);
@@ -29,7 +25,7 @@ const ProductShowcase = ({ state } : ProductShowcaseProps): JSX.Element  => {
 
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
   const [isBusy, setIsBusy] = useState(false);
-  const  username  = state; // state is MyState here
+  const location = useLocation();
 
   let cartItemAmount = 0;
   let CurrencyAmount = 0;
@@ -93,7 +89,7 @@ const ProductShowcase = ({ state } : ProductShowcaseProps): JSX.Element  => {
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
 
     <div className={NavProductClasses.LoginContainer}>
-    <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>
+    {((location.state)) ? <b className={classes.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -264,7 +260,7 @@ const ProductShowcase = ({ state } : ProductShowcaseProps): JSX.Element  => {
     <ImgButton imgPath={storefrontIcon} name={"Store"} altText={"Home"} linkPath="/"/>
 
     <div className={NavProductClasses.LoginContainer}>
-    <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>
+    {((location.state)) ? <b className={classes.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
