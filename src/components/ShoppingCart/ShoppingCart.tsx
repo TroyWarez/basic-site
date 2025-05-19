@@ -82,7 +82,14 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   })
                     setitemCount(TotalQuantityNumber);
                     setTotalPrice(TotalPriceAmount);
-                    storeApiService.setCartDatalocal(cartData);
+                    if(location.state && location.state['userId'] !== '')
+                              {
+                                const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                                storeApiService.setCartDatalocal(cartData)
+                                cartDataHandler.then((cartItem) => {
+                                console.log(cartItem);
+                                })
+                            }
                     setCartData(cartData);
                 }
               }}/>
@@ -108,7 +115,16 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   setitemCount(TotalQuantityNumber);
                   setTotalPrice(TotalPriceAmount);
                   storeApiService.setCartDatalocal(cartData);
-                  setCartData(storeApiService.getCartDatalocal());
+                  setCartData(storeApiService.getCartDatalocal());                    
+                  if(location.state && location.state['userId'] !== '')
+                    {
+                      const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                        storeApiService.setCartDatalocal(cartData)
+                        cartDataHandler.then((cartItem) => {
+                        console.log(cartItem);
+                                })
+                      }
+                  
               }}/>
               <input className={`${classes.input} ${classes.inputPlusMinus}`} title='Plus' type='button' value={'+'} step="1"
               onClick={(e) => {
@@ -130,6 +146,14 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                       setTotalPrice(TotalPriceAmount);
                       storeApiService.setCartDatalocal(cartData);
                       setCartData(cartData);
+                                        if(location.state && location.state['userId'] !== '')
+                    {
+                      const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData);
+                        storeApiService.setCartDatalocal(cartData)
+                        cartDataHandler.then((cartItem) => {
+                        console.log(cartItem);
+                                })
+                      }
                   }
               }}/>
               </div>
@@ -137,6 +161,14 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
               </div>
               <button className={classes.CheckoutButton} title='Delete' type='button' onClick={() => {
               setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
+                                if(location.state && location.state['userId'] !== '')
+                    {
+                      const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
+                        storeApiService.setCartDatalocal(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku))
+                        cartDataHandler.then((cartItem) => {
+                        console.log(cartItem);
+                                })
+                      }
               const updatedCartData = cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku);
                    TotalQuantityNumber = 0;
                    TotalPriceAmount = 0;
@@ -147,6 +179,14 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                 setitemCount(TotalQuantityNumber);
                 setTotalPrice(TotalPriceAmount);
                 storeApiService.setCartDatalocal(updatedCartData);
+                                                if(location.state && location.state['userId'] !== '')
+                    {
+                      const cartDataHandler = storeApiService.setUserCartData(location.state['userId'], updatedCartData);
+                        storeApiService.setCartDatalocal(updatedCartData)
+                        cartDataHandler.then((cartItem) => {
+                        console.log(cartItem);
+                                })
+                      }
               }}><img alt="Delete Icon" src={trashIcon} /></button>
             </div>
             </div>

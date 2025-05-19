@@ -47,13 +47,13 @@ const GuestLogin = ()  : JSX.Element => {
                 e.preventDefault();
                 setHidden(false);
             }}>
-                <FormInput className={classes.formInput} type="text" placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true}/>
+                <FormInput className={classes.formInput} type="text" label='' placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true} error_message="This is a required field." message="" validation_message="" tooShort_message="" minLength={1} maxLength={20}/>
                 <p id={ ids.CouponInputError } className={classes.formErrorLabel}hidden={isHidden}>This is a required field.</p>
                 <div className={classes.formRadioLabelContainer}>
                 <input className={classes.formInputRadio} type="checkbox" required={false} id={`promo_emails ${classes.formInputButton}`}/>
                 <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>I would like to receive communications about store news, offers, products, and promotions.</label>
                 </div>
-                <FormInput required={true} className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" />
+                <FormInput required={true} className={`${Cartclasses.buttonSignIn} ${classes.button}`} type="submit" placeholder="Continue as guest" title="Continue as guest" value="Continue as guest" error_message="" message="" validation_message="" tooShort_message=""/>
             </form>
         </div>
     </div>
