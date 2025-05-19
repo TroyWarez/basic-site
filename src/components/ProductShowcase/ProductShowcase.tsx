@@ -279,7 +279,7 @@ const ProductShowcase = (): JSX.Element  => {
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
         <Link to={'/checkout/cart'} onClick={(event) => {
             event.preventDefault();
-            navigate("/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+            navigate('/checkout/cart', {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
           }} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
         <Link onClick={(event) => {
           if(event.currentTarget.parentElement?.parentElement?.parentElement)
@@ -478,7 +478,10 @@ const ProductShowcase = (): JSX.Element  => {
           <b>{cartCurrencyAmount}</b>
         </div>
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
-        <Link to={'/checkout/cart'} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
+        <Link onClick={(event) => {
+            event.preventDefault();
+            navigate('/checkout/cart', {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }} to={'/checkout/cart'} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
         <Link onClick={(event) => {
           if(event.currentTarget.parentElement?.parentElement?.parentElement)
           {
