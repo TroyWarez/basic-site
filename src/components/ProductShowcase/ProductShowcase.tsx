@@ -116,7 +116,7 @@ const ProductShowcase = (): JSX.Element  => {
           }}/>
 
     <div className={NavProductClasses.LoginContainer}>
-    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
+    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/customer/account/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -135,8 +135,8 @@ const ProductShowcase = (): JSX.Element  => {
         <div className={NavProductClasses.containerProductInfoCart}>
           <h1 className={NavProductClasses.h1}>{cartItem.displayItemName} <p className={NavProductClasses.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
-          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
+          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</b>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s>
           </div>
           <div className={NavProductClasses.containerCartItemTrash}>
           <div className={NavProductClasses.itemAddTo}>
@@ -317,7 +317,7 @@ const ProductShowcase = (): JSX.Element  => {
           }}/>
 
     <div className={NavProductClasses.LoginContainer}>
-    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/login"/>}
+    {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/customer/account/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>
         <p className={Navclasses.badge}>{cartAmount}</p>
@@ -336,8 +336,8 @@ const ProductShowcase = (): JSX.Element  => {
         <div className={NavProductClasses.containerProductInfoCart}>
           <h1 className={NavProductClasses.h1}>{cartItem.displayItemName} <p className={NavProductClasses.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
-          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencyValue}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${cartItem.displayCurrencySaleValue}`}</s>
+          <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</b>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s>
           </div>
           <div className={NavProductClasses.containerCartItemTrash}>
           <div className={NavProductClasses.itemAddTo}>
