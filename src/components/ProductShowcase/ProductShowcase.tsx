@@ -5,7 +5,7 @@ import storeApiService from '../../services/storeApiService';
 import ProductItem from '../../models/ProductItem';
 import MinMax from '../../models/MinMax';
 import DropdownContainer from '../DropdownContainer/DropdownContainer';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import SelectMenu from '../SelectMenu/SelectMenu';
 import SelectMenuOption from '../../models/selectMenuOption';
@@ -15,6 +15,7 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
+import CartItem from '../../models/CartItem';
 const ProductShowcase = (): JSX.Element  => {
 
   const [Savedproducts, setSavedProducts] = useState(new Array<ProductItem>);
@@ -25,7 +26,7 @@ const ProductShowcase = (): JSX.Element  => {
   const [isBusy, setIsBusy] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
+  const [cartData, setCartData] = useState(new Array<CartItem>);
   let cartItemAmount = 0;
   let CurrencyAmount = 0;
   let CurrencySymbol = '';
@@ -276,7 +277,10 @@ const ProductShowcase = (): JSX.Element  => {
           <b>{cartCurrencyAmount}</b>
         </div>
         <p>{'All discounts, shipping & taxes calculated at checkout'}</p>
-        <Link to={'/checkout/cart'} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
+        <Link to={'/checkout/cart'} onClick={(event) => {
+            event.preventDefault();
+            navigate("/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }} className={`${NavProductClasses.AddtoCart} ${NavProductClasses.AltButtonInfo}`}><b>View cart & checkout</b></Link>
         <Link onClick={(event) => {
           if(event.currentTarget.parentElement?.parentElement?.parentElement)
           {

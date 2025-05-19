@@ -34,7 +34,13 @@ const httpClient = axios.create({
       getCartDatalocal:():Array<CartItem>  => {
       const cartDataString = localStorage.getItem("cartData");
       if (cartDataString !== "undefined" && cartDataString) {
-        return JSON.parse(cartDataString);
+        const cartData = JSON.parse(cartDataString) as Array<CartItem>;
+        const fixedCartData = new Array<CartItem>();
+        cartData.forEach((cartitem) => {
+          cartitem.displayCurrencyValue = Number(cartitem.displayCurrencyValue);
+          fixedCartData.push(cartitem);
+        })
+        return fixedCartData;
       }
 
       return new Array<CartItem>();
@@ -91,7 +97,7 @@ const httpClient = axios.create({
           }
           try{
           const response = await httpClient.get(basePaths.cart + "/users/" + userId);
-          return response.data['cartData'];
+          return response.data['cartData'] as CartItem[];
           }
           catch (e){
             return [];

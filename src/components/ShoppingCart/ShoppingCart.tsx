@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import classes from "./ShoppingCart.module.css"
 import storeApiService from "../../services/storeApiService";
 import CouponForm from "../CouponForm/CouponForm"
@@ -11,16 +11,18 @@ interface ShoppingCartProps {
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps): JSX.Element => {
   let cartDataSaved = null;
+  let cartDataFixed = null;
   let TotalQuantityNumber = 0;
   let TotalPriceAmount = 0;
-
+  const location = useLocation();
+  const navigate = useNavigate();
   
   let TotalCurrencyType = '';
   let TotalCurrencySymbol = '';
   cartDataSaved = storeApiService.getCartDatalocal();
   cartDataSaved.forEach((cartDataItem) => {
     TotalQuantityNumber += cartDataItem.quantityNumber;
-    TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+    TotalPriceAmount += (cartDataItem.displayCurrencyValue * cartDataItem.quantityNumber);
     TotalCurrencyType = cartDataItem.displayCurrencyValueType;
     TotalCurrencySymbol = cartDataItem.displayCurrencyValueSymbol;
   })
@@ -44,7 +46,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
     }
     TotalPriceAmount = 0;
     cartDataSaved.forEach((cartDataItem) => {
-      TotalPriceAmount += (cartDataItem.displayCurrencySaleValue * cartDataItem.quantityNumber);
+      TotalPriceAmount += (Number(cartDataItem.displayCurrencyValue) * cartDataItem.quantityNumber);
     })
     setDiscount((DiscountPercentage / 100));
   };
@@ -149,8 +151,8 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             </div>
             </div>
             <div className={classes.cartItemPrice}>
-              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1).toFixed(2) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</p>
-              <p className={classes.psale} hidden={(cartItem.displayCurrencyValue === 0) ? true : false}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1).toFixed(2) : (cartItem.displayCurrencyValue * cartItem.quantityNumber).toFixed(2)}`}</s></p>
+              <p className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencyValue * 1).toFixed(2) : (cartItem.displayCurrencyValue * cartItem.quantityNumber).toFixed(2)}`}</p>
+              <p className={classes.psale} hidden={(cartItem.displayCurrencySaleValue === null) ? true : false}><s>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.quantityNumber === 0) ? (cartItem.displayCurrencySaleValue * 1).toFixed(2) : (cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</s></p>
             </div>
           </div>
         ))}
