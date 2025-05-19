@@ -47,7 +47,7 @@ const FormInput = (
   const [classSpanStr, setClassSpanStr] = useState<string>((message !== '' && error_message !== '') ? `${classes.spanError} ${classes.displayNone}` : `${classes.spanError} ${classes.displayNone}`);
   return (
     <div hidden={hidden} className={`${classes.container} ${(divclassName) ? divclassName : ''}`}>
-      <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={(required && (type !== 'submit')) ? false : true }> *</span></label>
+      <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={((required && (type !== 'submit') || label)) ? false : true }> *</span></label>
         <input 
 
         pattern={(pattern) ? pattern : undefined}
@@ -97,7 +97,7 @@ const FormInput = (
         hidden={hidden}
           className={(!className) ? classes.input : `${className} ${classes.input}`}
           onFocus={(e) => {
-            if(type !== 'submit'){
+            if(type !== 'submit' && label){
               setMessageValue(message);
               setClassString(classes.message);
               if(message) {
@@ -108,13 +108,16 @@ const FormInput = (
               }
 
             e.target.style.borderColor = '#2f733c';
-            if(onFocus) {
+          }
+          if(onFocus) {
               onFocus(e)
-            }}
+            }
           }}
           onInput={(e) => {
+          if(type !== 'submit' && label){
             setMessageValue(message);
             setClassString(classes.message);
+            }
             if(onInput) {
               onInput(e)
             }
