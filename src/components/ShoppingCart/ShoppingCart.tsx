@@ -35,9 +35,12 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
     return (
       <div className={(className) ? `${classes.emptycart} ${className}` : classes.emptycart}>
         <span className={`${classes.spanLarge} ${classes.span}`}>Your shopping cart is empty</span>
-        <span className={classes.span}>Have any wishlist items? Sign in to view them</span>
-        <Link className={classes.buttonSignIn} to={SignInPagePath}>Sign in</Link>
-        <Link className={`${classes.buttonSignIn} ${classes.buttonColoredShopping}`} to={ProductPagePath}>Continue shopping</Link>
+        <span className={`${classes.span} ${(location.state && location.state['username'] !== '') ? classes.buttonSignInDisplayNone : ''}`}>Been here before? Sign in to view your saved cart.</span>
+        <Link className={`${classes.buttonSignIn} ${(location.state && location.state['username'] !== '') ? classes.buttonSignInDisplayNone : ''}`} to={SignInPagePath}>Sign in</Link>
+        <Link onClick={(event) => {
+            event.preventDefault();
+            navigate(ProductPagePath, {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }}className={`${classes.buttonSignIn} ${classes.buttonColoredShopping}`} to={ProductPagePath}>Continue shopping</Link>
       </div>
     )
   }
@@ -162,7 +165,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
                   }
               }}/>
               </div>
-              <Link className={`${classes.AltText} ${classes.AltWishListText}`} to="checkout/cart/">{` Add to Wishlist `}</Link>
+              <Link onClick={(e) => {e.preventDefault();}} className={`${classes.AltText} ${classes.AltWishListText}`} to="/wishlist">{` Add to Wishlist `}</Link>
               </div>
               <button className={classes.CheckoutButton} title='Delete' type='button' onClick={() => {
               setCartData(cartData.filter((cartDataItem) => cartDataItem.sku !== cartItem.sku));
@@ -235,10 +238,22 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
           <p className={classes.psale} hidden={(discount) ? false : true}><s>{`${TotalCurrencyType}${TotalCurrencySymbol}${TotalPrice.toFixed(2)}`}</s></p>
           </div>
         </div>
-        <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} to={'guestlogin/'}>Continue to checkout</Link>
+        <Link className={`${classes.buttonSignIn} ${classes.CheckoutButtonSignIn}`} onClick={(event) => {
+            event.preventDefault();
+            if((location.state && location.state['username'] !== ''))
+            {
+            navigate("/checkout/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+            }
+            else {
+              navigate("/checkout/cart/guestlogin/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+            }
+          }} to={`${(location.state && location.state['username'] !== '') ? '/checkout/' : '/checkout/cart/guestlogin/'}`}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>
         <p>By clicking "Continue to Checkout", you will be redirected to the checkout page, where your payment will be processed, the store's designated online reseller and merchant of record for the online store sales at
-         <Link className={classes.AltText} to={window.origin}>{` ${window.origin}.`}</Link>This will allow your order to be processed for fulfillment.</p>
+         <Link className={classes.AltText} onClick={(event) => {
+            event.preventDefault();
+            navigate('/', {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+          }} to={'/'}>{` ${window.origin}.`}</Link>This will allow your order to be processed for fulfillment.</p>
       </div>
       </div>
     </div>

@@ -83,7 +83,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <div id={ids.CouponTextInputButton}>
 
     <div id={ids.CouponTextInputSubmitButton}>
-    <FormInput className={classes.CouponInput} form={ids.form} type="text" name="coupon" error_message='' message='' tooShort_message='' validation_message='' maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <FormInput className={classes.CouponInput} form={ids.form} type="text" noLabel={true} name="coupon" error_message='' message='' tooShort_message='' validation_message='' maxLength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
@@ -110,7 +110,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     }}}
     />
       <label htmlFor={ids.CouponCodeInput} className={`${classes.CouponCodeLabel} ${couponInputClass}`}>Promo Code</label>
-        <FormInput className={classes.CouponInput} id={ids.CouponButtonApply} form={ids.CouponForm} disabled={isDisabled} error_message='' message='' tooShort_message='' validation_message='' type="submit" name="couponButton" value="Apply" required={true}/>
+        <FormInput className={classes.CouponInput} id={ids.CouponButtonApply} form={ids.CouponForm} disabled={isDisabled} noLabel={true} error_message='' message='' tooShort_message='' validation_message='' type="submit" name="couponButton" value="Apply" required={true}/>
     </div>
       <p id={(couponValid) ? ids.CouponInputGreenText : ids.CouponInputError } hidden={isHidden}>{couponMessage}</p>
       </div>

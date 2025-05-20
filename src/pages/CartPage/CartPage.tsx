@@ -8,7 +8,7 @@ const CartPage = () => {
     <title>Shopping Cart</title>
     <PageContainer>
       <NavigationBar cartItemAmount={0}/>
-        <ShoppingCart SignInPagePath="/customer/account/login/" ProductPagePath="/en/products/"/>
+        <ShoppingCart SignInPagePath="/customer/account/login/" ProductPagePath="/"/>
     </PageContainer>
     <StoreFooter legal_href="/legal/" privacy_href="/legal/privacy/privacy-policy/"/>
 

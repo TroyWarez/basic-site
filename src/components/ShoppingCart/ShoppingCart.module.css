@@ -37,6 +37,9 @@
     height: auto!important;
     padding: 0.75rem;
 }
+.buttonSignInDisplayNone {
+    display: none!important;
+}
 .buttonSignIn:hover {
     background-color: #377a15!important;
     transition: 0.3s;

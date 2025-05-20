@@ -10,6 +10,7 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error_message: string;
   validation_message: string;
   tooShort_message: string;
+  noLabel?: boolean
 }
 const FormInput = (
   {
@@ -39,6 +40,7 @@ const FormInput = (
   error_message,
   validation_message,
   tooShort_message,
+  noLabel,
   ...FormInput
 }: FormInputProps) : JSX.Element => {
 
@@ -47,7 +49,7 @@ const FormInput = (
   const [classSpanStr, setClassSpanStr] = useState<string>((message !== '' && error_message !== '') ? `${classes.spanError} ${classes.displayNone}` : `${classes.spanError} ${classes.displayNone}`);
   return (
     <div hidden={hidden} className={`${classes.container} ${(divclassName) ? divclassName : ''}`}>
-      <label hidden={hidden} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={((required && (type !== 'submit') || label)) ? false : true }> *</span></label>
+      <label hidden={hidden || noLabel} className={classes.label} htmlFor={(!className) ? classes.input : `${className} ${classes.input}`}>{label}<span className={classes.span} hidden={((required && (type !== 'submit') || label)) ? false : true }> *</span></label>
         <input 
 
         pattern={(pattern) ? pattern : undefined}
@@ -136,7 +138,7 @@ const FormInput = (
           form={form}
           {...FormInput}
         />
-        <p className={classStr}><span className={ classSpanStr }>⚠ </span>{messageValue}</p>
+        <p hidden={noLabel} className={classStr}><span hidden={noLabel} className={ classSpanStr }>⚠ </span>{messageValue}</p>
     </div>
   )
 }
