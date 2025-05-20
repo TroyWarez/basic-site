@@ -4,7 +4,7 @@ import ids from '../CouponForm/CouponForm.module.css'
 import storeApiService from "../../services/storeApiService";
 import { useState } from "react";
 interface CouponFormProps {
-  applyCouponDiscount: (discountPercentage: number) => void;
+  applyCouponDiscount: (discountPercentage: number, discountCode: string) => void;
 }
 const CouponForm = (Props: CouponFormProps) : JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -43,7 +43,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
       const couponState = storeApiService.getDiscountPercentage(CouponCodeInput.value);
       couponState.then((discountPercentage) => {
         if(discountPercentage > 0) {
-          Props.applyCouponDiscount(discountPercentage);
+          Props.applyCouponDiscount(discountPercentage, CouponCodeInput.value);
           CouponCodeInput.style.border = '1px solid rgb(10, 160, 67)';
           setIsHidden(false);
           setCouponMessage(`Successfully applied '${CouponCodeInput.value}'`);
@@ -95,7 +95,6 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
           else
           {
             setIsDisabled(true);
-            setIsFocused(true);
           }
       }
     }

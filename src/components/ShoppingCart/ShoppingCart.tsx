@@ -30,6 +30,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
   const [TotalPrice, setTotalPrice] = useState(TotalPriceAmount);
   const [cartData, setCartData] = useState(cartDataSaved);
   const [discount, setDiscount] = useState(0);
+  const [discountCode, setDiscountCode] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   if(cartData?.length === 0) {
     return (
@@ -44,7 +45,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       </div>
     )
   }
-  const applyDiscountPercentage = (DiscountPercentage: number) => {
+  const applyDiscountPercentage = (DiscountPercentage: number, discountCode: string) => {
     if(DiscountPercentage === 0) {
       return null;
     }
@@ -53,6 +54,7 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
       TotalPriceAmount += (Number(cartDataItem.displayCurrencyValue) * cartDataItem.quantityNumber);
     })
     setDiscount((DiscountPercentage / 100));
+    setDiscountCode(discountCode);
   };
   return (
     <div className={(className) ? `${classes.cart} ${className}` : classes.cart}>
@@ -242,10 +244,10 @@ const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingC
             event.preventDefault();
             if((location.state && location.state['username'] !== ''))
             {
-            navigate("/checkout/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+            navigate("/checkout/", {state: { discount_code: discountCode, discount_percent: discount, username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
             }
             else {
-              navigate("/checkout/cart/guestlogin/", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+              navigate("/checkout/cart/guestlogin/", {state: { discount_code: discountCode, discount_percent: discount, username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
             }
           }} to={`${(location.state && location.state['username'] !== '') ? '/checkout/' : '/checkout/cart/guestlogin/'}`}>Continue to checkout</Link>
         <p className={classes.p}>Checkout with us</p>

@@ -7,10 +7,13 @@ import SelectMenu from "../SelectMenu/SelectMenu.tsx";
 import SelectMenuOption from "../../models/selectMenuOption.tsx";
 import Address from "../../models/Address.tsx";
 import storeApiService from "../../services/storeApiService.ts"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import StoreItem from "../../models/StoreItem.tsx"
 const OrderForm = (): JSX.Element => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
     const onChangeSelectHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const stateInputElement =  document.getElementsByName("stateSelect")[0];
         const provinceInputElement =  document.getElementsByName("canadianProvincesSelect")[0];
