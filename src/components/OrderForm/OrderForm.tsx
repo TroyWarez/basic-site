@@ -655,7 +655,7 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxLength={62}/>
+                  <FormInput className={classes.inputfirstlast} defaultValue={(location.state && location.state['autoFillEmail']) ? location.state['autoFillEmail'] : ''} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxLength={62}/>
 
                   <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="phoneNumber" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
                 </div>

@@ -10,7 +10,8 @@ interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error_message: string;
   validation_message: string;
   tooShort_message: string;
-  noLabel?: boolean
+  noLabel?: boolean;
+  defaultValue?: string;
   
 }
 const FormInput = (
@@ -42,6 +43,7 @@ const FormInput = (
   validation_message,
   tooShort_message,
   noLabel,
+  defaultValue,
 }: FormInputProps) : JSX.Element => {
 
   const [messageValue, setMessageValue] = useState<string>((message !== '') ? message : error_message);
@@ -136,6 +138,7 @@ const FormInput = (
           value={value}
           disabled={disabled}
           form={form}
+          defaultValue={defaultValue}
         />
         <p hidden={noLabel} className={classStr}><span hidden={noLabel} className={ classSpanStr }>⚠ </span>{messageValue}</p>
     </div>

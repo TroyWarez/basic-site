@@ -54,12 +54,12 @@ const GuestLogin = ()  : JSX.Element => {
             <p className={classes.p2}>You can create an account later</p>
             <form className={classes.form} onSubmit={(event) => {
              event.preventDefault();
-            navigate("/checkout/", {state: { username: '', userId: 0, discount_code: (location.state) ? location.state['discount_code'] : '', discount_percent: (location.state) ? location.state['discount'] : 0, autoFillEmail: (event.currentTarget.form) ? event.currentTarget.email.value : ''}})
+            navigate("/checkout/", {state: { username: '', userId: 0, discount_code: (location.state) ? location.state['discount_code'] : '', discount_percent: (location.state) ? location.state['discount_percent'] : 0, autoFillEmail: (event.currentTarget.email) ? event.currentTarget.email.value : ''}})
             }} onInvalid={(e) => {
                 e.preventDefault();
                 setHidden(false);
             }}>
-                <FormInput className={classes.formInput} name='email' type="text" label='' placeholder="john_smitch@example.com" title="john_smitch@example.com" required={true} noLabel={true} error_message="This is a required field." message="" validation_message="" tooShort_message="" minLength={1} maxLength={20}/>
+                <FormInput className={classes.formInput} noLabel={true} inputMode="email" type="email" name="email" id="email" placeholder="john_smitch@example.com" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true} title="Email" maxlength={62}/>
                 <p id={ ids.CouponInputError } className={classes.formErrorLabel}hidden={isHidden}>This is a required field.</p>
                 <div className={classes.formRadioLabelContainer}>
                 <input className={classes.formInputRadio} type="checkbox" required={false} id={`promo_emails ${classes.formInputButton}`}/>
