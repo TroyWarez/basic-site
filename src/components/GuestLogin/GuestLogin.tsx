@@ -3,7 +3,7 @@ import ids from "../CouponForm/CouponForm.module.css"
 import Cartclasses from "../ShoppingCart/ShoppingCart.module.css"
 import FormInput from "../FormInput/FormInput"
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const GuestLogin = ()  : JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();

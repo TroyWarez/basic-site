@@ -1,11 +1,11 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import CartItem from "../models/CartItem"
 import ProductItem from "../models/ProductItem";
 import Address from "../models/Address";
 import User from "../models/User";
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
 const httpClient = axios.create({
-    baseURL: "http://localhost:3000/",
+    baseURL: "http://troysdomain.com/",
     headers: {}
   });
   const basePaths = {
@@ -107,7 +107,7 @@ const httpClient = axios.create({
             }
             else
             {
-              const response = (await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems}));
+              await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems});
             }
           return 'Good';
           }
@@ -148,7 +148,7 @@ const httpClient = axios.create({
             }
             else
             {
-              const response = (await httpClient.post(basePaths.address + "/" + userId, {savedAdress}));
+              await httpClient.post(basePaths.address + "/" + userId, {savedAdress});
             }
           return 'Good';
           }

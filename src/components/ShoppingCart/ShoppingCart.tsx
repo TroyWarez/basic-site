@@ -11,7 +11,6 @@ interface ShoppingCartProps {
 }
 const ShoppingCart = ({ className, SignInPagePath, ProductPagePath } : ShoppingCartProps): JSX.Element => {
   let cartDataSaved = null;
-  let cartDataFixed = null;
   let TotalQuantityNumber = 0;
   let TotalPriceAmount = 0;
   const location = useLocation();

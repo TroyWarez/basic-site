@@ -15,7 +15,7 @@ interface ProductDisplayProps {
     className?: string;
 }
 const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
-  const [queryParams, setQueryParams] = useSearchParams();
+  const [queryParams] = useSearchParams();
   const [product, setProduct] = useState<ProductItem>();
   const [maxStock, setMaxStock] = useState(1);
   const [cartData, setCartData] = useState(storeApiService.getCartDatalocal());
