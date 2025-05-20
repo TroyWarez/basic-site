@@ -14,6 +14,7 @@ const httpClient = axios.create({
     products: "api/get/products/",
     orders: "api/post/orders/",
     users: "api/users/signup",
+    address: "api/addresses",
     logins: "api/users/login",
   };
   const storeApiService = {
@@ -66,7 +67,7 @@ const httpClient = axios.create({
         {
           axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
           const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
-          return response.statusText;
+          return response.data.order.orderNumber;
         }
         catch (error)
         {
@@ -107,6 +108,47 @@ const httpClient = axios.create({
             else
             {
               const response = (await httpClient.post(basePaths.cart + "/users/" + userId, {cartItems}));
+            }
+          return 'Good';
+          }
+          catch (e){
+            return "Bad";
+          }
+      },
+      getUserAddressData: async (userId: string): Promise<Address | null> => {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          try{
+          const response = await httpClient.get(basePaths.address + "/" + userId);
+          return ({ 
+            firstName: response.data.firstName,
+            lastName: response.data.lastName,
+            residentialAddress: response.data.residentialAddress,
+            ExtraInfomation: response.data.ExtraInfomation,
+            cityName: response.data.cityName,
+            PostalCode: response.data.PostalCode,
+            State: response.data.State,
+            countryName: response.data.countryName,
+            email: response.data.email,
+            phoneNumber: response.data.phoneNumber.slice(6),
+            promoEmails: false,
+            guestOrder: false,
+            orderedItems: []
+        });
+          }
+          catch (e){
+            return null;
+          }
+      },
+      setUserAddressData: async (userId: string, savedAdress: Address): Promise<string> => {
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+          try{
+            if(userId.length < 24)
+            {
+              return 'UserId too is short';
+            }
+            else
+            {
+              const response = (await httpClient.post(basePaths.address + "/" + userId, {savedAdress}));
             }
           return 'Good';
           }

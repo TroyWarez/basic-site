@@ -558,7 +558,17 @@ const OrderForm = (): JSX.Element => {
     const [displayNoneClassPaymentAddr, setDisplayNoneClassPaymentAddr] = useState(classes.displayNone);
     const [Address, setAddress] = useState<Address>();
     const [BillingAddress, setBillingAddress] = useState<Address>();
+    const [AutoFillAddress, setAutoFillAddress] = useState<Address>({} as Address);
     const CartItems = new Array<StoreItem>();
+    if(location.state && location.state['userId'] !== 0)
+    {
+      const savedAddressHandler = storeApiService.getUserAddressData(location.state['userId']);
+      savedAddressHandler.then((address) => {
+        if(address){
+          setAutoFillAddress(address);
+        }
+      })
+    }
     storeApiService.getCartDatalocal().forEach((cartItem) => {
       CartItems.push({ sku: cartItem.sku, quantityNumber: cartItem.quantityNumber });
     });
@@ -623,15 +633,15 @@ const OrderForm = (): JSX.Element => {
         </div>
         <div className={displayNoneClass}>
         <div className={classes.inputSplitContainer}>
-                <FormInput autoFocus={true}className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
+                <FormInput key={AutoFillAddress.firstName}  defaultValue={AutoFillAddress.firstName} autoFocus={true}className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
+                <FormInput key={AutoFillAddress.lastName}  defaultValue={AutoFillAddress.lastName} className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxLength={95}/>
-                <FormInput type="text" name="additional-information"  id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' tooShort_message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} minlength={5} maxLength={95}/>
+                <FormInput key={AutoFillAddress.residentialAddress}  defaultValue={AutoFillAddress.residentialAddress} type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxlength={95}/>
+                <FormInput type="text" name="additional-information"  id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' tooShort_message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} minlength={5} maxlength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
+                <FormInput key={AutoFillAddress.cityName}  defaultValue={AutoFillAddress.cityName} className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxlength={35}/>
 
-                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
+                <FormInput key={AutoFillAddress.PostalCode}  defaultValue={AutoFillAddress.PostalCode} className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxlength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
             </div>
 
                 <SelectMenu options={StateList.map((state) => ({
@@ -639,7 +649,7 @@ const OrderForm = (): JSX.Element => {
                   displayValue: state.displayValue,
                   }))} name="stateSelect" aria-label="Please select your state" label="State" required={true} hidden={true} placeholder="Please select your state" title="State menu, please select your state"/>
                 <div>
-                <SelectMenu options={ProvinceList.map((province) => ({
+                <SelectMenu key={AutoFillAddress.State}  defaultValue={AutoFillAddress.State} options={ProvinceList.map((province) => ({
                   value: province.value,
                   displayValue: province.displayValue,
                   }))} name="provincesSelect" aria-label="Please select your province" label="Province/Territory" required={true} title="Province menu, please select your province"/>
@@ -655,9 +665,9 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput className={classes.inputfirstlast} defaultValue={(location.state && location.state['autoFillEmail']) ? location.state['autoFillEmail'] : ''} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxLength={62}/>
+                  <FormInput key={AutoFillAddress.email} className={classes.inputfirstlast} defaultValue={(location.state && location.state['autoFillEmail'] && AutoFillAddress.email === '') ? location.state['autoFillEmail'] : AutoFillAddress.email} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxlength={62}/>
 
-                  <FormInput className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="phoneNumber" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxLength={28}/>
+                  <FormInput key={AutoFillAddress.phoneNumber}  defaultValue={AutoFillAddress.phoneNumber} className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="phoneNumber" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxlength={28}/>
                 </div>
                 <input className={`${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`} type="checkbox" title="Subscribe to the Store's exclusive online offers via email"required={false} id="promo_emails"/>
                   <label className={classes.formRadioLabel} htmlFor={`promo_emails ${classes.formInputButton}`}>{` Subscribe to the Store's exclusive online offers via email`}</label>
@@ -738,14 +748,14 @@ const OrderForm = (): JSX.Element => {
         }>
         <div className={classes.inputSplitContainer}>
                 <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="firstname" label="First Name" title="First Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="given-name" />
-                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" maxLength={50} onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
+                <FormInput className={classes.inputfirstlast} type="text" pattern="[A-Za-z]+" minlength={1} maxlength={50} name="lastname" id="lastname" label="Last Name" title="Last Name" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='This entry contains invalid characters. Please try again' tooShort_message='' required={true} autoComplete="family-name"/>
         </div>
-                <FormInput type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxLength={95}/>
-                <FormInput type="text" name="additional-information"  id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' tooShort_message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} minlength={5} maxLength={95}/>
+                <FormInput type="text" name="address" id="address" pattern="[A-Za-z0-9'\.\-\s\,]+" required={true} onInput={onInput} label="Address" title="Address" error_message='This is a mandatory field' message='Start typing a street address' tooShort_message='This is too short, minimum 5 allowed' validation_message='This entry contains invalid characters. Please try again' minlength={5} maxlength={95}/>
+                <FormInput type="text" name="additional-information"  id="Additional-Information" label="Additional Information (Optional)" error_message='' message='' tooShort_message='' validation_message='' title="Additional Information (Optional)" required={false} onInput={onInput} minlength={5} maxlength={95}/>
             <div className={classes.inputSplitContainer}>
-                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxLength={35}/>
+                <FormInput className={classes.inputfirstlast} type="text" name="City" id="City" error_message='This is a mandatory field' message='' tooShort_message='' validation_message='This entry contains invalid characters. Please try again' required={true} onInput={onInput} label="City" title="City" maxlength={35}/>
 
-                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxLength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
+                <FormInput className={classes.inputfirstlast} pattern="[ABCEGHJKLMNPRSTVXY]+[0-9]+[A-Z]+[ ]+[0-9]+[A-Z]+[0-9]" inputMode="text" type="text" name="Postal Code" id="zipCode" label="Postal Code" title="Postal Code" minlength={1} maxlength={9} onInput={onInput} error_message='This is a mandatory field' message='' tooShort_message='' validation_message='The Postal Code format is invalid. (Expected: LNL NLN)' required={true}/>
             </div>
 
               <SelectMenu options={StateList.map((state) => ({
@@ -783,7 +793,7 @@ const OrderForm = (): JSX.Element => {
           <label className={`${classes.formRadioLabel} ${classes.p}`} htmlFor={`payment_option ${GuestLoginClasses.formInputRadio} ${classes.radioLabel}`}>{`${'💳 Card'}`}</label>
         </div>
           <form id={classes.paymentContainer} className={`${displayNoneClassPayment} ${displayNoneClassPaymentAddr}`}
-          onSubmit={(event) => {      
+          onSubmit={async (event) => {      
             event.preventDefault();
             const form = event.currentTarget;
             if (form.checkValidity() && Address) { // Test card number: 4444333322221111
@@ -794,16 +804,21 @@ const OrderForm = (): JSX.Element => {
                 CartItems.push({ sku: cartItem.sku, quantityNumber: cartItem.quantityNumber });
                 sentOrder.orderedItems = CartItems;
               });
-              storeApiService.placeOrder(sentOrder);
+              if(location.state && location.state['userId'] && Address.promoEmails)
+              {
+                  await storeApiService.setUserAddressData(location.state['userId'], Address);
+              }
+              const orderNum = await storeApiService.placeOrder(sentOrder);
+              navigate('/order-status', {state: { orderNumber: orderNum, firstName: Address.firstName, Deilverydate: getDeilveryDate(), email: Address.email, username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }})
             } else {
               console.log("Form is invalid. Please check the fields.");
             }}}>
-                  <FormInput onInput={onInput} type="text" inputMode="text" pattern="[a-zA-Z ]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxLength={50} />
-                  <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9 ]+" name="Card number" title="Card Number" error_message='Card number is required' message='' validation_message='Invalid card number' tooShort_message='' required={true} label="Card Number" minLength={16} maxLength={19} />
+                  <FormInput onInput={onInput} type="text" inputMode="text" pattern="[a-zA-Z ]+" name="cardholder" title="Name on card" error_message='Invalid card name' message='' validation_message='Invalid card name' tooShort_message='Invalid card name' required={true} label="Name on card" minLength={2} maxlength={50} />
+                  <FormInput onInput={onInput} type="text" inputMode="numeric" pattern="[0-9 ]+" name="Card number" title="Card Number" error_message='Card number is required' message='' validation_message='Invalid card number' tooShort_message='' required={true} label="Card Number" minLength={16} maxlength={19} />
                   <div id={classes.displayOuterFlex}>
                     <div id={classes.displayFlex}>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9\/]+" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxLength={5}/>
-                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9]+" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" minLength={3} maxLength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9\/]+" title="Expiration date" name="expiredate" error_message='Expiry date is required' message='' validation_message='' tooShort_message='' id={classes.expireDate} required={true} label="Expiration date (MM / YY)" maxlength={5}/>
+                    <FormInput type="text" onInput={onInput} inputMode="numeric" pattern="[0-9]+" title="Security Code" name="cvv" error_message='CVV is required' message='' validation_message='' tooShort_message='' id={classes.securitycode} required={true} label="(CVV)" minLength={3} maxlength={5}/>
                     </div>
                   </div>
             </form>
