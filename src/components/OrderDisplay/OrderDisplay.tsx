@@ -1,6 +1,8 @@
 import classes from './OrderDisplay.module.css'
 import CartClasses from '../ShoppingCart/ShoppingCart.module.css'
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import storeApiService from '../../services/storeApiService';
+import CartItem from '../../models/CartItem';
 interface OrderDisplayProps {
     className?: string;
 }
@@ -9,6 +11,7 @@ const OrderDisplay = ( {className} : OrderDisplayProps) : JSX.Element => {
   const navigate = useNavigate();
   if(location.state )
   {
+    storeApiService.setCartDatalocal(new Array<CartItem>);
     return (
       <>
       <title>Order confirmed</title>

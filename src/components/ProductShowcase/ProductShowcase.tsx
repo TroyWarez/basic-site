@@ -642,7 +642,7 @@ const ProductShowcase = (): JSX.Element  => {
             navigate(`products/?sku=${ProductItem.sku}`, {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
           }}>
           <img alt='Product Image' className={classes.img} src={ProductItem.productImageBinData}></img>
-          <b className={classes.ProductB}>{ProductItem.displayItemName}</b>
+          <b className={classes.from}>{ProductItem.displayItemName}</b>
           </Link>
           <div className={classes.ProductPriceContainer}>
             <p className={classes.from}>From: </p>

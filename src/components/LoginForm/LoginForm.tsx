@@ -47,8 +47,8 @@ const SignupForm = () : JSX.Element => {
             <p>Please enter your username and password below to proceed.</p>
         <br/>
         
-    <FormInput type="text" pattern="[A-Za-z0-9]+" autoComplete='username' name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxLength={20}/>
-    <FormInput type="password" autoComplete='password' pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={20}/>
+    <FormInput type="text" pattern="[A-Za-z0-9]+" autoComplete='username' name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxlength={20}/>
+    <FormInput type="password" autoComplete='password' name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxlength={24}/>
   
     <p className={`${classes.p} ${invisibleClass}`}>{errorMessage}</p>
     <FormInput 

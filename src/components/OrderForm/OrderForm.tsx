@@ -10,6 +10,7 @@ import storeApiService from "../../services/storeApiService.ts"
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react"
 import StoreItem from "../../models/StoreItem.tsx"
+import CartItem from "../../models/CartItem.tsx"
 const OrderForm = (): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -665,7 +666,7 @@ const OrderForm = (): JSX.Element => {
                 </div>
                   <div>
                 <div className={classes.inputSplitContainer}>
-                  <FormInput key={AutoFillAddress.email} className={classes.inputfirstlast} defaultValue={(location.state && location.state['autoFillEmail'] && AutoFillAddress.email === '') ? location.state['autoFillEmail'] : AutoFillAddress.email} inputMode="email" type="email" name="email" id="email" pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxlength={62}/>
+                  <FormInput key={AutoFillAddress.email} className={classes.inputfirstlast} defaultValue={(location.state && location.state['autoFillEmail'] && AutoFillAddress.email === '') ? location.state['autoFillEmail'] : AutoFillAddress.email} inputMode="email" type="email" name="email" id="email" onInput={onInput} error_message='This is a mandatory field' message='' validation_message='The email format is invalid' tooShort_message='' required={true}label="Email" title="Email" maxlength={62}/>
 
                   <FormInput key={AutoFillAddress.phoneNumber}  defaultValue={AutoFillAddress.phoneNumber} className={classes.inputfirstlast} onInput={onInput} inputMode="tel" type="tel" name="Phone" id="phoneNumber" pattern="[0-9'\(\)\-\s]+" error_message='This is a mandatory field' message='We need your phone number to assist delivery' validation_message='This is not a valid number' tooShort_message='' placeholder='(506) 555-5678' required={true} label="Phone Number" title="Phone Number" maxlength={28}/>
                 </div>
@@ -807,6 +808,7 @@ const OrderForm = (): JSX.Element => {
               if(location.state && location.state['userId'] && Address.promoEmails)
               {
                   await storeApiService.setUserAddressData(location.state['userId'], Address);
+                  await storeApiService.setUserCartData(location.state['userId'], new Array<CartItem>);
               }
               const orderNum = await storeApiService.placeOrder(sentOrder);
               navigate('/order-status', {state: { orderNumber: orderNum, firstName: Address.firstName, Deilverydate: getDeilveryDate(), email: Address.email, username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }})

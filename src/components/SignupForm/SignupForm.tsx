@@ -59,9 +59,9 @@ const SignupForm = () : JSX.Element => {
         <p>Sign up benefits: Save your shipping address and cart for later!</p>
         <br/>
         
-    <FormInput type="text" autoComplete='username' pattern="[A-Za-z0-9]+" name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxLength={20}/>
-    <FormInput type="password" autoComplete='new-password' pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxLength={20}/>
-    <FormInput type="password" autoComplete='new-password' pattern="^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}" name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols with upper and lower case letters.' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxLength={32}/>
+    <FormInput type="text" autoComplete='username' pattern="[A-Za-z0-9]+" name="username"  id="username" label="Username" error_message='Invalid Username' message='' tooShort_message='This username is too short' validation_message='Invalid Username' title="Username" autoFocus required minlength={2} maxlength={30}/>
+    <FormInput type="password" autoComplete='new-password' name="password"  id="password" label="Password" error_message='Invalid Password' message='' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={6} maxlength={30}/>
+    <FormInput type="password" autoComplete='new-password' name="confirmpassword"  id="confirmpassword" label="Re-enter Password" error_message='Invalid Password' message='Must be contain numbers and symbols with upper and lower case letters.' tooShort_message='This password is too short' validation_message='Invalid Password' title="Password" required={true} minlength={8} maxlength={32}/>
   
     <p className={`${classes.p} ${invisibleClass}`}>{errorMessage}</p>
     <FormInput 

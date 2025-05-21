@@ -55,7 +55,7 @@
 .ProductPrice {
     font-size: 1.6rem;
     height: 2rem;
-    font-weight: bold;
+    font-weight: lighter;
 }
 .ProductPriceContainer {
     display: flex;
@@ -68,6 +68,8 @@
 .from {
     margin-right: 1rem;
     font-size: 1.35rem!important;
+    text-decoration: none;
+    color: white;
 }
 .sale {
     color: red;

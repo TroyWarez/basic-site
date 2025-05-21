@@ -83,7 +83,7 @@ const CouponForm = (Props: CouponFormProps) : JSX.Element => {
     <div id={ids.CouponTextInputButton}>
 
     <div id={ids.CouponTextInputSubmitButton}>
-    <FormInput className={classes.CouponInput} form={ids.form} type="text" noLabel={true} name="coupon" error_message='' message='' tooShort_message='' validation_message='' maxLength={10} id={ids.CouponCodeInput} onInput={ 
+    <FormInput className={classes.CouponInput} form={ids.form} type="text" noLabel={true} name="coupon" error_message='' message='' tooShort_message='' validation_message='' maxlength={10} id={ids.CouponCodeInput} onInput={ 
       (event: React.ChangeEvent<HTMLInputElement>) => {
       switch (event.type) {
         case "input": {
