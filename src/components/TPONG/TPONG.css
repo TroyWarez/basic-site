@@ -1,0 +1,60 @@
+.gameControls {
+    display: var(--main-gameControl-display);
+    justify-content: start;
+    text-align: center;
+    visibility: var(--main-gameControl-visibility);
+    float: left;
+}
+
+.gameControlsGamepad {
+    display: var(--main-gameControl-display);
+    justify-content: start;
+    text-align: center;
+    visibility: var(--main-gameControl-visibility);
+    position:  relative;
+}
+
+.gameControlsMouse {
+    display: var(--main-gameControl-display-alt);
+    border: var(--main-textColor);
+    border-radius: 8px;
+    background-color: var(--main-bg-color);
+    color:var( --main-textColor);
+    color-scheme: var(--main-scheme);
+    min-height: 24px;
+    min-width: 128px;
+    overflow: hidden;
+    text-decoration: none;
+    position:  relative;
+    font-size: small;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.gameControlsMouse:hover {
+    background-color: var(--main-bg-hovercolor)
+}
+.gameControlsMouse:active {
+    transform: scale(.97);
+}
+.gameControlsMouseAudio {
+    display: var(--main-gameControl-display-alt);
+    border: var(--main-textColor);
+    border-radius: 8px;
+    background-color: var(--main-bg-color);
+    color:var( --main-textColor);
+    color-scheme: var(--main-scheme);
+    min-height: 24px;
+    min-width: 128px;
+    overflow: hidden;
+    text-decoration: none;
+    font-size: small;
+    font-weight: bold;
+    visibility: var(--main-gameControl-visibility);
+    margin-bottom: 10px;
+}
+.gameControlsMouseAudio:hover {
+    background-color: var(--main-bg-hovercolor)
+}
+.gameControlsMouseAudio:active {
+    transform: scale(.97);
+}

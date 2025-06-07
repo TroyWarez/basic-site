@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 *.jpeg
+*.png
+*.m4a
+public/icons/TPONG/safari-pinned-tab.svg
+public/Controller_light.svg
+public/Controller_dark.svg
