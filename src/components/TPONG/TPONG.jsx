@@ -1,8 +1,6 @@
 import './TPONG.css';
-import  { ContentContext } from './App'
-import { useState, useLayoutEffect, useContext } from 'react';
-import { Leaderboard } from './Leaderboard';
-export function TPONG(gameSetup, bDebug) {
+import { useState, useLayoutEffect } from 'react';
+export default function TPONG(gameSetup, bDebug) {
   const [gameState, setGameState] = useState({
     paddleHitSound : 'sounds/TPONG/paddleHit.m4a',
     paddleServeSound: 'sounds/TPONG/paddleServe.m4a',
@@ -37,8 +35,8 @@ export function TPONG(gameSetup, bDebug) {
 
     ctx : null,
 
-    ControllerSlots : new Array(),
-    ControllerAnalogZones : new Array(-0.75, -0.5, -0.35, 0.35, 0.5, 0.75),
+    ControllerSlots : [],
+    ControllerAnalogZones : [-0.75, -0.5, -0.35, 0.35, 0.5, 0.75],
 
     ScalingFactorX : 1,
     ScalingFactorY : 1,
@@ -125,8 +123,8 @@ export function TPONG(gameSetup, bDebug) {
 
     gameState.ctx = gameState.getContext('2d');
 
-    gameState.ControllerSlots = new Array();
-    gameState.ControllerAnalogZones = new Array(-0.75, -0.5, -0.35, 0.75, 0.5, 0.35);
+    gameState.ControllerSlots = [];
+    gameState.ControllerAnalogZones = [-0.75, -0.5, -0.35, 0.75, 0.5, 0.35];
     gameState.ScalingFactorX = 1;
     gameState.ScalingFactorY = 1;
 
@@ -965,58 +963,14 @@ export function TPONG(gameSetup, bDebug) {
   let keyBoardIcon_F11_Key_Path = '';
   let keyBoardIcon_C_Key_Path = '';
   let MouseIcon_Path = '';
-  let GameControlsContext = useContext(ContentContext);
-  switch (GameControlsContext.ContentState.theme)
-  {
-      case 'dark':
-      {
-        keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Light.png';
-        keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Light.png';
-        keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Light.png';
-        keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Light.png';
-        MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Light.png';
-        keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Light.png';
-        keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Light.png';
-        keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Light.png';
-        break;
-      }
-      case 'light':
-      {
-        keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Dark.png';
-        keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Dark.png';
-        keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Dark.png';
-        keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Dark.png';
-        MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Dark.png';
-        keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Dark.png';
-        keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Dark.png';
-        keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Dark.png';
-        break;
-      }
-      default:
-      {
-        keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Dark.png';
-        keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Dark.png';
-        keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Dark.png';
-        keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Dark.png';
-        MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Dark.png';
-        keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Dark.png';
-        keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Dark.png';
-        keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Dark.png';
-        break;
-      }
-  }
-  if(GameControlsContext.ContentState.UpdateImgLightArray.findIndex((e) => (e.ElementName === 'keyBoardIcon_W_Key')) === -1)
-  {
-    
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_W_Key', 'LightSvgPath' : '/icons/TPONG/W_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/W_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_S_Key', 'LightSvgPath' : '/icons/TPONG/S_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/S_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_Up_Key', 'LightSvgPath' : '/icons/TPONG/Arrow_Up_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/Arrow_Down_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_Down_Key', 'LightSvgPath' : '/icons/TPONG/Arrow_Down_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/Arrow_Down_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'MouseIcon', 'LightSvgPath' : '/icons/TPONG/Mouse_Simple_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/Mouse_Simple_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_Enter_Key', 'LightSvgPath' : '/icons/TPONG/Enter_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/Enter_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_F11_Key', 'LightSvgPath' : '/icons/TPONG/F11_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/F11_Key_Light.png'});
-    GameControlsContext.ContentState.UpdateImgLightArray.push({'ElementName' : 'keyBoardIcon_C_Key', 'LightSvgPath' : '/icons/TPONG/C_Key_Dark.png', 'DarkSvgPath' : '/icons/TPONG/C_Key_Light.png'});
-  }
+  keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Dark.png';
+  keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Dark.png';
+  keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Dark.png';
+  keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Dark.png';
+  MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Dark.png';
+  keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Dark.png';
+  keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Dark.png';
+  keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Dark.png';
   return (
   <>
   <input type='button' value={controlText} className='gameControlsMouse' onClick={() => {
@@ -1133,7 +1087,6 @@ export function TPONG(gameSetup, bDebug) {
   <canvas ref={setGameState} onClick={ () => {
     gameState.gameFlags.AudioPlayable = true;
   }}></canvas>
-  <Leaderboard/>
   </>
   );
 }
