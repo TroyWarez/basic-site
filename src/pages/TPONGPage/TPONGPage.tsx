@@ -1,6 +1,6 @@
 import PageContainer from '../../components/PageContainer/PageContainer';
 import TPONG from '../../components/TPONG/TPONG';
-const Homepage = () => {
+const TPONGPage = () => {
   return (<>
       <title>TPONG</title>
       <PageContainer>
@@ -8,4 +8,4 @@ const Homepage = () => {
       </PageContainer>
       </> )
 }
-export default Homepage;
+export default TPONGPage;

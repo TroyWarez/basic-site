@@ -1,6 +1,6 @@
 import './TPONG.css';
 import { useState, useLayoutEffect } from 'react';
-export default function TPONG(gameSetup, bDebug) {
+function TPONG(gameSetup, bDebug) {
   const [gameState, setGameState] = useState({
     paddleHitSound : 'sounds/TPONG/paddleHit.m4a',
     paddleServeSound: 'sounds/TPONG/paddleServe.m4a',
@@ -972,7 +972,7 @@ export default function TPONG(gameSetup, bDebug) {
   keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Dark.png';
   keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Dark.png';
   return (
-  <>
+  <div>
   <input type='button' value={controlText} className='gameControlsMouse' onClick={() => {
     let bShowControls = true;
     switch (getComputedStyle(document.body).getPropertyValue('--main-gameControl-visibility'))
@@ -1087,6 +1087,7 @@ export default function TPONG(gameSetup, bDebug) {
   <canvas ref={setGameState} onClick={ () => {
     gameState.gameFlags.AudioPlayable = true;
   }}></canvas>
-  </>
+  </div>
   );
 }
+export default TPONG;
