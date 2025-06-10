@@ -242,8 +242,8 @@ const TPONG = (gameSetup, bDebug) =>  {
           }
         gameState.gameFlags.DrawBall = false;
         gameState.PlayerPaddle = { 'x' : gameState.PaddleHeight, 'y' : ((gameState.gameBoardHeight / 2) - gameState.PaddleHeight) };
-        gameState.gameBoardWidth = window.screen.width;
-        gameState.gameBoardHeight = window.screen.height;
+        gameState.gameBoardWidth = window.screen.width - 20;
+        gameState.gameBoardHeight = window.screen.height - 20;
         gameState.Ball = { 'x' : 10, 'y' : 10, 'radius' : gameState.BallRad, 'velocityY' : gameState.BallMovSpeed, 'velocityX' : gameState.BallMovSpeed, 'divisor' : 2};
         gameState.ctx.canvas.style.paddingLeft = 0;
         gameState.ctx.canvas.style.paddingRight = 0;
@@ -263,8 +263,8 @@ const TPONG = (gameSetup, bDebug) =>  {
         document.body.style.setProperty('--main-display-block', 'none');
         document.body.style.setProperty('--main-article-margin', '0%');
         gameState.ctx.canvas.style.display = gameState.canvasStyleDisplay;
-        document.body.style.width = window.screen.height;
-        document.body.style.height = window.screen.width;
+        document.body.style.width = window.screen.height - 20;
+        document.body.style.height = window.screen.width - 20;
       } else {
         gameState.BallSpawnDelay = Date.now() + 4000;
         if (import.meta.env.DEV){
