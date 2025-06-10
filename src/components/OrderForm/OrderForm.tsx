@@ -161,6 +161,7 @@ const OrderForm = (): JSX.Element => {
               }
             case "Card number":
                 {
+                  event.target.value = event.target.value.trim();
                   if(luhnCheck(event.target.value) && event.target.value.length === 16)
                     {
                       event.target.setCustomValidity('');

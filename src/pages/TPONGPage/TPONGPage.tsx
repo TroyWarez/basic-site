@@ -3,7 +3,7 @@ import TPONG from '../../components/TPONG/TPONG';
 const TPONGPage = () => {
   return (<>
       <title>TPONG</title>
-      <PageContainer>
+      <PageContainer isCentered={true} Overflow={true}>
         <TPONG/>
       </PageContainer>
       </> )

@@ -15,6 +15,7 @@ import storefrontCartIcon from "../../assets/icons/storefronCartAltIcon.svg"
 import storefrontIcon from "../../assets/icons/storefrontIcon.svg"
 import trashIcon from "../../assets/icons/deleteIcon.svg"
 import loginIcon from "../../assets/icons/LoginIcon.svg"
+import tpongIcon from "../../assets/icons/tpong.png"
 import CartItem from '../../models/CartItem';
 const ProductShowcase = (): JSX.Element  => {
 
@@ -116,6 +117,10 @@ const ProductShowcase = (): JSX.Element  => {
           }}/>
 
     <div className={NavProductClasses.LoginContainer}>
+    <ImgButton imgPath={tpongIcon} name={"TPONG"} altText={"TPONG"} linkPath="/tpong" onclickHandler={(event) => {
+            event.preventDefault();
+            navigate("/tpong", {state: { username: (location.state) ? location.state['username'] : '', userId: (location.state) ? location.state['userId'] : 0 }});
+    }}/>
     {((location.state && location.state['username'] !== '')) ? <b className={NavProductClasses.AccountName}>{`Hello, ${location.state['username']}`}</b> : <ImgButton imgClassName={NavProductClasses.LoginImg} className={NavProductClasses.LoginDiv} imgPath={loginIcon} name={"Account"} altText={"Account"} linkPath="/customer/account/login"/>}
     <ImgButton className={`${Navclasses.cart} ${NavProductClasses.ImgButton}`} imgPath={storefrontCartIcon} altText={"Cart"} name={"Cart"} linkPath="">
         <div className={NavProductClasses.MiniCartContainerAlt}>

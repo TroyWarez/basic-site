@@ -58,3 +58,18 @@
 .gameControlsMouseAudio:active {
     transform: scale(.97);
 }
+.gameControlsContainer {
+    display: flex;
+    flex-direction: column;
+}
+.gameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body {
+    overflow-y: hidden;
+}
+canvas {
+    text-decoration: none;
+}

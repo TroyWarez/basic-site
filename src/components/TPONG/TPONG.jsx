@@ -1,6 +1,6 @@
 import './TPONG.css';
 import { useState, useLayoutEffect } from 'react';
-function TPONG(gameSetup, bDebug) {
+const TPONG = (gameSetup, bDebug) =>  {
   const [gameState, setGameState] = useState({
     paddleHitSound : 'sounds/TPONG/paddleHit.m4a',
     paddleServeSound: 'sounds/TPONG/paddleServe.m4a',
@@ -22,7 +22,7 @@ function TPONG(gameSetup, bDebug) {
     DimGray : '#767676',
     White : '#FFFFFF',
 
-    canvasMarginLeft : 'auto',
+    canvasMarginLeft : '2%',
     canvasMarginRight : 'auto',
     canvasStyleDisplay : 'inline-block',
     canvasStyleWidth : '800px',
@@ -106,7 +106,7 @@ function TPONG(gameSetup, bDebug) {
     gameState.DimGray = '#767676';
     gameState.White = '#FFFFFF';
 
-    gameState.canvasMarginLeft = '7%';
+    gameState.canvasMarginLeft = '2%';
     gameState.canvasMarginRight = 'auto';
     gameState.canvasStyleDisplay = 'inline-block';
     gameState.canvasStyleWidth = '800px';
@@ -281,13 +281,13 @@ function TPONG(gameSetup, bDebug) {
         document.body.style.setProperty('--main-visibility', 'visible');
         document.body.style.setProperty('--main-gameControl-display', 'block');
         document.body.style.setProperty('--main-gameControl-visibility', gameState.controlStyleValue);
-        document.body.style.setProperty('--main-gameControl-display-alt', 'block');
+        document.body.style.setProperty('--main-gameControl-display-alt', 'auto');
         document.body.style.setProperty('--main-display-flex', 'flex');
         document.body.style.setProperty('--main-display-flexbox', 'flexbox');
         document.body.style.setProperty('--main-display-block', 'block');
 
         document.body.style.setProperty('--main-article-margin', '3%');
-        gameState.ctx.canvas.style.marginLeft = '7%';
+        gameState.ctx.canvas.style.marginLeft = '2%';
         gameState.ctx.canvas.style.marginRight = 'auto';
       }
     }
@@ -963,15 +963,17 @@ function TPONG(gameSetup, bDebug) {
   let keyBoardIcon_F11_Key_Path = '';
   let keyBoardIcon_C_Key_Path = '';
   let MouseIcon_Path = '';
-  keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Dark.png';
-  keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Dark.png';
-  keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Dark.png';
-  keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Dark.png';
-  MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Dark.png';
-  keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Dark.png';
-  keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Dark.png';
-  keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Dark.png';
+  keyBoardIcon_W_Key_Path = '/icons/TPONG/W_Key_Light.png';
+  keyBoardIcon_S_Key_Path = '/icons/TPONG/S_Key_Light.png';
+  keyBoardIcon_Up_Key_Path = '/icons/TPONG/Arrow_Up_Key_Light.png';
+  keyBoardIcon_Down_Key_Path = '/icons/TPONG/Arrow_Down_Key_Light.png';
+  MouseIcon_Path = '/icons/TPONG/Mouse_Simple_Key_Light.png';
+  keyBoardIcon_F11_Key_Path = '/icons/TPONG/F11_Key_Light.png';
+  keyBoardIcon_Enter_Key_Path = '/icons/TPONG/Enter_Key_Light.png';
+  keyBoardIcon_C_Key_Path = '/icons/TPONG/C_Key_Light.png';
   return (
+  <div className='gameContainer'>
+  <div className='gameControlsContainer'>
   <div>
   <input type='button' value={controlText} className='gameControlsMouse' onClick={() => {
     let bShowControls = true;
@@ -1020,6 +1022,7 @@ function TPONG(gameSetup, bDebug) {
       localStorage.setItem('savedPreferences', JSON.stringify({'savedPalette' : gameState.selectedPalette, 'savedControlsPreference' : {'ShowControls' : gameState.gameFlags.ShowControls, 'AudioMuted' : gameState.gameFlags.AudioMuted}}));
         }
   }}/>
+  </div>
   <table className='gameControls'>
   <thead>
       <tr>
@@ -1084,6 +1087,7 @@ function TPONG(gameSetup, bDebug) {
     </tr>
   </tbody>
     </table>
+  </div>
   <canvas ref={setGameState} onClick={ () => {
     gameState.gameFlags.AudioPlayable = true;
   }}></canvas>

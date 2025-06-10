@@ -8,3 +8,6 @@
 .centered {
     justify-content: center;
 }
+.overflow {
+    overflow: hidden;
+}
