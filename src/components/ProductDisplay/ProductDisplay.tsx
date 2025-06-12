@@ -91,7 +91,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
           <b className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</s>
           </div>
           <div className={classes.containerCartItemTrash}>
           <div className={classes.itemAddTo}>
@@ -298,7 +298,7 @@ const ProductDisplay = ( {className} : ProductDisplayProps) : JSX.Element => {
           <h1 className={classes.h1}>{cartItem.displayItemName} <p className={classes.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
           <b className={classes.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={classes.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</s>
           </div>
           <div className={classes.containerCartItemTrash}>
           <div className={classes.itemAddTo}>

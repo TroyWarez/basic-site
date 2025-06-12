@@ -346,7 +346,7 @@ const ProductShowcase = (): JSX.Element  => {
           <h1 className={NavProductClasses.h1}>{cartItem.displayItemName} <p className={NavProductClasses.h2model}>{`Model No: ${cartItem.sku}`}</p></h1>
           <div>
           <b className={NavProductClasses.p}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencyValue * cartItem.quantityNumber)}`}</b>
-          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber)}`}</s>
+          <s hidden={(cartItem.displayCurrencySaleValue) ? false : true} className={NavProductClasses.pDiscount}>{`${cartItem.displayCurrencyValueType}${cartItem.displayCurrencyValueSymbol}${(cartItem.displayCurrencySaleValue * cartItem.quantityNumber).toFixed(2)}`}</s>
           </div>
           <div className={NavProductClasses.containerCartItemTrash}>
           <div className={NavProductClasses.itemAddTo}>
