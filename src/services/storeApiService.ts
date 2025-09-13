@@ -3,9 +3,9 @@ import CartItem from "../models/CartItem"
 import ProductItem from "../models/ProductItem";
 import Address from "../models/Address";
 import User from "../models/User";
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
 const httpClient = axios.create({
-    baseURL: "https://troysdomain.com",
+    baseURL: "https://www.troysdomain.com",
     headers: {}
   });
   const basePaths = {
@@ -65,7 +65,7 @@ const httpClient = axios.create({
       placeOrder: async (orderData: Address) => {
         try
         {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           const response =  await httpClient.post(`${basePaths.orders}${(orderData.guestOrder) ? 'Guest' : ''}`, {orderData});//Username here
           return response.data.order.orderNumber;
         }
@@ -75,17 +75,17 @@ const httpClient = axios.create({
         }
       },
       SignUpUser: async (username: string, password: string): Promise<User> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           const response =  await httpClient.post(basePaths.users, {username: username, password: password });
           return response.data;
       },
       LoginUser: async (username: string, password: string): Promise<User> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           const response =  await httpClient.post(basePaths.logins, {username: username, password: password });
           return response.data;
       },
       getUserCartData: async (userId: string): Promise<CartItem[]> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           if(userId === '' || userId.length < 24)
           {
             return storeApiService.getCartDatalocal();
@@ -99,7 +99,7 @@ const httpClient = axios.create({
           }
       },
       setUserCartData: async (userId: string, cartItems: CartItem[]): Promise<string> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           try{
             if(userId.length < 24)
             {
@@ -116,7 +116,7 @@ const httpClient = axios.create({
           }
       },
       getUserAddressData: async (userId: string): Promise<Address | null> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           try{
           const response = await httpClient.get(basePaths.address + "/" + userId);
           return ({ 
@@ -140,7 +140,7 @@ const httpClient = axios.create({
           }
       },
       setUserAddressData: async (userId: string, savedAdress: Address): Promise<string> => {
-          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://troysdomain.com';
+          axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'https://www.troysdomain.com';
           try{
             if(userId.length < 24)
             {
